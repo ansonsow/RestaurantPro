@@ -5,7 +5,7 @@ app.set('port', process.env.PORT || PORT);
 
 
 app.get('/', (req, res) => {
-    res.send("hiiiiii")
+    res.send("haaaaaa")
 });
 
 app.get('/api', (req, res) => {
