@@ -1,5 +1,7 @@
 const express = require("express");
 const app = express();
+require('./models/db')
+
 const PORT = 8000;
 app.set('port', process.env.PORT || PORT); 
 
