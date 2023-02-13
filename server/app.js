@@ -1,11 +1,13 @@
 const express = require("express");
 const app = express();
+require('./models/db')
+
 const PORT = 8000;
 app.set('port', process.env.PORT || PORT); 
 
 
 app.get('/', (req, res) => {
-    res.send("hiiiiii")
+    res.send("haaaaaa")
 });
 
 app.get('/api', (req, res) => {
