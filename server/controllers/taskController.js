@@ -4,6 +4,11 @@ let Task = require("../models/tasks")
 
 const getTask = (req,res)=>{
     // let newTask = new Task
+    let tasks = Task.find().then(result=>{
+        res.status(201)
+           .json(result)
+    });
+    // Task.find()
 }
 
 const saveTask = (req,res) =>{
@@ -19,9 +24,8 @@ const saveTask = (req,res) =>{
            .json(error);
     })
     // res.send("woo")
-
 }
 
 
 
-module.exports= {saveTask}
+module.exports= {getTask,saveTask}
