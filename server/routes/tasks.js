@@ -4,6 +4,9 @@ const router = express.Router();
 // import the controller, make sure it is exported
 const taskCtrl = require("../controllers/taskController");
 
-// router.post ("/tasks", taskCtrl.saveTask);
+// router.get("/tasks")
+
+router.post ("/tasks", taskCtrl.saveTask);
+// router.get("/",taskCtrl.test);
 
 module.exports = router;
