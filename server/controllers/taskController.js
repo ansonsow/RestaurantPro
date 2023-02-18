@@ -2,39 +2,53 @@
 
 let Task = require("../models/tasks")
 
-const findTask = (tid,res) =>{
-        const tasks = Task.find({task_id:tid}).then(result=>{
+// const findTask = (tid,res) =>{
+//         const tasks = Task.find({task_id:tid}).then(result=>{
+//             // res.status(201)
+//             //    .json(result);
+//             // return result;
+//         }).catch(err=>{
+//             console.log(err)
+//             // res.status(500)
+//             //    .json(err);
+//             // return false;
+//         });
+// }
+
+// const findAllTasks = (res) =>{
+//     const tasks = Task.find().then(result=>{
+//         res.status(201)
+//            .json(result);
+//     }).catch(err=>{
+//         res.status(500)
+//            .json(err);
+//     });
+// }
+
+const getTask = async (req,res)=>{
+    const tid = req.params.tid;
+    let result;
+
+    if(typeof(tid)=="undefined"){
+        const tasks = Task.find().then(result=>{
             res.status(201)
                .json(result);
         }).catch(err=>{
             res.status(500)
                .json(err);
         });
-}
-
-const findAllTasks = (res) =>{
-    const tasks = Task.find().then(result=>{
-        res.status(201)
-           .json(result);
-    }).catch(err=>{
-        res.status(500)
-           .json(err);
-    });
-}
-
-const getTask = async (req,res)=>{
-    const tid = req.params.tid;
-    // let newTask = new Task
-    let result = [200,"ha"];
-
-    if(typeof(tid)=="undefined"){
-        result = findAllTasks(res)
     }else{
-        result = findTask(tid,res)
+        const tasks = Task.find({task_id:tid}).then(result=>{
+            res.status(201)
+               .json(result);
+        }).catch(err=>{
+            console.log(err)
+            res.status(500)
+               .json(err);
+        });
     }
 
 }
-
 
 const saveTask = (req,res) =>{
     
@@ -52,5 +66,18 @@ const saveTask = (req,res) =>{
 }
 
 
+const updateTask = async (req,res) =>{
+    const tid = req.params.tid;
+    const task = await Task.findOne({task_id:tid})
+    task.task_name = req.body.task_name;
 
-module.exports= {getTask,saveTask}
+    for (const key in req.body) {
+        task[key] = req.body[key]
+    }
+    const updatedDocument = await task.save();
+    res.send(task);
+
+}
+
+
+module.exports= {getTask,saveTask,updateTask}
