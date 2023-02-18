@@ -1,0 +1,36 @@
+.form{
+ margin: auto;
+ display: block;
+ width: 50%;
+ height: 80vh;
+}
+
+.form_field{
+ display: flex;
+ flex-direction: column;
+ margin: 5px;
+ /* border: 1px solid black; */
+}
+.form_fields input{
+ color: rgb(16, 16, 16);
+ /* width: 30%; */
+}
+
+.form_fields label {
+ color: rgb(89, 82, 82);
+ /* width: 30%; */
+ font-size:small;
+}
+.fields{
+ display: flex;
+ flex-direction: row;
+ justify-content: space-between;
+}
+.back_button{
+  background-color: black;
+  color: white;
+  display: block;
+  margin:auto;
+  width: 10%;
+   text-align: center;
+}

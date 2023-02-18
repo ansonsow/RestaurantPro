@@ -1,0 +1,19 @@
+.menu{
+ border:2px solid rgb(172, 172, 167);
+ display: flex;
+ flex-direction: column;
+ width: 12%;
+ height: 100vh;
+ justify-content:space-between;
+}
+.sub_menu1,.sub_menu2{
+  /* border: 2px solid orange; */
+  padding: 1px;
+}
+
+.sub_menu1 ul li, .sub_menu2 ul li {
+ list-style: none;
+ font-weight: bold;
+ margin: 8px;
+}
+
