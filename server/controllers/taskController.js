@@ -27,7 +27,6 @@ let Task = require("../models/tasks")
 
 const getTask = async (req,res)=>{
     const tid = req.params.tid;
-    let result;
 
     if(typeof(tid)=="undefined"){
         const tasks = Task.find().then(result=>{

@@ -5,7 +5,8 @@ const router = express.Router();
 const userTaskCtrl = require("../controllers/userTaskController");
 
 router.get("/usersTasks", userTaskCtrl.getUserTask);
-
+router.get("/usersTasks/:uid/:tid", userTaskCtrl.getUserTask);
 router.post("/usersTasks", userTaskCtrl.saveUserTask);
+
 
 module.exports = router;

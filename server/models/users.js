@@ -6,11 +6,13 @@ const usersSchema = new Schema({
     
     user_id:{
         type:String,
-        minLength:1
+        minLength:1,
+        required: true
     },
     name:{
         type:String,
-        minLength:1
+        minLength:1,
+        required: true
     },
     surname: {
         type:String,
@@ -18,11 +20,13 @@ const usersSchema = new Schema({
     },
     email: {
         type:String,
-        minLength:1
+        minLength:1,
+        required: true
     },
     password: {
         type:String,
-        minLength:6
+        minLength:6,
+        required: true
     },
     job_title: {
         type:String,
