@@ -4,13 +4,17 @@ const Schema = mongoose.Schema;
 
 const userTasksSchema = new Schema({
     task_id:{
-        type:String
+        type:String,
+        required: true
     },
     user_id: {
-        type:String
+        type:String,
+        required: true
     },
     status: {
-        type:String
+        type: Boolean,
+        required: true,
+        default: false
     }
 });
 
