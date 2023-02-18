@@ -1,6 +1,10 @@
 const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
+let todaysDate = new Date(Date.now());
+
+let isoTime = todaysDate.toISOString("en-CA", {timeZone: "America/Vancouver"});
+
 
 const userTasksSchema = new Schema({
     task_id:{
@@ -15,6 +19,10 @@ const userTasksSchema = new Schema({
         type: Boolean,
         required: true,
         default: false
+    },
+    date: {
+        type: Date,
+        default: isoTime
     }
 });
 
