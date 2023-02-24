@@ -8,7 +8,7 @@ const isToday = (someDate) => {
 }
 
 const getUserTask = (req,res)=>{
-
+    res.header("Access-Control-Allow-Origin", "*");
     const uid = req.params.uid;
     const tid = req.params.tid;
 
@@ -44,7 +44,7 @@ const getUserTask = (req,res)=>{
 // }
 
 const saveUserTask = (req,res) =>{
-
+    res.header("Access-Control-Allow-Origin", "*");
     let newUserTask = new UserTask(req.body);
     newUserTask.save().then(
         result=>{
@@ -62,7 +62,7 @@ const updateUserTask = async (req,res) =>{
     const tid = req.params.tid;
     const uid = req.params.uid;
     const userTask = await UserTask.findOne({task_id:tid, user_id:uid})
-
+    res.header("Access-Control-Allow-Origin", "*");
     userTask.status = !userTask.status
     const updatedDocument = await userTask.save();
     res.json(userTask);

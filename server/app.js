@@ -3,7 +3,9 @@ const app = express();
 require('./models/db')
 const bodyParser = require("body-parser");
 const router = require('./routes');
-
+// ADD THIS
+var cors = require('cors');
+app.use(cors());
 
 const PORT = 8000;
 app.set('port', process.env.PORT || PORT); 

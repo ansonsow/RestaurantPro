@@ -1,68 +1,100 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./TaskBoard.css";
-import { Check } from "react-feather";
 import TaskList from "./TaskList";
 import TaskDetails from "./TaskDetails";
-
+import axios from "axios";
 function TasksBoard(props) {
   const [showBoard, setShowBoard] = useState(true);
   const [itemId, setItemId] = useState(null);
-  // demo data
-  let taskData = [
-    {
-      task_id: 1,
-      name: "Mop Main Floor",
-      description: "",
-      status: "In progress",
-      due_date: "19-02-2023",
-      assign_to: "Lilu",
-    },
-    {
-      task_id: 2,
-      name: "Roll Cultlery",
-      description: "",
-      status: "In progress",
-      due_date: "19-02-2023",
-      assign_to: "Lilu",
-    },
+  const [tasks, getTasks] = useState(props.tasks);
+  const [taskIds, setTaskIds] = useState([]);
 
-    {
-      task_id: 3,
-      name: "Close WashRoom",
-      description: "",
-      status: "In progress",
-      due_date: "19-02-2023",
-      assign_to: "Lilu",
-    },
+  useEffect(() => {
+    getData();
+    // getDataByUserID();
+    // getUserTasksIds();
+  }, []);
+  /*-------------------------------*/
+  //get data by userID
+  let uid = "T123";
+  let getDataByUserID = async () => {
+    console.log("In getDataByUserID");
+    await axios
+      .get(`http://localhost:8000/api/v1/users/${uid}`)
+      .then((response) => {
+        console.log("User ID Data: " + JSON.stringify(response));
+      })
+      .catch((error) => {
+        console.log("error in fetching user data");
+      });
+  };
+  let taskResponse = [];
 
-    {
-      task_id: 4,
-      name: "Vacuum Sofa",
-      description: "",
-      status: "In progress",
-      due_date: "19-02-2023",
-      assign_to: "Lilu",
-    },
-  ];
+  let getUserTasksIds = async () => {
+    console.log("In getUserTasksIds");
+
+    await axios
+      .get(`http://localhost:8000/api/v1/usersTasks/user/${uid}`)
+      .then((response) => {
+        console.log("task ids: " + JSON.stringify(response));
+        let ids = response.data.map((item) => item.task_id);
+        console.log("ids: " + ids);
+        ids.forEach((id) => {
+          getUserTasks(id);
+        });
+        setTaskIds(ids);
+        console.log("taskIds: " + taskIds);
+      })
+      .then(() => {
+        console.log("call with " + taskIds);
+        // getUserTasks();
+      })
+      .catch((error) => {
+        console.log("error in fetching the task ids: " + error);
+      });
+  };
+  let getUserTasks = async (id) => {
+    console.log("In getUserTasksIds");
+
+    await axios
+      .get(`http://localhost:8000/api/v1/tasks/${id}`)
+      .then((response) => {
+        console.log("tasks:  " + JSON.stringify(response));
+        // getTasks(response.data);
+        taskResponse.push(response.data[0]);
+        console.log("tasks:  " + JSON.stringify(taskResponse));
+      })
+      .catch((error) => {
+        console.log("error in fetching the task ids: " + error);
+      });
+  };
+
+  /*-------------------------------*/
+
+  //get tasks for the database
+  let getData = async () => {
+    console.log("response");
+    await axios
+      .get("http://localhost:8000/api/v1/tasks")
+      .then((response) => {
+        // getTasks(response.data);
+        console.log(
+          "response.data in getData: " + JSON.stringify(response.data)
+        );
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  // get details of the selected task
   if (itemId !== null) {
-    var task = taskData.find((item) => item.task_id === itemId);
-    console.log("task: " + task);
+    var task = tasks.find((item) => item.task_id === itemId);
+    console.log("task_id: " + task.task_name);
   }
-
-  // const [taskStatus, setTaskStatus] = useState(true);
-  // let taskDone = (event) => {
-  //   event.stopPropagation();
-  //   console.log("inner clcik");
-  //   setTaskStatus(false);
-  // };
-
-  // let taskOpen = (event) => {
-  //   event.stopPropagation();
-  //   console.log("inner clcik");
-  //   setTaskStatus(true);
-  // };
   return (
     <div className="board">
+      {console.log("tasks: " + JSON.stringify(tasks))}
       {showBoard ? (
         <div className="task_board">
           <div className="board_head">
@@ -71,7 +103,7 @@ function TasksBoard(props) {
           </div>
           {console.log("Yes")}
           <div className="board_list">
-            {taskData.map((item) => (
+            {tasks.map((item) => (
               <TaskList
                 item={item}
                 openTask={props.setBoardStatus}
@@ -81,6 +113,7 @@ function TasksBoard(props) {
               />
             ))}
           </div>
+          {getData}
         </div>
       ) : (
         <TaskDetails item={task} setShowBoard={setShowBoard} />
