@@ -8,9 +8,6 @@ router.get("/tasks", taskCtrl.getTask);
 
 router.get("/tasks/:tid",taskCtrl.getTask);
 
-// router.post ("/tasks", taskCtrl.saveTask);
-// router.get("/",taskCtrl.test);
-
 router.put("/tasks/:tid", taskCtrl.updateTask);
 
 module.exports = router;
