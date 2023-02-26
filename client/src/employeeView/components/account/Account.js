@@ -28,7 +28,6 @@ function Account(props) {
   };
 
   const saveChanges = () => {
-    console.log("in save changes");
     updateUser(userDetails);
   };
   return (
