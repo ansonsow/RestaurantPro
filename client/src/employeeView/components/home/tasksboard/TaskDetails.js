@@ -4,12 +4,11 @@ function TaskDetails(props) {
  
   return (
     <div className="form">
-      {console.log("dentails")}
       <form className="task_details">
         <div className="fields">
           <div className="form_field">
             <label for="task_name">Task</label>
-            <input type="text" value={props.item.name} />
+            <input type="text" defaultValue={props.item.task_name} />
           </div>
           <div className="form_field">
             <label>Urgency Level</label>
@@ -30,7 +29,7 @@ function TaskDetails(props) {
 
         <div className="form_field">
           <label>Description</label>
-          <textarea></textarea>
+          <textarea>{props.item.task_desc}</textarea>
         </div>
 
         <div className="back_button" onClick={() => props.setShowBoard(true)}>

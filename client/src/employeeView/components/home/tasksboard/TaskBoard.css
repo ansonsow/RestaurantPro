@@ -9,18 +9,16 @@
  border: 1px solid cadetblue;
  display: flex;
  flex-direction: column;
- width:50%;
+ width:75%;
 border-radius: 10px;
 margin-top: 20px;
 margin-left: 70px;
 margin-bottom: 30px;
-/* margin-right: 40px; */
 }
 .board_head{
  display: flex;
  flex-direction: row;
  justify-content: space-between;
-  /* border: 2px solid rgb(196, 244, 246); */
 }
 .board_head p{
  font-weight: bold;
@@ -31,8 +29,6 @@ margin-bottom: 30px;
  margin: 10px;
 }
 .board_list{
-   /* border: 2px solid rgb(65, 90, 91); */
-   /* border-radius: 10px; */
    height: 70vh;
    margin: 30px;
 }
