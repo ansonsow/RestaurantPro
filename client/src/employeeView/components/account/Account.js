@@ -2,7 +2,13 @@ import React, { useEffect, useState } from "react";
 import "./Account.css";
 import axios from "axios";
 function Account(props) {
-  const [userDetails, setUserDetails] = useState(props.account);
+  const [userDetails, setUserDetails] = useState({});
+  
+  useEffect(() => {
+    if (Object.keys(props.account).length !== 0) {
+      setUserDetails(props.account);
+    }
+  }, [props.account]);
 
   const handle = (e) => {
     const newData = { ...userDetails };
@@ -32,8 +38,10 @@ function Account(props) {
   };
   return (
     <div className="account">
-      {console.log("porps: " + JSON.stringify(props.account))}
       <form className="task_details">
+        {console.log("props in account: " + JSON.stringify(props.account))}
+        {console.log("userDetails: " + JSON.stringify(userDetails))}
+
         <div className="fields">
           <div className="form_field">
             <label for="task_name">Name</label>

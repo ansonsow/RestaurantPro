@@ -14,7 +14,6 @@ function Message(props) {
     <>
       {message && (
         <div className="message">
-          {console.log("In message")}
           <div className="cross">
             <X />
           </div>
