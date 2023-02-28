@@ -47,6 +47,11 @@ const usersSchema = new Schema({
     notes: {
         type:String,
         minLength:1
+    },
+    type: {
+        type:String,
+        required: true,
+        enum: ["Manager", "Employee", "Admin"]
     }
 });
 
