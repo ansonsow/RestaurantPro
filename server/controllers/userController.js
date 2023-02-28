@@ -1,4 +1,5 @@
 let User = require("../models/users")
+const jwt = require("jsonwebtoken")
 const bcrypt = require('bcrypt');
 
 const getUsers = (req, res) => {
@@ -61,11 +62,47 @@ const saveUsers = async (req,res) =>{
 
 const loginUser = async (req,res)=>{
   const email = req.body.email;
-  const password = req.body.password
+  const password = req.body.password;
 
-  const user = await User.findOne({email:email})
+  const user = await User.findOne({email:email});
 
-  res.json(user)
+  if(user){
+    const rightPsw = await bcrypt.compare(password, user.password);
+
+    if(rightPsw){
+
+
+      const token = jwt.sign(
+        { user_id: user.user_id,
+          _id:user._id, 
+          email:user.email },
+          process.env.TOKEN_KEY,
+        {
+          expiresIn: "2h",
+        }
+      );
+
+      const localUser = user;
+      localUser.token = token
+
+      const data = {
+        "message":"successfully login",
+        "data":localUser,
+        "token":token
+      };
+
+      res.status(201).json(data)
+      
+    }else{
+      const data = {"message":"wrong password"}
+      res.status(401).json(data)
+    }
+  }else{
+    const data = {"message":"user not found"};
+    res.status(404).json(data)
+  }
+
+
 
 }
 
