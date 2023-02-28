@@ -1,12 +1,16 @@
-import React, { useState } from "react";
+import React, {useEffect, useState } from "react";
 import "./MyTask.css";
 import { Check, TrendingUp } from "react-feather";
-import Message from "../message/Message";
+import Message from "../../message/Message";
 import axios from "axios";
 
 function MyTaskList(props) {
-  const [taskStatus, setTaskStatus] = useState(props.item.task_status);
+  const [taskStatus, setTaskStatus] = useState(true);
   const [message, showMessage] = useState(false);
+
+  useEffect(() => {
+    setTaskStatus(props.item.task_status);
+  }, [props.item.task_status]);
 
   //change task status
   let changeTaskStatus = (value) => {
@@ -26,6 +30,7 @@ function MyTaskList(props) {
     event.stopPropagation();
     changeTaskStatus(false);
     setTaskStatus(false);
+    showMessage(true);
   };
 
   let taskOpen = (event) => {
@@ -37,12 +42,16 @@ function MyTaskList(props) {
   return (
     <div key={props.item.task_id} className="task">
       <p>{props.item.task_name}</p>
-      <p>{props.item.task_status === true ? "Open" : "Close"}</p>
+      <p>{taskStatus === true ? "Open" : "Close"}</p>
       <p>{props.item.priority === 1 ? "High" : "Low"}</p>
 
       {taskStatus ? (
         <>
-          <div className="check_task" onClick={taskDone}>
+          <div
+            key={props.item.task_id}
+            className="check_task"
+            onClick={taskDone}
+          >
             <Check />
           </div>
           {message && (
@@ -50,12 +59,14 @@ function MyTaskList(props) {
           )}
         </>
       ) : (
-        <div className="open_task" onClick={taskOpen}>
+        <div key={props.item.task_id} className="open_task" onClick={taskOpen}>
           <p>open again</p>
-          <Message
-            heading=" Congratulations!"
-            message=" You have finished the task"
-          />
+          {message && (
+            <Message
+              heading="Congratulations"
+              message=" You have finished the task"
+            />
+          )}
         </div>
       )}
     </div>

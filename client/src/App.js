@@ -17,7 +17,7 @@ function App() {
   let getDataByUserID = async (userId) => {
     console.log("******************");
     console.log("In getDataByUserID");
-    console.log("userId:" + userId);
+    console.log("userId in localStorage:" + userId);
     await axios
       .get(`http://localhost:8000/api/v1/users/${userId}`)
       .then((response) => {
@@ -34,13 +34,14 @@ function App() {
   let getUserTasksIds = async (userId) => {
     console.log("******************");
     console.log("In getUserTasksIds");
-    // console.log("id : " + userId);
-    console.log("userId in local: " + userId);
+    console.log("userId in localStorage: " + userId);
     await axios
       .get(`http://localhost:8000/api/v1/usersTasks/user/${userId}`)
       .then((response) => {
         let ids = response.data.map((item) => item.task_id);
+        console.log("tasks ids of user " + JSON.stringify(ids));
         ids.forEach((id) => {
+        console.log("task Api called id:  " + id);
           getUserTasks(id);
         });
         setUserTasks(tasks);
@@ -62,7 +63,8 @@ function App() {
       .catch((error) => {
         console.log("error in fetching the task ids: " + error);
       });
-    console.log("task fetched: " + JSON.stringify(tasks));
+    console.log("task fetched in array: " + JSON.stringify(tasks));
+    console.log("userTasks updated with new taks " + JSON.stringify(userTasks));
   };
 
   const getUserId = (event) => {
@@ -88,7 +90,9 @@ function App() {
       <div className="nav_bar">
         <Navbar />
       </div>
-      {console.log("localstore return : " + localStorage.getItem("showScreen"))}
+      {console.log(
+        "localStorage return : " + localStorage.getItem("showScreen")
+      )}
       {console.log("tasks to send : " + JSON.stringify(userTasks))}
       {console.log("user to send : " + JSON.stringify(userDetails))}
 
