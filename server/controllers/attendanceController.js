@@ -5,12 +5,14 @@ let Attendance = require("../models/attendance");
 /*---- RETURN ALL ATTENDANCE INFO ----*/
 const getAttendance = (req,res)=>{
     let attendanceDetails = Attendance.find().then(result=>{
+        res.header("Access-Control-Allow-Origin", "*");
         res.status(201).json(result);
     });
 }
 
 /*---- RETURN INFO BASED ON AN EMLOYEE'S ID ----*/
 const getAttendee = (req, res) => {
+    res.header("Access-Control-Allow-Origin", "*");
     const id = req.params.user_id;
     if (typeof (id) == 'undefined') {
         Attendance.find({}).exec().then(results => {
@@ -35,6 +37,7 @@ const getAttendee = (req, res) => {
 let clockInList = [];
 let yvrInTime = [];
 const getClockIn = (req, res) => {
+    res.header("Access-Control-Allow-Origin", "*");
     Attendance.find({},{"clock_in":1}).exec().then(results => {
         if (results == null) {
             res.status(404).json(results);
@@ -65,6 +68,7 @@ const getClockIn = (req, res) => {
 let clockOutList = [];
 let yvrOutTime = [];
 const getClockOut = (req, res) => {
+    res.header("Access-Control-Allow-Origin", "*");
     Attendance.find({},{"clock_out":1}).exec().then(results => {
         if (results == null) {
             res.status(404).json(results);
@@ -92,7 +96,8 @@ const getClockOut = (req, res) => {
 };
 
 /*---- POST NEW ATTENDANCE ----*/
-const saveAttendance = (req,res) =>{    
+const saveAttendance = (req,res) =>{
+    res.header("Access-Control-Allow-Origin", "*");    
     let addAttendance = new Attendance(req.body);
     addAttendance.save().then(result=>{
             res.status(201).json(addAttendance);

@@ -1,10 +1,42 @@
+/*------ FONT: BREVIA ------*/
+@font-face {
+    font-family: "Brevia Regular";
+    src: local("Brevia-Regular"),
+         url("./fonts/Brevia/Brevia-Regular.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Brevia Medium";
+    src: local("Brevia-Medium"),
+         url("./fonts/Brevia/Brevia-Medium.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Brevia Semibold";
+    src: local("Brevia-Semibold"),
+         url("./fonts/Brevia/Brevia-Semibold.ttf") format("truetype");
+}
+
+/*------ FONT: CENTURY GOTHIC ------*/
+@font-face {
+    font-family: "Century Gothic Regular";
+    src: local("Century-Gothic-Regular"),
+         url("./fonts/CenturyGothic/Century-Gothic-Regular.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Century Gothic Bold";
+    src: local("Century-Gothic-Bold"),
+         url("./fonts/CenturyGothic/Century-Gothic-Bold.ttf") format("truetype");
+}
+
 .App{
  /* display: flex; */
  /* flex-direction: row; */
 }
 
 
-.home_page{
+.components{
  display: flex;
  flex-direction: row;
  /* border: 2px solid black; */

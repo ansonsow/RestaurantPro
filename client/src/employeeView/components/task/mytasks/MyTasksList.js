@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
-import "./TaskBoard.css";
+import React, {useEffect, useState } from "react";
+import "./MyTask.css";
 import { Check, TrendingUp } from "react-feather";
 import Message from "../../message/Message";
 import axios from "axios";
 
-function TaskList(props) {
+function MyTaskList(props) {
   const [taskStatus, setTaskStatus] = useState(true);
   const [message, showMessage] = useState(false);
 
@@ -12,22 +12,20 @@ function TaskList(props) {
     setTaskStatus(props.item.task_status);
   }, [props.item.task_status]);
 
+  //change task status
   let changeTaskStatus = (value) => {
     const task = { task_status: value };
-    console.log("change task status: ");
+    console.log("Call get Task");
     axios
       .put(`http://localhost:8000/api/v1/task/${props.item._id}`, task)
       .then((response) => {
         console.log("task status" + JSON.stringify(response.data));
       })
       .catch((error) => {
-        console.log("error in updating th task status: " + error);
+        console.log("error in finding th task: " + error);
       });
   };
-  let showTaskDetails = () => {
-    props.setShowBoard(false);
-    props.setItemId(props.item.task_id);
-  };
+
   let taskDone = (event) => {
     event.stopPropagation();
     changeTaskStatus(false);
@@ -42,8 +40,11 @@ function TaskList(props) {
     showMessage(true);
   };
   return (
-    <div key={props.item.task_id} className="task" onClick={showTaskDetails}>
+    <div key={props.item.task_id} className="task">
       <p>{props.item.task_name}</p>
+      <p>{taskStatus === true ? "Open" : "Close"}</p>
+      <p>{props.item.priority === 1 ? "High" : "Low"}</p>
+
       {taskStatus ? (
         <>
           <div
@@ -72,4 +73,4 @@ function TaskList(props) {
   );
 }
 
-export default TaskList;
+export default MyTaskList;

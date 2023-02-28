@@ -1,4 +1,4 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 
 // import the controller, make sure it is exported
@@ -14,5 +14,7 @@ router.post("/users", userCtrl.saveUsers);
 router.post("/user/login", userCtrl.logInUser);
 //
 router.get("/users/:id", userCtrl.getUsers);
+
+router.put("/users/:id", userCtrl.updateUser);
 
 module.exports = router;

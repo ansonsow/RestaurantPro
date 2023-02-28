@@ -1,0 +1,78 @@
+.my_task_board {
+ width: 100%;
+ margin-top: 20px;
+ margin-left: 70px;
+ margin-bottom: 30px;
+}
+
+.board_columns {
+ border: 1px solid cadetblue;
+ display: flex;
+ flex-direction: column;
+ width: 75%;
+ border-radius: 10px;
+ margin-top: 20px;
+ margin-left: 70px;
+ margin-bottom: 30px;
+ /* margin-right: 40px; */
+}
+
+.columns_names {
+ display: flex;
+ flex-direction: row;
+ justify-content: space-between;
+ /* border: 2px solid rgb(196, 244, 246); */
+}
+
+.board_list p {
+ font-weight: bold;
+ text-decoration: underline;
+ margin: 15px;
+}
+
+
+
+.board_list {
+ /* border: 2px solid rgb(65, 90, 91); */
+ /* border-radius: 10px; */
+ height: 70vh;
+ margin: 30px;
+}
+
+.task {
+ display: flex;
+ justify-content: space-between;
+ border: 1px solid rgb(7, 7, 7);
+ margin: 5px;
+ background-color: rgb(202, 197, 190);
+ padding: 2px;
+ align-items: center;
+}
+
+.check_task {
+ border-radius: 2px;
+ background-color: white;
+ /* margin-top: 10px; */
+ width: 50px;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ height: 30px;
+ transition: 2ms;
+}
+
+.open_task {
+ border-radius: 4px;
+ background-color: white;
+ width: 15%;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ height: 30px;
+
+
+}
+
+
+
+
