@@ -11,6 +11,7 @@ router.get("/users", userCtrl.getUsers);
 router.post("/users", userCtrl.saveUsers);
 // router.get("/",taskCtrl.test);
 
+router.post("/user/login", userCtrl.loginUser);
 //
 router.get("/users/:id", userCtrl.getUsers);
 
