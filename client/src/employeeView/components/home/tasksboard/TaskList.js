@@ -1,16 +1,20 @@
 import React, { useEffect, useState } from "react";
 import "./TaskBoard.css";
 import { Check, TrendingUp } from "react-feather";
-import Message from "../message/Message";
+import Message from "../../message/Message";
 import axios from "axios";
 
 function TaskList(props) {
-  const [taskStatus, setTaskStatus] = useState(props.item.task_status);
+  const [taskStatus, setTaskStatus] = useState(true);
   const [message, showMessage] = useState(false);
+
+  useEffect(() => {
+    setTaskStatus(props.item.task_status);
+  }, [props.item.task_status]);
 
   let changeTaskStatus = (value) => {
     const task = { task_status: value };
-    console.log("Call get Task");
+    console.log("change task status: ");
     axios
       .put(`http://localhost:8000/api/v1/task/${props.item._id}`, task)
       .then((response) => {
@@ -28,6 +32,7 @@ function TaskList(props) {
     event.stopPropagation();
     changeTaskStatus(false);
     setTaskStatus(false);
+    showMessage(true);
   };
 
   let taskOpen = (event) => {
@@ -41,7 +46,11 @@ function TaskList(props) {
       <p>{props.item.task_name}</p>
       {taskStatus ? (
         <>
-          <div className="check_task" onClick={taskDone}>
+          <div
+            key={props.item.task_id}
+            className="check_task"
+            onClick={taskDone}
+          >
             <Check />
           </div>
           {message && (
@@ -49,12 +58,14 @@ function TaskList(props) {
           )}
         </>
       ) : (
-        <div className="open_task" onClick={taskOpen}>
+        <div key={props.item.task_id} className="open_task" onClick={taskOpen}>
           <p>open again</p>
-          <Message
-            heading=" Congratulations!"
-            message=" You have finished the task"
-          />
+          {message && (
+            <Message
+              heading="Congratulations"
+              message=" You have finished the task"
+            />
+          )}
         </div>
       )}
     </div>

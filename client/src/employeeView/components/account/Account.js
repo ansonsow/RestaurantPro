@@ -3,7 +3,7 @@ import "./Account.css";
 import axios from "axios";
 function Account(props) {
   const [userDetails, setUserDetails] = useState({});
-  
+
   useEffect(() => {
     if (Object.keys(props.account).length !== 0) {
       setUserDetails(props.account);
@@ -44,7 +44,7 @@ function Account(props) {
 
         <div className="fields">
           <div className="form_field">
-            <label for="task_name">Name</label>
+            <label htmlFor="name">Name</label>
             <input
               type="text"
               onChange={(e) => handle(e)}
@@ -53,7 +53,7 @@ function Account(props) {
             />
           </div>
           <div className="form_field">
-            <label>Surname</label>
+            <label htmlFor="surname">Surname</label>
             <input
               type="text"
               onChange={(e) => handle(e)}
@@ -67,7 +67,7 @@ function Account(props) {
 
         <div className="fields">
           <div className="form_field">
-            <label>Email</label>
+            <label htmlFor="email">Email</label>
             <input
               type="text"
               onChange={(e) => handle(e)}
@@ -76,29 +76,29 @@ function Account(props) {
             />
           </div>
           <div className="form_field">
-            <label>Company Name</label>
-            <input type="text" value="East is East" />
+            <label htmlFor="companyName">Company Name</label>
+            <input type="text" id="companyName" value="East is East" />
           </div>
         </div>
 
         <div className="fields">
           <div className="form_field">
             <label>Job Title</label>
-            <input type="text" value="manager" />
+            <input type="text" value="server" />
           </div>
           <div className="form_field">
-            <label>Shift</label>
-            <input type="text" value="7:30-9:30" />
+            <label htmlFor="date">Shift</label>
+            <input type="text" id="date" value="7:30-9:30" />
           </div>
         </div>
 
         <div className="fields">
           <div className="form_field">
-            <label>BirthDay</label>
-            <input type="text" value="09-09-1998" />
+            <label htmlFor="birthDate">BirthDay</label>
+            <input type="text" id="birthDate" value="09-09-1998" />
           </div>
           <div className="form_field">
-            <label>Gender</label>
+            <label htmlFor="gender">Gender</label>
             <input
               type="text"
               onChange={(e) => handle(e)}
@@ -110,18 +110,18 @@ function Account(props) {
 
         <div className="fields">
           <div className="form_field">
-            <label>ContactNumber</label>
-            <input type="text" value="09-09-1998" />
+            <label htmlFor="contactNumber">ContactNumber</label>
+            <input type="text" id="contactNumber" value="7786571109" />
           </div>
           <div className="form_field">
-            <label>Address</label>
-            <input type="text" value="Female" />
+            <label htmlFor="address">Address</label>
+            <input type="text" id="address" value="Main st" />
           </div>
         </div>
 
         <div className="form_field">
-          <label>Other Notes</label>
-          <input type="text" />
+          <label htmlFor="other">Other Notes</label>
+          <input type="text" id="other" />
         </div>
 
         <div className="call_to_actions">
@@ -131,6 +131,10 @@ function Account(props) {
 
           <div className="back_button" onClick={saveChanges}>
             <p>Save Change</p>
+          </div>
+
+          <div className="back_button">
+            <p>Home</p>
           </div>
         </div>
       </form>

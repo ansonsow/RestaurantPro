@@ -14,7 +14,7 @@ function TasksBoard(props) {
   // get details of the selected task
   if (itemId !== null) {
     var task = tasks.find((item) => item.task_id === itemId);
-    console.log("task_id: " + task.task_name);
+    console.log("task_name: " + task.task_name);
   }
   return (
     <div className="board">
