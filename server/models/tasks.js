@@ -2,6 +2,16 @@ const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 
+const todaysDate = new Date(Date.now());
+// const isoTime = todaysDate.toISOString("en-CA", {timeZone: "America/Toronto"});
+
+Date.prototype.addHours= function(h){
+    this.setHours(this.getHours()+h);
+    return this;
+}
+const twoHLater = todaysDate.addHours(2);
+
+
 const tasksSchema = new Schema({
     task_id:{
         type: String,
@@ -29,12 +39,14 @@ const tasksSchema = new Schema({
         type: Date,
         default: Date.now()
     },
+    // due date defult to 2 hours later unless specified
     due_date:{
-        type: Date
+        type: Date,
+        default: twoHLater
     },
     priority:{
         type: Number,
-        default: 1
+        default: 0
     },
     brach_id:{
         type: String

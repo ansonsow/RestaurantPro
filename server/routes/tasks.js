@@ -6,6 +6,9 @@ const taskCtrl = require("../controllers/taskController");
 
 router.get("/tasks", taskCtrl.getTask);
 
+router.post("/tasks", taskCtrl.saveTask);
+
+
 router.get("/tasks/:tid", taskCtrl.getTask);
 router.put("/task/", taskCtrl.getTasks);
 
