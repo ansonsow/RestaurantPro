@@ -1,5 +1,5 @@
-let User = require("../models/users")
-const jwt = require("jsonwebtoken")
+let User = require("../models/users");
+const jwt = require("jsonwebtoken");
 const bcrypt = require('bcrypt');
 
 const getUsers = (req, res) => {
@@ -35,6 +35,8 @@ const getUsers = (req, res) => {
 
 const saveUsers = async (req,res) =>{
     
+  res.header("Access-Control-Allow-Origin", "*");
+
     let newUser = new User(req.body);
     
     const existing = await User.findOne({email:newUser.email});
@@ -75,7 +77,9 @@ const loginUser = async (req,res)=>{
       const token = jwt.sign(
         { user_id: user.user_id,
           _id:user._id, 
-          email:user.email },
+          email:user.email,
+          type: user.type
+        },
           process.env.TOKEN_KEY,
         {
           expiresIn: "2h",

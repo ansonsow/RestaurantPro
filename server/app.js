@@ -24,8 +24,12 @@ app.get('/', (req, res) => {
     res.send("haaaaaa")
 });
 
-app.get("/testAuth", auth, (req,res)=>{
+app.get("/testAuth", auth.verifyToken, (req,res)=>{
     res.status(200).send("watup")
+})
+
+app.get("/testMng", auth.verifyManagerToken, (req,res)=>{
+    res.status(200).send("watupMng")
 })
 
 app.listen(PORT, ()=>{

@@ -1,5 +1,7 @@
 const express = require('express');
 const router = express.Router();
+const auth = require("../middleware/auth");
+
 
 const attendanceCtrl = require("../controllers/attendanceController");
 
@@ -16,6 +18,7 @@ router.get("/attendance/time/clock_in", attendanceCtrl.getClockIn);
 router.get("/attendance/time/clock_out", attendanceCtrl.getClockOut);
 
 // log new attendance
-router.post("/attendance", attendanceCtrl.saveAttendance);
+// need user login to make an attendance
+router.post("/attendance", auth.verifyToken, attendanceCtrl.saveAttendance);
 
 module.exports = router;
