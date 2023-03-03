@@ -112,8 +112,8 @@ const getLastAttendance = async (req,res) => {
     const uid = req.params.uid
 
 
-    const attendance = await Attendance.find({user_id:uid})
-    console.log(uid)
+    const attendance = await Attendance.find({user_id:uid}).limit(1).sort({$natural:-1}) 
+    // console.log(attendance)
     // res.json(uid)
     if(attendance){
         res.status(200).json(attendance)
