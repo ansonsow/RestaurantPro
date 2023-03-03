@@ -150,7 +150,7 @@ function App() {
         <EmployeeView tasks={userTasks} account={userDetails} />
       )}
 
-      {userType == "" ? (
+      {/* {userType == "" ? (
         // render this page
 
         <div>
@@ -173,7 +173,7 @@ function App() {
       ): (
         // manager view
         <div>Manager view</div>
-      )}
+      )} */}
     </div>
   );
 }

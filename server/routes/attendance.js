@@ -19,6 +19,12 @@ router.get("/attendance/time/clock_out", attendanceCtrl.getClockOut);
 
 // log new attendance
 // need user login to make an attendance
-router.post("/attendance", auth.verifyToken, attendanceCtrl.saveAttendance);
+// router.post("/attendance", auth.verifyToken, attendanceCtrl.saveAttendance);
+router.post("/attendance", attendanceCtrl.saveAttendance);
+
+
+router.get("/lastattendance/:uid", attendanceCtrl.getLastAttendance)
+
+router.put("/attendance/:uid", attendanceCtrl.updateClockOut)
 
 module.exports = router;

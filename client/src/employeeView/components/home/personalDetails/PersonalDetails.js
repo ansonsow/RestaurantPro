@@ -22,7 +22,7 @@ export default function PersonalDetails(props) {
         setTitle(result.data.job_title);
 
         const localDate = new Date(result.data.lastLogin);
-        console.log(String(localDate));
+        // console.log(String(localDate));
 
         setLastLogin(String(localDate))
 
@@ -32,13 +32,66 @@ export default function PersonalDetails(props) {
     })
   }
 
+//   function stringify (x) {
+//     console.log("waaaa"+Object.prototype.toString.call(x));
+// }
 
-  // const getAttendance = async ()=>{
+  const isToday = (someDate) => {
+    const today = new Date()
+    return someDate.getDate() == today.getDate() &&
+      someDate.getMonth() == today.getMonth() &&
+      someDate.getFullYear() == today.getFullYear()
+  }
 
-  // }
+  const getAttendance = async ()=>{
+    await axios.get(`http://localhost:8000/api/v1/attendance/user/${Number(localStorage.userId)}`).then(result=>{
+      const localClockIn = new Date(result.data[0].clock_in)
+      const localClockOut = new Date(result.data[0].clock_out)
+      // console.log("waaaaaaaaaaaa"+result);
+      // stringify(result)
+
+      if(isToday(localClockIn)){
+        setIsAttend(true)
+      }
+
+      console.log(isAttend);
+
+      setLastClockIn(String(localClockIn))
+      setLastClockOut(String(localClockOut))
+
+    }).catch(error=>{
+      console.log(error);
+    })
+  }
+
+  const makeAttendance = async () => {
+    await axios.post("http://localhost:8000/api/v1/attendance", {"user_id":localStorage.userId}).then(result=>{
+      console.log(result);
+
+      const localClockIn = new Date(result.data.clock_in)
+      setLastClockIn(String(localClockIn))
+      setIsAttend(true);
+    }).catch(error=>{
+      console.log(error);
+    })
+  }
+
+  const clockOut = async() => {
+    await axios.put(`http://localhost:8000/api/v1/attendance/${Number(localStorage.userId)}`).then(result=>{
+      console.log(result);
+
+      const localClockOut = new Date(result.data.clock_out)
+
+      setLastClockOut(String(localClockOut))
+      setIsAttend(false);
+    }).catch(error=>{
+      console.log(error);
+    })
+  }
 
   useEffect(()=>{
     getData();
+    getAttendance()
   },[])
 
   return (
@@ -60,9 +113,17 @@ export default function PersonalDetails(props) {
 
       <div className="login_info user_box">
         <h4>Attendance</h4>
+        {!isAttend &&
+          <button className = "clock_in_btn" onClick={makeAttendance}>Clock In</button>
+        }
+        {
+          isAttend &&
+          <button className = "clock_out_btn" onClick={clockOut}>Clock Out</button>
+           
+        }
         <div className="clock_info">
-          <p>Last clock-in: 27/09/2023 2:30pm</p>
-          <p>Last clock-out: 27/09/2023 9:30pm</p>
+          <p>Last clock-in: {lastClockIn}</p>
+          <p>Last clock-out: {lastClockOut}</p>
         </div>
       </div>
     </div>

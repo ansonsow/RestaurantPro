@@ -115,17 +115,39 @@ const loginUser = async (req,res)=>{
 
 const updateUser = async (req, res) => {
   const id = req.params.id;
-  const updatedData = { $set: req.body };
-  const options = { new: true };
-  try {
-    const account = await User.findByIdAndUpdate(id, updatedData, options);
-    console.log("found account:" + account);
-    res.header("Access-Control-Allow-Origin", "*");
-    res.send(account);
-  } catch (error) {
-    console.error(error.message);
-    res.send(400).send("Server Error");
+  // const updatedData = { $set: req.body };
+  // const options = { new: true };
+  // try {
+  //   const account = await User.findByIdAndUpdate(id, updatedData, options);
+  //   console.log("found account:" + account);
+  //   res.header("Access-Control-Allow-Origin", "*");
+  //   res.send(account);
+  // } catch (error) {
+  //   console.error(error.message);
+  //   res.status(400).send("Server Error");
+  // }
+
+
+  const updatedData = req.body
+  // console.log(updatedData);
+  // res.send("haha")
+  let user = await User.findOne({"user_id":id});
+  for (const key in user) {
+    if (key in user && key in updatedData) {
+      console.log(key);
+      user[key] = updatedData[key]
+      
+    }
   }
+  // user = updatedData;
+  // console.log(user.name);
+  await user.save()
+  .then(result=>{
+    console.log(result);
+    res.status(201).json(result)
+  }).catch(error=>{
+    res.status(500).json(error)
+  })
 };
 
 module.exports = { getUsers, saveUsers, updateUser, loginUser};

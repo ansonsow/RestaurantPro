@@ -106,4 +106,33 @@ const saveAttendance = (req,res) =>{
     })
 }
 
-module.exports = { getAttendance, getAttendee, getClockIn, getClockOut, saveAttendance }
+
+const getLastAttendance = async (req,res) => {
+    res.header("Access-Control-Allow-Origin", "*");    
+    const uid = req.params.uid
+
+
+    const attendance = await Attendance.find({user_id:uid}).limit(1).sort({$natural:-1}) 
+    // console.log(attendance)
+    // res.json(uid)
+    if(attendance){
+        res.status(200).json(attendance)
+    }else{
+        res.status(404).json({"Message":"last attendance not found"})
+    }
+}
+
+const updateClockOut = async(req,res)=>{
+    res.header("Access-Control-Allow-Origin", "*");    
+    const uid = req.params.uid
+
+    const attendance = await Attendance.findOne({user_id : uid})
+    attendance.clock_out = new Date(Date.now());
+    attendance.save().then(result=>{
+        res.status(201).json(result)
+    }).catch(error=>{
+        res.status(500).json({"Message":"error"})
+    })
+}
+
+module.exports = { getAttendance, getAttendee, getClockIn, getClockOut, saveAttendance, getLastAttendance, updateClockOut }
