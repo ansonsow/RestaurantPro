@@ -122,4 +122,17 @@ const getLastAttendance = async (req,res) => {
     }
 }
 
-module.exports = { getAttendance, getAttendee, getClockIn, getClockOut, saveAttendance, getLastAttendance }
+const updateClockOut = async(req,res)=>{
+    res.header("Access-Control-Allow-Origin", "*");    
+    const uid = req.params.uid
+
+    const attendance = await Attendance.findOne({user_id : uid})
+    attendance.clock_out = new Date(Date.now());
+    attendance.save().then(result=>{
+        res.status(201).json(result)
+    }).catch(error=>{
+        res.status(500).json({"Message":"error"})
+    })
+}
+
+module.exports = { getAttendance, getAttendee, getClockIn, getClockOut, saveAttendance, getLastAttendance, updateClockOut }
