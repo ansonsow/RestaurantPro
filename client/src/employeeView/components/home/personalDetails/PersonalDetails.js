@@ -96,7 +96,7 @@ export default function PersonalDetails(props) {
 
   return (
     <div className="user_brief_info">
-      <div className="account_info">
+      <div className="account_info user_box">
         <h4>Account Info</h4>
         <div className="user">
           <div className="user_icon">
@@ -111,7 +111,7 @@ export default function PersonalDetails(props) {
         </div>
       </div>
 
-      <div className="login_info">
+      <div className="login_info user_box">
         <h4>Attendance</h4>
         {!isAttend &&
           <button className = "clock_in_btn" onClick={makeAttendance}>Clock In</button>
