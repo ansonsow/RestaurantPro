@@ -1,23 +1,31 @@
-.user_brief_info{
-
-display: flex;
- flex-direction: column;
- width: 35%;
- height: 100vh;
- margin-right: 10px;
- gap:10px;
+.user_brief_info {
 
 }
-.account_info, .login_info{
- border: 1px solid black;
- padding: 10px;
- border-radius: 40px;
+
+.user_box {
+   border-radius:var(--Corner-Rounding);
+   background:var(--Primary-Lightest);
+   padding:var(--Rightside-Boxes-Padding);
 }
-.user{
- display: flex;
- flex-direction: row;
- gap: 10px;
+
+.user_box + .user_box {
+   margin-top:var(--Rightside-Boxes-Spacing);
 }
-.user_details p{
+
+.user_box > h4:first-child {
+   margin-top:0;
+}
+
+.user {
+   display: flex;
+   flex-direction: row;
+   gap: 10px;
+}
+
+.user_details p:first-of-type {
    margin-top: 0px;
+}
+
+.user_details p:last-of-type {
+   margin-bottom: 0px;
 }

@@ -1,20 +1,11 @@
 .board{
-  width: 100%;
-  margin-top: 20px;
-    margin-left: 70px;
-    margin-bottom: 30px;
+
 }
-.task_board
-{
- border: 1px solid cadetblue;
- display: flex;
- flex-direction: column;
- width:75%;
-border-radius: 10px;
-margin-top: 20px;
-margin-left: 70px;
-margin-bottom: 30px;
+.task_board {
+    background:var(--Primary-Lightest);
+    border-radius:var(--Corner-Rounding);
 }
+
 .board_head{
  display: flex;
  flex-direction: row;
