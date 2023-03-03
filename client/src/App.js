@@ -12,6 +12,10 @@ function App() {
   const [userDetails, setUserDetails] = useState({});
   const [userTasks, setUserTasks] = useState([]);
   const [showView, setShowView] = useState(false);
+  const [psw, setPsw] = useState("");
+  const [userType, setUserType] = useState("");
+
+
 
   // APIS
   let getDataByUserID = async (userId) => {
@@ -81,6 +85,36 @@ function App() {
     setShowView(true);
   };
 
+
+  // =============================== login =============================
+
+  const getPassword = (e) => {
+    const password = e.target.value;
+    setPsw(password);
+  }
+
+  const loginUser = async (e) => {
+    e.preventDefault();
+    
+    const login = {
+      "user_id":userId,
+      "password":psw
+    }
+
+    await axios
+            .post("http://localhost:8000/api/v1/user/login",login)
+            .then(result=>{
+              console.log(result);
+              console.log(result.data.data.type);
+              setUserType(result.data.data.type);
+              setUserTasks(tasks);
+
+            })
+            .catch(error=>{
+              console.log(error);
+            })
+  }
+
   useEffect(() => {
     getDataByUserID(localStorage.getItem("userId"));
     getUserTasksIds(localStorage.getItem("userId"));
@@ -100,12 +134,45 @@ function App() {
         <div>
           <label>User Id</label>
           <input type="text" value={userId} onChange={getUserId} />
+          
+          <label>password</label>
+          <input type="password" value={psw} onChange = {getPassword}/>
           <div className="submit" onClick={checkUserId}>
             <h4>Submit</h4>
+          </div>
+
+
+          <div className="logIn">
+            <h4 onClick={loginUser}>Login</h4>
           </div>
         </div>
       ) : (
         <EmployeeView tasks={userTasks} account={userDetails} />
+      )}
+
+      {userType == "" ? (
+        // render this page
+
+        <div>
+        <div>========================================= login prototype ==================================</div>
+        <label>User Id</label>
+        <input type="text" value={userId} onChange={getUserId} />
+        
+        <label>password</label>
+        <input type="password" value={psw} onChange = {getPassword}/>
+
+
+        <div className="logIn">
+          <h4 onClick={loginUser}>Login</h4>
+        </div>
+      </div>
+
+      ): userType == "Employee" ? (
+        // render employee
+        <EmployeeView tasks={userTasks} account={userDetails} userId = {userId}/>
+      ): (
+        // manager view
+        <div>Manager view</div>
       )}
     </div>
   );
