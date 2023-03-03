@@ -30,6 +30,45 @@
          url("./fonts/CenturyGothic/Century-Gothic-Bold.ttf") format("truetype");
 }
 
+/*------ CSS VARIABLES ------*/
+:root {
+    --Navbar-Height:20vh;
+
+    --Sidebar-Width:13vw;
+    --Screen-Margins-X:30px;
+    --Screen-Margins-Y:calc(20vh * 0.3);
+
+    --Main-Board-Width:75%;
+
+    --Center-Gap:25px;
+
+    --Corner-Rounding:10px;
+
+    --Rightside-Boxes-Spacing:20px;
+    --Rightside-Boxes-Padding:14px;
+}
+
+/*---- RESPONSIVENESS / MEDIA QUERIES ----*/
+@media(max-width: 1366px){
+    :root {
+        --Sidebar-Width: 235px;
+    }
+}
+
+@media(max-width: 1000px){
+    :root {
+        --Sidebar-Width: 225px;
+    }
+}
+
+@media(max-width: 800px){
+    :root {
+        --Sidebar-Width: 200px;
+    }
+}
+
+/*------------------------------------*/
+
 .App{
  /* display: flex; */
  /* flex-direction: row; */

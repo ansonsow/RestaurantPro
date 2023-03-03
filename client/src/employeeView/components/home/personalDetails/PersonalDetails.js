@@ -4,7 +4,7 @@ import "./PersonalDetails.css";
 function PersonalDetails() {
   return (
     <div className="user_brief_info">
-      <div className="account_info">
+      <div className="account_info user_box">
         <h4>Account Info</h4>
         <div className="user">
           <div className="user_icon">
@@ -19,7 +19,7 @@ function PersonalDetails() {
         </div>
       </div>
 
-      <div className="login_info">
+      <div className="login_info user_box">
         <h4>Attendance</h4>
         <div className="clock_info">
           <p>Last clock-in: 27/09/2023 2:30pm</p>
