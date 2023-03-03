@@ -106,4 +106,20 @@ const saveAttendance = (req,res) =>{
     })
 }
 
-module.exports = { getAttendance, getAttendee, getClockIn, getClockOut, saveAttendance }
+
+const getLastAttendance = async (req,res) => {
+    res.header("Access-Control-Allow-Origin", "*");    
+    const uid = req.params.uid
+
+
+    const attendance = await Attendance.find({user_id:uid})
+    console.log(uid)
+    // res.json(uid)
+    if(attendance){
+        res.status(200).json(attendance)
+    }else{
+        res.status(404).json({"Message":"last attendance not found"})
+    }
+}
+
+module.exports = { getAttendance, getAttendee, getClockIn, getClockOut, saveAttendance, getLastAttendance }
