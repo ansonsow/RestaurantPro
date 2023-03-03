@@ -7,9 +7,11 @@ const isToday = (someDate) => {
       someDate.getFullYear() == today.getFullYear()
 }
 
-function convertTZ(date, tzString) {
+const convertTZ = (date, tzString) => {
     return new Date((typeof date === "string" ? new Date(date) : date).toLocaleString("en-US", {timeZone: tzString}));   
+
 }
+
 
 const getUserTask = (req,res)=>{
     res.header("Access-Control-Allow-Origin", "*");

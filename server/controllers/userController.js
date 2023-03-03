@@ -63,10 +63,11 @@ const saveUsers = async (req,res) =>{
 
 
 const loginUser = async (req,res)=>{
-  const email = req.body.email;
+  // const email = req.body.email;
+  const user_id = req.body.user_id
   const password = req.body.password;
-
-  const user = await User.findOne({email:email});
+  // console.log()
+  const user = await User.findOne({user_id:user_id});
 
   if(user){
     const rightPsw = await bcrypt.compare(password, user.password);
@@ -95,6 +96,8 @@ const loginUser = async (req,res)=>{
         "token":token
       };
 
+      user.lastLogin = new Date(Date.now());
+      await user.save();
       res.status(201).json(data)
       
     }else{

@@ -52,6 +52,19 @@ const usersSchema = new Schema({
         type:String,
         required: true,
         enum: ["Manager", "Employee", "Admin"]
+    },
+    shift: {
+        type:String,
+        minLength:1
+    },
+    Birthday: {
+        type:String,
+        minLength:1
+    },
+    lastLogin: {
+        type:Date,
+        // required: true,
+        default: new Date(Date.now())
     }
 });
 

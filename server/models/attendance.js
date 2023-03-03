@@ -1,8 +1,8 @@
 const mongoose = require('mongoose'); // 🐀
 const Schema = mongoose.Schema;
 
-const customTimeZone = require('moment-timezone');
-const dateVancouver = customTimeZone.tz(Date.now(), "America/Vancouver");
+// const customTimeZone = require('moment-timezone');
+// const dateVancouver = customTimeZone.tz(Date.now(), "America/Vancouver");
 
 let todaysDate = new Date(Date.now());
 let isoTime = todaysDate.toISOString("en-CA", {timeZone: "America/Vancouver"});
