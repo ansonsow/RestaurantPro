@@ -16,7 +16,8 @@ const usersSchema = new Schema({
     },
     surname: {
         type:String,
-        minLength:1
+
+        default: ""
     },
     email: {
         type:String,
@@ -30,23 +31,33 @@ const usersSchema = new Schema({
     },
     job_title: {
         type:String,
-        minLength:1
+
+        default: ""
+
     },
     branch_id: {
         type:String,
-        minLength:1
+
+        default: ""
+
     },
     gender: {
         type:String,
-        minLength:1
+
+        default: ""
+
     },
     contact_number: {
         type:Number,
-        minLength:10
+
+        default: ""
+
     },
     notes: {
         type:String,
-        minLength:1
+
+        default: ""
+
     },
     type: {
         type:String,
@@ -55,11 +66,15 @@ const usersSchema = new Schema({
     },
     shift: {
         type:String,
-        minLength:1
+
+        default: ""
+
     },
     Birthday: {
         type:String,
-        minLength:1
+
+        default: ""
+
     },
     lastLogin: {
         type:Date,

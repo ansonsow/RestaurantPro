@@ -17,6 +17,8 @@ router.post("/user/login", userCtrl.loginUser);
 router.get("/users/:id", userCtrl.getUsers);
 
 // need user login to change user info
-router.put("/users/:id", auth.verifyToken, userCtrl.updateUser);
+// router.put("/users/:id", auth.verifyToken, userCtrl.updateUser);
+router.put("/users/:id", userCtrl.updateUser);
+
 
 module.exports = router;

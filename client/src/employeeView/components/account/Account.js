@@ -15,27 +15,38 @@ function Account(props) {
     console.log("newData: " + JSON.stringify(newData));
     newData[e.target.id] = e.target.value;
     setUserDetails(newData);
+    console.log(userDetails);
   };
+
+
   const updateUser = (updateObject) => {
-    console.log("updateObject in APi" + JSON.stringify(updateObject));
-    if (updateObject !== undefined) {
-      axios
-        .put(
-          `http://localhost:8000/api/v1/users/${updateObject._id}`,
-          updateObject
-        )
-        .then((response) => {
-          console.log("Updated Data:" + JSON.stringify(response.data));
-        })
-        .catch((error) => {
-          console.log("error in updating account details: " + error);
-        });
-    }
+    // console.log("updateObject in APi" + JSON.stringify(updateObject));
+    // if (updateObject !== undefined) {
+    //   axios
+    //     .put(
+    //       `http://localhost:8000/api/v1/users/${updateObject._id}`,
+    //       updateObject
+    //     )
+    //     .then((response) => {
+    //       console.log("Updated Data:" + JSON.stringify(response.data));
+    //     })
+    //     .catch((error) => {
+    //       console.log("error in updating account details: " + error);
+    //     });
+    // }
+    axios.put(`http://localhost:8000/api/v1/users/${localStorage.userId}`, userDetails).then(response=>{
+      console.log(response);
+    }).catch(error=>{
+      console.log(error);
+    })
+
   };
 
   const saveChanges = () => {
     updateUser(userDetails);
   };
+
+
   return (
     <div className="account">
       <form className="task_details">
