@@ -32,13 +32,20 @@
 
 /*------ CSS VARIABLES ------*/
 :root {
-    --Navbar-Height:20vh;
+    --Navbar-Height:18vh;
+    --Searchbar-Width:400px;
+    --Searchbar-Height:40px;
 
     --Sidebar-Width:13vw;
     --Screen-Margins-X:30px;
-    --Screen-Margins-Y:calc(20vh * 0.3);
+    --Screen-Margins-Y:calc(18vh * 0.2);
 
     --Main-Board-Width:75%;
+    --TaskBoard-Padding:25px;
+    
+    --Table-Headers-Padding-X:1.3em;
+    --Table-Headers-Padding-Y:1em;
+    --Table-Columns-Spacing:15px;
 
     --Center-Gap:25px;
 
@@ -46,6 +53,12 @@
 
     --Rightside-Boxes-Spacing:20px;
     --Rightside-Boxes-Padding:14px;
+
+    --CTA-Buttons-Top-Gap:25px;
+    --CTA-Buttons-Width:225px;
+    --CTA-Buttons-Padding-X:1em;
+    --CTA-Buttons-Padding-Y:0.69em;
+    --CTA-Buttons-Spacing:25px;
 }
 
 /*---- RESPONSIVENESS / MEDIA QUERIES ----*/

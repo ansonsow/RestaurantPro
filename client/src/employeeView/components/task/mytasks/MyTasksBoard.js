@@ -17,6 +17,7 @@ function MyTasksBoard(props) {
           <p>Task Name</p>
           <p>Status</p>
           <p>Urgency Level</p>
+          <p>Action</p>
         </div>
         <div className="board_list">
           {tasks.map((item) => (
