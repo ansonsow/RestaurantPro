@@ -4,7 +4,7 @@
 
 .user_box {
    border-radius:var(--Corner-Rounding);
-   background:var(--Primary-Lightest);
+   background:var(--Background-2);
    padding:var(--Rightside-Boxes-Padding);
 }
 

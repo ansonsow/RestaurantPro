@@ -22,8 +22,7 @@ function TasksBoard(props) {
       {showBoard ? (
         <div className="task_board">
           <div className="board_head">
-            <p>My Uncompleted Tasks</p>
-            <input type="search" className="search"></input>
+            <h2>My Uncompleted Tasks</h2>
           </div>
           <div className="board_list">
             {tasks.map((item) => (
