@@ -1,4 +1,6 @@
 let UserTask = require("../models/users_tasks")
+let task = require("../models/tasks")
+
 
 const isToday = (someDate) => {
     const today = new Date()
@@ -113,18 +115,89 @@ const getUserTaskToday = async (req,res)=>{
 
 
 
-const saveUserTask = (req,res) =>{
+const saveUserTask = async (req,res) =>{
     res.header("Access-Control-Allow-Origin", "*");
-    let newUserTask = new UserTask(req.body);
-    newUserTask.save().then(
-        result=>{
-            res.status(201)
-               .json(newUserTask);
+
+    const check = await UserTask.findOne({task_id:req.body.task_id, user_id:req.body.user_id})
+    if(check){    
+        if(!isToday(check.date)){
+        let newUserTask = new UserTask(req.body);
+
+        newUserTask.save().then(
+            result=>{
+                res.status(201)
+                   .json(newUserTask);
+            }
+        ).catch(error=>{
+            res.status(500)
+               .json(error);
+        })
+        }else{
+            res.status(403).json({"message":"already assigned the task to the user today"})
         }
-    ).catch(error=>{
-        res.status(500)
-           .json(error);
+    }else{
+        let newUserTask = new UserTask(req.body);
+
+        newUserTask.save().then(
+            result=>{
+                res.status(201)
+                   .json(newUserTask);
+            }
+        ).catch(error=>{
+            res.status(500)
+               .json(error);
+        })
+    }
+
+
+}
+
+const updateTask = async (tid, bool) => {
+    const newtask = await task.findOne({_id:tid});
+    console.log(bool);
+    newtask.task_status = bool;
+    newtask.save().then(result=>{
+        console.log(result)
+        // return result
+    }).catch(error=>{
+        // return error
     })
+
+}
+
+const checkBool = async (tid, t)=>{
+    let finishAll = true;
+    console.log("waaa"+t+t._id);
+    const ut = await UserTask.find({task_id:tid})
+
+
+    for(let i = 0 ; i<ut.length;i++){
+        // console.log(ut[i]);
+        // if(ut[i]==t){
+        //     // console.log("waaa"+t);
+        //     ut[i].status = !ut[i].status
+        // }
+
+        if(isToday(ut[i].date)){
+            console.log("wooo"+ut[i]+ ut[i]._id);
+
+            if(ut[i].user_id==t.user_id&&ut[i].task_id==t.task_id){
+                ut[i].status = !ut[i].status
+                console.log("========================changed this");
+            }
+
+            if(ut[i].status == false){
+                finishAll = false
+                console.log("falllse"+ut[i]);
+                // break;
+            }
+        }
+        console.log(finishAll)
+
+    }
+
+    updateTask(tid, finishAll)
+    return finishAll
 }
 
 // update the user task for today's document if there is a matching 
@@ -132,22 +205,34 @@ const updateUserTask = async (req,res) =>{
     const tid = req.params.tid;
     const uid = req.params.uid;
     const userTask = await UserTask.find({task_id:tid, user_id:uid})
+
     res.header("Access-Control-Allow-Origin", "*");
 
     if(!userTask){
-        res.json({"message": "can't find document"}).status(404)
+        // res.json({"message": "can't find document"}).status(404)
     }else{
+        let array = []
+
+
         for(let i = 0 ;i<userTask.length;i++){
         
             // console.log(convertTZ(userTask[i].date, "America/Vancouver"))
-    
+            // console.log("wat");
             // console.log(isToday(convertTZ(userTask[i].date, "America/Vancouver")))
             if(isToday(userTask[i].date)){
+                // console.log("wot");
                 userTask[i].status = !userTask[i].status
-                const updateDocument = await userTask[i].save()
-                res.json(userTask[i]).status(201)
+                const updateDocument = await userTask[i].save().then(checkBool(tid,userTask[i]))
+                array.push(updateDocument)
+
             }
         }
+
+
+
+        // updateTask(tid,finishAll)
+
+        res.json(array).status(201)
     }    
 }
 
