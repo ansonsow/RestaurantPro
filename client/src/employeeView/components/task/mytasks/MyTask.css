@@ -1,3 +1,14 @@
+:root {
+    --Task-Row-Padding-X:15px;
+    --Task-Row-Padding-Y:15px;
+    --Task-Row-Transparency:50%;
+    --Task-Name-Padding-Y:0.5em;
+    --Task-Name-Padding-X:1em;
+    --Task-Action-Btn-Padding-Y:0.5em;
+    --Task-Action-Btn-Padding-X:1em;
+    --Task-Row-Spacing:15px;
+}
+
 .task_page {
     position:absolute;
     top:0;margin-top:var(--Navbar-Height);
@@ -30,7 +41,6 @@
 }
 
 .board_list {
-    padding:25px; /* delete later */
 }
 
 .board_list p {
@@ -40,39 +50,58 @@
 }
 
 .task {
- display: flex;
- justify-content: space-between;
- border: 1px solid rgb(7, 7, 7);
- margin: 5px;
- background-color: rgb(202, 197, 190);
- padding: 2px;
- align-items: center;
+    display:flex;
+    justify-content:space-between;
+    margin:0!important;
+    padding:var(--Task-Row-Padding-Y) 0;
+    background:rgba(var(--Background-RGB), calc(100% - var(--Task-Row-Transparency)));
+    margin:0!important;
+    border:none!important;
+    border-radius:var(--Corner-Rounding);
+    cursor:pointer;
+}
+
+.task + .task {
+    margin-top:var(--Task-Row-Spacing)!important;
+}
+
+.task > p {
+    margin:0!important;
+    margin-left:var(--Task-Row-Padding-X)!important;
+    border:2px solid var(--Gray);
+    padding:var(--Task-Name-Padding-Y) var(--Task-Name-Padding-X);
+    border-radius:var(--Corner-Rounding);
+    font-weight:normal!important;
+    text-decoration:none!important;
+    color:var(--Text-Color);
+}
+
+.task > .open_task,
+.task > .check_task {
+    margin-right:var(--Task-Row-Padding-X)!important;
+}
+
+.open_task, .check_task {
+    text-transform:capitalize;
+    width:auto!important;
+    height:auto!important;
+    background:var(--Primary-Medium)!important;
+    border-radius:var(--Corner-Rounding)!important;
+    color:var(--Background)!important;
+}
+
+.open_task {    
+    text-align:center;
+}
+
+.open_task p {
+    margin:0!important;
+    padding:var(--Task-Action-Btn-Padding-Y) var(--Task-Action-Btn-Padding-X);
+    text-decoration:none!important;
+    font-weight:normal!important;
 }
 
 .check_task {
- border-radius: 2px;
- background-color: white;
- /* margin-top: 10px; */
- width: 50px;
- display: flex;
- align-items: center;
- justify-content: center;
- height: 30px;
- transition: 2ms;
+    padding:var(--Task-Action-Btn-Padding-Y);
 }
-
-.open_task {
- border-radius: 4px;
- background-color: white;
- width: 15%;
- display: flex;
- align-items: center;
- justify-content: center;
- height: 30px;
-
-
-}
-
-
-
 
