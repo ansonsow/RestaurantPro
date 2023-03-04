@@ -61,6 +61,80 @@
     --CTA-Buttons-Spacing:25px;
 }
 
+/*---- TEMPORARY LOGIN PAGE CSS ----*/
+.nav_bar + div:not([class], [id]){
+    --qbxny: calc(var(--Navbar-Height) / 3);
+    position:absolute;
+    top:0;left:0;
+    margin-top:var(--qbxny);
+    height:calc(100vh - var(--qbxny));
+    left:50%;
+    transform:translateX(-50%);
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    width:500px;
+}
+
+.nav_bar + div:not([class], [id]) label,
+.nav_bar + div:not([class], [id]) input {
+    display:block;
+    text-transform:capitalize;
+}
+
+.nav_bar + div:not([class], [id]) label {
+    font-family:"Brevia Medium";
+    margin-bottom:0.6em;
+}
+
+.nav_bar + div:not([class], [id]) input {
+    outline:none;
+    font-family:inherit;
+    font-size:inherit;
+    color:var(--Text-Color);
+    background:rgba(var(--Background-2-RGB), 0.5);
+    padding:12px;
+    border:1px solid var(--Background-2);
+    border-radius:var(--Corner-Rounding);
+}
+
+.nav_bar + div:not([class], [id]) input + label {
+    margin-top:1.5em;
+}
+
+.nav_bar + div:not([class], [id]) .submit,
+.nav_bar + div:not([class], [id]) .logIn {
+    margin-top:22px;    
+}
+
+.nav_bar + div:not([class], [id]) .submit h4,
+.nav_bar + div:not([class], [id]) .logIn h4 {
+    display:inline-block;
+    margin:0;
+    padding:10px 16px;
+    border-radius:var(--Corner-Rounding);
+    background:var(--Primary);
+    font-family:"Century Gothic Bold";
+    letter-spacing:0.3px;
+    color:var(--Background);
+    cursor:pointer;
+}
+
+.nav_bar + div:not([class], [id]) .logIn {
+    position:relative;
+}
+
+.nav_bar + div:not([class], [id]) .logIn h4 {
+    position:absolute;
+    bottom:0;right:0;
+    margin-bottom:22px;
+}
+
+.nav_bar + div:not([class], [id]) .submit h4:hover,
+.nav_bar + div:not([class], [id]) .logIn h4:hover {
+    background:var(--Primary-Medium);
+}
+
 /*---- RESPONSIVENESS / MEDIA QUERIES ----*/
 @media(max-width: 1366px){
     :root {
