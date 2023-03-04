@@ -103,25 +103,40 @@ function Account(props) {
 
             <div className="form_field">
               <label htmlFor="companyName">Company Name</label>
-              <input type="text" id="companyName" value="East is East" />
+              <input type="text" id="companyName" />
             </div>
 
             <div className="form_field">
               <label>Job Title</label>
-              <input type="text" value="server" />
+              <input
+                type="text"
+                onChange={(e) => handle(e)}
+                id="job_title"
+                value={userDetails.job_title === undefined ? "" : userDetails.job_title}
+              />
             </div>
 
             <div className="form_field">
-              <label htmlFor="date">Shift</label>
-              <input type="text" id="date" value="7:30-9:30" />
+              <label htmlFor="shift">Shift</label>
+              <input
+                type="text"
+                onChange={(e) => handle(e)}
+                id="shift"
+                value={userDetails.shift === undefined ? "" : userDetails.shift}
+              />
             </div>
           </div>{/* end form column 2 */}
           
           <div className="form_column"> {/* form column 3 */}
             
               <div className="form_field">
-                <label htmlFor="birthDate">Birth Date</label>
-                <input type="text" id="birthDate" value="09-09-1998" />
+                <label htmlFor="birthday">Birth Date</label>
+                <input
+                type="text"
+                onChange={(e) => handle(e)}
+                id="birthday"
+                value={userDetails.birthday === undefined ? "" : userDetails.birthday}
+              />
               </div>
 
               <div className="form_field">
@@ -135,13 +150,23 @@ function Account(props) {
               </div>
 
               <div className="form_field">
-                <label htmlFor="contactNumber">Contact Number</label>
-                <input type="text" id="contactNumber" value="7786571109" />
+                <label htmlFor="contact_number">Contact Number</label>
+                <input
+                type="text"
+                onChange={(e) => handle(e)}
+                id="contact_number"
+                value={userDetails.contact_number === undefined ? "" : userDetails.contact_number}
+              />
               </div>
 
               <div className="form_field">
                 <label htmlFor="address">Address</label>
-                <input type="text" id="address" value="Main st" />
+                <input
+                type="text"
+                onChange={(e) => handle(e)}
+                id="address"
+                value={userDetails.address === undefined ? "" : userDetails.address}
+              />
               </div>
 
               <div className="form_field">
@@ -150,8 +175,13 @@ function Account(props) {
               </div>
 
               <div className="form_field">
-                <label htmlFor="other">Other Notes</label>
-                <input type="text" id="other" />
+                <label htmlFor="notes">Other Notes</label>
+                <input
+                type="text"
+                onChange={(e) => handle(e)}
+                id="notes"
+                value={userDetails.notes === undefined ? "" : userDetails.notes}
+              />
               </div>
         </div>{/* end form column 3 */}
         

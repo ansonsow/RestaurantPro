@@ -6,7 +6,7 @@ function MyTasksBoard(props) {
   const [tasks, getTasks] = useState([]);
   useEffect(() => {
     getTasks(props.tasks);
-  },);
+  },[props.tasks]);
   return (
     <div className="my_task_board">
       {console.log("props: " + JSON.stringify(props.tasks))}

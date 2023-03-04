@@ -70,7 +70,7 @@ const usersSchema = new Schema({
         default: ""
 
     },
-    Birthday: {
+    birthday: {
         type:String,
 
         default: ""

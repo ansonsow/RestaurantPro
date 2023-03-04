@@ -108,17 +108,20 @@ function App() {
               console.log(result.data.data.type);
               setUserType(result.data.data.type);
               setUserTasks(tasks);
+              checkUserId()
 
             })
             .catch(error=>{
               console.log(error);
             })
   }
+  // =============================== login =============================
 
   useEffect(() => {
     getDataByUserID(localStorage.getItem("userId"));
     getUserTasksIds(localStorage.getItem("userId"));
   }, [showView]);
+
   return (
     <div className="App">
       <div className="nav_bar">
