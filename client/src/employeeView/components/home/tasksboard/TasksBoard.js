@@ -10,7 +10,7 @@ function TasksBoard(props) {
   useEffect(() => {
     setTasks([]);
     setTasks(props.tasks);
-  });
+  },[props.tasks]);
   // get details of the selected task
   if (itemId !== null) {
     var task = tasks.find((item) => item.task_id === itemId);
