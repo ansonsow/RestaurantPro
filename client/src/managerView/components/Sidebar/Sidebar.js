@@ -15,17 +15,17 @@ export default function Sidebar() {
     <div className='sidebar'>
         <img src={logo} alt="" className='logo-img'/>
         <div className="side-bar-items">
-            <SidebarItems itemName="Home" itemIcon={homeIcon}/>
-            <SidebarItems itemName="Tasks" itemIcon={taskIcon}/>
-            <SidebarItems itemName="Statistics" itemIcon={homeIcon}/>
-            <SidebarItems itemName="Notification" itemIcon={notificationIcon}/>
+            <Link to="/home" className='link-a'><SidebarItems itemName="Home" itemIcon={homeIcon}/></Link>
+            <Link to="/task" className='link-a'><SidebarItems itemName="Tasks" itemIcon={taskIcon}/></Link>
+            <Link to="/statistics" className='link-a'><SidebarItems itemName="Statistics" itemIcon={homeIcon}/></Link>
+            <Link to="/notification" className='link-a'><SidebarItems itemName="Notification" itemIcon={notificationIcon}/></Link>
             <Link to="/employee" className='link-a'><SidebarItems itemName="Employee" itemIcon={employeeIcon}/></Link>
-            <SidebarItems itemName="Restaurants" itemIcon={restaurantIcon}/>
+            <Link to="/restaurants" className='link-a'><SidebarItems itemName="Restaurants" itemIcon={restaurantIcon}/></Link>
         </div>
         <div className="side-bar-account">
-        <SidebarItems itemName="Account" itemIcon={accountIcon}/>
-        <SidebarItems itemName="Log Out" itemIcon={logoutIcon}/>
-        <SidebarItems itemName="Help" itemIcon={homeIcon}/>
+        <Link to="/account" className='link-a'><SidebarItems itemName="Account" itemIcon={accountIcon}/></Link>
+        <Link to="/log-out" className='link-a'><SidebarItems itemName="Log Out" itemIcon={logoutIcon}/></Link>
+        <Link to="/help" className='link-a'><SidebarItems itemName="Help" itemIcon={homeIcon}/></Link>
         </div>
     </div>
   )

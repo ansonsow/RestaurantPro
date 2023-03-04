@@ -126,7 +126,7 @@ export default function EditEmployee() {
             <p>You want to delete this account ?</p>
             <div className="delete-dialogue-button-section">
                 <button onClick={closeDeleteDialogue}>Yes</button>
-                <button onClick={closeDeleteDialogue}>Cancel</button>
+                <button onClick={closeDeleteDialogue}>Cancell</button>
             </div>
         </div>
     </div>

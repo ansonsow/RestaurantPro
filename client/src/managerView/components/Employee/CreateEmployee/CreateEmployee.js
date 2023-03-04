@@ -1,6 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import "./CreateEmployee.css"
+import "./EditEmployee.css"
 export default function CreateEmployee() {
     const closeDialogue = () => {
         document.getElementById("dialogueBox").style.display = "none"
@@ -95,7 +95,7 @@ export default function CreateEmployee() {
     <div className="save-change" id='dialogueBox'>
         <div className="save-change-dialogue">
             <p>Employee Created Successfully</p>
-            <button onClick={closeDialogue}>OK</button>
+            <button onClick={closeDialogue}>Okey</button>
         </div>
     </div>
     </>
