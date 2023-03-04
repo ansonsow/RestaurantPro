@@ -108,7 +108,7 @@ function App() {
               console.log(result.data.data.type);
               setUserType(result.data.data.type);
               setUserTasks(tasks);
-              checkUserId()
+              checkUserId(e)
 
             })
             .catch(error=>{
