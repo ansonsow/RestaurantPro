@@ -16,7 +16,9 @@ function TaskList(props) {
     const task = { task_status: value };
     console.log("change task status: ");
     axios
-      .put(`http://localhost:8000/api/v1/task/${props.item._id}`, task)
+      // .put(`http://localhost:8000/api/v1/task/${props.item._id}`, task)
+      // /usersTasks/:uid/:tid
+      .put(`http://localhost:8000/api/v1/userstasks/${localStorage.userId}/${props.item._id}`)
       .then((response) => {
         console.log("task status" + JSON.stringify(response.data));
       })

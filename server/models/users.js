@@ -16,7 +16,8 @@ const usersSchema = new Schema({
     },
     surname: {
         type:String,
-        minLength:1
+
+        default: ""
     },
     email: {
         type:String,
@@ -30,23 +31,55 @@ const usersSchema = new Schema({
     },
     job_title: {
         type:String,
-        minLength:1
+
+        default: ""
+
     },
     branch_id: {
         type:String,
-        minLength:1
+
+        default: ""
+
     },
     gender: {
         type:String,
-        minLength:1
+
+        default: ""
+
     },
     contact_number: {
         type:Number,
-        minLength:10
+
+        default: ""
+
     },
     notes: {
         type:String,
-        minLength:1
+
+        default: ""
+
+    },
+    type: {
+        type:String,
+        required: true,
+        enum: ["Manager", "Employee", "Admin"]
+    },
+    shift: {
+        type:String,
+
+        default: ""
+
+    },
+    birthday: {
+        type:String,
+
+        default: ""
+
+    },
+    lastLogin: {
+        type:Date,
+        // required: true,
+        default: new Date(Date.now())
     }
 });
 

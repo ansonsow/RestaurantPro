@@ -8,6 +8,7 @@ function TasksBoard(props) {
   const [tasks, setTasks] = useState([]);
 
   useEffect(() => {
+    setTasks([]);
     if (props.tasks) setTasks(props.tasks);
   }, [props.tasks]);
   // get details of the selected task
@@ -21,8 +22,7 @@ function TasksBoard(props) {
       {showBoard ? (
         <div className="task_board">
           <div className="board_head">
-            <p>My Daily Task</p>
-            <input type="search" className="search"></input>
+            <h2>My Uncompleted Tasks</h2>
           </div>
           <div className="board_list">
             {tasks.map((item) => (

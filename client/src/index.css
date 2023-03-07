@@ -1,10 +1,39 @@
+:root {
+  --Primary: #003D9E;
+  --Primary-Medium: #077DCE;
+  --Primary-Lighter: #88CCF2;
+  --Primary-Lightest: #D3E8EF;
+  --Primary-Lightest-RGB: 211,232,239;
+
+  --Background: #ffffff;
+  --Background-RGB: 255, 255, 255;
+  --Background-2: #E2E8F5;
+  --Background-2-RGB: 226,232,245;
+
+  --Gray: #c6c6c6;
+  --Gray-RGB: 198,198,198;
+  --Gray-Lighter: #E1E3E7;
+
+  --Secondary: #F77911;
+  --Secondary-Medium: #FDA300;
+  --Secondary-Lighter: #FFC619;
+
+  --Text-Color: #000000;
+  --Body-Font-Size:16px;
+}
+
 body {
+  background: var(--Background);
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: "Century Gothic Regular", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-size:var(--Body-Font-Size);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family:"Brevia Medium";
+  font-weight:normal;
 }
 
 code {

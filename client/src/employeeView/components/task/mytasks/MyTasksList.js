@@ -16,6 +16,7 @@ function MyTaskList(props) {
   let changeTaskStatus = (value) => {
     const task = { task_status: value };
     console.log("Call get Task");
+    console.log("check"+ props)
     axios
       .put(`http://localhost:8000/api/v1/task/${props.item._id}`, task)
       .then((response) => {

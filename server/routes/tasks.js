@@ -6,11 +6,11 @@ const taskCtrl = require("../controllers/taskController");
 
 router.get("/tasks", taskCtrl.getTask);
 
+router.post("/tasks", taskCtrl.saveTask);
+
+
 router.get("/tasks/:tid", taskCtrl.getTask);
 router.put("/task/", taskCtrl.getTasks);
-
-// router.post ("/tasks", taskCtrl.saveTask);
-// router.get("/",taskCtrl.test);
 
 router.put("/tasks/:tid", taskCtrl.updateTask);
 router.put("/task/:tid", taskCtrl.updateTaskStatus);

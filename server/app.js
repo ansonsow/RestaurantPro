@@ -1,10 +1,12 @@
 const express = require("express");
+require("dotenv").config();
 const app = express();
 require('./models/db')
 const bodyParser = require("body-parser");
 const router = require('./routes');
 // ADD THIS
 var cors = require('cors');
+const auth = require("./middleware/auth");
 app.use(cors());
 
 const PORT = 8000;
@@ -22,6 +24,13 @@ app.get('/', (req, res) => {
     res.send("haaaaaa")
 });
 
+app.get("/testAuth", auth.verifyToken, (req,res)=>{
+    res.status(200).send("watup")
+})
+
+app.get("/testMng", auth.verifyManagerToken, (req,res)=>{
+    res.status(200).send("watupMng")
+})
 
 app.listen(PORT, ()=>{
     console.log("app started on port "+ PORT);

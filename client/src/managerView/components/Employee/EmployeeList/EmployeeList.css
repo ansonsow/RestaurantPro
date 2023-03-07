@@ -1,0 +1,59 @@
+/* CSS STYLING FOR EMPLOYEE LIST PAGE */
+.employee-list-page{
+    position: absolute;
+    top: 0%;
+    right: 0%;
+    width: 85%;
+    padding: 2rem 2rem;
+  }
+  .employee-list-page-upper-section{
+    margin-top: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .employee-list-page-upper-section-button-part{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+  }
+  .employee-list-page-upper-section-button-part button{
+    padding: 0.4rem 1rem;
+    border-radius: 6px;
+    border: none;
+    background-color: #003D9E;
+    color: white;
+    cursor: pointer;
+  }
+  .search-box{
+    padding: 0.5rem 0.5rem;
+  }
+  .employee-list-page-lower-section{
+    margin-top: 2rem;
+  }
+  table{
+    border: 1px solid #003D9E;
+  }
+  th , td{
+    width: 170px;
+    height: 60px;
+    text-align: center;
+  }
+  td{
+    padding: 0.5rem 0;
+  }
+  thead{
+    background-color: #003D9E;
+    padding: 0.4rem;
+    color: white;
+  }
+  .last-column{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+  }
+  .last-column img{
+    width: 30px;
+  }

@@ -6,7 +6,7 @@ function MyTasksBoard(props) {
   const [tasks, getTasks] = useState([]);
   useEffect(() => {
     getTasks(props.tasks);
-  },);
+  },[props.tasks]);
   return (
     <div className="my_task_board">
       {console.log("props: " + JSON.stringify(props.tasks))}
@@ -17,6 +17,7 @@ function MyTasksBoard(props) {
           <p>Task Name</p>
           <p>Status</p>
           <p>Urgency Level</p>
+          <p>Action</p>
         </div>
         <div className="board_list">
           {tasks.map((item) => (

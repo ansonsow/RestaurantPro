@@ -1,37 +1,16 @@
 .board{
-  width: 100%;
-  margin-top: 20px;
-    margin-left: 70px;
-    margin-bottom: 30px;
+
 }
-.task_board
-{
- border: 1px solid cadetblue;
- display: flex;
- flex-direction: column;
- width:75%;
-border-radius: 10px;
-margin-top: 20px;
-margin-left: 70px;
-margin-bottom: 30px;
+.task_board {
+    padding:var(--TaskBoard-Padding);
+    background:var(--Background-2);
+    border-radius:var(--Corner-Rounding);
 }
-.board_head{
- display: flex;
- flex-direction: row;
- justify-content: space-between;
+
+.board_head > h2:first-child {
+    margin-top:0;
 }
-.board_head p{
- font-weight: bold;
- text-decoration: underline;
- margin: 15px;
-}
-.search {
- margin: 10px;
-}
-.board_list{
-   height: 70vh;
-   margin: 30px;
-}
+
 .task{
     display: flex;
     justify-content: space-between;
@@ -78,33 +57,40 @@ margin-bottom: 30px;
 .form_field {
   display: flex;
   flex-direction: column;
-  margin: 5px;
-  /* border: 1px solid black; */
 }
 
-.form_fields input {
-  color: rgb(16, 16, 16);
-  /* width: 30%; */
+.call_to_actions {
+    display:grid;
+    align-items:center;
+    justify-content:center;
+    grid-template-columns:repeat(2, var(--CTA-Buttons-Width));
+    grid-gap:var(--CTA-Buttons-Spacing);
+    margin:var(--CTA-Buttons-Top-Gap) 0 var(--Screen-Margins-Y) 0;
 }
 
-.form_fields label {
-  color: rgb(89, 82, 82);
-  /* width: 30%; */
-  font-size: small;
+.call_to_actions button {
+    display:block;
+    width:var(--CTA-Buttons-Width);
+    padding:var(--CTA-Buttons-Padding-Y) var(--CTA-Buttons-Padding-X);
+    border-radius:var(--Corner-Rounding);
+    font-family:inherit;
+    font-size:inherit;
+    outline:none;
+    border:none;
+    box-sizing:border-box;
+
+    background:var(--Primary);
+    color:var(--Background);
+    cursor:pointer;
 }
 
-.fields {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+.call_to_actions button.hollow {
+    border:1px solid var(--Primary);
+    background:var(--Background);
+    color:var(--Primary);
 }
 
-.back_button {
-  background-color: black;
-  color: white;
-  display: block;
-  margin: auto;
-  width: 10%;
-  text-align: center;
+.call_to_actions button:hover {
+    box-shadow:4px 4px 12px 0 var(--Primary-Lighter);
 }
 
