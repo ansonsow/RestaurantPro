@@ -16,6 +16,7 @@ body{
 }
 .link-a{
   text-decoration: none;
+}
 .components {
  display: flex;
  flex-direction: row;
