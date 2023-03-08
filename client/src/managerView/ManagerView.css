@@ -16,6 +16,7 @@ body{
 }
 .link-a{
   text-decoration: none;
+  z-index:20;
 }
 .components {
  display: flex;
