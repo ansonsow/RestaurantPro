@@ -1,5 +1,5 @@
 import './ManagerView.css';
-import Sidebar from './components/Sidebar/Sidebar';
+import Sidebar from './components/sidebar/Sidebar';
 import{
   BrowserRouter as Router,
   Routes,

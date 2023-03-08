@@ -1,6 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import "./EditEmployee.css"
+import "../EditEmployee/EditEmployee.css"
 export default function CreateEmployee() {
     const closeDialogue = () => {
         document.getElementById("dialogueBox").style.display = "none"

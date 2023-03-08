@@ -1,5 +1,5 @@
 import React from 'react'
-import "./LinearProgressbar.css"
+import "./LinearProgressBar.css"
 export default function LinearProgressbar(props) {
   const style = {
     width: `${props.width}%`,

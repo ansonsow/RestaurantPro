@@ -1,5 +1,5 @@
 import React from "react";
-import "./CircularProgressbar.css";
+import "./CircularProgressBar.css";
 
 const CircularProgressBar = ({ progress, text }) => {
   const strokeDashoffset = 283 - (283 * progress) / 100;
