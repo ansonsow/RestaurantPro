@@ -146,6 +146,7 @@ function App() {
       ) : (
         // <EmployeeView tasks={userTasks} account={userDetails} />
         <ManagerView></ManagerView>
+        
         // <AssignTask/>
       )}
     </div>
