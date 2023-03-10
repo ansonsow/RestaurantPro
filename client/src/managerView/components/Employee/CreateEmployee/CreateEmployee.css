@@ -146,4 +146,20 @@
     background-color: red;
     color: white;
   }
+  .discard-btn{
+    cursor: pointer;
+  }
+  
+  input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input:focus{
+  outline: none;
+}
+input:focus:invalid{
+  border: 2px solid red;
+}		   
   
