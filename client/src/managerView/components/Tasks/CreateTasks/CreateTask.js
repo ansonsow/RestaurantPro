@@ -1,35 +1,122 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./CreateTask.css";
-import { useEffect } from "react";								  
+import axios from "axios";
 import { Link } from "react-router-dom";
 export default function CreateTask() {
-	  const closeDialogue = () => {
-    document.getElementById("dialogueBox").style.display = "none"
-}
-const displayDialogue = () => {
-    document.getElementById("dialogueBox").style.display = "flex"
-}
-const displayDiscardDialogue = () => {
-  document.getElementById("discarddialogueBox").style.display = "flex"
-}
-const closeDiscardDialogue = () => {
-  document.getElementById("discarddialogueBox").style.display = "none"
-}
-let currentUrl = window.location.href;
-    useEffect(() => {
-        if(currentUrl.includes("/create-task") ){
-          document.getElementById("create-task-btn").style.backgroundColor = "#FFC619"
-        }
-      });						   		 
+  const [users, setUsers] = useState([]);
+  const userNames = useRef([]);
+  const userFields = useRef([]);
+  useEffect(() => {
+    getAllUsers();
+    saveTasks();
+  }, [userFields]);
+  useEffect(() => {
+    saveTasks();
+  }, [userFields]);
+
+  // get all users
+  const getAllUsers = async () => {
+    await axios
+      .get("http://localhost:8000/api/v1/users")
+      .then((response) => {
+        console.log("all user:" + JSON.stringify(response.data));
+        setUsers(response.data);
+      })
+      .catch((error) => {
+        console.log("error in fetching all task: " + error);
+      });
+  };
+
+  // save new task
+
+  const saveTasks = async () => {
+    let idPrefix = Math.floor(Math.random() * 9) + 1;
+    let id = Math.floor(Math.random() * 100) + 1;
+    let newTask = {
+      task_id: `T${idPrefix}${id}`,
+      task_name: userFields.name,
+      task_desc: userFields.description,
+      due_date: userFields.dueDate,
+      priority: userFields.urgencyLevel,
+    };
+    await axios
+      .post("http://localhost:8000/api/v1/tasks", newTask)
+      .then((response) => {
+        console.log("new task saved:" + JSON.stringify(response.data));
+      })
+      .catch((error) => {
+        console.log("error in saving new task: " + error);
+      });
+
+    // save user's task
+
+    let userTask = {
+      task_id: newTask.task_id,
+      user_id: userFields.employeeName,
+      status: true,
+    };
+    console.log("user task:" + JSON.stringify(userTask));
+     axios
+      .post("http://localhost:8000/api/v1/usersTasks", userTask)
+      .then((response) => {
+        console.log("new user task saved:" + JSON.stringify(response.data));
+      })
+      .catch((error) => {
+        console.log("error in saving new user task: " + error);
+      });
+  };
+
+  let getAllUserName = () => {
+    console.log("user names:" + JSON.stringify(userNames));
+    userNames.constant = users.map((user) => {
+      let { user_id, name } = user;
+      return { user_id, name };
+    });
+    console.log("ids" + JSON.stringify(userNames.constant));
+  };
+  const getname = (event) => {
+    let name = event.target.value;
+    userFields.name = name;
+    console.log("name: " + JSON.stringify(userFields));
+  };
+
+  const getDueDate = (event) => {
+    userFields.dueDate = event.target.value;
+    console.log("name: " + JSON.stringify(userFields));
+  };
+
+  const getUrgencyLevel = (event) => {
+    userFields.urgencyLevel = event.target.value;
+    console.log("name: " + JSON.stringify(userFields));
+  };
+
+  const getEmployeeName = (event) => {
+    userFields.employeeName = event.target.value;
+    console.log("name: " + JSON.stringify(userFields));
+  };
+
+  const getDescription = (event) => {
+    userFields.description = event.target.value;
+    console.log("name: " + JSON.stringify(userFields));
+  };
+
   return (
-    <>
     <div className="create-task-page">
+      {getAllUserName()}
       <div className="create-task-page-upper-section">
         <div className="create-task-page-upper-section-button-section">
-          <Link to="/task" className="link-a"><button>All Task</button></Link>
-          <Link to="/assign-task" className='link-a'><button>Assign Task</button></Link>
-          <Link to="/create-task" className="link-a"><button id="create-task-btn">Create Task</button></Link>
-          <Link to="/daily-attendance" className='link-a'><button>Daily Attendance</button></Link>
+          <Link to="/task" className="link-a">
+            <button>All Task</button>
+          </Link>
+          <Link to="/assign-task" className="link-a">
+            <button>Assign Task</button>
+          </Link>
+          <Link to="/create-task" className="link-a">
+            <button>Create Task</button>
+          </Link>
+          <Link to="/daily-attendance" className="link-a">
+            <button>Daily Attendance</button>
+          </Link>
         </div>
       </div>
       <div className="create-task-page-lower-section">
@@ -37,59 +124,68 @@ let currentUrl = window.location.href;
         <div className="create-task-page-input-section">
           <div className="item">
             <p>Task Name</p>
-            <input type="text" placeholder="Task Name" pattern="^[a-zA-Z ]*$" className="input-box" />
+            <input
+              type="text"
+              placeholder="Task Name"
+              className="input-box"
+              onChange={getname}
+            />
           </div>
           <div className="item">
             <p>Due Date</p>
-            <input type="date" placeholder="Task Name" className="input-box" />
+            <input
+              type="date"
+              placeholder="Due Date"
+              className="input-box"
+              onChange={getDueDate}
+            />
           </div>
           <div className="item">
             <p>Urgency Level</p>
-            <select name="gender" id="gender" className="input-box">
-              <option value="low">low</option>
-              <option value="high">high</option>
-              <option value="medium">medium</option>
+            <select
+              name="level"
+              id="level"
+              className="input-box"
+              onChange={getUrgencyLevel}
+            >
+              <option value=""></option>
+              <option value="0">Low</option>
+              <option value="1">High</option>
             </select>
           </div>
           <div className="item">
             <p>Assign To</p>
-            <select name="gender" id="gender" className="input-box">
-              <option value="john">john</option>
-              <option value="tame">tame</option>
-              <option value="etc">etc</option>
+            <select
+              name="gender"
+              id="gender"
+              className="input-box"
+              onChange={getEmployeeName}
+            >
+              <option value=""></option>
+              {userNames.constant.map((user) => (
+                <option value={user.user_id}>{user.name}</option>
+              ))}
             </select>
           </div>
           <div className="item">
             <p>Restaurant Name</p>
-            <input type="text" placeholder="Task Name" className="input-box" />
+            <input
+              type="text"
+              defaultValue="East is East"
+              className="input-box"
+            />
           </div>
         </div>
-        
+
         <div className="lower-input-section">
-          <p>Description</p>
-          <textarea name="description"></textarea>
+          <p>Task Description</p>
+          <textarea name="description" onChange={getDescription}></textarea>
         </div>
       </div>
       <div className="create-task-button-section">
-        <button className='discard-btn' onClick={displayDiscardDialogue}>Discard</button>
-        <button onClick={displayDialogue} className='save-changes'>Save Changes</button>
+        <button>Discard</button>
+        <button onClick={saveTasks}>Save Changes</button>
       </div>
     </div>
-    <div className="save-change" id='dialogueBox'>
-        <div className="save-change-dialogue">
-            <p>Changes Saved Successfully</p>
-            <Link to="/task" className='link-a'><button className='save-btn' onClick={closeDialogue}>Okey</button></Link>
-        </div>
-    </div>
-    <div className="discard-change" id='discarddialogueBox'>
-        <div className="discard-change-dialogue">
-            <p>Do You Want To Discard Changes ?</p>
-            <div className="discard-dialogue-button-section">
-            <Link to="/task" className='link-a'><button onClick={closeDiscardDialogue}>Yes</button></Link>
-                <button onClick={closeDiscardDialogue}>No</button>
-            </div>
-        </div>
-    </div>
-    </>										  	   
   );
 }
