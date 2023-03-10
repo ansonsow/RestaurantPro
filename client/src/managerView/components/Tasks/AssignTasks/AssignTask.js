@@ -6,6 +6,13 @@ import EmployeeList from "./EmployeeList";
 import EmployeeAssignedTask from "./EmployeeAssignedTask";
 import axios from "axios";
 export default function AssignTask() {
+  
+  let currentUrl = window.location.href;
+  useEffect(() => {
+        if(currentUrl.includes("/assign-task") ){
+          document.getElementById("assign-task-btn").style.backgroundColor = "#FFC619"
+		    }
+      });
   const [unAssignedTask, setUnAssignedTask] = useState([]);
   const [unAssignedTaskObjects, setunAssignedTaskObjects] = useState([]);
   const [employee, setemployee] = useState([]);
@@ -155,18 +162,16 @@ export default function AssignTask() {
     <div className="assign-task-page">
       <div className="assign-task-page-upper-section">
         <div className="assign-task-page-upper-section-button-section">
-          <Link to="/task" className="link-a">
-            <button>All Task</button>
-          </Link>
-          <Link to="/assign-task" className="link-a">
-            <button>Assign Task</button>
-          </Link>
-          <Link to="/create-task" className="link-a">
-            <button>Create Task</button>
-          </Link>
-          <Link to="/daily-attendance" className="link-a">
-            <button>Daily Attendance</button>
-          </Link>
+        <Link to="/task" className="link-a"><button>All Task</button></Link>
+									 
+				 
+          <Link to="/assign-task" className='link-a'><button id='assign-task-btn'>Assign Task</button></Link>
+										
+				 
+          <Link to="/create-task" className='link-a'><button>Create Task</button></Link>
+										
+				 
+          <Link to="/daily-attendance" className='link-a'><button>Daily Attendance</button></Link>
         </div>
       </div>
 
