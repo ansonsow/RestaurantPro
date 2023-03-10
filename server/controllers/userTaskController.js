@@ -141,7 +141,7 @@ const saveUserTask = async (req,res) =>{
         newUserTask.save().then(
             result=>{
                 res.status(201)
-                   .json(newUserTask);
+                   .json(result);
             }
         ).catch(error=>{
             res.status(500)
