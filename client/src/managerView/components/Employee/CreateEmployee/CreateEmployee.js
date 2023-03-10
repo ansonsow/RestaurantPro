@@ -1,6 +1,7 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import "./CreateEmployee.css"
+import "../EditEmployee/EditEmployee.css"
+import { useEffect } from "react";								  
 export default function CreateEmployee() {
     const closeDialogue = () => {
         document.getElementById("dialogueBox").style.display = "none"
@@ -8,34 +9,39 @@ export default function CreateEmployee() {
     const displayDialogue = () => {
         document.getElementById("dialogueBox").style.display = "flex"
     }
-
+	let currentUrl = window.location.href;
+    useEffect(() => {
+        if(currentUrl.includes("/create-employee") ){
+          document.getElementById("new-employee-btn").style.backgroundColor = "#FFC619"
+        }
+      });	
+	  
   return (
     <>
-
-    <div className='employee-page'>
+      <div className="employee-page">
         <div className="employee-page-upper-section">
-            <Link to="/employee"><button>Employee List</button></Link>
-            <Link to="/create-employee"><button>New Employee</button></Link>
-            <Link to="/edit-employee"><button>Edit Employee</button></Link>
+          <Link to="/employee"><button>Employee List</button></Link>
+          <Link to="/create-employee"><button id='new-employee-btn'>New Employee</button></Link>
+          <Link to="/edit-employee"><button>Edit Employee</button></Link>
         </div>
         <div className="employee-page-lower-section">
-            <div className="employee-page-lower-section-image-part">
+          <div className="employee-page-lower-section-image-part">
                 <div className="image-box"></div>
-            </div>
-            <div className="employee-page-lower-section-detail-part">
+          </div>
+          <div className="employee-page-lower-section-detail-part">
                 <h2>Create New Employee Profile</h2>
                 <div className="employee-detail-form">
                     <div className="input-section">
                         <p>Name</p>
-                        <input type="text" placeholder='ABC' className='input-box'/>
+                        <input type="text" placeholder='ABC' pattern="^[a-zA-Z ]*$" className='input-box'/>
                     </div>
                     <div className="input-section">
                         <p>Birth Date</p>
-                        <input type="number" placeholder='01.01.1999' className='input-box'/>
+                        <input type="date" placeholder='01.01.1999' className='input-box'/>
                     </div>
                     <div className="input-section">
                         <p>Surname</p>
-                        <input type="text" placeholder='ABC' className='input-box'/>
+                        <input type="text" placeholder='ABC' pattern="^[a-zA-Z ]*$" className='input-box'/>
                     </div>
                     <div className="input-section">
                         <p>Gender</p>
@@ -54,7 +60,7 @@ export default function CreateEmployee() {
                         <select name="gender" id="gender" className='input-box'>
                             <option value="admin">Admin</option>
                             <option value="teaching">Teaching</option>
-                            <option value="staff">Stafee</option>
+                            <option value="staff">Staff</option>
                         </select>
                     </div>
                     <div className="input-section">
@@ -70,34 +76,36 @@ export default function CreateEmployee() {
                         <select name="gender" id="gender" className='input-box'>
                             <option value="admin">Admin</option>
                             <option value="teaching">Teaching</option>
-                            <option value="staff">Stafee</option>
+                            <option value="staff">Staff</option>
                         </select>
                     </div>
                     <div className="input-section">
                         <p>Contact Number</p>
-                        <input type="number" placeholder='ABC' className='input-box'/>
+                        <input type="number" placeholder='ABC' className='input-box' maxLength={10} minLength={10}/>
                     </div>
                     <div className="input-section">
                         <p>Shift</p>
                         <input type="text" placeholder='17:00-19:00' className='input-box'/>
                     </div>
                 </div>
-                <div className="text-area-section">
-                    <p>Notes</p>
-                    <textarea name="Notes" id=""></textarea>
-                </div>
-                <div className="button-section">
+            <div className="text-area-section">												   
+              <p>Notes</p>
+              <textarea name="Notes" id=""></textarea>
+            </div>
+            <div className="button-section">
                     <button className='save-btn' onClick={displayDialogue}>Create</button>
                 </div>
+					   
             </div>
+				
         </div>
     </div>
     <div className="save-change" id='dialogueBox'>
         <div className="save-change-dialogue">
             <p>Employee Created Successfully</p>
-            <button onClick={closeDialogue}>OK</button>
+            <Link to="/employee"><button onClick={closeDialogue}>OK</button></Link>
         </div>
     </div>
     </>
-  )
+  );
 }

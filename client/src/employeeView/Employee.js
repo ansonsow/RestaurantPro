@@ -1,18 +1,17 @@
 import React, { useEffect, useState } from "react";
-import "./App.css";
-import ManagerView from "./managerView/ManagerView";
-import Navbar from "./employeeView/components/navbar/Navbar";
-import EmployeeView from "./employeeView/EmployeeView";
-import AssignTask from "./managerView/components/Tasks/AssignTasks/AssignTask";
+import "../App.css";
+import Navbar from "../employeeView/components/navbar/Navbar";
+import EmployeeView from "../employeeView/EmployeeView";
 import axios from "axios";
-function App() {
+
+// import EmployeeApis from "./Apis/EmployeeApis";
+const user = [];
+const tasks = [];
+function Employee() {
   const [userId, setUserId] = useState("");
   const [userDetails, setUserDetails] = useState({});
   const [userTasks, setUserTasks] = useState([]);
   const [showView, setShowView] = useState(false);
-  const [psw, setPsw] = useState("");
-  const [userType, setUserType] = useState("");
-  const tasks = [];
 
   // APIS
   let getDataByUserID = async (userId) => {
@@ -29,7 +28,7 @@ function App() {
         console.log("error in fetching user data");
         return 400;
       });
-    console.log("user fetched: " + JSON.stringify(userDetails));
+    console.log("user fetched: " + JSON.stringify(user));
   };
 
   let getUserTasksIds = async (userId) => {
@@ -82,44 +81,15 @@ function App() {
     setShowView(true);
   };
 
-  // =============================== login =============================
-
-  const getPassword = (e) => {
-    const password = e.target.value;
-    setPsw(password);
-  };
-
-  const loginUser = async (e) => {
-    e.preventDefault();
-
-    const login = {
-      user_id: userId,
-      password: psw,
-    };
-
-    await axios
-      .post("http://localhost:8000/api/v1/user/login", login)
-      .then((result) => {
-        console.log(result);
-        console.log(result.data.data.type);
-        setUserType(result.data.data.type);
-        setUserTasks(tasks);
-        checkUserId(e);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-  // =============================== login =============================
-
   useEffect(() => {
     getDataByUserID(localStorage.getItem("userId"));
     getUserTasksIds(localStorage.getItem("userId"));
   }, [showView]);
-
   return (
     <div className="App">
-      <div className="nav_bar">{/* <Navbar /> */}</div>
+      <div className="nav_bar">
+        <Navbar />
+      </div>
       {console.log(
         "localStorage return : " + localStorage.getItem("showScreen")
       )}
@@ -130,49 +100,15 @@ function App() {
         <div>
           <label>User Id</label>
           <input type="text" value={userId} onChange={getUserId} />
-
-          <label>password</label>
-          <input type="password" value={psw} onChange={getPassword} />
           <div className="submit" onClick={checkUserId}>
             <h4>Submit</h4>
           </div>
-
-          <div className="logIn">
-            <h4 onClick={loginUser}>Login</h4>
-          </div>
         </div>
       ) : (
-        // <EmployeeView tasks={userTasks} account={userDetails} />
-        <ManagerView />
+        <EmployeeView tasks={userTasks} account={userDetails} />
       )}
     </div>
   );
-  {
-    /* {userType == "" ? (
-        // render this page
-
-        <div>
-        <div>========================================= login prototype ==================================</div>
-        <label>User Id</label>
-        <input type="text" value={userId} onChange={getUserId} />
-        
-        <label>password</label>
-        <input type="password" value={psw} onChange = {getPassword}/>
-
-
-        <div className="logIn">
-          <h4 onClick={loginUser}>Login</h4>
-        </div>
-      </div>
-
-      ): userType == "Employee" ? (
-        // render employee
-        <EmployeeView tasks={userTasks} account={userDetails} userId = {userId}/>
-      ): (
-        // manager view
-        <div>Manager view</div>
-      )} */
-  }
 }
 
-export default App;
+export default Employee;

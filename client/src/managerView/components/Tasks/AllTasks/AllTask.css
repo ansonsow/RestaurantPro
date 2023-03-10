@@ -1,0 +1,45 @@
+/* CSS STYLING FOR ALL TASK PAGE*/
+.all-task-page{
+    position: absolute;
+    top: 0%;
+    right: 0%;
+    width: 85%;
+    padding: 2rem 2rem;
+}
+.all-task-page-upper-section{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.all-task-page-upper-section-button-section{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    
+}
+.all-task-page-upper-section-button-section button{
+    padding: 0.3rem 0.7rem;
+    border-radius: 4px;
+    border: none;
+    background-color: #003D9E;
+    color: white;
+    cursor: pointer;
+    z-index:1;
+}
+.all-task-page-upper-section-button-section button:hover{
+    background-color: #FFC619;
+}
+.all-task-page-lower-section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+}
+.all-task-page-lower-section table{
+    width: 100%;
+}
+tr:hover{
+    background-color: #e6e5e583;
+    cursor: pointer;
+}

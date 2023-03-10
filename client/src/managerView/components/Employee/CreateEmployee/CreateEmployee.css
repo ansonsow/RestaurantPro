@@ -146,4 +146,7 @@
     background-color: red;
     color: white;
   }
+  .discard-btn{
+    cursor: pointer;
+  }	   
   

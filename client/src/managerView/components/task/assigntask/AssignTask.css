@@ -1,0 +1,36 @@
+.assign_task{
+ display: flex;
+ flex-direction: row;
+ align-items: center;
+ justify-content: space-around;
+}
+
+.unassigned_task,.employee,.assigned_task{
+   border: 2px solid blue;
+    height: 80vh;
+    margin: 20px;
+  }
+
+.unassigned_task_list_heading {
+  border: 2px solid grey;
+  border-radius: 2px;
+ display:flex;
+ flex-direction: row;
+ align-items: center;
+ justify-content:space-between;
+ padding: 2px;
+}
+
+.unassigned_task_list_heading p,.unassigned_task_list p{
+ margin:10px;
+}
+
+.unassigned_task_list {
+ margin-top: 3px;
+ list-style: none;
+ border: 2px solid green;
+ display: flex;
+  flex-direction: row;
+  align-items: center;
+ justify-content: space-between;
+}

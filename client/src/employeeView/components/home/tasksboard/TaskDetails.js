@@ -7,14 +7,14 @@ function TaskDetails(props) {
       <form className="task_details">
         <div className="fields">
           <div className="form_field">
-            <label>Task</label>
+            <labelcd >Task</labelcd>
             <input type="text" value={props.item.task_name} />
           </div>
           <div className="form_field">
             <label>Urgency Level</label>
             <input
               type="text"
-              value={props.item.priority == 1 ? "high" : "low"}
+              value={props.item.priority ===1 ? "high" : "low"}
             />
           </div>
         </div>

@@ -1,0 +1,109 @@
+.create-task-page{
+    position: absolute;
+    top: 0%;
+    right: 0%;
+    width: 85%;
+    padding: 2rem 2rem;
+}
+.create-task-page-upper-section-button-section{
+    display: flex;
+    gap: 1rem;
+}
+.create-task-page-upper-section-button-section button{
+    padding: 0.3rem 0.7rem;
+    border-radius: 4px;
+    border: none;
+    background-color: #003D9E;
+    color: white;
+    cursor: pointer;
+}
+.create-task-page-upper-section-button-section button:hover{
+    background-color: #FFC619;
+}
+.create-task-page-lower-section{
+    padding: 3rem 3rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 2rem;
+}
+.create-task-page-lower-section h2{
+    color: #003D9E;
+    text-align: left;
+}
+.create-task-page-input-section{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 80%;
+    justify-content: center;
+}
+.create-task-page-input-section{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+}
+.lower-input-section textarea{
+    width: 80%;
+    height: 90px;
+}
+.create-task-button-section{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+.create-task-button-section button{
+    width: 200px;
+    padding: 0.4rem;
+    border-radius: 6px;
+}
+.create-task-button-section button:nth-child(1){
+    border: 2px solid #003D9E;
+    color: #003D9E;
+    background-color: transparent;
+}
+.create-task-button-section button:nth-child(2){
+    border: 2px solid #003D9E;
+    color: white;
+    background-color: #003D9E;
+}
+	.save-change-dialogue , .discard-change-dialogue , .delete-change-dialogue{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 3rem 4rem;
+    background-color: white;
+    border-radius: 8px;
+    gap: 2rem;
+    box-shadow: 0px 0px 5px black;
+  }
+  .save-change-dialogue button{
+    padding: 0.4rem 2rem;
+    background-color: #F77911;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 6px;
+  }
+  .save-changes{
+    cursor: pointer;
+  }
+  .discard-dialogue-button-section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+  }
+  .discard-dialogue-button-section button{
+    padding: 0.4rem 1.5rem;
+    cursor: pointer;
+    border: none;
+    border-radius: 6px;
+  }
+  .discard-dialogue-button-section button:nth-child(1){
+    background-color: red;
+    color: white;
+  }																	   
