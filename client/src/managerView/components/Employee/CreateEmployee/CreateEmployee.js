@@ -1,14 +1,70 @@
-import React from 'react'
-import {Link} from 'react-router-dom'
-import "../EditEmployee/EditEmployee.css"
+import React, { useRef } from "react";
+import { Link } from "react-router-dom";
+import "../EditEmployee/EditEmployee.css";
+import axios from "axios";
 export default function CreateEmployee() {
-    const closeDialogue = () => {
-        document.getElementById("dialogueBox").style.display = "none"
-    }
-    const displayDialogue = () => {
-        document.getElementById("dialogueBox").style.display = "flex"
-    }
+  const userFields = useRef([]);
+  const empId = useRef("");
+  const closeDialogue = () => {
+    document.getElementById("dialogueBox").style.display = "none";
+  };
+  // const displayDialogue = () => {
+  // };
 
+  const displayDialogue = async () => {
+    let idPrefix = Math.floor(Math.random() * 9) + 1;
+    let id = Math.floor(Math.random() * 100) + 1;
+    let newEmployee = {
+      user_id: `U${idPrefix}${id}`,
+      name: userFields.name,
+      surname: userFields.surname,
+      email: userFields.email,
+      job_title: userFields.jobTitle,
+      password: "123456",
+    };
+    empId.id = newEmployee.user_id;
+    await axios
+      .post("http://localhost:8000/api/v1/users", newEmployee)
+      .then((response) => {
+        console.log("new task saved:" + JSON.stringify(response.data));
+      })
+      .catch((error) => {
+        console.log("error in saving new task: " + error);
+      });
+    document.getElementById("dialogueBox").style.display = "flex";
+  };
+  const getName = (event) => {
+    userFields.name = event.target.value;
+    console.log("name: " + JSON.stringify(userFields));
+  };
+  const getDate = (event) => {
+    userFields.date = event.target.value;
+    console.log("date: " + JSON.stringify(userFields));
+  };
+  const getSurname = (event) => {
+    userFields.surname = event.target.value;
+    console.log("surname: " + JSON.stringify(userFields));
+  };
+  const getGender = (event) => {
+    userFields.gender = event.target.value;
+    console.log("gender: " + JSON.stringify(userFields));
+  };
+  const getEmail = (event) => {
+    userFields.email = event.target.value;
+    console.log("email: " + JSON.stringify(userFields));
+  };
+  const getAddress = (event) => {
+    userFields.address = event.target.value;
+    console.log("address: " + JSON.stringify(userFields));
+  };
+  const getContact = (event) => {
+    userFields.contact = event.target.value;
+    console.log("contact: " + JSON.stringify(userFields));
+  };
+  const getJobTitle = (event) => {
+    userFields.jobTitle = event.target.value;
+    console.log("jobTitle: " + JSON.stringify(userFields));
+  };
   return (
     <>
       <div className="employee-page">
@@ -32,23 +88,39 @@ export default function CreateEmployee() {
             <div className="employee-detail-form">
               <div className="input-section">
                 <p>Name</p>
-                <input type="text" placeholder="ABC" className="input-box" />
-              </div>
-              <div className="input-section">
-                <p>Birth Date</p>
                 <input
-                  type="number"
-                  placeholder="01.01.1999"
+                  type="text"
+                  onChange={getName}
+                  placeholder="ABC"
                   className="input-box"
                 />
               </div>
               <div className="input-section">
+                <p>Birth Date</p>
+                <input
+                  type="date"
+                  placeholder="01.01.1999"
+                  className="input-box"
+                  onChange={getDate}
+                />
+              </div>
+              <div className="input-section">
                 <p>Surname</p>
-                <input type="text" placeholder="ABC" className="input-box" />
+                <input
+                  type="text"
+                  onChange={getSurname}
+                  placeholder="ABC"
+                  className="input-box"
+                />
               </div>
               <div className="input-section">
                 <p>Gender</p>
-                <select name="gender" id="gender" className="input-box">
+                <select
+                  name="gender"
+                  id="gender"
+                  className="input-box"
+                  onChange={getGender}
+                >
                   <option value="male">Male</option>
                   <option value="female">Female</option>
                   <option value="others">Others</option>
@@ -60,14 +132,20 @@ export default function CreateEmployee() {
                   type="email"
                   placeholder="Something@gmai.com"
                   className="input-box"
+                  onChange={getEmail}
                 />
               </div>
               <div className="input-section">
-                <p>Group</p>
-                <select name="gender" id="gender" className="input-box">
-                  <option value="admin">Admin</option>
-                  <option value="teaching">Teaching</option>
-                  <option value="staff">Stafee</option>
+                <p>Job Title</p>
+                <select
+                  name="job_title"
+                  id="job_title"
+                  className="input-box"
+                  onChange={getJobTitle}
+                >
+                  <option value="Admin Lead">Admin</option>
+                  <option value="Manager">Manager </option>
+                  <option value="Employee">Employee</option>
                 </select>
               </div>
               <div className="input-section">
@@ -76,6 +154,7 @@ export default function CreateEmployee() {
                   type="text"
                   placeholder="Restaurant Pro"
                   className="input-box"
+                  defaultValue="East is East"
                 />
               </div>
               <div className="input-section">
@@ -84,19 +163,25 @@ export default function CreateEmployee() {
                   type="text"
                   placeholder="A-Block Princess Park Faridabad"
                   className="input-box"
+                  onChange={getAddress}
                 />
               </div>
-              <div className="input-section">
+              {/* <div className="input-section">
                 <p>Job Title</p>
                 <select name="gender" id="gender" className="input-box">
                   <option value="admin">Admin</option>
                   <option value="teaching">Teaching</option>
                   <option value="staff">Stafee</option>
                 </select>
-              </div>
+              </div> */}
               <div className="input-section">
                 <p>Contact Number</p>
-                <input type="number" placeholder="ABC" className="input-box" />
+                <input
+                  type="text"
+                  placeholder="ABC"
+                  className="input-box"
+                  onChange={getContact}
+                />
               </div>
               <div className="input-section">
                 <p>Shift</p>
@@ -121,7 +206,8 @@ export default function CreateEmployee() {
       </div>
       <div className="save-change" id="dialogueBox">
         <div className="save-change-dialogue">
-          <p>Employee Created Successfully</p>
+          <p>{`Employee Created`}</p>
+          <b>{`Id: ${empId.id}`}</b>
           <button onClick={closeDialogue}>Okey</button>
         </div>
       </div>
