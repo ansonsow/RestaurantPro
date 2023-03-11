@@ -25,7 +25,7 @@
     align-items: center;
     gap: 0.5rem;
     color: white;
-    width: 200px;
+    width: 100%;
     padding: 0.3rem 2.5rem;
     cursor: pointer;
   }
