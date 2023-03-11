@@ -78,8 +78,23 @@ function App() {
     e.preventDefault();
     console.log("userId in click: " + userId);
     localStorage.setItem("userId", userId);
-    localStorage.setItem("showScreen", "true");
-    setShowView(true);
+
+
+    // setTimeout(()=>{
+    //   // localStorage.setItem("userType", userType);
+    //   console.log(localStorage.userType);
+    // },2000);
+
+    // setTimeout(localStorage.setItem("showScreen", "true"), 2000)
+
+    setTimeout(() => {
+      // console.log('Hello, World!')
+      // console.log(userType)
+      localStorage.setItem("showScreen", "true");
+      setShowView(true);
+
+
+    }, 1000);
   };
 
   // =============================== login =============================
@@ -100,21 +115,32 @@ function App() {
     await axios
       .post("http://localhost:8000/api/v1/user/login", login)
       .then((result) => {
-        console.log(result);
         console.log(result.data.data.type);
         setUserType(result.data.data.type);
         setUserTasks(tasks);
-        checkUserId(e);
+        console.log(userType);
+
+        // console.log("wtf"+userType);
+        setTimeout(()=>{
+          localStorage.setItem("userType", result.data.data.type);
+        },1000)
+        
+        checkUserId(e)
+        
       })
       .catch((error) => {
         console.log(error);
       });
+
+
+      
   };
   // =============================== login =============================
 
   useEffect(() => {
     getDataByUserID(localStorage.getItem("userId"));
     getUserTasksIds(localStorage.getItem("userId"));
+    // localStorage.setItem("userType", userType);
   }, [showView]);
 
   return (
@@ -143,36 +169,49 @@ function App() {
         </div>
       ) : (
         // <EmployeeView tasks={userTasks} account={userDetails} />
-        <ManagerView />
+        // <ManagerView />
+        localStorage.userType == "Employee" ? (
+          // render employee
+          <EmployeeView tasks={userTasks} account={userDetails} userId = {userId}/>
+        ): localStorage.userType == "Manager" ? (
+          // manager view
+          // <div>Manager view</div>
+          <ManagerView /> 
+          // <>haha</>
+
+        ): (
+          <div>sorry try again</div>
+          
+        )
       )}
     </div>
   );
-  {
-    /* {userType == "" ? (
-        // render this page
+  // {
+  //   /* {userType == "" ? (
+  //       // render this page
 
-        <div>
-        <div>========================================= login prototype ==================================</div>
-        <label>User Id</label>
-        <input type="text" value={userId} onChange={getUserId} />
+  //       <div>
+  //       <div>========================================= login prototype ==================================</div>
+  //       <label>User Id</label>
+  //       <input type="text" value={userId} onChange={getUserId} />
         
-        <label>password</label>
-        <input type="password" value={psw} onChange = {getPassword}/>
+  //       <label>password</label>
+  //       <input type="password" value={psw} onChange = {getPassword}/>
 
 
-        <div className="logIn">
-          <h4 onClick={loginUser}>Login</h4>
-        </div>
-      </div>
+  //       <div className="logIn">
+  //         <h4 onClick={loginUser}>Login</h4>
+  //       </div>
+  //     </div>
 
-      ): userType == "Employee" ? (
-        // render employee
-        <EmployeeView tasks={userTasks} account={userDetails} userId = {userId}/>
-      ): (
-        // manager view
-        <div>Manager view</div>
-      )} */
-  }
+  //     ): userType == "Employee" ? (
+  //       // render employee
+  //       <EmployeeView tasks={userTasks} account={userDetails} userId = {userId}/>
+  //     ): (
+  //       // manager view
+  //       <div>Manager view</div>
+  //     )} */
+  // }
 }
 
 export default App;

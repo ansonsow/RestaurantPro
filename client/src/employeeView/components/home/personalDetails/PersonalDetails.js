@@ -16,7 +16,11 @@ export default function PersonalDetails(props) {
 
   const getData = async ()=>{
     // console.log(`http://localhost:8000/api/v1/users/${Number(localStorage.userId)}`);
-    await axios.get(`http://localhost:8000/api/v1/users/${Number(localStorage.userId)}`).then(result=>{
+    console.log("wat happenend?");
+    console.log(localStorage.userId);
+    const url = `http://localhost:8000/api/v1/users/${localStorage.userId}`
+    console.log(url);
+    await axios.get(`http://localhost:8000/api/v1/users/${localStorage.userId}`).then(result=>{
 
         setUserName(result.data.name);
         setTitle(result.data.job_title);
@@ -44,7 +48,8 @@ export default function PersonalDetails(props) {
   }
 
   const getAttendance = async ()=>{
-    await axios.get(`http://localhost:8000/api/v1/attendance/user/${Number(localStorage.userId)}`).then(result=>{
+    await axios.get(`http://localhost:8000/api/v1/attendance/user/${localStorage.userId}`).then(result=>{
+      console.log(result);
       const localClockIn = new Date(result.data[0].clock_in)
       const localClockOut = new Date(result.data[0].clock_out)
       // console.log("waaaaaaaaaaaa"+result);
@@ -77,7 +82,7 @@ export default function PersonalDetails(props) {
   }
 
   const clockOut = async() => {
-    await axios.put(`http://localhost:8000/api/v1/attendance/${Number(localStorage.userId)}`).then(result=>{
+    await axios.put(`http://localhost:8000/api/v1/attendance/${localStorage.userId}`).then(result=>{
       console.log(result);
 
       const localClockOut = new Date(result.data.clock_out)
