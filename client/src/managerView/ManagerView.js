@@ -1,6 +1,12 @@
-import "./ManagerView.css";
-import Sidebar from "./components/sidebar/SideBar";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
+import './ManagerView.css';
+import Sidebar from './components/Sidebar/SideBar';
+import{
+  BrowserRouter as Router,
+  Routes,
+  Route
+} from 'react-router-dom';
+
 
 import CreateEmployee from "./components/Employee/CreateEmployee/CreateEmployee";
 import EditEmployee from "./components/Employee/EditEmployee/EditEmployee";
