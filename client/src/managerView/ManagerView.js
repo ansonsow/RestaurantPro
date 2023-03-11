@@ -1,5 +1,5 @@
 import './ManagerView.css';
-import Sidebar from './components/Sidebar/SideBar';
+import Sidebar from './components/Sidebar/Sidebar';
 import{
   BrowserRouter as Router,
   Routes,
@@ -15,9 +15,12 @@ import DailyAttendance from './components/Tasks/DailyAttendance/DailyAttendance'
 import AssignTask from './components/Tasks/AssignTasks/AssignTask';
 import StatisticsPage from './components/StatisticsPage/Statistics/Statistics';
 import Home from './components/home/Home';
+import LogOut from './components/logout/LogOut'
 function ManagerView() {
   return (
     <>
+
+    
       <Router basename={process.env.PUBLIC_URL}>
         <Sidebar />
         <Routes>
@@ -30,6 +33,7 @@ function ManagerView() {
           <Route path="/assign-task" element={<AssignTask />} />
           <Route path="/statistics" element={<StatisticsPage />} />
           <Route path="/home" element={<Home />} />
+          <Route path="/log-out" element={<LogOut />} />
         </Routes>
       </Router>
     </>
