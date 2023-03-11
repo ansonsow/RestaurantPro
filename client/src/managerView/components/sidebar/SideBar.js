@@ -12,8 +12,7 @@ import SidebarItems from './SidebarItems'
 import {Link} from 'react-router-dom'
 export default function Sidebar() {
   return (
-    <>
-    <div className='sidebar' id='sidebar'>
+    <div className='sidebar'>
         <img src={logo} alt="" className='logo-img'/>
         <div className="side-bar-items">
             <Link to="/home" className='link-a'><SidebarItems itemName="Home" itemIcon={homeIcon}/></Link>
@@ -29,7 +28,5 @@ export default function Sidebar() {
         <Link to="/help" className='link-a'><SidebarItems itemName="Help" itemIcon={homeIcon}/></Link>
         </div>
     </div>
-
-  </>
-  );
+  )
 }
