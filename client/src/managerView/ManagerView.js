@@ -1,3 +1,4 @@
+
 import './ManagerView.css';
 import Sidebar from './components/Sidebar/SideBar';
 import{
@@ -6,15 +7,16 @@ import{
   Route
 } from 'react-router-dom';
 
-import CreateEmployee from './components/Employee/CreateEmployee/CreateEmployee';
-import EditEmployee from './components/Employee/EditEmployee/EditEmployee';
-import EmployeeList from './components/Employee/EmployeeList/EmployeeList';
-import AllTask from './components/Tasks/AllTasks/AllTask';
-import CreateTask from './components/Tasks/CreateTasks/CreateTask';
-import DailyAttendance from './components/Tasks/DailyAttendance/DailyAttendance';
-import AssignTask from './components/Tasks/AssignTasks/AssignTask';
-import StatisticsPage from './components/StatisticsPage/Statistics/Statistics';
-import Home from './components/home/Home';
+
+import CreateEmployee from "./components/Employee/CreateEmployee/CreateEmployee";
+import EditEmployee from "./components/Employee/EditEmployee/EditEmployee";
+import EmployeeList from "./components/Employee/EmployeeList/EmployeeList";
+import AllTask from "./components/Tasks/AllTasks/AllTask";
+import CreateTask from "./components/Tasks/CreateTasks/CreateTask";
+import DailyAttendance from "./components/Tasks/DailyAttendance/DailyAttendance";
+import AssignTask from "./components/Tasks/AssignTasks/AssignTask";
+import StatisticsPage from "./components/StatisticsPage/Statistics/Statistics";
+import Home from "./components/home/Home";
 function ManagerView() {
   return (
     <>
@@ -37,4 +39,3 @@ function ManagerView() {
 }
 
 export default ManagerView;
-

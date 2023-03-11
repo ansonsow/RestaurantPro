@@ -11,12 +11,14 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    z-index: 50;
   }
   .employee-list-page-upper-section-button-part{
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 2rem;
+    z-index: 50;
   }
   .employee-list-page-upper-section-button-part button{
     padding: 0.4rem 1rem;
@@ -25,6 +27,7 @@
     background-color: #003D9E;
     color: white;
     cursor: pointer;
+     z-index: 40;
   }
   .search-box{
     padding: 0.5rem 0.5rem;

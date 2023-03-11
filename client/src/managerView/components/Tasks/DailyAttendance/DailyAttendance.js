@@ -1,22 +1,63 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { useEffect } from "react";								  
 import "./DailyAttendance.css";
+import axios from "axios";
+import EmployeeRow from "./EmployeeRow";
+
 export default function DailyAttendance() {
-  let currentUrl = window.location.href;
-    useEffect(() => {
-        if(currentUrl.includes("/daily-attendance") ){
-          document.getElementById("daily-attendance-btn").style.backgroundColor = "#FFC619"
-        }
-      });												 
+  const [allEmployee, setAllEmployee] = useState([]);
+
+  // Call Apis
+  useEffect(() => {
+    console.log("In Dailt Attendance");
+    getClockInEmployees();
+    console.log("allEmployee" + JSON.stringify(allEmployee));
+  }, []);
+
+  const getClockInEmployees = async () => {
+    await axios
+      .get("http://localhost:8000/api/v1/attendance/true")
+      .then((response) => {
+        console.log("all present employees:" + JSON.stringify(response.data));
+        let userIds = response.data.map((user) => user.user_id);
+        userIds.forEach((id) => {
+          getUserDetails(id);
+        });
+      })
+      .catch((error) => {
+        console.log("error in fetching all task: " + error);
+      });
+  };
+
+  let getUserDetails = (id) => {
+    axios
+      .get(`http://localhost:8000/api/v1/users/${id}`)
+      .then((response) => {
+        console.log(
+          "all present employees details:" + JSON.stringify(response.data)
+        );
+        setAllEmployee((pre) => [...pre, response.data]);
+      })
+      .catch((error) => {
+        console.log("error in fetch user details: " + error);
+      });
+  };
   return (
     <div className="daily-attendance-page">
       <div className="daily-attendance-page-upper-section">
         <div className="daily-attendance-page-upper-section-button-section">
-        <Link to="/task" className="link-a"><button>All Task</button></Link>
-        <Link to="/assign-task" className='link-a'><button>Assign Task</button></Link>
-          <Link to="/create-task" className='link-a'><button>Create Task</button></Link>
-          <Link to="/daily-attendance" className='link-a'><button id="daily-attendance-btn">Daily Attendance</button></Link>
+          <Link to="/task" className="link-a">
+            <button>All Task</button>
+          </Link>
+          <Link to="/assign-task" className="link-a">
+            <button>Assign Task</button>
+          </Link>
+          <Link to="/create-task" className="link-a">
+            <button>Create Task</button>
+          </Link>
+          <Link to="/daily-attendance" className="link-a">
+            <button>Daily Attendance</button>
+          </Link>
         </div>
         <div className="daily-attendance-page-upper-section-search-section">
           <input type="text" className="search-box" placeholder="Search Here" />
@@ -34,55 +75,9 @@ export default function DailyAttendance() {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Sachin Jha</td>
-              <td>Clock In</td>
-              <td>30.01.2023</td>
-              <td>08:10AM</td>
-              <td>Head Chef</td>
-            </tr>
-            <tr>
-               <td>Sachin Jha</td>
-              <td>Clock In</td>
-              <td>30.01.2023</td>
-              <td>08:10AM</td>
-              <td>Head Chef</td>
-            </tr>
-            <tr>
-               <td>Sachin Jha</td>
-              <td>Clock In</td>
-              <td>30.01.2023</td>
-              <td>08:10AM</td>
-              <td>Head Chef</td>
-            </tr>
-            <tr>
-               <td>Sachin Jha</td>
-              <td>Clock In</td>
-              <td>30.01.2023</td>
-              <td>08:10AM</td>
-              <td>Head Chef</td>
-            </tr>
-            <tr>
-               <td>Sachin Jha</td>
-              <td>Clock In</td>
-              <td>30.01.2023</td>
-              <td>08:10AM</td>
-              <td>Head Chef</td>
-            </tr>
-            <tr>
-               <td>Sachin Jha</td>
-              <td>Clock In</td>
-              <td>30.01.2023</td>
-              <td>08:10AM</td>
-              <td>Head Chef</td>
-            </tr>
-            <tr>
-               <td>Sachin Jha</td>
-              <td>Clock In</td>
-              <td>30.01.2023</td>
-              <td>08:10AM</td>
-              <td>Head Chef</td>
-            </tr>
+            {allEmployee.map((empDetails) => (
+              <EmployeeRow emp={empDetails} />
+            ))}
           </tbody>
         </table>
       </div>
