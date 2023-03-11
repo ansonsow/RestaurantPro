@@ -23,14 +23,15 @@ export default function CreateEmployee() {
       password: "123456",
     };
     empId.id = newEmployee.user_id;
-    await axios
-      .post("http://localhost:8000/api/v1/users", newEmployee)
-      .then((response) => {
-        console.log("new task saved:" + JSON.stringify(response.data));
-      })
-      .catch((error) => {
-        console.log("error in saving new task: " + error);
-      });
+    console.log("empId: " + empId.id);
+    // await axios
+    //   .post("http://localhost:8000/api/v1/users", newEmployee)
+    //   .then((response) => {
+    //     console.log("new task saved:" + JSON.stringify(response.data));
+    //   })
+    //   .catch((error) => {
+    //     console.log("error in saving new task: " + error);
+    //   });
     document.getElementById("dialogueBox").style.display = "flex";
   };
   const getName = (event) => {
@@ -69,19 +70,13 @@ export default function CreateEmployee() {
     <>
       <div className="employee-page">
         <div className="employee-page-upper-section">
-          <Link to="/employee" className="link-a">
-            <button>Employee List</button>
-          </Link>
-          <Link to="/create-employee" className="link-a">
-            <button>New Employee</button>
-          </Link>
-          <Link to="/edit-employee" className="link-a">
-            <button>Edit Employee</button>
-          </Link>
+          <Link to="/employee"><button>Employee List</button></Link>
+          <Link to="/create-employee"><button id='new-employee-btn'>New Employee</button></Link>
+          <Link to="/edit-employee"><button>Edit Employee</button></Link>
         </div>
         <div className="employee-page-lower-section">
           <div className="employee-page-lower-section-image-part">
-            <div className="image-box"></div>
+                <div className="image-box"></div>
           </div>
           <div className="employee-page-lower-section-detail-part">
             <h2>Create New Employee Profile</h2>
@@ -197,20 +192,20 @@ export default function CreateEmployee() {
               <textarea name="Notes" id=""></textarea>
             </div>
             <div className="button-section">
-              <button className="save-btn" onClick={displayDialogue}>
-                Create
-              </button>
+                    <button className='save-btn' onClick={displayDialogue}>Create</button>
+                </div>
+					   
             </div>
-          </div>
+				
         </div>
-      </div>
-      <div className="save-change" id="dialogueBox">
+    </div>
+    <div className="save-change" id='dialogueBox'>
         <div className="save-change-dialogue">
           <p>{`Employee Created`}</p>
           <b>{`Id: ${empId.id}`}</b>
-          <button onClick={closeDialogue}>Okey</button>
+          <button onClick={closeDialogue}>Ok</button>
         </div>
-      </div>
+    </div>
     </>
   );
 }

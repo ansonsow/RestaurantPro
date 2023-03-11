@@ -1,5 +1,5 @@
 import React from 'react'
-import "./Sidebar.css"
+import "./SideBar.css"
 import logo from "../images/Logo_Primary.svg"
 import homeIcon from "../images/home.svg"
 import taskIcon from "../images/tasks.svg"
@@ -12,7 +12,8 @@ import SidebarItems from './SidebarItems'
 import {Link} from 'react-router-dom'
 export default function Sidebar() {
   return (
-    <div className='sidebar'>
+    <>
+    <div className='sidebar' id='sidebar'>
         <img src={logo} alt="" className='logo-img'/>
         <div className="side-bar-items">
             <Link to="/home" className='link-a'><SidebarItems itemName="Home" itemIcon={homeIcon}/></Link>
@@ -28,5 +29,7 @@ export default function Sidebar() {
         <Link to="/help" className='link-a'><SidebarItems itemName="Help" itemIcon={homeIcon}/></Link>
         </div>
     </div>
-  )
+
+  </>
+  );
 }
