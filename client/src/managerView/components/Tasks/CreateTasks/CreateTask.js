@@ -2,10 +2,16 @@ import React, { useEffect, useRef, useState } from "react";
 import "./CreateTask.css";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import AllTask from "../AllTasks/AllTask";
 export default function CreateTask() {
+  // const closeDialogue = () => {
+  //   document.getElementById("dialogueBox").style.display = "flex";
+  // };
+
   const [users, setUsers] = useState([]);
   const userNames = useRef([]);
   const userFields = useRef([]);
+  const [changesSaved, setChangesSaved] = useState(false);
   useEffect(() => {
     getAllUsers();
     saveTasks();
@@ -56,7 +62,7 @@ export default function CreateTask() {
       status: true,
     };
     console.log("user task:" + JSON.stringify(userTask));
-     axios
+    axios
       .post("http://localhost:8000/api/v1/usersTasks", userTask)
       .then((response) => {
         console.log("new user task saved:" + JSON.stringify(response.data));
@@ -64,6 +70,7 @@ export default function CreateTask() {
       .catch((error) => {
         console.log("error in saving new user task: " + error);
       });
+    // document.getElementById("dialogueBox").style.display = "flex";
   };
 
   let getAllUserName = () => {
@@ -184,8 +191,18 @@ export default function CreateTask() {
       </div>
       <div className="create-task-button-section">
         <button>Discard</button>
-        <button onClick={saveTasks}>Save Changes</button>
+        <Link to="/task">
+          <button onClick={saveTasks}>Save Changes</button>
+        </Link>
       </div>
+      {/* <div className="save-change" id="dialogueBox">
+        <div className="save-change-dialogue">
+          <p>New Task Created</p>
+          <Link to="/task">
+            <button onClick={closeDialogue}>Okey</button>
+          </Link>
+        </div>
+      </div> */}
     </div>
   );
 }

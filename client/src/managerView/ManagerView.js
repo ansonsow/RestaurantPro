@@ -1,3 +1,4 @@
+
 import './ManagerView.css';
 import Sidebar from './components/Sidebar/Sidebar';
 import{
@@ -5,6 +6,7 @@ import{
   Routes,
   Route
 } from 'react-router-dom';
+
 
 import CreateEmployee from './components/Employee/CreateEmployee/CreateEmployee';
 import EditEmployee from './components/Employee/EditEmployee/EditEmployee';
@@ -16,6 +18,7 @@ import AssignTask from './components/Tasks/AssignTasks/AssignTask';
 import StatisticsPage from './components/StatisticsPage/Statistics/Statistics';
 import Home from './components/home/Home';
 import LogOut from './components/logout/LogOut'
+
 function ManagerView() {
   return (
     <>
@@ -41,4 +44,3 @@ function ManagerView() {
 }
 
 export default ManagerView;
-
