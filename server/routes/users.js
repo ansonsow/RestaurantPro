@@ -8,8 +8,11 @@ const userCtrl = require("../controllers/userController");
 router.get("/users", userCtrl.getUsers);
 
 // need manager login before creating new user
-// router.post("/users", auth.verifyManagerToken, userCtrl.saveUsers);
+
 router.post("/users", userCtrl.saveUsers);
+// router.post("/users", auth.verifyManagerToken, userCtrl.saveUsers);
+
+
 
 router.post("/user/login", userCtrl.loginUser);
 
