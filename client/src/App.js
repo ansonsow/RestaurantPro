@@ -145,7 +145,10 @@ function App() {
 
   return (
     <div className="App">
-      <div className="nav_bar">{/* <Navbar /> */}</div>
+      <div className="nav_bar">
+        <Navbar />
+      </div>
+      
       {console.log(
         "localStorage return : " + localStorage.getItem("showScreen")
       )}
