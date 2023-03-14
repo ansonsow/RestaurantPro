@@ -1,38 +1,44 @@
-import { Home, Pocket, Activity, Bell } from "react-feather";
-export const sideData = [
-  {
-    title: "Home",
-    icon: <Home />,
-    link: "/home",
-  },
+// import React from "react";
+// import "./SideBar.css";
 
-  {
-    title: "Tasks",
-    icon: <Pocket />,
-    link: "/task",
-  },
 
-  {
-    title: "Activity",
-    icon: <Activity />,
-    link: "/activity",
-  },
+// export default home_svg;
 
-  {
-    title: "Account",
-    icon: <Bell />,
-    link: "/account",
-  },
+// import { Home, Pocket, Activity, Bell } from "react-feather";
+// export const sideData = [
+//   {
+//     title: "Home",
+//     icon: <Home />,
+//     link: "/home",
+//   },
 
-  {
-    title: "Log Out",
-    icon: <Bell />,
-    link: "/logout",
-  },
+//   {
+//     title: "Tasks",
+//     icon: <Pocket />,
+//     link: "/task",
+//   },
 
-  {
-    title: "Help",
-    icon: <Bell />,
-    link: "/help",
-  },
-];
+//   {
+//     title: "Activity",
+//     icon: <Activity />,
+//     link: "/activity",
+//   },
+
+//   {
+//     title: "Account",
+//     icon: <Bell />,
+//     link: "/account",
+//   },
+
+//   {
+//     title: "Log Out",
+//     icon: <Bell />,
+//     link: "/logout",
+//   },
+
+//   {
+//     title: "Help",
+//     icon: <Bell />,
+//     link: "/help",
+//   },
+// ];
