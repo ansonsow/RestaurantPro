@@ -2,8 +2,8 @@
     --Sidebar-Logo-Top-Gap:25px;
     --Sidebar-Logo-Size:calc(var(--Sidebar-Width) * 0.6);
     --Sidebar-Nav-List-Top-Gap:25px; /* was 100px */
+    --Sidebar-Nav-Item-Padding-Y:0.8em;
     --Sidebar-Nav-Item-Padding-X:calc(var(--Sidebar-Width) * 0.15);
-    --Sidebar-Nav-Item-Padding-Y:1em;
     --Sidebar-Nav-Item-Icon-Size:24px;
     --Sidebar-Nav-Item-Icon-Text-Gap:calc(var(--Sidebar-Width) * 0.07);
 }
@@ -21,6 +21,15 @@
     height: 100vh;
     justify-content: space-between; */
     font-family:"century gothic regular";
+    display:table;
+}
+
+.sb_tr {
+    display:table-row;
+}
+
+.sb_tr.logo_tr {
+    height:0;
 }
 
 .logo-holder {
@@ -39,6 +48,10 @@
     margin:0;
     margin-top:var(--Sidebar-Nav-List-Top-Gap);
     padding:0;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    height:calc(100% - var(--Sidebar-Nav-List-Top-Gap));
 }
 
 .sidebar_list .row {
@@ -95,4 +108,8 @@
 
 .sidebar_list .row span {
     flex:70%;
+}
+
+.sidebar_list .sidebar_list_bot li:last-child {
+    padding-bottom:var(--Sidebar-Logo-Top-Gap);
 }
