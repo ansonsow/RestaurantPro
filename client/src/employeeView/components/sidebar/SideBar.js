@@ -5,7 +5,7 @@ import "./SideBar.css";
 import logo from "../../../icons/Logo_DarkBG.svg"
 import homeIcon from "../../../icons/home.svg"
 import taskIcon from "../../../icons/tasks.svg"
-import searchIcon from "../../../icons/search.svg"
+import statsIcon from "../../../icons/Statistics.svg"
 import notificationIcon from "../../../icons/notification.svg"
 import accountIcon from "../../../icons/account.svg"
 import logoutIcon from "../../../icons/logout.svg"
@@ -15,7 +15,7 @@ import { Link } from "react-router-dom";
 
 function SideBar() {
   let handle = (e) => {
-    e.preventDefault();
+    //e.preventDefault();
   };
   return (
     <div className="menu">
@@ -48,7 +48,7 @@ function SideBar() {
         <li>
           <Link to="/activity" className="row" onClick={handle}>
             <div className="svg_holder">
-              <object data={searchIcon} type="image/svg+xml" aria-label="Statistics Icon" width="100%" height="100%"></object>
+              <object data={statsIcon} type="image/svg+xml" aria-label="Statistics Icon" width="100%" height="100%"></object>
             </div>            
             <span>Statistics</span>
           </Link>
