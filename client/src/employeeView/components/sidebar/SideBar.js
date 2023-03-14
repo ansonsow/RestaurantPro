@@ -19,82 +19,90 @@ function SideBar() {
   };
   return (
     <div className="menu">
-      <div className="logo-holder">
-        <img src={logo} alt="Restaurant Pro" className="logo-img"/>
+      <div className="sb_tr logo_tr">
+        <div className="logo-holder">
+          <img src={logo} alt="Restaurant Pro" className="logo-img"/>
+        </div>
       </div>
       
-      <ul className="sidebar_list">
-        {/*----- HOME LINK -----*/}
-        <li>
-          <Link to="/home" className="row" onClick={handle}>
-            <div className="svg_holder">
-              <object data={homeIcon} type="image/svg+xml" aria-label="Home Icon" width="100%" height="100%"></object>
-            </div>            
-            <span>Home</span>
-          </Link>
-        </li>
+      <div className="sb_tr">
+        <div className="sidebar_list">
+          <ul className="sidebar_list_top">
+            {/*----- HOME LINK -----*/}
+            <li>
+              <Link to="/home" className="row" onClick={handle}>
+                <div className="svg_holder">
+                  <object data={homeIcon} type="image/svg+xml" aria-label="Home Icon" width="100%" height="100%"></object>
+                </div>            
+                <span>Home</span>
+              </Link>
+            </li>
 
-        {/*----- TASK LINK -----*/}
-        <li>
-          <Link to="/task" className="row" onClick={handle}>
-            <div className="svg_holder">
-              <object data={taskIcon} type="image/svg+xml" aria-label="Tasks Icon" width="100%" height="100%"></object>
-            </div>            
-            <span>Tasks</span>
-          </Link>
-        </li>
+            {/*----- TASK LINK -----*/}
+            <li>
+              <Link to="/task" className="row" onClick={handle}>
+                <div className="svg_holder">
+                  <object data={taskIcon} type="image/svg+xml" aria-label="Tasks Icon" width="100%" height="100%"></object>
+                </div>            
+                <span>Tasks</span>
+              </Link>
+            </li>
 
-        {/*----- STATS LINK -----*/}
-        <li>
-          <Link to="/activity" className="row" onClick={handle}>
-            <div className="svg_holder">
-              <object data={statsIcon} type="image/svg+xml" aria-label="Statistics Icon" width="100%" height="100%"></object>
-            </div>            
-            <span>Statistics</span>
-          </Link>
-        </li>
+            {/*----- STATS LINK -----*/}
+            <li>
+              <Link to="/activity" className="row" onClick={handle}>
+                <div className="svg_holder">
+                  <object data={statsIcon} type="image/svg+xml" aria-label="Statistics Icon" width="100%" height="100%"></object>
+                </div>            
+                <span>Statistics</span>
+              </Link>
+            </li>
 
-        {/*----- NOTIF LINK -----*/}
-        <li>
-          <Link to="/notifications" className="row" onClick={handle}>
-            <div className="svg_holder">
-              <object data={notificationIcon} type="image/svg+xml" aria-label="Notifications Icon" width="100%" height="100%"></object>
-            </div>            
-            <span>Notifications</span>
-          </Link>
-        </li>
+            {/*----- NOTIF LINK -----*/}
+            <li>
+              <Link to="/notifications" className="row" onClick={handle}>
+                <div className="svg_holder">
+                  <object data={notificationIcon} type="image/svg+xml" aria-label="Notifications Icon" width="100%" height="100%"></object>
+                </div>            
+                <span>Notifications</span>
+              </Link>
+            </li>
+          </ul> {/* end sidebar list top */}
+          
+          <ul className="sidebar_list_bot">
+            {/*----- ACCOUNT LINK -----*/}
+            <li>
+              <Link to="/account" className="row" onClick={handle}>
+                <div className="svg_holder">
+                  <object data={accountIcon} type="image/svg+xml" aria-label="Account Icon" width="100%" height="100%"></object>
+                </div>            
+                <span>Account</span>
+              </Link>
+            </li>
 
-        {/*----- ACCOUNT LINK -----*/}
-        <li>
-          <Link to="/account" className="row" onClick={handle}>
-            <div className="svg_holder">
-              <object data={accountIcon} type="image/svg+xml" aria-label="Account Icon" width="100%" height="100%"></object>
-            </div>            
-            <span>Account</span>
-          </Link>
-        </li>
+            {/*----- LOG OUT LINK -----*/}
+            <li>
+              <Link to="/log-out" className="row" onClick={handle}>
+                <div className="svg_holder">
+                  <object data={logoutIcon} type="image/svg+xml" aria-label="Logout Icon" width="100%" height="100%"></object>
+                </div>            
+                <span>Log Out</span>
+              </Link>
+            </li>
 
-        {/*----- LOG OUT LINK -----*/}
-        <li>
-          <Link to="/log-out" className="row" onClick={handle}>
-            <div className="svg_holder">
-              <object data={logoutIcon} type="image/svg+xml" aria-label="Logout Icon" width="100%" height="100%"></object>
-            </div>            
-            <span>Log Out</span>
-          </Link>
-        </li>
-
-        {/*----- HELP LINK -----*/}
-        <li>
-          <Link to="/help" className="row" onClick={handle}>
-            <div className="svg_holder">
-              <object data={helpIcon} type="image/svg+xml" aria-label="Help Icon" width="100%" height="100%"></object>
-            </div>            
-            <span>Help</span>
-          </Link>
-        </li>
-      </ul>
-    </div>
+            {/*----- HELP LINK -----*/}
+            <li>
+              <Link to="/help" className="row" onClick={handle}>
+                <div className="svg_holder">
+                  <object data={helpIcon} type="image/svg+xml" aria-label="Help Icon" width="100%" height="100%"></object>
+                </div>            
+                <span>Help</span>
+              </Link>
+            </li>
+          </ul> {/* end sidebar list bottom */}
+        </div> {/* end sidebar list */}
+      </div> {/* end menu table-row */}
+    </div> // end menu
   );
 }
 
