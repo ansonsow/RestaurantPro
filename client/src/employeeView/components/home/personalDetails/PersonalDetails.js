@@ -109,9 +109,9 @@ export default function PersonalDetails(props) {
           </div>
           <div className="user_details">
             <p>{userName}</p>
-            <p>Account Number: {localStorage.userId}</p>
-            <p>Title: {title}</p>
-            <p>Last Login:{lastLogin}</p>
+            <p><b>Account Number:</b> {localStorage.userId}</p>
+            <p><b>Title:</b> {title}</p>
+            <p><b>Last Login:</b> {lastLogin}</p>
           </div>
         </div>
       </div>
@@ -127,8 +127,8 @@ export default function PersonalDetails(props) {
            
         }
         <div className="clock_info">
-          <p>Last clock-in: {lastClockIn}</p>
-          <p>Last clock-out: {lastClockOut}</p>
+          <p><b>Last clock-in:</b> {lastClockIn}</p>
+          <p><b>Last clock-out:</b> {lastClockOut}</p>
         </div>
       </div>
     </div>
