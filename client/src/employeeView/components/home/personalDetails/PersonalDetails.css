@@ -16,10 +16,24 @@
    margin-top:0;
 }
 
+.user_box h4 {
+   margin-bottom:calc(var(--Rightside-Boxes-Heading-Underline-Gap) * 1.5);
+   padding-bottom:var(--Rightside-Boxes-Heading-Underline-Gap);
+   border-bottom:1px solid var(--Text-Color);
+}
+
 .user {
    display: flex;
    flex-direction: row;
    gap: 10px;
+}
+
+.user_box p {
+   line-height:1.6em;
+}
+
+.user_box p + p {
+   margin-top:var(--Rightside-Boxes-Line-Spacing);
 }
 
 .user_details p:first-of-type {
@@ -28,4 +42,23 @@
 
 .user_details p:last-of-type {
    margin-bottom: 0px;
+}
+
+button.clock_in_btn {
+   display:block;
+   width:100%;
+   margin-bottom:calc(var(--Rightside-Boxes-Line-Spacing) + 3px);
+   border-radius:var(--Corner-Rounding);
+   padding:var(--ClockIn-Button-Padding-Y) var(--ClockIn-Button-Padding-X);
+   background:var(--Primary-Medium);
+   color:var(--Background);
+   font-family:"Century Gothic Bold";
+   font-size:inherit;
+   border:none;
+   cursor:pointer;
+   transition:background var(--Hover-Speeds) ease-in-out;
+}
+
+button.clock_in_btn:hover {
+   background:var(--Secondary-Medium);
 }

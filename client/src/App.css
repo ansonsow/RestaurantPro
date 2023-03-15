@@ -40,7 +40,7 @@
     --Screen-Margins-X:30px;
     --Screen-Margins-Y:calc(18vh * 0.2);
 
-    --Main-Board-Width:75%;
+    --Main-Board-Width:69%;
     --TaskBoard-Padding:25px;
     
     --Table-Headers-Padding-X:1.3em;
@@ -53,12 +53,19 @@
 
     --Rightside-Boxes-Spacing:20px;
     --Rightside-Boxes-Padding:14px;
+    --Rightside-Boxes-Heading-Underline-Gap:8px;
+    --Rightside-Boxes-Line-Spacing:10px;
+
+    --ClockIn-Button-Padding-Y:0.5em;
+    --ClockIn-Button-Padding-X:1em;
 
     --CTA-Buttons-Top-Gap:25px;
     --CTA-Buttons-Width:225px;
     --CTA-Buttons-Padding-X:1em;
     --CTA-Buttons-Padding-Y:0.69em;
     --CTA-Buttons-Spacing:25px;
+
+    --Hover-Speeds:0.25s;
 }
 
 /*---- TEMPORARY LOGIN PAGE CSS ----*/
