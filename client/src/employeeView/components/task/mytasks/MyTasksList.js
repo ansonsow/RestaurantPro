@@ -56,7 +56,7 @@ function MyTaskList(props) {
             <Check />
           </div>
           {message && (
-            <Message heading="" message="You have open the task again" />
+            <Message heading="" message="You have reopened the task." />
           )}
         </>
       ) : (
@@ -64,8 +64,8 @@ function MyTaskList(props) {
           <p>open again</p>
           {message && (
             <Message
-              heading="Congratulations"
-              message=" You have finished the task"
+              heading="Congratulations!"
+              message=" You have completed the task!"
             />
           )}
         </div>

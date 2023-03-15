@@ -51,6 +51,12 @@
 
     --Corner-Rounding:10px;
 
+    --Popup-Msg-Box-Width:40vw;
+    --Popup-Msg-Box-Padding-Y:50px;
+    --Popup-Msg-Box-Padding-X:35px;
+    --Popup-Msg-Button-Padding-Y:0.5em;
+    --Popup-Msg-Button-Padding-X:1em;
+
     --Rightside-Boxes-Spacing:20px;
     --Rightside-Boxes-Padding:14px;
     --Rightside-Boxes-Heading-Underline-Gap:8px;
