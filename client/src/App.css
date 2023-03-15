@@ -32,13 +32,13 @@
 
 /*------ CSS VARIABLES ------*/
 :root {
-    --Navbar-Height:18vh;
-    --Searchbar-Width:400px;
+    --Navbar-Height:100px;
+    --Searchbar-Width:calc(100% - var(--Sidebar-Width) - (var(--Screen-Margins-X) * 2));
     --Searchbar-Height:40px;
 
-    --Sidebar-Width:13vw;
+    --Sidebar-Width:100%; /* was 13vw */
     --Screen-Margins-X:30px;
-    --Screen-Margins-Y:calc(18vh * 0.2);
+    --Screen-Margins-Y:25px; /* was calc(18vmin * 0.2) */
 
     --Main-Board-Width:69%;
     --TaskBoard-Padding:25px;
