@@ -19,6 +19,9 @@
   --Secondary-Lighter: #FFC619;
 
   --Text-Color: #000000;
+  --Text-Color-RGB: 0,0,0;
+  --Text-Color-Lighter: #4a4a4a;
+  --Text-Color-Lighter-RGB: 74,74,74;
   --Body-Font-Size:16px;
 }
 
