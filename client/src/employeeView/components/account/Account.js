@@ -34,7 +34,7 @@ function Account(props) {
     //       console.log("error in updating account details: " + error);
     //     });
     // }
-    axios.put(`http://localhost:8000/api/v1/users/${localStorage.userId}`, userDetails).then(response=>{
+    axios.put(`${process.env.REACT_APP_SERVER}users/${localStorage.userId}`, userDetails).then(response=>{
       console.log(response);
     }).catch(error=>{
       console.log(error);

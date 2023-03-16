@@ -20,7 +20,7 @@ function App() {
     console.log("In getDataByUserID");
     console.log("userId in localStorage:" + userId);
     await axios
-      .get(`http://localhost:8000/api/v1/users/${userId}`)
+      .get(`${process.env.REACT_APP_SERVER}users/${userId}`)
       .then((response) => {
         // user.push(response.data);
         setUserDetails(response.data);
@@ -37,7 +37,7 @@ function App() {
     console.log("In getUserTasksIds");
     console.log("userId in localStorage: " + userId);
     await axios
-      .get(`http://localhost:8000/api/v1/usersTasks/user/${userId}`)
+      .get(`${process.env.REACT_APP_SERVER}usersTasks/user/${userId}`)
       .then((response) => {
         let ids = response.data.map((item) => item.task_id);
         console.log("tasks ids of user " + JSON.stringify(ids));
@@ -56,7 +56,7 @@ function App() {
     console.log("In getUserTasks");
 
     await axios
-      .get(`http://localhost:8000/api/v1/tasks/${id}`)
+      .get(`${process.env.REACT_APP_SERVER}tasks/${id}`)
       .then((response) => {
         tasks.push(response.data[0]);
         setUserTasks([...tasks]);
@@ -113,7 +113,7 @@ function App() {
     };
 
     await axios
-      .post("http://localhost:8000/api/v1/user/login", login)
+      .post(process.env.REACT_APP_SERVER+ "user/login", login)
       .then((result) => {
         console.log(result.data.data.type);
         setUserType(result.data.data.type);
@@ -136,6 +136,13 @@ function App() {
       
   };
   // =============================== login =============================
+
+
+
+  const handelPanicBtn= () => {
+    localStorage.clear();
+    window.location.reload();
+  }
 
   useEffect(() => {
     getDataByUserID(localStorage.getItem("userId"));
@@ -183,7 +190,11 @@ function App() {
           // <>haha</>
 
         ): (
-          <div>sorry try again</div>
+          <>
+            <div>sorry try again</div>
+            <button onClick={handelPanicBtn}>send me back</button>
+          </>
+
           
         )
       )}
