@@ -10,6 +10,7 @@
   --Background-2: #E2E8F5;
   --Background-2-RGB: 226,232,245;
 
+  --Gray-Darker: #9b9b9b;
   --Gray: #c6c6c6;
   --Gray-RGB: 198,198,198;
   --Gray-Lighter: #E1E3E7;
@@ -19,6 +20,9 @@
   --Secondary-Lighter: #FFC619;
 
   --Text-Color: #000000;
+  --Text-Color-RGB: 0,0,0;
+  --Text-Color-Lighter: #4a4a4a;
+  --Text-Color-Lighter-RGB: 74,74,74;
   --Body-Font-Size:16px;
 }
 
@@ -39,4 +43,9 @@ h1, h2, h3, h4, h5, h6 {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+b {
+  font-weight:normal;
+  font-family:"Century Gothic Bold";
 }

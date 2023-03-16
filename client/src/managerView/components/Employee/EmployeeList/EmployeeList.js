@@ -1,8 +1,8 @@
 import React from "react";
 import "./EmployeeList.css";
 import { Link } from "react-router-dom";
-import editIcon from "../../images/Edit.svg";
-import deleteIcon from "../../images/delete.svg";
+import editIcon from "../../../../icons/Edit.svg";
+import deleteIcon from "../../../../icons/delete.svg";
 import { useEffect } from "react";
 
 export default function EmployeeList() {
