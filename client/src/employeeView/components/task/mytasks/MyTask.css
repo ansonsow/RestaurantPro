@@ -1,6 +1,6 @@
 :root {
-    --Task-Row-Padding-X:15px;
     --Task-Row-Padding-Y:15px;
+    --Task-Row-Padding-X:15px;
     --Task-Row-Transparency:50%;
     --Task-Name-Padding-Y:0.5em;
     --Task-Name-Padding-X:1em;
@@ -41,6 +41,8 @@
 }
 
 .board_list {
+    padding:var(--Task-Row-Padding-Y) var(--Task-Row-Padding-X);
+    background:var(--Background-2);
 }
 
 .board_list p {
@@ -49,36 +51,41 @@
  margin: 15px;
 }
 
-.task {
-    display:flex;
-    justify-content:space-between;
+.board_list .task {
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    grid-gap:0 var(--Table-Columns-Spacing);
+}
+
+.board_list .task {
     margin:0!important;
-    padding:var(--Task-Row-Padding-Y) 0;
-    background:rgba(var(--Background-RGB), calc(100% - var(--Task-Row-Transparency)));
+    padding:0!important;
+    background:transparent;
     margin:0!important;
     border:none!important;
     border-radius:var(--Corner-Rounding);
     cursor:pointer;
 }
 
-.task + .task {
+/* make each task row stretch to the height of the highest element in that row */
+.board_list .task > * {
+    height:100%;
+}
+
+.board_list .task + .task {
     margin-top:var(--Task-Row-Spacing)!important;
 }
 
 .task > p {
     margin:0!important;
-    margin-left:var(--Task-Row-Padding-X)!important;
+    width:100%;
     border:2px solid var(--Gray);
     padding:var(--Task-Name-Padding-Y) var(--Task-Name-Padding-X);
+    background:rgba(var(--Background-RGB), calc(100% - var(--Task-Row-Transparency)));
     border-radius:var(--Corner-Rounding);
     font-weight:normal!important;
     text-decoration:none!important;
     color:var(--Text-Color);
-}
-
-.task > .open_task,
-.task > .check_task {
-    margin-right:var(--Task-Row-Padding-X)!important;
 }
 
 .open_task, .check_task {
