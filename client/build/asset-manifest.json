@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.bc814a1a.css",
-    "main.js": "/static/js/main.604c4098.js",
+    "main.css": "/static/css/main.783302bf.css",
+    "main.js": "/static/js/main.f24a2990.js",
     "static/js/787.c4e7f8f9.chunk.js": "/static/js/787.c4e7f8f9.chunk.js",
     "static/media/Brevia-Medium.ttf": "/static/media/Brevia-Medium.0af2a9373be1107952a3.ttf",
     "static/media/Brevia-Semibold.ttf": "/static/media/Brevia-Semibold.e13b4055562d7b7eacab.ttf",
@@ -19,12 +19,12 @@
     "index.html": "/index.html",
     "static/media/notification.svg": "/static/media/notification.66b74184025b61a5085edd9b9a44c8bc.svg",
     "static/media/Edit.svg": "/static/media/Edit.bee2be0e88c3fc3c87094d07ca8815f0.svg",
-    "main.bc814a1a.css.map": "/static/css/main.bc814a1a.css.map",
-    "main.604c4098.js.map": "/static/js/main.604c4098.js.map",
+    "main.783302bf.css.map": "/static/css/main.783302bf.css.map",
+    "main.f24a2990.js.map": "/static/js/main.f24a2990.js.map",
     "787.c4e7f8f9.chunk.js.map": "/static/js/787.c4e7f8f9.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.bc814a1a.css",
-    "static/js/main.604c4098.js"
+    "static/css/main.783302bf.css",
+    "static/js/main.f24a2990.js"
   ]
 }

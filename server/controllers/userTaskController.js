@@ -157,7 +157,7 @@ const saveUserTask = async (req,res) =>{
 }
 
 const updateTask = async (tid, bool) => {
-    const newtask = await task.findOne({_id:tid});
+    const newtask = await task.findOne({task_id:tid});
     console.log(bool);
     newtask.task_status = bool;
     newtask.save().then(result=>{
@@ -171,7 +171,7 @@ const updateTask = async (tid, bool) => {
 
 const checkBool = async (tid, t)=>{
     let finishAll = true;
-    console.log("waaa"+t+t._id);
+    // console.log("waaa"+t+t._id);
     const ut = await UserTask.find({task_id:tid})
 
 
@@ -183,7 +183,7 @@ const checkBool = async (tid, t)=>{
         // }
 
         if(isToday(ut[i].date)){
-            console.log("wooo"+ut[i]+ ut[i]._id);
+            // console.log("wooo"+ut[i]+ ut[i]._id);
 
             if(ut[i].user_id==t.user_id&&ut[i].task_id==t.task_id){
                 ut[i].status = !ut[i].status
