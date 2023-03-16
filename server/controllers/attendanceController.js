@@ -170,6 +170,21 @@ const getUserByClockStatus = async (req, res) => {
     });
 };
 
+const updateStatus = async (req, res) => {
+  res.header("Access-Control-Allow-Origin","*");
+  const uid = req.params.uid;
+  const attendance = await Attendance.findOne({user_id: uid});
+  attendance.status = !attendance.status;
+  attendance
+    .save()
+    .then((result) => {
+      res.status(201).json(result);
+    })
+    .catch((error) => {
+      res.status(500).json({ Message: error });
+    });
+}
+
 module.exports = {
   getAttendance,
   getAttendee,
@@ -179,4 +194,5 @@ module.exports = {
   getLastAttendance,
   updateClockOut,
   getUserByClockStatus,
+  updateStatus
 };

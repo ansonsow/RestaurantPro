@@ -87,8 +87,8 @@ const loginUser = async (req, res) => {
         data: localUser,
         token: token,
       };
-
-      user.lastLogin = new Date(Date.now());
+      user.lastLogin = user.thisLogin
+      user.thisLogin = new Date(Date.now());
       await user.save();
       res.status(201).json(data);
     } else {

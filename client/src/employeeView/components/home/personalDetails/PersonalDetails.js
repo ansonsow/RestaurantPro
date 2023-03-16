@@ -79,6 +79,10 @@ export default function PersonalDetails(props) {
     }).catch(error=>{
       console.log(error);
     })
+
+    await axios.pup("http://localhost:8000/api/v1/"+ "attendance/updateStatus/"+localStorage.userId).then(result=>{
+      console.log(result);
+    })
   }
 
   const clockOut = async() => {
@@ -92,7 +96,13 @@ export default function PersonalDetails(props) {
     }).catch(error=>{
       console.log(error);
     })
+
+    await axios.pup("http://localhost:8000/api/v1/"+ "attendance/updateStatus/"+localStorage.userId).then(result=>{
+      console.log(result);
+    })
   }
+
+  
 
   useEffect(()=>{
     getData();
