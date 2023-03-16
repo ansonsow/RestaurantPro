@@ -33,10 +33,10 @@
 /*------ CSS VARIABLES ------*/
 :root {
     --Navbar-Height:100px;
-    --Searchbar-Width:calc(100% - var(--Sidebar-Width) - (var(--Screen-Margins-X) * 2));
+    --Searchbar-Width:100%;
     --Searchbar-Height:40px;
 
-    --Sidebar-Width:100%; /* was 13vw */
+    --Sidebar-Width:13vw;
     --Screen-Margins-X:30px;
     --Screen-Margins-Y:25px; /* was calc(18vmin * 0.2) */
 
