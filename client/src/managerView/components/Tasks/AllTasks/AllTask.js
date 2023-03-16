@@ -31,7 +31,7 @@ export default function AllTask() {
   // get all user
   const getAllUsers = async () => {
     await axios
-      .get("http://localhost:8000/api/v1/users")
+      .get(process.env.REACT_APP_SERVER+ "users")
       .then((response) => {
         console.log("all users:" + JSON.stringify(response.data));
         setAllUsers(response.data);
@@ -44,7 +44,7 @@ export default function AllTask() {
   //get all tasks
   const getAllTasks = async () => {
     await axios
-      .get("http://localhost:8000/api/v1/tasks")
+      .get(process.env.REACT_APP_SERVER+"tasks")
       .then((response) => {
         console.log("all task:" + JSON.stringify(response.data));
         setAllTask(response.data);
@@ -77,7 +77,7 @@ export default function AllTask() {
   // get today users' tasks
   const getUsersTasks = async () => {
     await axios
-      .get("http://localhost:8000/api/v1/usersTasksToday")
+      .get(process.env.REACT_APP_SERVER+ "usersTasksToday")
       .then((response) => {
         console.log("all user task:" + JSON.stringify(response.data));
         setAllUsersTasks(response.data);

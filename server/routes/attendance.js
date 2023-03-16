@@ -26,4 +26,6 @@ router.get("/lastattendance/:uid", attendanceCtrl.getLastAttendance);
 router.put("/attendance/:uid", attendanceCtrl.updateClockOut);
 
 router.get("/attendance/:clock_status", attendanceCtrl.getUserByClockStatus);
+router.put("/attendance/updateStatus/:uid", attendanceCtrl.updateStatus);
+
 module.exports = router;

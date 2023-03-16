@@ -16,7 +16,7 @@ export default function DailyAttendance() {
 
   const getClockInEmployees = async () => {
     await axios
-      .get("http://localhost:8000/api/v1/attendance/true")
+      .get(process.env.REACT_APP_SERVER+ "attendance/true")
       .then((response) => {
         console.log("all present employees:" + JSON.stringify(response.data));
         let userIds = response.data.map((user) => user.user_id);
@@ -31,7 +31,7 @@ export default function DailyAttendance() {
 
   let getUserDetails = (id) => {
     axios
-      .get(`http://localhost:8000/api/v1/users/${id}`)
+      .get(`${process.env.REACT_APP_SERVER}users/${id}`)
       .then((response) => {
         console.log(
           "all present employees details:" + JSON.stringify(response.data)

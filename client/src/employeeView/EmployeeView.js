@@ -22,7 +22,7 @@ function EmployeeView(props) {
           />
           <Route
             exact
-            path="/logout"
+            path="/log-out"
             element={<LogOut />}
           />
         </Routes>
