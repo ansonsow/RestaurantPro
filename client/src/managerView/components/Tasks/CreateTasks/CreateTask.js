@@ -44,7 +44,13 @@ export default function CreateTask() {
       task_desc: userFields.description,
       due_date: userFields.dueDate,
       priority: userFields.urgencyLevel,
+      task_status: false,
     };
+    if (userFields.employeeName) {
+      console.log("new task is assigned to: " + userFields.employeeName);
+      newTask.task_status = true;
+      saveUserTask(newTask);
+    }
     await axios
       .post("http://localhost:8000/api/v1/tasks", newTask)
       .then((response) => {
@@ -55,7 +61,9 @@ export default function CreateTask() {
       });
 
     // save user's task
+  };
 
+  const saveUserTask = (newTask) => {
     let userTask = {
       task_id: newTask.task_id,
       user_id: userFields.employeeName,
@@ -70,7 +78,6 @@ export default function CreateTask() {
       .catch((error) => {
         console.log("error in saving new user task: " + error);
       });
-    // document.getElementById("dialogueBox").style.display = "flex";
   };
 
   let getAllUserName = () => {
@@ -163,8 +170,8 @@ export default function CreateTask() {
           <div className="item">
             <p>Assign To</p>
             <select
-              name="gender"
-              id="gender"
+              name="assign"
+              id="assign"
               className="input-box"
               onChange={getEmployeeName}
             >
