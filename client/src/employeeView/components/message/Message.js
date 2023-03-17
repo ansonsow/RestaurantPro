@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "./Message.css";
-import { X } from "react-feather";
 function Message(props) {
   const [message, showmessage] = useState(true);
 
@@ -8,17 +7,15 @@ function Message(props) {
   useEffect(() => {
     setTimeout(() => {
       showmessage(false);
-    }, 1000);
+    }, 2000);
   }, [props, message]);
   return (
     <>
       {message && (
         <div className="message">
-          <div className="cross">
-            <X />
-          </div>
           <h4>{props.heading}</h4>
           <h5>{props.message}</h5>
+          <button>Okay</button>
         </div>
       )}
     </>

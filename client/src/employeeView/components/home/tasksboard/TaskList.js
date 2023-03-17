@@ -18,7 +18,7 @@ function TaskList(props) {
     axios
       // .put(`http://localhost:8000/api/v1/task/${props.item._id}`, task)
       // /usersTasks/:uid/:tid
-      .put(`http://localhost:8000/api/v1/userstasks/${localStorage.userId}/${props.item.task_id}`)
+      .put(`${process.env.REACT_APP_SERVER}userstasks/${localStorage.userId}/${props.item.task_id}`)
       .then((response) => {
         console.log("task status" + JSON.stringify(response.data));
       })
@@ -56,7 +56,7 @@ function TaskList(props) {
             <Check />
           </div>
           {message && (
-            <Message heading="" message="You have open the task again" />
+            <Message heading="" message="You have reopened the task." />
           )}
         </>
       ) : (
@@ -64,8 +64,8 @@ function TaskList(props) {
           <p>open again</p>
           {message && (
             <Message
-              heading="Congratulations"
-              message=" You have finished the task"
+              heading="Congratulations!"
+              message=" You have completed the task."
             />
           )}
         </div>

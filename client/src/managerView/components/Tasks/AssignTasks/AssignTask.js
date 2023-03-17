@@ -31,7 +31,7 @@ export default function AssignTask() {
   const getAllTask = async () => {
     let allTask = [];
     await axios
-      .get("http://localhost:8000/api/v1/tasks")
+      .get(process.env.REACT_APP_SERVER+"tasks")
       .then((response) => {
         console.log("all task:" + JSON.stringify(response.data));
         response.data.forEach((task) => {
@@ -48,10 +48,11 @@ export default function AssignTask() {
   // get all present employee
   const getClockInEmployees = async () => {
     await axios
-      .get("http://localhost:8000/api/v1/attendance/true")
+      .get(process.env.REACT_APP_SERVER+"attendance/true")
       .then((response) => {
         console.log("all present employees:" + JSON.stringify(response.data));
         let userIds = response.data.map((user) => user.user_id);
+        console.log(response);
         userIds.forEach((id) => {
           getUserDetails(id);
         });
@@ -63,7 +64,7 @@ export default function AssignTask() {
 
   let getUserDetails = (id) => {
     axios
-      .get(`http://localhost:8000/api/v1/users/${id}`)
+      .get(`${process.env.REACT_APP_SERVER}users/${id}`)
       .then((response) => {
         console.log(
           "all present employees details:" + JSON.stringify(response.data)
@@ -78,7 +79,7 @@ export default function AssignTask() {
   let updateUserTask = (uid, tid) => {
     let data = { task_id: tid, user_id: uid, status: true };
     axios
-      .post(`http://localhost:8000/api/v1/usersTasks`, data)
+      .post(`${process.env.REACT_APP_SERVER}usersTasks`, data)
       .then((response) => {
         console.log("user task saved: " + JSON.stringify(response.data));
       })
@@ -117,7 +118,7 @@ export default function AssignTask() {
   const getSelectedTasks = () => {
     setunAssignedTaskObjects([]);
     allTasks.forEach((task) => {
-      if (unAssignedTask.find((id) => task.task_id === id)) {
+      if (unAssignedTask.find((id) => task.task_id == id)) {
         setunAssignedTaskObjects((pre) => [...pre, task]);
       }
     });

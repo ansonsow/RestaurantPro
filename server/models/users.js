@@ -80,6 +80,12 @@ const usersSchema = new Schema({
         type:Date,
         // required: true,
         default: new Date(Date.now())
+    },
+
+    thisLogin: {
+        type:Date,
+        // required: true,
+        default: new Date(Date.now())
     }
 });
 

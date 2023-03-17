@@ -1,13 +1,13 @@
 import React from 'react'
 import "./Sidebar.css"
-import logo from "../images/Logo_Primary.svg"
-import homeIcon from "../images/home.svg"
-import taskIcon from "../images/tasks.svg"
-import notificationIcon from "../images/notification.svg"
-import employeeIcon from "../images/empoloyee.svg"
-import accountIcon from "../images/account.svg"
-import logoutIcon from "../images/logout.svg"
-import restaurantIcon from "../images/restaurant.svg"
+import logo from "../../../icons/Logo_Primary.svg"
+import homeIcon from "../../../icons/home.svg"
+import taskIcon from "../../../icons/tasks.svg"
+import notificationIcon from "../../../icons/notification.svg"
+import employeeIcon from "../../../icons/employee.svg"
+import accountIcon from "../../../icons/account.svg"
+import logoutIcon from "../../../icons/logout.svg"
+import restaurantIcon from "../../../icons/restaurant.svg"
 import SidebarItems from './SidebarItems'
 import {Link} from 'react-router-dom'
 export default function Sidebar() {
