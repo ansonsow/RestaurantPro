@@ -1,0 +1,10 @@
+.home_page {
+    position:absolute;
+    top:0;margin-top:var(--Navbar-Height);
+    left:0;margin-left:calc(var(--Sidebar-Width) + var(--Screen-Margins-X));
+    width:calc(100% - var(--Sidebar-Width) - (var(--Screen-Margins-X) * 2));
+
+    display:grid;
+    grid-template-columns:var(--Main-Board-Width) auto;
+    grid-gap:0 var(--Center-Gap);
+}

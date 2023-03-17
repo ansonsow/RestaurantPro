@@ -1,0 +1,97 @@
+:root {
+    --Searchbar-Padding:12px;
+    --Search-Icon-Size:28px;
+}
+
+.nav_bar {
+    position:absolute;
+    top:0;left:0;
+    margin-left:var(--Sidebar-Width);
+    width:calc(100% - var(--Sidebar-Width));
+    height:var(--Navbar-Height);
+    z-index:4;
+}
+
+.nav_bar_inner {
+    width:100%;
+    height:100%;
+    box-sizing:border-box;
+    padding:var(--Screen-Margins-Y) var(--Screen-Margins-X);
+    padding-bottom:calc(var(--Screen-Margins-Y) * 0.8);
+    display:grid;
+    grid-template-columns:var(--Main-Board-Width) auto;
+    grid-gap:0 var(--Center-Gap);
+    align-items:center;
+}
+
+.nav_bar h2 {
+    margin:0;
+    width:100%;
+}
+
+.searchbar {
+    position:relative;
+    background:var(--Background);
+    border:2px solid var(--Primary-Medium);
+    border-radius:var(--Corner-Rounding);
+    width:var(--Searchbar-Width);
+    height:var(--Searchbar-Height);
+    font-family:"Century Gothic Regular";
+    box-sizing:border-box;
+    color:var(--Text-Color);
+    line-height:100%;
+    padding:var(--Searchbar-Padding);
+    z-index:2;
+}
+
+.s-icon-cont {
+    position:absolute;
+    top:0;
+    height:100%;
+    display:flex;
+    align-items:center;
+}
+
+.searchbar object[type="image/svg+xml"]{
+    display:block;
+    flex-shrink:0;
+    width:var(--Search-Icon-Size);
+    height:var(--Search-Icon-Size);
+}
+
+.s-mag-cont {
+    left:0;
+}
+
+.searchbar object[aria-label="Search Icon"]{
+    margin-left:calc(var(--Searchbar-Padding) - (var(--Search-Icon-Size) * 0.15));    
+}
+
+.s-filter-cont {
+    right:0;
+}
+
+.searchbar object[aria-label="Filter Icon"]{
+    margin-right:calc(var(--Searchbar-Padding) - (var(--Search-Icon-Size) * 0.15)); 
+}
+
+input.search {
+    outline:none;
+    position:absolute;
+    top:0;left:0;
+    margin-left:calc(var(--Searchbar-Padding) + var(--Search-Icon-Size) - (var(--Search-Icon-Size) * 0.15));
+    margin-top:0;
+    margin-right:0;
+    margin-bottom:0;
+    height:100%;
+    border:none;
+    width:calc(100% - var(--Searchbar-Padding) - (var(--Search-Icon-Size) * 2) - (var(--Search-Icon-Size) * 0.15));
+    padding:0 calc(var(--Searchbar-Padding) / 4);
+    font-family:inherit;
+    font-size:inherit;
+    color:var(--Text-Color);
+}
+
+input.search::placeholder {
+    color:var(--Gray-Darker);
+}

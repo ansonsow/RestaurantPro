@@ -1,0 +1,100 @@
+.board{
+
+}
+.task_board {
+    padding:var(--TaskBoard-Padding);
+    background:var(--Background-2);
+    border-radius:var(--Corner-Rounding);
+}
+
+.board_head h2 {
+    margin-bottom:1em;
+}
+
+.board_head > h2:first-child {
+    margin-top:0;
+}
+
+.task{
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid rgb(7, 7, 7);
+    margin: 5px;
+    background-color: rgb(202, 197, 190);
+    padding: 2px;
+    align-items: center;
+}
+.check_task{
+  border-radius: 2px;
+  background-color: white;
+  /* margin-top: 10px; */
+  width: 50px;
+  display: flex;
+  align-items:center;
+  justify-content: center;
+  height: 30px;
+  transition: 2ms;
+}
+.open_task{
+  border-radius: 4px;
+  background-color: white;
+    width: 15%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30px;
+    
+
+}
+
+
+
+
+/* Task Details */
+.form {
+  margin: auto;
+  display: block;
+  width: 50%;
+  height: 80vh;
+}
+
+.form_field {
+  display: flex;
+  flex-direction: column;
+}
+
+.call_to_actions {
+    display:grid;
+    align-items:center;
+    justify-content:center;
+    grid-template-columns:repeat(2, var(--CTA-Buttons-Width));
+    grid-gap:var(--CTA-Buttons-Spacing);
+    margin:var(--CTA-Buttons-Top-Gap) 0 var(--Screen-Margins-Y) 0;
+}
+
+.call_to_actions button {
+    display:block;
+    width:var(--CTA-Buttons-Width);
+    padding:var(--CTA-Buttons-Padding-Y) var(--CTA-Buttons-Padding-X);
+    border-radius:var(--Corner-Rounding);
+    font-family:inherit;
+    font-size:inherit;
+    outline:none;
+    border:none;
+    box-sizing:border-box;
+
+    background:var(--Primary);
+    color:var(--Background);
+    cursor:pointer;
+}
+
+.call_to_actions button.hollow {
+    border:1px solid var(--Primary);
+    background:var(--Background);
+    color:var(--Primary);
+}
+
+.call_to_actions button:hover {
+    box-shadow:4px 4px 12px 0 var(--Primary-Lighter);
+}
+

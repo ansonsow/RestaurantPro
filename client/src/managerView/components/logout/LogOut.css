@@ -1,0 +1,31 @@
+/* button{
+    background-color: red;
+    font-size: xx-large;
+    float:right;
+} */
+
+.logoutConfirmation{
+    position: absolute;
+    top:50%;left:50%;
+    transform:translate(-50%,-50%);
+    margin-left:calc(var(--Sidebar-Width) / 2);
+}
+
+.logoutFlex {
+    display:flex;
+    justify-content:space-between;
+    margin-top:15px;
+}
+
+.logoutBtn {
+    
+}
+
+.logoutConfirmation button {
+    padding:25px;
+    background-color: #fff;
+    outline:none;
+    border-radius:var(--Corner-Rounding);
+    border:1px solid var(--Text-Color);
+    cursor:pointer;
+}

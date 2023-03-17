@@ -1,0 +1,50 @@
+/* CSS STYLING FOR ALL TASK PAGE*/
+.daily-attendance-page{
+    position: absolute;
+    top: 0%;
+    right: 0%;
+    width: 85%;
+    padding: 2rem 2rem;
+}
+.daily-attendance-page-upper-section{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.daily-attendance-page-upper-section-button-section{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+.daily-attendance-page-upper-section-button-section button{
+    padding: 0.3rem 0.7rem;
+    border-radius: 4px;
+    border: none;
+    background-color: #003D9E;
+    color: white;
+    cursor: pointer;
+}
+.daily-attendance-page-upper-section-button-section button:hover{
+    background-color: #FFC619;
+}
+.daily-attendance-page-lower-section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+}
+.daily-attendance-page-lower-section table{
+    width: 100%;
+}
+tbody{
+    background-color: #cfcfcf69;
+}
+.daily-attendance-table{
+    border: none;
+    width: 90%;
+    border-collapse: collapse;
+}
+tbody tr{
+    height: 20px;
+}

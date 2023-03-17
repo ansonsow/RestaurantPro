@@ -1,0 +1,27 @@
+.linear-progress-bar{
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+.linear-progress-bar-text{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.linear-progress-bar-progress{
+    width: 250px;
+    height: 4px;
+    border-radius: 20px;
+    background-color: #003D9E;
+    position: relative;
+    overflow: hidden;
+}
+.linear-progress-bar-percentage{
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 70%;
+    height: 100%;
+    border-radius: 20px;
+    background-color: #FFC619;
+}

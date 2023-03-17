@@ -1,0 +1,71 @@
+/* CSS STYLING FOR ASSIGN TASK PAGE*/
+.assign-task-page{
+    position: absolute;
+    top: 0%;
+    right: 0%;
+    width: 85%;
+    padding: 2rem 2rem;
+}
+.assign-task-page-upper-section{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.assign-task-page-upper-section-button-section{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+.assign-task-page-upper-section-button-section button{
+    padding: 0.3rem 0.7rem;
+    border-radius: 4px;
+    border: none;
+    background-color: #003D9E;
+    color: white;
+    cursor: pointer;
+}
+.assign-task-page-upper-section-button-section button:hover{
+    background-color: #FFC619;
+}
+
+.assign-task-page-lower-section{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 2rem;
+    /* place-items: center; */
+    margin-top: 2rem;
+}
+.underline-p{
+    color: #003D9E;
+    text-decoration: underline;
+}
+.uncompleted-task-table{
+   border-collapse: collapse;
+   margin-top: 1rem;
+   border: none;
+}
+#column3 button{
+    margin: 2rem 2rem;
+    padding: 0.4rem 1.5rem;
+    width: 150px;
+}
+.employee-table , .unassigned-task-table{
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+.employee-table tr , .unassigned-task-table tr{
+    background-color: white;
+}
+.uncompleted-task-table{
+    margin: 1rem 0;
+}
+.fled-td{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+table tr td{
+    font-size: 14px;
+}

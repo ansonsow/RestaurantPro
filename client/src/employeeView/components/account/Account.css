@@ -1,0 +1,123 @@
+:root {
+    --Account-Board-Padding:35px;
+
+    --Account-Image-Column-Width:200px;
+    --Account-Image-Column-Extra-Gap-Right:10px;
+    --Account-Side-Actions-Box-Top-Gap:30px;
+    --Account-Side-Actions-Box-Padding:16px;
+    --Account-Side-Actions-Box-Links-Spacing:8px;
+
+    --Account-Form-Columns-Width:auto; /* was 20vw */
+    --Account-Form-Columns-Gap:25px;
+
+    --Account-Form-Fields-Spacing:14px;
+    --Account-Form-Fields-Height:40px;
+    --Account-Form-Fields-Padding:12px;
+    --Account-Form-Label-Bottom-Gap:4px;
+}
+
+.account {
+    position:absolute;
+    top:0;margin-top:var(--Navbar-Height);
+    left:0;margin-left:calc(var(--Sidebar-Width) + var(--Screen-Margins-X));
+    width:calc(100% - var(--Sidebar-Width) - (var(--Screen-Margins-X) * 2));
+}
+
+/* Account Details */
+.account form {
+    display:grid;
+    grid-template-columns:calc(var(--Account-Image-Column-Width) + var(--Account-Image-Column-Extra-Gap-Right)) repeat(2, var(--Account-Form-Columns-Width));
+    grid-gap:0 var(--Account-Form-Columns-Gap);
+    background:var(--Background-2);
+    border-radius:var(--Corner-Rounding);
+    padding:var(--Account-Board-Padding);
+    overflow:hidden;
+}
+
+/*----- ACCOUNT PAGE: PHOTO COLUMN [1st] -----*/
+.photo_col_inner {
+    margin-top:calc(var(--Body-Font-Size) + var(--Account-Form-Label-Bottom-Gap));
+    width:var(--Account-Image-Column-Width);
+}
+
+.photo_section {
+    border:3px solid var(--Primary);
+    height:var(--Account-Image-Column-Width);
+    background-image:url("https://cdn.glitch.global/f202da4e-f9f2-4703-9a01-471c490e991b/placeholder_img.png");
+    background-repeat:no-repeat;
+    background-size:cover;
+    background-position:50% 75%;
+    background-color:var(--Primary-Lightest);
+    border-radius:var(--Corner-Rounding);
+    box-shadow:0px 4px 4px 0 rgba(0,0,0,0.25);
+    box-sizing:border-box;
+}
+
+.photo_section + .acc_side_box {
+    margin-top:var(--Account-Side-Actions-Box-Top-Gap);
+}
+
+.acc_side_box {
+    padding:var(--Account-Side-Actions-Box-Padding);
+    border-radius:var(--Corner-Rounding);
+    background:var(--Background);
+}
+
+.acc_side_box > h3:first-child {
+    margin-top:0;
+}
+
+.acc_side_box h3 {
+    font-family:"Brevia Medium";
+    text-decoration:underline;
+}
+
+.acc_side_box ul {
+    padding:0;
+    margin:0;
+}
+
+.acc_side_box > ul:last-child {
+    margin-bottom:0;
+}
+
+.acc_side_box li {
+    list-style-type:none;
+    margin:0;
+    cursor:pointer;
+}
+
+.acc_side_box li + li {
+    margin-top:var(--Account-Side-Actions-Box-Links-Spacing);
+}
+
+.acc_side_box li:hover {
+    color:var(--Secondary); /* delete later */
+}
+
+
+
+/*----- ACCOUNT PAGE: INPUT FIELD COLUMNS -----*/
+.account .form_field + .form_field {
+    margin-top:var(--Account-Form-Fields-Spacing);
+}
+
+.account form label {
+    font-family:"Brevia Medium";
+    opacity:0.8;
+}
+
+.account form label + input {
+    margin-top:var(--Account-Form-Label-Bottom-Gap);
+}
+
+.account form input {
+    outline:none;
+    border:1px solid var(--Primary);
+    width:var(--Account-Form-Columns-Width);
+    height:var(--Account-Form-Fields-Height);
+    padding:var(--Account-Form-Fields-Padding);
+    box-sizing:border-box;
+    border-radius:var(--Corner-Rounding);
+    font-family:"Century Gothic Regular";
+}
