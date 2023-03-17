@@ -43,10 +43,11 @@ export default function AssignTask() {
   // get all present employee
   const getClockInEmployees = async () => {
     await axios
-      .get(process.env.REACT_APP_SERVER="attendance/true")
+      .get(process.env.REACT_APP_SERVER+"attendance/true")
       .then((response) => {
         console.log("all present employees:" + JSON.stringify(response.data));
         let userIds = response.data.map((user) => user.user_id);
+        console.log(response);
         userIds.forEach((id) => {
           getUserDetails(id);
         });
@@ -102,7 +103,7 @@ export default function AssignTask() {
   const getSelectedTasks = () => {
     setunAssignedTaskObjects([]);
     allTasks.forEach((task) => {
-      if (unAssignedTask.find((id) => task.task_id === id)) {
+      if (unAssignedTask.find((id) => task.task_id == id)) {
         setunAssignedTaskObjects((pre) => [...pre, task]);
       }
     });
