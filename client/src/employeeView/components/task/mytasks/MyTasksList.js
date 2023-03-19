@@ -1,6 +1,5 @@
 import React, {useEffect, useState } from "react";
 import "./MyTask.css";
-import { Check, TrendingUp } from "react-feather";
 import Message from "../../message/Message";
 import axios from "axios";
 
@@ -53,7 +52,7 @@ function MyTaskList(props) {
             className="check_task"
             onClick={taskDone}
           >
-            <Check />
+            <p>Click to Complete</p>
           </div>
           {message && (
             <Message heading="" message="You have reopened the task." />
@@ -61,7 +60,7 @@ function MyTaskList(props) {
         </>
       ) : (
         <div key={props.item.task_id} className="open_task" onClick={taskOpen}>
-          <p>open again</p>
+          <p>Click to Reopen</p>
           {message && (
             <Message
               heading="Congratulations!"
