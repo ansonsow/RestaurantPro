@@ -88,8 +88,8 @@
     --Hover-Speeds:0.25s;
 }
 
-/*---- TEMPORARY LOGIN PAGE CSS ----*/
-.nav_bar + div:not([class], [id]){
+/*---- LOGIN PAGE CSS ----*/
+.login_form {
     --qbxny: calc(var(--Navbar-Height) / 3);
     position:absolute;
     top:0;left:0;
@@ -103,18 +103,18 @@
     width:500px;
 }
 
-.nav_bar + div:not([class], [id]) label,
-.nav_bar + div:not([class], [id]) input {
+.login_form label,
+.login_form input {
     display:block;
     text-transform:capitalize;
 }
 
-.nav_bar + div:not([class], [id]) label {
+.login_form label {
     font-family:"Brevia Medium";
     margin-bottom:0.6em;
 }
 
-.nav_bar + div:not([class], [id]) input {
+.login_form input {
     outline:none;
     font-family:inherit;
     font-size:inherit;
@@ -125,17 +125,17 @@
     border-radius:var(--Corner-Rounding);
 }
 
-.nav_bar + div:not([class], [id]) input + label {
+.login_form input + label {
     margin-top:1.5em;
 }
 
-.nav_bar + div:not([class], [id]) .submit,
-.nav_bar + div:not([class], [id]) .logIn {
+.login_form .submit,
+.login_form .logIn {
     margin-top:22px;    
 }
 
-.nav_bar + div:not([class], [id]) .submit h4,
-.nav_bar + div:not([class], [id]) .logIn h4 {
+.login_form .submit h4,
+.login_form .logIn h4 {
     display:inline-block;
     margin:0;
     padding:10px 16px;
@@ -147,18 +147,18 @@
     cursor:pointer;
 }
 
-.nav_bar + div:not([class], [id]) .logIn {
+.login_form .logIn {
     position:relative;
 }
 
-.nav_bar + div:not([class], [id]) .logIn h4 {
+.login_form .logIn h4 {
     position:absolute;
     bottom:0;right:0;
     margin-bottom:22px;
 }
 
-.nav_bar + div:not([class], [id]) .submit h4:hover,
-.nav_bar + div:not([class], [id]) .logIn h4:hover {
+.login_form .submit h4:hover,
+.login_form .logIn h4:hover {
     background:var(--Primary-Medium);
 }
 
