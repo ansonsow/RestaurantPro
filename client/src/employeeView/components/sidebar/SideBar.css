@@ -66,14 +66,6 @@
     align-items: center;
 }
 
-.sidebar_list .row:hover {
-    background:var(--Primary-Medium);
-}
-
-.sidebar_list .row.active {
-    background:var(--Primary-Medium);
-}
-
 .sidebar_list a.row {
     display:grid;
     align-items:center;
