@@ -32,45 +32,59 @@
 
 /*------ CSS VARIABLES ------*/
 :root {
+    /*----- TOP NAVBAR -----*/
     --Navbar-Height:100px;
     --Searchbar-Width:100%;
     --Searchbar-Height:40px;
 
-    --Sidebar-Width:13vw;
+    /*----- LEFT SIDEBAR -----*/
+    --Sidebar-Width:13vw; /* this will be changed as screen resizes */
+
+    /*----- GAPS FROM SIDES OF THE SCREEN -----*/
     --Screen-Margins-X:30px;
     --Screen-Margins-Y:25px; /* was calc(18vmin * 0.2) */
 
+    /*----- MAIN CONTENT CONTAINER -----*/
     --Main-Board-Width:69%;
     --TaskBoard-Padding:25px;
     
+    /*----- TABLES -----*/
     --Table-Headers-Padding-X:1.3em;
     --Table-Headers-Padding-Y:1em;
     --Table-Columns-Spacing:15px;
 
+    /*----- AISLE GAP BETWEEN MAIN CONTENT'S LEFT & RIGHT -----*/
+    /* (this excludes the main left sidebar) */
     --Center-Gap:25px;
 
+    /*----- GLOBAL BORDER RADIUS -----*/
     --Corner-Rounding:10px;
 
+    /*----- POPUP MESSAGE BOX -----*/
     --Popup-Msg-Box-Width:40vw;
     --Popup-Msg-Box-Padding-Y:50px;
     --Popup-Msg-Box-Padding-X:35px;
     --Popup-Msg-Button-Padding-Y:0.5em;
     --Popup-Msg-Button-Padding-X:1em;
 
+    /*----- BOXES ON RIGHTSIDE -----*/
     --Rightside-Boxes-Spacing:20px;
     --Rightside-Boxes-Padding:14px;
     --Rightside-Boxes-Heading-Underline-Gap:8px;
     --Rightside-Boxes-Line-Spacing:10px;
 
+    /*----- CLOCK IN/OUT BUTTON -----*/
     --ClockIn-Button-Padding-Y:0.5em;
     --ClockIn-Button-Padding-X:1em;
 
+    /*----- CTA BUTTONS -----*/
     --CTA-Buttons-Top-Gap:25px;
     --CTA-Buttons-Width:225px;
     --CTA-Buttons-Padding-X:1em;
     --CTA-Buttons-Padding-Y:0.69em;
     --CTA-Buttons-Spacing:25px;
 
+    /*----- GLOBAL TRANSITION SPEED -----*/
     --Hover-Speeds:0.25s;
 }
 
