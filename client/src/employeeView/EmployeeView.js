@@ -11,12 +11,11 @@ function EmployeeView(props) {
   return (
     <div className="components">
       <Router>
-        <Navbar />
-        <SideBar />
+        
         <Routes>
           <Route exact path="/" element={<Home tasks={props.tasks} />} />
           <Route exact path="/home" element={<Home tasks={props.tasks} />} />
-          <Route exact path="/task" element={<Task tasks={props.tasks} />} />
+          <Route exact path="/tasks" element={<Task tasks={props.tasks} />} />
           <Route
             exact
             path="/account"
@@ -28,6 +27,9 @@ function EmployeeView(props) {
             element={<LogOut />}
           />
         </Routes>
+
+        <Navbar />
+        <SideBar />
       </Router>
     </div>
   );

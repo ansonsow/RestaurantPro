@@ -40,7 +40,7 @@ function SideBar() {
 
             {/*----- TASK LINK -----*/}
             <li>
-              <Link to="/task" className="row" onClick={handle}>
+              <Link to="/tasks" className="row" onClick={handle}>
                 <div className="svg_holder">
                   <object data={taskIcon} type="image/svg+xml" aria-label="Tasks Icon" width="100%" height="100%"></object>
                 </div>            
