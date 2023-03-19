@@ -88,6 +88,37 @@
     --Hover-Speeds:0.25s;
 }
 
+/*---- HIGHLIGHT PAGE IN SIDEBAR ----*/
+/* highlight homepage link */
+.App > .components > .home_page ~ .menu li.sb_home_link a {
+    background:var(--Primary-Medium)
+}
+
+/* highlight task page link */
+.App > .components > .task_page ~ .menu li.sb_tasks_link a {
+    background:var(--Primary-Medium)
+}
+
+/* highlight stats page link */
+.App > .components > .task_page ~ .menu li.sb_tasks_link a {
+    background:var(--Primary-Medium)
+}
+
+/* highlight notifs page link */
+.App > .components > .notifs_page ~ .menu li.sb_notifs_link a {
+    background:var(--Primary-Medium)
+}
+
+/* highlight account page link */
+.App > .components > .account_page ~ .menu .sb_account_link {
+    background:var(--Primary-Medium)
+}
+
+/* highlight logout page link */
+.App > .components > .logout_page ~ .menu .sb_logout_link {
+    background:var(--Primary-Medium)
+}
+
 /*---- LOGIN PAGE CSS ----*/
 .login_form {
     --qbxny: calc(var(--Navbar-Height) / 3);
