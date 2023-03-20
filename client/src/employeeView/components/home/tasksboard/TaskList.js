@@ -56,12 +56,12 @@ function TaskList(props) {
       <p>{props.item.task_name}</p>
       {taskStatus ? (
         <div key={props.item.task_id} className="check_task" onClick={taskDone}>
-          <Check />
+          <p>Click to Complete</p>
         </div>
       ) : (
         // <>
         <div key={props.item.task_id} className="open_task" onClick={taskOpen}>
-          <p>open again</p>
+          <p>Click to Reopen</p>
         </div>
       )}
     </div>
