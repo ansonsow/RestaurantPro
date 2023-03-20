@@ -17,6 +17,58 @@ function SideBar() {
   let handle = (e) => {
     //e.preventDefault();
   };
+
+  let homeIconSVG;
+  let tasksIconSVG;
+  let statsIconSVG;
+  let notifIconSVG;
+  let accountIconSVG;
+  let logoutIconSVG;
+  let helpIconSVG;
+  
+  async function grabSVG(url){
+      return fetch(url)
+      .then(response => response.text())
+      .then(result => {
+        return result;
+      });
+  }
+
+  grabSVG(homeIcon).then(eyqxf => {
+      homeIconSVG = eyqxf;
+      document.querySelector(".home_icon_svg").innerHTML = homeIconSVG
+  })
+
+  grabSVG(taskIcon).then(eyqxf => {
+      tasksIconSVG = eyqxf;
+      document.querySelector(".tasks_icon_svg").innerHTML = tasksIconSVG
+  })
+
+  grabSVG(statsIcon).then(eyqxf => {
+      statsIconSVG = eyqxf;
+      document.querySelector(".stats_icon_svg").innerHTML = statsIconSVG
+  })
+
+  grabSVG(notificationIcon).then(eyqxf => {
+      notifIconSVG = eyqxf;
+      document.querySelector(".notif_icon_svg").innerHTML = notifIconSVG
+  })
+
+  grabSVG(accountIcon).then(eyqxf => {
+      accountIconSVG = eyqxf;
+      document.querySelector(".account_icon_svg").innerHTML = accountIconSVG
+  })
+
+  grabSVG(logoutIcon).then(eyqxf => {
+      logoutIconSVG = eyqxf;
+      document.querySelector(".logout_icon_svg").innerHTML = logoutIconSVG
+  })
+
+  grabSVG(helpIcon).then(eyqxf => {
+      helpIconSVG = eyqxf;
+      document.querySelector(".help_icon_svg").innerHTML = helpIconSVG
+  })
+
   return (
     <div className="menu">
       <div className="sb_tr logo_tr">
@@ -32,7 +84,7 @@ function SideBar() {
             <li className="sb_home_link">
               <Link to="/home" className="row" onClick={handle}>
                 <div className="svg_holder">
-                  <object data={homeIcon} type="image/svg+xml" aria-label="Home Icon" width="100%" height="100%"></object>
+                  <div className="home_icon_svg"></div>
                 </div>            
                 <span>Home</span>
               </Link>
@@ -42,7 +94,7 @@ function SideBar() {
             <li className="sb_tasks_link">
               <Link to="/tasks" className="row" onClick={handle}>
                 <div className="svg_holder">
-                  <object data={taskIcon} type="image/svg+xml" aria-label="Tasks Icon" width="100%" height="100%"></object>
+                  <div className="tasks_icon_svg"></div>
                 </div>            
                 <span>Tasks</span>
               </Link>
@@ -52,7 +104,7 @@ function SideBar() {
             <li className="sb_stats_link">
               <Link to="/statistics" className="row" onClick={handle}>
                 <div className="svg_holder">
-                  <object data={statsIcon} type="image/svg+xml" aria-label="Statistics Icon" width="100%" height="100%"></object>
+                  <div className="stats_icon_svg"></div>
                 </div>            
                 <span>Statistics</span>
               </Link>
@@ -62,7 +114,7 @@ function SideBar() {
             <li className="sb_notifs_link">
               <Link to="/notifications" className="row" onClick={handle}>
                 <div className="svg_holder">
-                  <object data={notificationIcon} type="image/svg+xml" aria-label="Notifications Icon" width="100%" height="100%"></object>
+                  <div className="notif_icon_svg"></div>
                 </div>            
                 <span>Notifications</span>
               </Link>
@@ -74,7 +126,7 @@ function SideBar() {
             <li className="sb_account_link">
               <Link to="/account" className="row" onClick={handle}>
                 <div className="svg_holder">
-                  <object data={accountIcon} type="image/svg+xml" aria-label="Account Icon" width="100%" height="100%"></object>
+                  <div className="account_icon_svg"></div>
                 </div>            
                 <span>Account</span>
               </Link>
@@ -84,7 +136,7 @@ function SideBar() {
             <li className="sb_logout_link">
               <Link to="/log-out" className="row" onClick={handle}>
                 <div className="svg_holder">
-                  <object data={logoutIcon} type="image/svg+xml" aria-label="Logout Icon" width="100%" height="100%"></object>
+                  <div className="logout_icon_svg"></div>
                 </div>            
                 <span>Log Out</span>
               </Link>
@@ -94,7 +146,7 @@ function SideBar() {
             <li className="sb_help_link">
               <Link to="/help" className="row" onClick={handle}>
                 <div className="svg_holder">
-                  <object data={helpIcon} type="image/svg+xml" aria-label="Help Icon" width="100%" height="100%"></object>
+                  <div className="help_icon_svg"></div>
                 </div>            
                 <span>Help</span>
               </Link>
