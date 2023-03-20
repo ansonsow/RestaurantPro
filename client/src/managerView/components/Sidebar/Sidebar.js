@@ -1,5 +1,5 @@
 import React from 'react'
-import "./Sidebar.css"
+import "./SideBar.css"
 import logo from "../../../icons/Logo_Primary.svg"
 import homeIcon from "../../../icons/home.svg"
 import taskIcon from "../../../icons/tasks.svg"

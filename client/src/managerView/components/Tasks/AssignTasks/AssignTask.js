@@ -31,12 +31,13 @@ export default function AssignTask() {
   const getAllTask = async () => {
     let allTask = [];
     await axios
-      .get(process.env.REACT_APP_SERVER+"tasks")
+      .get("http://localhost:8000/api/v1/tasks")
       .then((response) => {
         console.log("all task:" + JSON.stringify(response.data));
         response.data.forEach((task) => {
           console.log("task status: " + task.task_status);
-          if (task.task_status === false) allTask.push(task);
+          // if (task.task_status === false) allTask.push(task);
+          if (task.task_assigned === false) allTask.push(task);
         });
         setAllTask(allTask);
       })
@@ -48,7 +49,7 @@ export default function AssignTask() {
   // get all present employee
   const getClockInEmployees = async () => {
     await axios
-      .get(process.env.REACT_APP_SERVER+"attendance/true")
+      .get("http://localhost:8000/api/v1/attendance/true")
       .then((response) => {
         console.log("all present employees:" + JSON.stringify(response.data));
         let userIds = response.data.map((user) => user.user_id);
@@ -64,7 +65,7 @@ export default function AssignTask() {
 
   let getUserDetails = (id) => {
     axios
-      .get(`${process.env.REACT_APP_SERVER}users/${id}`)
+      .get(`http://localhost:8000/api/v1/users/${id}`)
       .then((response) => {
         console.log(
           "all present employees details:" + JSON.stringify(response.data)
@@ -87,7 +88,7 @@ export default function AssignTask() {
   };
 
   let updateTaskStatus = (id) => {
-    let data = { task_status: true };
+    let data = { task_status: true, task_assigned: true };
     axios
       .put(`http://localhost:8000/api/v1/task/${id}`, data)
       .then((response) => {

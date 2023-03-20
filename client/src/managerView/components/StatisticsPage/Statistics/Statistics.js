@@ -1,8 +1,50 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Statistics.css";
 import { Link } from "react-router-dom";
 import CircularBar from "../CircularProgressBar/CircularBar";
+import axios from "axios";
+
 export default function StatisticsPage() {
+  const [totalTasks, settotalTasks] = useState(0);
+  const [unassignedTasks, setUnassignedTasks] = useState(0);
+  const [openTasks, setopenTasks] = useState(0);
+  const [closeTasks, setcloseTasks] = useState(0);
+
+  useEffect(() => {
+    getAllUnassignedTask();
+    console.log("totalTasks: " + totalTasks);
+    console.log("unassignedTasks: " + unassignedTasks);
+    console.log("openTasks: " + openTasks);
+    console.log("closeTasks: " + closeTasks);
+  }, [unassignedTasks, openTasks, closeTasks]);
+
+  // get data
+  const getAllUnassignedTask = async () => {
+    let unassignedTask = [];
+    let openTask = [];
+    let closeTask = [];
+
+    await axios
+      .get("http://localhost:8000/api/v1/tasks")
+      .then((response) => {
+        console.log("all task:" + JSON.stringify(response.data));
+        settotalTasks(response.data.length);
+        response.data.forEach((task) => {
+          console.log("task assigned: " + task.task_assigned);
+          if (task.task_assigned === false) unassignedTask.push(task);
+          if (task.task_status === false && task.task_assigned === true)
+            closeTask.push(task);
+          if (task.task_status === true) openTask.push(task);
+        });
+        setUnassignedTasks(unassignedTask.length);
+        setopenTasks(openTask.length);
+        setcloseTasks(closeTask.length);
+      })
+      .catch((error) => {
+        console.log("error in fetching all task: " + error);
+      });
+  };
+
   return (
     <div className="statistics-page">
       <div className="statistics-page-upper-section">
@@ -24,7 +66,7 @@ export default function StatisticsPage() {
             <CircularBar
               size={100}
               strokeWidth={20}
-              percentage={75}
+              percentage={(openTasks / totalTasks) * 100}
               color="#F77911"
               delay={500}
               duration={500}
@@ -34,7 +76,7 @@ export default function StatisticsPage() {
             <CircularBar
               size={100}
               strokeWidth={20}
-              percentage={25}
+              percentage={(closeTasks / totalTasks) * 100}
               color="#F77911"
               delay={500}
               duration={500}
@@ -44,7 +86,7 @@ export default function StatisticsPage() {
             <CircularBar
               size={100}
               strokeWidth={20}
-              percentage={80}
+              percentage={(unassignedTasks / totalTasks) * 100}
               color="#F77911"
               delay={500}
               duration={500}

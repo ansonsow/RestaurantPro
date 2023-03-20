@@ -31,6 +31,10 @@ const tasksSchema = new Schema({
         type: Boolean,
         default: false
     },
+    task_assigned:{
+        type: Boolean,
+        default: false
+    },
     task_type:{
         type:String,
         minLength: 1
