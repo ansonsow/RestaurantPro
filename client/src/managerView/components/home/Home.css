@@ -1,50 +1,46 @@
-
-/* CSS STYLING FOR ALL TASK PAGE*/
-.assign-task-page-upper-section-button{
-
-   margin-top: 10px;
-   margin-left: 300px;
-   width: 50%;
-    height: 60vh;
-   padding: 2rem 2rem;
-   background-color: rgb(202, 194, 194);
-   border-radius: 10px;
-    display: flex;
-     justify-content: space-between;
-     /* align-items: center; */
-     flex-direction: column;
-     
-}
-h3{
- color: #003D9E;
- font-weight: bold;
-}
-.links{
- display: flex;
- justify-content:space-around;
-  align-items: center;
-  flex-direction: row;
-  width: 100%;
-  height: 100%;
+:root {
+    --Quick-Actions-Board-Padding:25px;
+    --Quick-Actions-Board-Title-Bottom-Gap:0.5em;
+    --Quick-Actions-Padding-Y:1em;
+    --Quick-Actions-Padding-X:1em;
+    --Quick-Actions-Spacing:35px;
 }
 
-
-.assign-task-page-upper-section-button button {
- padding: 0.3rem 0.7rem;
- border-radius: 4px;
- border: none;
- background-color: #003D9E;
- color: white;
- cursor: pointer;
- z-index: 1;
- width: 150px;
- height: 100px;
+.manager_view.home_page {
+    margin-top:var(--Screen-Margins-X);
 }
 
-.assign-task-page-upper-section-button button:hover{
- background-color: #FFC619;
+.manager_view.home_page .board {
+    background:var(--Background-2);
+    border-radius:var(--Corner-Rounding);
+    padding:var(--Quick-Actions-Board-Padding);
 }
 
+.manager_view.home_page .board h2 {
+    margin-bottom:calc((var(--Quick-Actions-Board-Title-Bottom-Gap) + var(--Quick-Actions-Board-Padding)) / 2);
+    color:var(--Primary);
+    padding-bottom:var(--Quick-Actions-Board-Title-Bottom-Gap);
+    border-bottom:1px solid var(--Gray-Darker);
+}
 
+.quick_actions {
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    grid-gap:var(--Quick-Actions-Spacing);
+    font-family:"Century Gothic Bold";
+}
 
+.quick_actions a {
+    display:grid;
+    place-items:center;
+    text-decoration:none;
+    background:var(--Primary-Medium);
+    border-radius:var(--Corner-Rounding);
+    padding:var(--Quick-Actions-Padding-Y) var(--Quick-Actions-Padding-X);
+    aspect-ratio:1/1;
+    text-align:center;
+}
 
+.quick_actions a, .quick_actions span {
+    color:var(--Background)
+}
