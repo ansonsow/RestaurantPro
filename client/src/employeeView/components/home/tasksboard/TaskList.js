@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import "./TaskBoard.css";
 import Message from "../../message/Message";
 import axios from "axios";
-
 function TaskList(props) {
   const [taskStatus, setTaskStatus] = useState(props.item.task_status);
   const [message, showMessage] = useState(false);
@@ -74,7 +73,7 @@ function TaskList(props) {
           showBoard={props.showBoard}
         />
       )}
-      </>
+    </>
   );
 }
 

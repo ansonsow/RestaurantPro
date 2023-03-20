@@ -17,7 +17,7 @@ function MyTaskList(props) {
     console.log("Call get Task");
     console.log("check"+ props)
     axios
-      .put(`${process.env.REACT_APP_SERVER}task/${props.item._id}`, task)
+      .put(`http://localhost:8000/api/v1/task/${props.item._id}`, task)
       .then((response) => {
         console.log("task status" + JSON.stringify(response.data));
       })

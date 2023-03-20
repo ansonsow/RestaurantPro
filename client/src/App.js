@@ -34,7 +34,7 @@ function App() {
     console.log("In getDataByUserID");
     console.log("userId in localStorage:" + userId);
     await axios
-      .get(`${serverUrl}users/${userId}`)
+      .get(`http://localhost:8000/api/v1/users/${userId}`)
       .then((response) => {
         // user.push(response.data);
         setUserDetails(response.data);
@@ -51,7 +51,7 @@ function App() {
     console.log("In getUserTasksIds");
     console.log("userId in localStorage: " + userId);
     await axios
-      .get(`${serverUrl}usersTasks/user/${userId}`)
+      .get(`http://localhost:8000/api/v1/usersTasks/user/${userId}`)
       .then((response) => {
         let ids = response.data.map((item) => item.task_id);
         console.log("tasks ids of user " + JSON.stringify(ids));
