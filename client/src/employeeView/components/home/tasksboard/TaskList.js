@@ -51,28 +51,20 @@ function TaskList(props) {
 
   return (
     <>
-      <div key={props.item.task_id} className="task" onClick={showTaskDetails}>
-        <p>{props.item.task_name}</p>
-        {taskStatus ? (
-          <div
-            key={props.item.task_id}
-            className="check_task"
-            onClick={taskDone}
-          >
-            {/* <Check /> */}
-          </div>
-        ) : (
-          // <>
-          <div
-            key={props.item.task_id}
-            className="open_task"
-            onClick={taskOpen}
-          >
-            <p>open again</p>
-          </div>
-        )}
-      </div>
-      {message && (
+    <div key={props.item.task_id} className="task" onClick={showTaskDetails}>
+      <p>{props.item.task_name}</p>
+      {taskStatus ? (
+        <div key={props.item.task_id} className="check_task" onClick={taskDone}>
+          <p>Click to Complete</p>
+        </div>
+      ) : (
+        // <>
+        <div key={props.item.task_id} className="open_task" onClick={taskOpen}>
+          <p>Click to Reopen</p>
+        </div>
+      )}
+    </div>
+    {message && (
         <Message
           heading={heading}
           message={messageText}
