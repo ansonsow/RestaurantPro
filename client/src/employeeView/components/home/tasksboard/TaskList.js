@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import "./TaskBoard.css";
 import Message from "../../message/Message";
 import axios from "axios";
-
 function TaskList(props) {
   const [taskStatus, setTaskStatus] = useState(props.item.task_status);
   const [message, showMessage] = useState(false);
@@ -52,20 +51,28 @@ function TaskList(props) {
 
   return (
     <>
-    <div key={props.item.task_id} className="task" onClick={showTaskDetails}>
-      <p>{props.item.task_name}</p>
-      {taskStatus ? (
-        <div key={props.item.task_id} className="check_task" onClick={taskDone}>
-          <Check />
-        </div>
-      ) : (
-        // <>
-        <div key={props.item.task_id} className="open_task" onClick={taskOpen}>
-          <p>open again</p>
-        </div>
-      )}
-    </div>
-    {message && (
+      <div key={props.item.task_id} className="task" onClick={showTaskDetails}>
+        <p>{props.item.task_name}</p>
+        {taskStatus ? (
+          <div
+            key={props.item.task_id}
+            className="check_task"
+            onClick={taskDone}
+          >
+            {/* <Check /> */}
+          </div>
+        ) : (
+          // <>
+          <div
+            key={props.item.task_id}
+            className="open_task"
+            onClick={taskOpen}
+          >
+            <p>open again</p>
+          </div>
+        )}
+      </div>
+      {message && (
         <Message
           heading={heading}
           message={messageText}
@@ -74,7 +81,7 @@ function TaskList(props) {
           showBoard={props.showBoard}
         />
       )}
-      </>
+    </>
   );
 }
 
