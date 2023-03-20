@@ -32,50 +32,95 @@
 
 /*------ CSS VARIABLES ------*/
 :root {
+    /*----- TOP NAVBAR -----*/
     --Navbar-Height:100px;
     --Searchbar-Width:100%;
     --Searchbar-Height:40px;
 
-    --Sidebar-Width:13vw;
+    /*----- LEFT SIDEBAR -----*/
+    --Sidebar-Width:13vw; /* this will be changed as screen resizes */
+
+    /*----- GAPS FROM SIDES OF THE SCREEN -----*/
     --Screen-Margins-X:30px;
     --Screen-Margins-Y:25px; /* was calc(18vmin * 0.2) */
 
+    /*----- MAIN CONTENT CONTAINER -----*/
     --Main-Board-Width:69%;
     --TaskBoard-Padding:25px;
     
+    /*----- TABLES -----*/
     --Table-Headers-Padding-X:1.3em;
     --Table-Headers-Padding-Y:1em;
     --Table-Columns-Spacing:15px;
 
+    /*----- AISLE GAP BETWEEN MAIN CONTENT'S LEFT & RIGHT -----*/
+    /* (this excludes the main left sidebar) */
     --Center-Gap:25px;
 
+    /*----- GLOBAL BORDER RADIUS -----*/
     --Corner-Rounding:10px;
 
+    /*----- POPUP MESSAGE BOX -----*/
     --Popup-Msg-Box-Width:40vw;
     --Popup-Msg-Box-Padding-Y:50px;
     --Popup-Msg-Box-Padding-X:35px;
     --Popup-Msg-Button-Padding-Y:0.5em;
     --Popup-Msg-Button-Padding-X:1em;
 
+    /*----- BOXES ON RIGHTSIDE -----*/
     --Rightside-Boxes-Spacing:20px;
     --Rightside-Boxes-Padding:14px;
     --Rightside-Boxes-Heading-Underline-Gap:8px;
     --Rightside-Boxes-Line-Spacing:10px;
 
+    /*----- CLOCK IN/OUT BUTTON -----*/
     --ClockIn-Button-Padding-Y:0.5em;
     --ClockIn-Button-Padding-X:1em;
 
+    /*----- CTA BUTTONS -----*/
     --CTA-Buttons-Top-Gap:25px;
     --CTA-Buttons-Width:225px;
     --CTA-Buttons-Padding-X:1em;
     --CTA-Buttons-Padding-Y:0.69em;
     --CTA-Buttons-Spacing:25px;
 
+    /*----- GLOBAL TRANSITION SPEED -----*/
     --Hover-Speeds:0.25s;
 }
 
-/*---- TEMPORARY LOGIN PAGE CSS ----*/
-.nav_bar + div:not([class], [id]){
+/*---- HIGHLIGHT PAGE IN SIDEBAR ----*/
+/* highlight homepage link */
+.App > .components > .home_page ~ .menu li.sb_home_link a {
+    background:var(--Primary-Medium)
+}
+
+/* highlight task page link */
+.App > .components > .task_page ~ .menu li.sb_tasks_link a {
+    background:var(--Primary-Medium)
+}
+
+/* highlight stats page link */
+.App > .components > .task_page ~ .menu li.sb_tasks_link a {
+    background:var(--Primary-Medium)
+}
+
+/* highlight notifs page link */
+.App > .components > .notifs_page ~ .menu li.sb_notifs_link a {
+    background:var(--Primary-Medium)
+}
+
+/* highlight account page link */
+.App > .components > .account_page ~ .menu .sb_account_link {
+    background:var(--Primary-Medium)
+}
+
+/* highlight logout page link */
+.App > .components > .logout_page ~ .menu .sb_logout_link {
+    background:var(--Primary-Medium)
+}
+
+/*---- LOGIN PAGE CSS ----*/
+.login_form {
     --qbxny: calc(var(--Navbar-Height) / 3);
     position:absolute;
     top:0;left:0;
@@ -89,18 +134,18 @@
     width:500px;
 }
 
-.nav_bar + div:not([class], [id]) label,
-.nav_bar + div:not([class], [id]) input {
+.login_form label,
+.login_form input {
     display:block;
     text-transform:capitalize;
 }
 
-.nav_bar + div:not([class], [id]) label {
+.login_form label {
     font-family:"Brevia Medium";
     margin-bottom:0.6em;
 }
 
-.nav_bar + div:not([class], [id]) input {
+.login_form input {
     outline:none;
     font-family:inherit;
     font-size:inherit;
@@ -111,17 +156,17 @@
     border-radius:var(--Corner-Rounding);
 }
 
-.nav_bar + div:not([class], [id]) input + label {
+.login_form input + label {
     margin-top:1.5em;
 }
 
-.nav_bar + div:not([class], [id]) .submit,
-.nav_bar + div:not([class], [id]) .logIn {
+.login_form .submit,
+.login_form .logIn {
     margin-top:22px;    
 }
 
-.nav_bar + div:not([class], [id]) .submit h4,
-.nav_bar + div:not([class], [id]) .logIn h4 {
+.login_form .submit h4,
+.login_form .logIn h4 {
     display:inline-block;
     margin:0;
     padding:10px 16px;
@@ -133,18 +178,18 @@
     cursor:pointer;
 }
 
-.nav_bar + div:not([class], [id]) .logIn {
+.login_form .logIn {
     position:relative;
 }
 
-.nav_bar + div:not([class], [id]) .logIn h4 {
+.login_form .logIn h4 {
     position:absolute;
     bottom:0;right:0;
     margin-bottom:22px;
 }
 
-.nav_bar + div:not([class], [id]) .submit h4:hover,
-.nav_bar + div:not([class], [id]) .logIn h4:hover {
+.login_form .submit h4:hover,
+.login_form .logIn h4:hover {
     background:var(--Primary-Medium);
 }
 

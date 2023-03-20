@@ -22,7 +22,6 @@
 }
 
 .board_columns {
-    
 }
 
 .columns_names {
@@ -31,6 +30,7 @@
     display:grid;
     grid-template-columns:repeat(4, 1fr);
     grid-gap:0 var(--Table-Columns-Spacing);
+    padding:0 var(--Task-Row-Padding-X);
     place-items:center;
     font-family:"Brevia Medium";
 }
@@ -40,24 +40,19 @@
     padding:var(--Table-Headers-Padding-Y) var(--Table-Headers-Padding-X);
 }
 
-.board_list {
+.task_page .board_list {
     padding:var(--Task-Row-Padding-Y) var(--Task-Row-Padding-X);
     background:var(--Background-2);
 }
 
-.board_list p {
- font-weight: bold;
- text-decoration: underline;
- margin: 15px;
-}
 
-.board_list .task {
+.task_page .board_list .task {
     display:grid;
     grid-template-columns:repeat(4, 1fr);
     grid-gap:0 var(--Table-Columns-Spacing);
 }
 
-.board_list .task {
+.task_page .board_list .task {
     margin:0!important;
     padding:0!important;
     background:transparent;
@@ -68,47 +63,48 @@
 }
 
 /* make each task row stretch to the height of the highest element in that row */
-.board_list .task > * {
+.task_page .board_list .task > *:not(.message) {
     height:100%;
 }
 
-.board_list .task + .task {
+.task_page .board_list .task + .task {
     margin-top:var(--Task-Row-Spacing)!important;
 }
 
-.task > p {
+.task_page .task > p {
+    display:flex;
+    align-items:center;
     margin:0!important;
     width:100%;
     border:2px solid var(--Gray);
     padding:var(--Task-Name-Padding-Y) var(--Task-Name-Padding-X);
     background:rgba(var(--Background-RGB), calc(100% - var(--Task-Row-Transparency)));
     border-radius:var(--Corner-Rounding);
-    font-weight:normal!important;
-    text-decoration:none!important;
     color:var(--Text-Color);
 }
 
-.open_task, .check_task {
+.task_page .open_task,
+.task_page .check_task {
     text-transform:capitalize;
-    width:auto!important;
-    height:auto!important;
+    display:flex;
+    align-items:center;
+    justify-content:center;
     background:var(--Primary-Medium)!important;
     border-radius:var(--Corner-Rounding)!important;
     color:var(--Background)!important;
 }
 
-.open_task {    
+.task_page .open_task {    
     text-align:center;
 }
 
-.open_task p {
+.task_page .open_task p {
     margin:0!important;
     padding:var(--Task-Action-Btn-Padding-Y) var(--Task-Action-Btn-Padding-X);
     text-decoration:none!important;
     font-weight:normal!important;
 }
 
-.check_task {
+.task_page .check_task {
     padding:var(--Task-Action-Btn-Padding-Y);
 }
-

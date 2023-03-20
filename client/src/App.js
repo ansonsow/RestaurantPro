@@ -166,9 +166,6 @@ function App() {
 
   return (
     <div className="App">
-      <div className="nav_bar">
-        <Navbar />
-      </div>
       
       {console.log(
         "localStorage return : " + localStorage.getItem("showScreen")
@@ -177,7 +174,7 @@ function App() {
       {console.log("user to send : " + JSON.stringify(userDetails))}
 
       {localStorage.getItem("showScreen") === null ? (
-        <div>
+        <div className="login_form">
           <label>User Id</label>
           <input type="text" value={userId} onChange={getUserId} />
 

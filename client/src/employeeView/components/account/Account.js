@@ -48,7 +48,7 @@ function Account(props) {
 
 
   return (
-    <div className="account">
+    <div className="account_page">
       <form className="task_details">
         {console.log("props in account: " + JSON.stringify(props.account))}
         {console.log("userDetails: " + JSON.stringify(userDetails))}

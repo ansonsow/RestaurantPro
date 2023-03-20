@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "./TaskBoard.css";
-import { Check, TrendingUp } from "react-feather";
 import Message from "../../message/Message";
 import axios from "axios";
 
