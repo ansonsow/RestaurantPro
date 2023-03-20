@@ -1,5 +1,4 @@
 import React from "react";
-// import { sideData } from "./SidebarData";
 import "./SideBar.css";
 
 import logo from "../../../icons/Logo_DarkBG.svg"
