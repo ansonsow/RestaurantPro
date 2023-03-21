@@ -6,6 +6,8 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Account from "../employeeView/components/account/Account";
 import Task from "../employeeView/components/task/Task";
 import LogOut from "../employeeView/components/logout/LogOut";
+import Blank from "../employeeView/components/blank/Blank";
+
 function EmployeeView(props) {
   return (
     <div className="components">
@@ -24,6 +26,11 @@ function EmployeeView(props) {
             exact
             path="/log-out"
             element={<LogOut />}
+          />
+          <Route
+            exact
+            path="/blank"
+            element={<Blank />}
           />
         </Routes>
       </Router>
