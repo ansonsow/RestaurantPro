@@ -23,6 +23,10 @@ import AssignTask from './components/Tasks/AssignTasks/AssignTask';
 import StatisticsPage from './components/StatisticsPage/Statistics/Statistics';
 import Home from './components/home/Home';
 import LogOut from './components/logout/LogOut'
+import Blank from './components/blank/Blank'
+
+// import LogOut from "../employeeView/components/logout/LogOut";
+// import Blank from "../employeeView/components/blank/Blank";
 
 function ManagerView() {
   return (
@@ -42,6 +46,8 @@ function ManagerView() {
           <Route path="/statistics" element={<StatisticsPage />} />
           <Route path="/home" element={<Home />} />
           <Route path="/log-out" element={<LogOut />} />
+          <Route path="/blank" element={<Blank />} />
+
         </Routes>
       </Router>
     </>

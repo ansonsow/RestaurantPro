@@ -1,28 +1,13 @@
 import "./LogOut.css"
 import { Link , useNavigate } from "react-router-dom";
 
-// const handleClick = (e) => {
-//     // const nav = redirect()
-//     let navigate = useNavigate(); 
-//     e.preventDefault();
-//     localStorage.clear();
-//     console.log('wa');
-//     // window.location.reload();
-//     // let navigate = useNavigate();
-//     // redirect("/home")
-// }
-
 const LogOut = () => {
     let navigate = useNavigate(); 
 
     const handleClick = (e) => {
-        // const nav = redirect()
 
         localStorage.clear();
         console.log('wa');
-        // window.location.reload();
-        // let navigate = useNavigate();
-        // redirect("/home")
         window.location.reload();
 
         navigate('/blank');
