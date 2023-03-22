@@ -1,6 +1,159 @@
-.manager_details_temp {
-    background: var(--Background-2);
-    border-radius: var(--Corner-Rounding);
-    padding: var(--Rightside-Boxes-Padding);
-    height:200px;
+:root {
+    --Manager-Details-Image-Size:80px;
+    --Manager-Details-Column-Gap:13px;
+
+    --Manager-Active-Task-Row-Padding:12px;
+    --Manager-Active-Task-Buttons-Size:calc(var(--Body-Font-Size) * 1.7);
+    --Manager-Active-Task-Buttons-Spacing:11px;
+    --Manager-Active-Task-Row-Spacing:10px;
+
+    --Manager-Active-Task-Chevrons-Size:calc(var(--Body-Font-Size) * 1.2);
+    --Manager-Active-Task-Chevrons-Spacing:22px;
+}
+
+.user_box:last-child {
+    margin-bottom:var(--Rightside-Boxes-Spacing);
+}
+
+.acc_info_cont {
+    display:grid;
+    grid-template-columns:var(--Manager-Details-Image-Size) auto;
+    grid-gap:var(--Manager-Details-Column-Gap)
+}
+
+.user_box img {
+    display:block;
+    max-width:100%;
+    border-radius:var(--Corner-Rounding);
+    border:3px solid var(--Primary);
+    box-shadow:0 4px 4px 0 rgba(var(--Primary-RGB),0.25);
+}
+
+.user_box img[src*="3H5PoxU"]{
+    filter:brightness(120%) saturate(105%) contrast(96%);
+}
+
+.acc_info_cont .text_row > span:first-child {
+    font-family:"Century Gothic Bold"
+}
+
+.m_active_tasks {
+}
+
+.user_box .active_task {
+    display:grid;
+    grid-template-columns:auto calc((var(--Manager-Active-Task-Buttons-Size) * 2) + var(--Manager-Active-Task-Buttons-Spacing));
+    align-items:center;
+    grid-gap:0 9px;
+    padding:var(--Manager-Active-Task-Row-Padding);
+    background:var(--Background);
+    border:1px solid rgba(var(--Gray-RGB),0.8);
+    border-radius:calc(var(--Corner-Rounding) * 0.8);
+}
+
+.user_box .active_task + .active_task {
+    margin-top:var(--Manager-Active-Task-Row-Spacing);
+}
+
+.user_box .active_task_name {
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+.active_task_buttons {
+    display:flex;
+    align-items:center;
+}
+
+.active_task_buttons button {
+    border:none;
+    margin:0;
+    padding:0;
+    flex-shrink:0;
+    line-height:1em;
+    width:var(--Manager-Active-Task-Buttons-Size);
+    height:var(--Manager-Active-Task-Buttons-Size);
+    background:transparent;
+    cursor:pointer;
+}
+
+.active_task_buttons button + button {
+    margin-left:var(--Manager-Active-Task-Buttons-Spacing);
+}
+
+.active_task_buttons button .svg_holder {
+    padding:0px;
+}
+
+.active_task_buttons button [class$="_svg"]{
+    border-radius:3px;
+    overflow:hidden;
+}
+
+.active_task_buttons button svg {
+    display:block;
+    width:100%;
+    height:100%;
+}
+
+/* tick icon */
+.active_task_buttons button .tick_svg {
+    background:var(--Primary-Medium);
+}
+
+.active_task_buttons button .tick_svg svg [fill],
+.active_task_buttons button .tick_svg svg [style*="fill"]{
+    fill:var(--Background);
+}
+
+/* exclamation icon */
+.active_task_buttons button .exclamation_svg svg {
+    background:transparent;
+}
+
+.active_task_buttons button .exclamation_svg svg [fill],
+.active_task_buttons button .exclamation_svg svg [style*="fill"]{
+    fill:var(--Secondary);
+}
+
+/* chevrons/arrows */
+.m_active_tasks .chevrons {
+    margin-top:calc(var(--Manager-Active-Task-Row-Spacing) + 4px);
+    margin-bottom:-5px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.m_active_tasks .chevrons .svg_holder + .svg_holder {
+    margin-left:var(--Manager-Active-Task-Chevrons-Spacing);
+}
+
+.m_active_tasks .chevrons [class$="_svg"]{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:calc(var(--Manager-Active-Task-Chevrons-Size) + (5px * 2));
+    height:calc(var(--Manager-Active-Task-Chevrons-Size) + (5px * 2));
+    padding:5px;
+    overflow:hidden;
+    cursor:pointer;
+}
+
+.m_active_tasks .chevrons svg {
+    display:block;
+    --Chevrons-Bonus-SVG-Scale:150%;
+    width:calc(100% + var(--Chevrons-Bonus-SVG-Scale));
+    height:calc(100% + var(--Chevrons-Bonus-SVG-Scale));
+    flex-shrink:0;
+}
+
+.m_active_tasks .chevrons svg [fill],
+.m_active_tasks .chevrons svg [style*="fill"]{
+    fill:rgba(var(--Text-Color-Lighter-RGB),0.9)
+}
+
+.m_attendance_brief .text_row > span:first-child {
+    font-family:"Century Gothic Bold"
 }
