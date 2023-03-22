@@ -59,8 +59,7 @@ export default function StatisticsPage() {
       <div className="statistics-page-middle-section">
         <div className="statistics-page-middle-section-elements">
           <div className="statistics-page-middle-section-elements-upper-part">
-            <p>Daily Task</p>
-            <p>:</p>
+            <p>Daily Task:</p>
           </div>
           <div className="circular-progress-bar-section">
             <CircularBar

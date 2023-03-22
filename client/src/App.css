@@ -38,14 +38,14 @@
     --Searchbar-Height:40px;
 
     /*----- LEFT SIDEBAR -----*/
-    --Sidebar-Width:13vw; /* this will be changed as screen resizes */
+    --Sidebar-Width:10vw; /* this will be changed as screen resizes */
 
     /*----- GAPS FROM SIDES OF THE SCREEN -----*/
     --Screen-Margins-X:30px;
     --Screen-Margins-Y:25px; /* was calc(18vmin * 0.2) */
 
     /*----- MAIN CONTENT CONTAINER -----*/
-    --Main-Board-Width:69%;
+    --Main-Board-Width:65%;
     --TaskBoard-Padding:25px;
     
     /*----- TABLES -----*/
@@ -89,24 +89,48 @@
     --Hover-Speeds-Faster:0.1s;
 }
 
+/*---- CONTAINERS THAT DON'T HAVE THE RIGHT SIDEBAR ---*/
+.task_page, .account_page,
+.all-task-page, .assign-task-page, .create-task-page, .daily-attendance-page,
+.statistics-page,
+.employee-list-page, .employee-page {
+    position: absolute;
+    top:0;left:0;
+    margin-top:var(--Navbar-Height);
+    margin-left:calc(var(--Sidebar-Width) + var(--Screen-Margins-X));
+    width:calc(100% - var(--Sidebar-Width) - var(--Screen-Margins-X) * 2);
+}
+
 /*---- HIGHLIGHT PAGE IN SIDEBAR ----*/
 /* highlight homepage link */
-.App > .components > .home_page ~ .menu li.sb_home_link a {
+.App > .components > .home_page ~ .menu li.sb_home_link a,
+.App > .home_page ~ .menu li.sb_home_link a {
     background:var(--Primary-Medium)
 }
 
 /* highlight task page link */
-.App > .components > .task_page ~ .menu li.sb_tasks_link a {
+.App > .components > .task_page ~ .menu li.sb_tasks_link a,
+.App > .all-task-page ~ .menu li.sb_tasks_link a,
+.App > .assign-task-page ~ .menu li.sb_tasks_link a,
+.App > .create-task-page ~ .menu li.sb_tasks_link a,
+.App > .daily-attendance-page ~ .menu li.sb_tasks_link a {
     background:var(--Primary-Medium)
 }
 
 /* highlight stats page link */
-.App > .components > .task_page ~ .menu li.sb_tasks_link a {
+.App > .components > .task_page ~ .menu li.sb_tasks_link a,
+.App > .statistics-page ~ .menu li.sb_stats_link a {
     background:var(--Primary-Medium)
 }
 
 /* highlight notifs page link */
 .App > .components > .notifs_page ~ .menu li.sb_notifs_link a {
+    background:var(--Primary-Medium)
+}
+
+/* highlight employee page link */
+.App > .employee-list-page ~ .menu li.sb_employee_link a,
+.App > .employee-page ~ .menu li.sb_employee_link a {
     background:var(--Primary-Medium)
 }
 
@@ -203,6 +227,10 @@ h2 {
     font-size:1.5rem;
 }
 
+h4 {
+    font-size:1.1rem;
+}
+
 @media(max-width: 1366px){
     :root {
         --Sidebar-Width: 235px;
@@ -259,6 +287,10 @@ h2 {
 
     .quick_actions span {
         font-size:1rem;
+    }
+
+    .acc_box {
+        display:none!important;
     }
 }
 

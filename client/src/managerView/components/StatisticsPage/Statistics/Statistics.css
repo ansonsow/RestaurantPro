@@ -1,10 +1,5 @@
 /* CSS STYLING FOR STATISTICS PAGE*/
 .statistics-page{
-    position: absolute;
-    top: 0%;
-    right: 0%;
-    width: 85%;
-    padding: 2rem 2rem;
     display: flex;
     flex-direction: column;
     gap: 2rem;
