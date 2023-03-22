@@ -239,8 +239,6 @@ function App() {
         // manager view
         // <div>Manager view</div>
         <ManagerView />
-        </div>//end .login_page
-        
         
       ) : (
         // <>haha</>

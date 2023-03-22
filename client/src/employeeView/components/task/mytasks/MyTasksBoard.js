@@ -21,7 +21,7 @@ function MyTasksBoard(props) {
           </Link>
         </div>
       </div> */}
-
+{console.log("message status: "+message)}
       <div className="my_task_board">
         <div className="board_columns">
           <div className="columns_names">
