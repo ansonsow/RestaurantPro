@@ -1,11 +1,4 @@
 /* CSS STYLING FOR EMPLOYEE LIST PAGE */
-.employee-list-page{
-    position: absolute;
-    top: 0%;
-    right: 0%;
-    width: 85%;
-    padding: 2rem 2rem;
-  }
   .employee-list-page-upper-section{
     margin-top: 2rem;
     display: flex;
