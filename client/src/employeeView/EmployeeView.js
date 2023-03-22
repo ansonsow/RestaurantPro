@@ -7,7 +7,10 @@ import SideBar from "../employeeView/components/sidebar/SideBar";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Account from "../employeeView/components/account/Account";
 import Task from "../employeeView/components/task/Task";
+import Statistics from "../employeeView/components/statistics/Statistics";
+import Notifs from "../employeeView/components/notifs/Notifs";
 import LogOut from "../employeeView/components/logout/LogOut";
+import Help from "../employeeView/components/help/Help";
 import Blank from "../employeeView/components/blank/Blank";
 
 function EmployeeView(props) {
@@ -28,6 +31,8 @@ function EmployeeView(props) {
           <Route exact path="/" element={<Home tasks={props.tasks} />} />
           <Route exact path="/home" element={<Home tasks={props.tasks} />} />
           <Route exact path="/tasks" element={<Task tasks={props.tasks} />} />
+          <Route exact path="/statistics" element={<Statistics />} />
+          <Route exact path="/notifications" element={<Notifs />} />
           <Route
             exact
             path="/account"
@@ -43,6 +48,7 @@ function EmployeeView(props) {
             path="/blank"
             element={<Blank />}
           />
+          <Route exact path="/help" element={<Help />} />
         </Routes>
 
         <Navbar />

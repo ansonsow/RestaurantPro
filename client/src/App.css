@@ -90,7 +90,7 @@
 }
 
 /*---- CONTAINERS THAT DON'T HAVE THE RIGHT SIDEBAR ---*/
-.task_page, .account_page,
+.task_page, .account_page, .stats_page, .notifs_page, .help_page,
 .all-task-page, .assign-task-page, .create-task-page, .daily-attendance-page,
 .statistics-page,
 .employee-list-page, .employee-page {
@@ -118,7 +118,7 @@
 }
 
 /* highlight stats page link */
-.App > .components > .task_page ~ .menu li.sb_tasks_link a,
+.App > .components > .stats_page ~ .menu li.sb_stats_link a,
 .App > .statistics-page ~ .menu li.sb_stats_link a {
     background:var(--Primary-Medium)
 }
@@ -142,6 +142,12 @@
 /* highlight logout page link */
 .App > .components > .logout_page ~ .menu .sb_logout_link,
 .App > .logout_page ~ .menu .sb_logout_link {
+    background:var(--Primary-Medium)
+}
+
+/* highlight help page link */
+.App > .components > .help_page ~ .menu .sb_help_link,
+.App > .help_page ~ .menu .sb_help_link {
     background:var(--Primary-Medium)
 }
 
