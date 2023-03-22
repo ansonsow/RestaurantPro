@@ -1,11 +1,4 @@
 /* CSS STYLING FOR ALL TASK PAGE*/
-.daily-attendance-page{
-    position: absolute;
-    top: 0%;
-    right: 0%;
-    width: 85%;
-    padding: 2rem 2rem;
-}
 .daily-attendance-page-upper-section{
     display: flex;
     justify-content: space-between;
