@@ -1,7 +1,7 @@
 import React from "react";
 import "./Home.css";
 import PersonalDetails from "./personalDetails/PersonalDetails";
-import QuickActions from "./quickActions/quickActions";
+import QuickActions from "./quickActions/QuickActions";
 
 export default function Home() {
   return (
