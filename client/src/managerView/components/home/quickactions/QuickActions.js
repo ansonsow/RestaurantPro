@@ -1,4 +1,4 @@
-import "./quickActions.css"
+import "./QuickActions.css"
 
 import { Link } from "react-router-dom";
 
