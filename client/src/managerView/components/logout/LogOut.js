@@ -8,9 +8,10 @@ const LogOut = () => {
 
         localStorage.clear();
         console.log('wa');
+
+        navigate('/home');
         window.location.reload();
 
-        navigate('/blank');
     }
 
     return(

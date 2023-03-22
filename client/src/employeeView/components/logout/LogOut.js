@@ -1,5 +1,5 @@
 import "./LogOut.css"
-import { Link , useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const LogOut = () => {
     let navigate = useNavigate(); 
@@ -8,9 +8,13 @@ const LogOut = () => {
 
         localStorage.clear();
         console.log('wa');
-        window.location.reload();
+        // window.location.reload();
 
         navigate('/blank');
+        navigate('/home');
+        window.location.reload();
+
+
     }
 
     return(

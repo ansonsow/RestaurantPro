@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./EmployeeView.css";
 import Home from "../employeeView/components/home/Home";
 import SideBar from "../employeeView/components/sidebar/SideBar";
@@ -9,6 +10,15 @@ import LogOut from "../employeeView/components/logout/LogOut";
 import Blank from "../employeeView/components/blank/Blank";
 
 function EmployeeView(props) {
+  const currentUrl = window.location.href;
+
+  const lastSlashIndex = currentUrl.lastIndexOf('/');
+
+  const baseUrl = currentUrl.substr(0, lastSlashIndex + 1);
+  // window.location.assign(baseUrl)
+  // const nav = useNavigate();
+  // nav('/')
+
   return (
     <div className="components">
       <Router>
