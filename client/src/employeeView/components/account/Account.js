@@ -1,18 +1,28 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import "./Account.css";
 import axios from "axios";
+import { CloudLightning } from "react-feather";
 function Account(props) {
   const [userDetails, setUserDetails] = useState({});
+  const [oldDetails, setOldDetails] = useState({});
+  const nav = useNavigate();
+
 
   useEffect(() => {
     if (Object.keys(props.account).length !== 0) {
       setUserDetails(props.account);
+      setOldDetails(userDetails);
+
     }
   }, [props.account]);
 
   const handle = (e) => {
     const newData = { ...userDetails };
-    console.log("newData: " + JSON.stringify(newData));
+    // console.log("newData: " + JSON.stringify(newData));
+
+
     newData[e.target.id] = e.target.value;
     setUserDetails(newData);
     console.log(userDetails);
@@ -36,6 +46,7 @@ function Account(props) {
     // }
     axios.put(`${process.env.REACT_APP_SERVER}users/${localStorage.userId}`, userDetails).then(response=>{
       console.log(response);
+      window.location.reload();
     }).catch(error=>{
       console.log(error);
     })
@@ -43,12 +54,37 @@ function Account(props) {
   };
 
   const saveChanges = () => {
-    updateUser(userDetails);
+    updateUser(userDetails)
+    // window.location.reload();
   };
+
+  // pbby need a confirm screen
+  const handleDiscard = () => {
+    const inputs = document.getElementsByTagName('input');
+    console.log(inputs);
+    for(let i = 0 ; i<inputs.length-1;i++){
+      console.log(inputs[i].id);
+      let j = inputs[i].id;
+      console.log(oldDetails[j]);
+      if(oldDetails[j]){
+        inputs[i].value = oldDetails[j];
+      }
+    }
+    
+  }
+
+  // pbby need a confim screen
+  // currently not in place
+  const handleDelete = () => {
+    axios.delete(`${process.env.REACT_APP_SERVER}users/${localStorage.userId}`).then(result=>{
+      nav('/home');
+      window.location.reload();
+    })
+  }
 
 
   return (
-    <div className="account">
+    <div className="account_page">
       <form className="task_details">
         {console.log("props in account: " + JSON.stringify(props.account))}
         {console.log("userDetails: " + JSON.stringify(userDetails))}
@@ -192,7 +228,7 @@ function Account(props) {
       </form>
 
       <div className="call_to_actions">
-        <button className="discard_btn hollow">Discard</button>
+        <button className="discard_btn hollow" onClick={handleDiscard}>Discard</button>
 
         <button className="save_btn" onClick={saveChanges}>Save Changes</button>
       </div>

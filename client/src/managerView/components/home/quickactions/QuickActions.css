@@ -1,30 +1,133 @@
-.quick_actions{
-
- border: 2px solid grey;
- border-radius: 4px;
- margin-left: 20%;
- 
+:root {
+    --Quick-Actions-Top-Gap:calc(((var(--Screen-Margins-Y) + var(--Navbar-Height)) / 2) * 0.8);
+    --Quick-Actions-Edit-Icon-Size:20px;
+    --Quick-Actions-Board-Padding:25px;
+    --Quick-Actions-Board-Title-Bottom-Gap:0.5em;
+    --Quick-Actions-Board-Inner-Padding:10px;
+    --Quick-Actions-Padding-Y:1em;
+    --Quick-Actions-Padding-X:1em;
+    --Quick-Actions-Icons-Size:64px;
+    --Quick-Actions-Icons-Bottom-Gap:9px;
+    --Quick-Actions-Spacing:35px;
 }
 
-.action_options{
- border: 10px solid green;
- display: flex;
- flex-direction: column;
- align-items: center;
- justify-content: space-around;
-  margin: 10px;
-}
-.row1, .row2{
- /* border: 5px solid pink; */
- display: flex;
- flex-direction: row;
- justify-content: space-around;
+.manager_view.home_page {
+    margin-top:var(--Quick-Actions-Top-Gap);
 }
 
-.action{
- border: 2px solid rgb(231, 34, 34);
-  border-radius: 4px;
-  margin: 30px;
-  display: block;
-  width: 100px;
+.manager_view.home_page .board {
+    background:var(--Background-2);
+    border-radius:var(--Corner-Rounding);
+    padding:var(--Quick-Actions-Board-Padding);
+    margin-bottom:var(--Screen-Margins-Y);
+    height:min-content;
+    margin-bottom:var(--Quick-Actions-Top-Gap)
+}
+
+.manager_view.home_page .board_heading_flex {
+    display:flex;
+    align-items:center;
+    padding-bottom:var(--Quick-Actions-Board-Title-Bottom-Gap);
+    border-bottom:1px solid var(--Gray-Darker);
+    margin-bottom:calc((var(--Quick-Actions-Board-Title-Bottom-Gap) + var(--Quick-Actions-Board-Padding)) / 2);
+}
+
+.manager_view.home_page .board h2 {
+    color:var(--Primary);
+}
+
+.manager_view.home_page .board_heading_flex .svg_holder {
+    margin-left:0.5rem;
+    width:calc(var(--Quick-Actions-Edit-Icon-Size) + (5px * 2));
+    height:calc(var(--Quick-Actions-Edit-Icon-Size) + (5px * 2));
+    margin-top:2px;
+    padding:5px;
+    cursor:pointer;
+}
+
+.filter_slider_svg svg {
+    display:block;
+    width:100%;
+    height:100%;
+}
+
+.filter_slider_svg svg [fill],
+.filter_slider_svg svg [style*="fill:"]{
+    fill:var(--Primary)
+}
+
+.quick_actions {
+    display:flex;
+    flex-wrap:wrap;
+    grid-gap:var(--Quick-Actions-Spacing);
+    font-family:"Century Gothic Bold";
+    padding:var(--Quick-Actions-Board-Inner-Padding);
+}
+
+.quick_actions a {
+    display:grid;
+    place-items:center;
+    width:calc((100% - (var(--Quick-Actions-Spacing) * 2)) / 3);
+    text-decoration:none;
+    background:var(--Primary-Medium);
+    border-radius:var(--Corner-Rounding);
+    padding:var(--Quick-Actions-Padding-Y) var(--Quick-Actions-Padding-X);
+    aspect-ratio:1/1;
+    text-align:center;
+    box-shadow:0 4px 4px 0 rgba(var(--Primary-RGB),0.25);
+    transition:background var(--Hover-Speeds-Faster) ease-in-out;
+}
+
+.quick_actions a:hover {
+    background:rgba(var(--Primary-RGB),0.85);
+}
+
+.quick_actions .svg_holder {
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:var(--Quick-Actions-Icons-Size);
+    height:var(--Quick-Actions-Icons-Size);
+    margin-bottom:var(--Quick-Actions-Icons-Bottom-Gap);
+}
+
+.quick_actions [class$="_svg"]{
+    width:100%;
+    flex-shrink:0;
+}
+
+.quick_actions .svg_holder svg {
+    display:block;
+    width:100%;
+    height:100%;
+}
+
+/* quick actions svg color */
+.quick_actions .svg_holder svg [fill],
+.quick_actions .svg_holder svg [style*="fill:"]{
+    fill:var(--Background-2);
+}
+.quick_actions .svg_holder svg [stroke],
+.quick_actions .svg_holder svg [style*="stroke:"]{
+    stroke:var(--Background-2);
+}
+
+/* "create new task" icon */
+.create_new_task_svg {
+    margin-left:calc(var(--Quick-Actions-Icons-Size) * 0.1);
+    width:calc(100% + (var(--Quick-Actions-Icons-Size) * 0.1))!important;
+}
+
+/* "daily attendance" icon */
+.attendance_svg {
+    width:calc(100% - (var(--Quick-Actions-Icons-Size) * 0.1))!important;
+}
+
+/* quick actions text */
+.quick_actions a, .quick_actions span {
+    color:var(--Background)
+}
+
+.quick_actions span {
+    white-space:break-spaces;
 }

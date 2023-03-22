@@ -6,13 +6,13 @@ import EmployeeList from "./EmployeeList";
 import EmployeeAssignedTask from "./EmployeeAssignedTask";
 import axios from "axios";
 export default function AssignTask() {
-  
   let currentUrl = window.location.href;
   useEffect(() => {
-        if(currentUrl.includes("/assign-task") ){
-          document.getElementById("assign-task-btn").style.backgroundColor = "#FFC619"
-		    }
-      });
+    if (currentUrl.includes("/assign-task")) {
+      document.getElementById("assign-task-btn").style.backgroundColor =
+        "#FFC619";
+    }
+  });
   const [unAssignedTask, setUnAssignedTask] = useState([]);
   const [unAssignedTaskObjects, setunAssignedTaskObjects] = useState([]);
   const [employee, setemployee] = useState([]);
@@ -27,13 +27,19 @@ export default function AssignTask() {
     getClockInEmployees();
   }, []);
 
-  // Get all the task
+  // get all the task
   const getAllTask = async () => {
+    let allTask = [];
     await axios
-      .get(process.env.REACT_APP_SERVER+"tasks")
+      .get("http://localhost:8000/api/v1/tasks")
       .then((response) => {
         console.log("all task:" + JSON.stringify(response.data));
-        setAllTask(response.data);
+        response.data.forEach((task) => {
+          console.log("task status: " + task.task_status);
+          // if (task.task_status === false) allTask.push(task);
+          if (task.task_assigned === false) allTask.push(task);
+        });
+        setAllTask(allTask);
       })
       .catch((error) => {
         console.log("error in fetching all task: " + error);
@@ -43,7 +49,7 @@ export default function AssignTask() {
   // get all present employee
   const getClockInEmployees = async () => {
     await axios
-      .get(process.env.REACT_APP_SERVER+"attendance/true")
+      .get("http://localhost:8000/api/v1/attendance/true")
       .then((response) => {
         console.log("all present employees:" + JSON.stringify(response.data));
         let userIds = response.data.map((user) => user.user_id);
@@ -59,7 +65,7 @@ export default function AssignTask() {
 
   let getUserDetails = (id) => {
     axios
-      .get(`${process.env.REACT_APP_SERVER}users/${id}`)
+      .get(`http://localhost:8000/api/v1/users/${id}`)
       .then((response) => {
         console.log(
           "all present employees details:" + JSON.stringify(response.data)
@@ -77,6 +83,16 @@ export default function AssignTask() {
       .post(`${process.env.REACT_APP_SERVER}usersTasks`, data)
       .then((response) => {
         console.log("user task saved: " + JSON.stringify(response.data));
+      })
+      .catch((error) => console.log("error in saving user task: " + error));
+  };
+
+  let updateTaskStatus = (id) => {
+    let data = { task_status: true, task_assigned: true };
+    axios
+      .put(`http://localhost:8000/api/v1/task/${id}`, data)
+      .then((response) => {
+        console.log("task status updated: " + JSON.stringify(response.data));
       })
       .catch((error) => console.log("error in saving user task: " + error));
   };
@@ -135,10 +151,17 @@ export default function AssignTask() {
     let uid = employeeObject.user_id;
     console.log("user id to update: " + uid);
 
+    // update user task table with status true
     let task_id = unAssignedTaskObjects.map((task) => task.task_id);
     console.log("user id to update: " + JSON.stringify(task_id));
     task_id.forEach((id) => {
       updateUserTask(uid, id);
+    });
+
+    // update task table with status true
+    unAssignedTaskObjects.forEach((task) => {
+      console.log("update task status for id: " + task._id);
+      updateTaskStatus(task._id);
     });
 
     // remove selected employee
@@ -163,16 +186,21 @@ export default function AssignTask() {
     <div className="assign-task-page">
       <div className="assign-task-page-upper-section">
         <div className="assign-task-page-upper-section-button-section">
-        <Link to="/task" className="link-a"><button>All Task</button></Link>
-									 
-				 
-          <Link to="/assign-task" className='link-a'><button id='assign-task-btn'>Assign Task</button></Link>
-										
-				 
-          <Link to="/create-task" className='link-a'><button>Create Task</button></Link>
-										
-				 
-          <Link to="/daily-attendance" className='link-a'><button>Daily Attendance</button></Link>
+          <Link to="/task" className="link-a">
+            <button>All Task</button>
+          </Link>
+
+          <Link to="/assign-task" className="link-a">
+            <button id="assign-task-btn">Assign Task</button>
+          </Link>
+
+          <Link to="/create-task" className="link-a">
+            <button>Create Task</button>
+          </Link>
+
+          <Link to="/daily-attendance" className="link-a">
+            <button>Daily Attendance</button>
+          </Link>
         </div>
       </div>
 

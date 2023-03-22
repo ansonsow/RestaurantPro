@@ -1,7 +1,8 @@
 
 import './ManagerView.css';
-// import Sidebar from './components/sidebar/SideBar';
-import Sidebar from './components/Sidebar/Sidebar'
+
+import Sidebar from './components/Sidebar/SideBar';
+
 import{
   BrowserRouter as Router,
   Routes,
@@ -19,6 +20,10 @@ import AssignTask from './components/Tasks/AssignTasks/AssignTask';
 import StatisticsPage from './components/StatisticsPage/Statistics/Statistics';
 import Home from './components/home/Home';
 import LogOut from './components/logout/LogOut'
+import Blank from './components/blank/Blank'
+
+// import LogOut from "../employeeView/components/logout/LogOut";
+// import Blank from "../employeeView/components/blank/Blank";
 
 function ManagerView() {
   return (
@@ -26,10 +31,9 @@ function ManagerView() {
 
     
       <Router basename={process.env.PUBLIC_URL}>
-        <Sidebar />
         <Routes>
           <Route path="/employee" element={<EmployeeList />} />
-          <Route path="/task" element={<AllTask />} />
+          <Route path="/tasks" element={<AllTask />} />
           <Route path="/create-employee" element={<CreateEmployee />} />
           <Route path="/edit-employee" element={<EditEmployee />} />
           <Route path="/create-task" element={<CreateTask />} />
@@ -38,7 +42,10 @@ function ManagerView() {
           <Route path="/statistics" element={<StatisticsPage />} />
           <Route path="/home" element={<Home />} />
           <Route path="/log-out" element={<LogOut />} />
+          <Route path="/blank" element={<Blank />} />
         </Routes>
+
+        <Sidebar />
       </Router>
     </>
   );

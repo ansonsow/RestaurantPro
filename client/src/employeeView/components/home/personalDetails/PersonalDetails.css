@@ -17,9 +17,10 @@
 }
 
 .user_box h4 {
+   color:var(--Primary);
    margin-bottom:calc(var(--Rightside-Boxes-Heading-Underline-Gap) * 1.5);
    padding-bottom:var(--Rightside-Boxes-Heading-Underline-Gap);
-   border-bottom:1px solid var(--Text-Color);
+   border-bottom:1px solid var(--Gray-Darker);
 }
 
 .user {
@@ -44,7 +45,8 @@
    margin-bottom: 0px;
 }
 
-button.clock_in_btn {
+button.clock_in_btn,
+button.clock_out_btn {
    display:block;
    width:100%;
    margin-bottom:calc(var(--Rightside-Boxes-Line-Spacing) + 3px);
@@ -59,6 +61,7 @@ button.clock_in_btn {
    transition:background var(--Hover-Speeds) ease-in-out;
 }
 
-button.clock_in_btn:hover {
+button.clock_in_btn:hover,
+button.clock_out_btn:hover {
    background:var(--Secondary-Medium);
 }

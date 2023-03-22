@@ -9,13 +9,18 @@ function Message(props) {
       showmessage(false);
     }, 2000);
   }, [props, message]);
+
+  const changeStatus = () => {
+    props.showMessage(false);
+    // props.setShowBoard(true);
+  };
   return (
     <>
       {message && (
         <div className="message">
           <h4>{props.heading}</h4>
           <h5>{props.message}</h5>
-          <button>Okay</button>
+          <button onClick={changeStatus}>Ok</button>
         </div>
       )}
     </>

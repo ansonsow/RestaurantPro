@@ -66,14 +66,6 @@
     align-items: center;
 }
 
-.sidebar_list .row:hover {
-    background:var(--Primary-Medium);
-}
-
-.sidebar_list .row.active {
-    background:var(--Primary-Medium);
-}
-
 .sidebar_list a.row {
     display:grid;
     align-items:center;
@@ -90,20 +82,43 @@
 }
 
 .sidebar_list .row .svg_holder {
+    position:relative;
     width:var(--Sidebar-Nav-Item-Icon-Size);
     height:var(--Sidebar-Nav-Item-Icon-Size);
     display:flex;
     align-items:center;
     justify-content:center;
     overflow:hidden;
+    z-index:0
 }
 
-.sidebar_list .row object {
+/* force inherit cursor:pointer on svg <object> */
+.sidebar_list .row .svg_holder:after {
+    content:"";
+    position:absolute;
+    top:0;left:0;
+    width:100%;
+    height:100%;
+    z-index:2;    
+}
+
+.sidebar_list .svg_holder [class$="_icon_svg"]{
+    display:grid;
+    place-items:center;
+    width:100%;
+    height:100%;
+}
+
+.sidebar_list .svg_holder [class$="_icon_svg"] svg {
     display:block;
     --SVG-Extra-Padding:50%;
     width:calc(100% + var(--SVG-Extra-Padding));
     height:calc(100% + var(--SVG-Extra-Padding));
-    filter:invert(100%);
+}
+
+.sidebar_list .svg_holder [class$="_icon_svg"] svg [fill],
+.sidebar_list .svg_holder [class$="_icon_svg"] svg [style*="fill:"]{
+    fill:var(--Background-2)!important;
 }
 
 .sidebar_list .row span {
@@ -111,5 +126,5 @@
 }
 
 .sidebar_list .sidebar_list_bot li:last-child {
-    padding-bottom:var(--Sidebar-Logo-Top-Gap);
+    margin-bottom:var(--Sidebar-Logo-Top-Gap);
 }

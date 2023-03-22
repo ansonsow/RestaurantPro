@@ -1,11 +1,5 @@
 /* CSS STYLING FOR EDIT EMPLOYEE PAGE  AND CREATE EMPLOYEE PAGE*/
-.employee-page{
-    position: absolute;
-    top: 0%;
-    right: 0%;
-    width: 85%;
-    padding: 2rem 2rem;
-  }
+
   .employee-page-upper-section{
     display: flex;
     align-items: center;

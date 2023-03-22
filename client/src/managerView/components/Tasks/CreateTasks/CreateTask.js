@@ -23,7 +23,7 @@ export default function CreateTask() {
   // get all users
   const getAllUsers = async () => {
     await axios
-      .get(process.env.REACT_APP_SERVER +"users")
+      .get("http://localhost:8000/api/v1/users")
       .then((response) => {
         console.log("all user:" + JSON.stringify(response.data));
         setUsers(response.data);
@@ -44,18 +44,28 @@ export default function CreateTask() {
       task_desc: userFields.description,
       due_date: userFields.dueDate,
       priority: userFields.urgencyLevel,
+      task_status: false,
+      task_assigned: false,
     };
+    if (userFields.employeeName) {
+      console.log("new task is assigned to: " + userFields.employeeName);
+      newTask.task_status = true;
+      newTask.task_assigned = true;
+
+      saveUserTask(newTask);
+    }
     await axios
-      .post(process.env.REACT_APP_SERVER+ "tasks", newTask)
+      .post("http://localhost:8000/api/v1/tasks", newTask)
       .then((response) => {
         console.log("new task saved:" + JSON.stringify(response.data));
       })
       .catch((error) => {
         console.log("error in saving new task: " + error);
       });
+  };
 
-    // save user's task
-
+  // save user's task
+  const saveUserTask = (newTask) => {
     let userTask = {
       task_id: newTask.task_id,
       user_id: userFields.employeeName,
@@ -63,14 +73,13 @@ export default function CreateTask() {
     };
     console.log("user task:" + JSON.stringify(userTask));
     axios
-      .post(process.env.REACT_APP_SERVER + "usersTasks", userTask)
+      .post("http://localhost:8000/api/v1/usersTasks", userTask)
       .then((response) => {
         console.log("new user task saved:" + JSON.stringify(response.data));
       })
       .catch((error) => {
         console.log("error in saving new user task: " + error);
       });
-    // document.getElementById("dialogueBox").style.display = "flex";
   };
 
   let getAllUserName = () => {
@@ -163,8 +172,8 @@ export default function CreateTask() {
           <div className="item">
             <p>Assign To</p>
             <select
-              name="gender"
-              id="gender"
+              name="assign"
+              id="assign"
               className="input-box"
               onChange={getEmployeeName}
             >
