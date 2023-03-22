@@ -103,22 +103,34 @@
 
 /*---- HIGHLIGHT PAGE IN SIDEBAR ----*/
 /* highlight homepage link */
-.App > .components > .home_page ~ .menu li.sb_home_link a {
+.App > .components > .home_page ~ .menu li.sb_home_link a,
+.App > .home_page ~ .menu li.sb_home_link a {
     background:var(--Primary-Medium)
 }
 
 /* highlight task page link */
-.App > .components > .task_page ~ .menu li.sb_tasks_link a {
+.App > .components > .task_page ~ .menu li.sb_tasks_link a,
+.App > .all-task-page ~ .menu li.sb_tasks_link a,
+.App > .assign-task-page ~ .menu li.sb_tasks_link a,
+.App > .create-task-page ~ .menu li.sb_tasks_link a,
+.App > .daily-attendance-page ~ .menu li.sb_tasks_link a {
     background:var(--Primary-Medium)
 }
 
 /* highlight stats page link */
-.App > .components > .task_page ~ .menu li.sb_tasks_link a {
+.App > .components > .task_page ~ .menu li.sb_tasks_link a,
+.App > .statistics-page ~ .menu li.sb_stats_link a {
     background:var(--Primary-Medium)
 }
 
 /* highlight notifs page link */
 .App > .components > .notifs_page ~ .menu li.sb_notifs_link a {
+    background:var(--Primary-Medium)
+}
+
+/* highlight employee page link */
+.App > .employee-list-page ~ .menu li.sb_employee_link a,
+.App > .employee-page ~ .menu li.sb_employee_link a {
     background:var(--Primary-Medium)
 }
 

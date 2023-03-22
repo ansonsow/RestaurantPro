@@ -12,7 +12,7 @@
 }
 
 .user_box:last-child {
-    margin-bottom:var(--Rightside-Boxes-Spacing);
+    margin-bottom:calc(var(--Quick-Actions-Top-Gap) - var(--Rightside-Boxes-Spacing));
 }
 
 .acc_info_cont {

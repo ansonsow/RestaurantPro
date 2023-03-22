@@ -31,7 +31,6 @@ function ManagerView() {
 
     
       <Router basename={process.env.PUBLIC_URL}>
-        <Sidebar />
         <Routes>
           <Route path="/employee" element={<EmployeeList />} />
           <Route path="/tasks" element={<AllTask />} />
@@ -44,8 +43,9 @@ function ManagerView() {
           <Route path="/home" element={<Home />} />
           <Route path="/log-out" element={<LogOut />} />
           <Route path="/blank" element={<Blank />} />
-
         </Routes>
+
+        <Sidebar />
       </Router>
     </>
   );

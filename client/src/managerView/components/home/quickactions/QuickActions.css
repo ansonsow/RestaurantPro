@@ -21,6 +21,7 @@
     padding:var(--Quick-Actions-Board-Padding);
     margin-bottom:var(--Screen-Margins-Y);
     height:min-content;
+    margin-bottom:var(--Quick-Actions-Top-Gap)
 }
 
 .manager_view.home_page .board_heading_flex {
