@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./App.css";
 import ManagerView from "./managerView/ManagerView";
 import Navbar from "./employeeView/components/navbar/Navbar";
@@ -14,6 +15,8 @@ function App() {
   const [userType, setUserType] = useState("");
   const tasks = [];
   const serverUrl = "http://52.39.41.70:8000/api/v1/"
+
+  // let navigate = useNavigate(); 
 
 
   // console.log(process.env.REACT_APP_SERVER+"users");
@@ -138,6 +141,8 @@ function App() {
         setTimeout(()=>{
           localStorage.setItem("userType", result.data.data.type);
         },1000)
+
+
         
         checkUserId(e)
         
@@ -164,7 +169,13 @@ function App() {
     // localStorage.setItem("userType", userType);
   }, [showView]);
 
+
+
+
   return (
+
+    
+
     <div className="App">
       
       {console.log(
