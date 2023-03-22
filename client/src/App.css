@@ -38,14 +38,14 @@
     --Searchbar-Height:40px;
 
     /*----- LEFT SIDEBAR -----*/
-    --Sidebar-Width:13vw; /* this will be changed as screen resizes */
+    --Sidebar-Width:10vw; /* this will be changed as screen resizes */
 
     /*----- GAPS FROM SIDES OF THE SCREEN -----*/
     --Screen-Margins-X:30px;
     --Screen-Margins-Y:25px; /* was calc(18vmin * 0.2) */
 
     /*----- MAIN CONTENT CONTAINER -----*/
-    --Main-Board-Width:69%;
+    --Main-Board-Width:65%;
     --TaskBoard-Padding:25px;
     
     /*----- TABLES -----*/
@@ -215,6 +215,10 @@ h2 {
     font-size:1.5rem;
 }
 
+h4 {
+    font-size:1.1rem;
+}
+
 @media(max-width: 1366px){
     :root {
         --Sidebar-Width: 235px;
@@ -271,6 +275,10 @@ h2 {
 
     .quick_actions span {
         font-size:1rem;
+    }
+
+    .acc_box {
+        display:none!important;
     }
 }
 
