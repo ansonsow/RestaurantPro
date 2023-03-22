@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from "react";
 import "./Account.css";
 import axios from "axios";
+import { CloudLightning } from "react-feather";
 function Account(props) {
   const [userDetails, setUserDetails] = useState({});
+  const [oldDetails, setOldDetails] = useState({});
+
 
   useEffect(() => {
     if (Object.keys(props.account).length !== 0) {
       setUserDetails(props.account);
+      setOldDetails(userDetails);
+
     }
   }, [props.account]);
 
@@ -45,6 +50,20 @@ function Account(props) {
   const saveChanges = () => {
     updateUser(userDetails);
   };
+
+  const handelDiscard = () => {
+    const inputs = document.getElementsByTagName('input');
+    console.log(inputs);
+    for(let i = 0 ; i<inputs.length-1;i++){
+      console.log(inputs[i].id);
+      let j = inputs[i].id;
+      console.log(oldDetails[j]);
+      if(oldDetails[j]){
+        inputs[i].value = oldDetails[j];
+      }
+    }
+    
+  }
 
 
   return (
@@ -192,7 +211,7 @@ function Account(props) {
       </form>
 
       <div className="call_to_actions">
-        <button className="discard_btn hollow">Discard</button>
+        <button className="discard_btn hollow" onClick={handelDiscard}>Discard</button>
 
         <button className="save_btn" onClick={saveChanges}>Save Changes</button>
       </div>
