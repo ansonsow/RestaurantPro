@@ -9,13 +9,6 @@
     --Task-Row-Spacing:15px;
 }
 
-.task_page {
-    position:absolute;
-    top:0;margin-top:var(--Navbar-Height);
-    left:0;margin-left:calc(var(--Sidebar-Width) + var(--Screen-Margins-X));
-    width:calc(100% - var(--Sidebar-Width) - (var(--Screen-Margins-X) * 2));
-}
-
 .my_task_board {
     border-radius:var(--Corner-Rounding);
     overflow:hidden;

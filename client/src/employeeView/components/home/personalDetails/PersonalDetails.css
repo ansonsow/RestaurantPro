@@ -17,9 +17,10 @@
 }
 
 .user_box h4 {
+   color:var(--Primary);
    margin-bottom:calc(var(--Rightside-Boxes-Heading-Underline-Gap) * 1.5);
    padding-bottom:var(--Rightside-Boxes-Heading-Underline-Gap);
-   border-bottom:1px solid var(--Text-Color);
+   border-bottom:1px solid var(--Gray-Darker);
 }
 
 .user {

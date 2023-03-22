@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./App.css";
 import ManagerView from "./managerView/ManagerView";
 import Navbar from "./employeeView/components/navbar/Navbar";
 import EmployeeView from "./employeeView/EmployeeView";
 import AssignTask from "./managerView/components/Tasks/AssignTasks/AssignTask";
+import rpLogoHorizontal from "./icons/Logo_Primary_horizontal.svg"
 import axios from "axios";
 function App() {
   const [userId, setUserId] = useState("");
@@ -15,6 +17,7 @@ function App() {
   const [unDoneTask, setUnDoneTask] = useState(false);
   const tasks = [];
   const serverUrl = "http://52.39.41.70:8000/api/v1/";
+  // let navigate = useNavigate(); 
 
   // console.log(process.env.REACT_APP_SERVER+"users");
   // console.log(process.env.REACT_APP_SERVER+"users");
@@ -137,7 +140,7 @@ function App() {
         }, 1000);
 
         checkUserId(e);
-      })
+       })
       .catch((error) => {
         console.log(error);
       });
@@ -155,7 +158,31 @@ function App() {
     // localStorage.setItem("userType", userType);
   }, [showView, unDoneTask]);
 
-  return (
+
+
+  let rpLogoHorizontalSVG;
+
+  async function grabSVG(url){
+      return fetch(url)
+      .then(response => response.text())
+      .then(result => {
+          return result;
+      });
+  }
+
+  grabSVG(rpLogoHorizontal).then(eyqxf => {
+      rpLogoHorizontalSVG = eyqxf;
+      document.querySelectorAll(".restaurantPro_logo_landscape").forEach(thdkv => {
+          thdkv.innerHTML = rpLogoHorizontalSVG
+      })        
+  })
+
+  const stopPropagation= (e) => {
+    e.preventDefault();
+  }
+
+  return (    
+
     <div className="App">
       {console.log(
         "localStorage return : " + localStorage.getItem("showScreen")
@@ -164,18 +191,36 @@ function App() {
       {console.log("user to send : " + JSON.stringify(userDetails))}
 
       {localStorage.getItem("showScreen") === null ? (
-        <div className="login_form">
-          <label>User Id</label>
-          <input type="text" value={userId} onChange={getUserId} />
+        <div className="login_page">
+          <div className="login_half_left">
+            <div className="login_top_part">
+              <div className="restaurantPro_logo_landscape"></div>
+            </div>
 
-          <label>password</label>
-          <input type="password" value={psw} onChange={getPassword} />
-          <div className="submit" onClick={checkUserId}>
-            <h4>Submit</h4>
-          </div>
+            <div className="login_tb">
+              <div className="login_tr">
+                <form className="login_form" onClick={stopPropagation}>
+                  <label>User Id</label>
+                  <input type="text" placeholder="User ID" value={userId} onChange={getUserId} />
 
-          <div className="logIn">
-            <h4 onClick={loginUser}>Login</h4>
+                  <label>password</label>
+                  <input type="password" placeholder="Password" value={psw} onChange={getPassword} />
+                  {/* <div className="submit" onClick={checkUserId}>
+                    <h4>Submit</h4>
+                  </div> */}
+
+                  <div className="logIn">
+                    <button type="submit" onClick={loginUser}>Login</button>
+                  </div>
+                </form>{/* end login form */}
+              </div>{/* end login table-row */}
+            </div>{/* end login table */}
+          </div>{/* end login left 50vw */}
+          
+          <div className="login_half_right">
+            <div className="login_image_holder">
+              <img src="https://cdn.glitch.global/f202da4e-f9f2-4703-9a01-471c490e991b/83a20ce0-5f7b-4a96-b52d-53f8544feda0.image.png" alt=""/>
+            </div>
           </div>
         </div>
       ) : // <EmployeeView tasks={userTasks} account={userDetails} />
@@ -194,6 +239,9 @@ function App() {
         // manager view
         // <div>Manager view</div>
         <ManagerView />
+        </div>//end .login_page
+        
+        
       ) : (
         // <>haha</>
 
