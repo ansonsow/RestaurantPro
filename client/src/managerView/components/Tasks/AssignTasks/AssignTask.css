@@ -1,11 +1,4 @@
 /* CSS STYLING FOR ASSIGN TASK PAGE*/
-.assign-task-page{
-    position: absolute;
-    top: 0%;
-    right: 0%;
-    width: 85%;
-    padding: 2rem 2rem;
-}
 .assign-task-page-upper-section{
     display: flex;
     justify-content: space-between;
