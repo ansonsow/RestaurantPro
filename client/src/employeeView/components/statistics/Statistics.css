@@ -1,0 +1,81 @@
+/* CSS STYLING FOR STATISTICS PAGE*/
+.statistics-page{
+    position: absolute;
+    top: 0%;
+    right: 0%;
+    width: 85%;
+    padding: 2rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+.statistics-page-upper-section{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.statistics-page-upper-section-button-section{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+.statistics-page-upper-section-button-section button{
+    padding: 0.3rem 0.7rem;
+    border-radius: 4px;
+    border: none;
+    background-color: #003D9E;
+    color: white;
+    cursor: pointer;
+}
+.statistics-page-upper-section-button-section button:hover{
+    background-color: #FFC619;
+}
+
+
+.statistics-page-middle-section{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: auto;
+}
+.statistics-page-middle-section-elements{
+    box-shadow: 0px 0px 5px black;
+    border-radius: 6px;
+    padding: 1rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    height: 300px;
+}
+.statistics-page-middle-section-elements-upper-part{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+}
+.statistics-page-middle-section-elements-upper-part p{
+    font-size: 14px;
+    font-weight: bolder;
+    color: #003D9E;
+}
+
+.circular-progress-bar-section{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+.statistics-page-lower-section h2{
+    color: #003D9E;
+}
+.employee-performance-table{
+    border-collapse: collapse;
+    margin-top: 2rem;
+}
+.employee-performance-table thead th{
+    font-size: 14px;
+}
+.statistics-page-lower-section{
+    margin: auto;
+}

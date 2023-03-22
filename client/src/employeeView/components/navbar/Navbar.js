@@ -28,7 +28,7 @@ function Navbar() {
   return (
     <div className="nav_bar">
       <div className="nav_bar_inner">
-        <h2>RestaurantPro</h2>
+        <h2></h2>
         <div className="searchbar">
           <div className="s-icon-cont s-mag-cont">
             <div class="svg_holder"></div>

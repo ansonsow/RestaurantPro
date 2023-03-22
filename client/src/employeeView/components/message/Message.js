@@ -5,13 +5,16 @@ function Message(props) {
 
   // the side-effect runs once after the initial rendering.
   useEffect(() => {
+     props.getUserTasksIds(localStorage.getItem("userId"));
     setTimeout(() => {
+      console.log("in set time out ");
       showmessage(false);
-    }, 2000);
-  }, [props, message]);
+    }, 1000);
+  }, []);
 
   const changeStatus = () => {
     props.showMessage(false);
+    props.getUserTasksIds(localStorage.getItem("userId"));
     // props.setShowBoard(true);
   };
   return (

@@ -12,9 +12,9 @@ function App() {
   const [showView, setShowView] = useState(false);
   const [psw, setPsw] = useState("");
   const [userType, setUserType] = useState("");
+  const [unDoneTask, setUnDoneTask] = useState(false);
   const tasks = [];
-  const serverUrl = "http://52.39.41.70:8000/api/v1/"
-
+  const serverUrl = "http://52.39.41.70:8000/api/v1/";
 
   // console.log(process.env.REACT_APP_SERVER+"users");
   // console.log(process.env.REACT_APP_SERVER+"users");
@@ -70,7 +70,7 @@ function App() {
     console.log("In getUserTasks");
 
     await axios
-      .get(`${serverUrl}tasks/${id}`)
+      .get(`http://localhost:8000/api/v1/tasks/${id}`)
       .then((response) => {
         tasks.push(response.data[0]);
         setUserTasks([...tasks]);
@@ -93,7 +93,6 @@ function App() {
     console.log("userId in click: " + userId);
     localStorage.setItem("userId", userId);
 
-
     // setTimeout(()=>{
     //   // localStorage.setItem("userType", userType);
     //   console.log(localStorage.userType);
@@ -106,8 +105,6 @@ function App() {
       // console.log(userType)
       localStorage.setItem("showScreen", "true");
       setShowView(true);
-
-
     }, 1000);
   };
 
@@ -127,7 +124,7 @@ function App() {
     };
 
     await axios
-      .post(serverUrl+ "user/login", login)
+      .post(serverUrl + "user/login", login)
       .then((result) => {
         console.log(result.data.data.type);
         setUserType(result.data.data.type);
@@ -135,38 +132,31 @@ function App() {
         console.log(userType);
 
         // console.log("wtf"+userType);
-        setTimeout(()=>{
+        setTimeout(() => {
           localStorage.setItem("userType", result.data.data.type);
-        },1000)
-        
-        checkUserId(e)
-        
+        }, 1000);
+
+        checkUserId(e);
       })
       .catch((error) => {
         console.log(error);
       });
-
-
-      
   };
   // =============================== login =============================
 
-
-
-  const handelPanicBtn= () => {
+  const handelPanicBtn = () => {
     localStorage.clear();
     window.location.reload();
-  }
+  };
 
   useEffect(() => {
     getDataByUserID(localStorage.getItem("userId"));
     getUserTasksIds(localStorage.getItem("userId"));
     // localStorage.setItem("userType", userType);
-  }, [showView]);
+  }, [showView, unDoneTask]);
 
   return (
     <div className="App">
-      
       {console.log(
         "localStorage return : " + localStorage.getItem("showScreen")
       )}
@@ -188,26 +178,29 @@ function App() {
             <h4 onClick={loginUser}>Login</h4>
           </div>
         </div>
+      ) : // <EmployeeView tasks={userTasks} account={userDetails} />
+      // <ManagerView />
+      localStorage.userType == "Employee" ? (
+        // render employee
+        <EmployeeView
+          tasks={userTasks}
+          setUnDoneTask={setUnDoneTask}
+          account={userDetails}
+          userId={userId}
+          getUserTasksIds={getUserTasksIds}
+          unDoneTask={unDoneTask}
+        />
+      ) : localStorage.userType == "Manager" ? (
+        // manager view
+        // <div>Manager view</div>
+        <ManagerView />
       ) : (
-        // <EmployeeView tasks={userTasks} account={userDetails} />
-        // <ManagerView />
-        localStorage.userType == "Employee" ? (
-          // render employee
-          <EmployeeView tasks={userTasks} account={userDetails} userId = {userId}/>
-        ): localStorage.userType == "Manager" ? (
-          // manager view
-          // <div>Manager view</div>
-          <ManagerView /> 
-          // <>haha</>
+        // <>haha</>
 
-        ): (
-          <>
-            <div>sorry try again</div>
-            <button onClick={handelPanicBtn}>send me back</button>
-          </>
-
-          
-        )
+        <>
+          <div>sorry try again</div>
+          <button onClick={handelPanicBtn}>send me back</button>
+        </>
       )}
     </div>
   );
@@ -219,10 +212,9 @@ function App() {
   //       <div>========================================= login prototype ==================================</div>
   //       <label>User Id</label>
   //       <input type="text" value={userId} onChange={getUserId} />
-        
+
   //       <label>password</label>
   //       <input type="password" value={psw} onChange = {getPassword}/>
-
 
   //       <div className="logIn">
   //         <h4 onClick={loginUser}>Login</h4>
