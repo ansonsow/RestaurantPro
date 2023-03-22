@@ -1,6 +1,6 @@
 import React from "react";
 import "./Home.css";
-// import PersonalDetails from "./personalDetails/PersonalDetails";
+import PersonalDetails from "./personalDetails/PersonalDetails";
 // import QuickActions from "./quickactions/QuickActions";
 import { Link } from "react-router-dom";
 
@@ -109,7 +109,11 @@ export default function Home() {
           </Link>
 
         </div>{/* end .quick_actions */}
+        
       </div>{/* end .board */}
+
+    {/*---- PERSONAL DETAILS (RIGHTSIDE) ----*/}
+    <PersonalDetails/>
 
     </div>//end .home_page.manager_view
     // end .manager_view

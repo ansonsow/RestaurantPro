@@ -1,0 +1,6 @@
+.manager_details_temp {
+    background: var(--Background-2);
+    border-radius: var(--Corner-Rounding);
+    padding: var(--Rightside-Boxes-Padding);
+    height:200px;
+}
