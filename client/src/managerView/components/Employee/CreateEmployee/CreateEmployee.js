@@ -6,12 +6,11 @@ export default function CreateEmployee() {
   const userFields = useRef([]);
   const empId = useRef("");
   const closeDialogue = () => {
+    //window.location.reload();
     document.getElementById("dialogueBox").style.display = "none";
   };
-  // const displayDialogue = () => {
-  // };
 
-  const displayDialogue = async () => {
+  const displayDialogue = async() => {
     let idPrefix = Math.floor(Math.random() * 9) + 1;
     let id = Math.floor(Math.random() * 100) + 1;
     let newEmployee = {
@@ -19,19 +18,23 @@ export default function CreateEmployee() {
       name: userFields.name,
       surname: userFields.surname,
       email: userFields.email,
-      job_title: userFields.jobTitle,
+      job_title: userFields.job_title,
       password: "123456",
+      type: userFields.type,
+      gender: userFields.gender,
+      restaurantName: userFields.restaurantName,
+      contact_number: userFields.contact_number,
     };
-    empId.id = newEmployee.user_id;
-    console.log("empId: " + empId.id);
-    // await axios
-    //   .post("http://localhost:8000/api/v1/users", newEmployee)
-    //   .then((response) => {
-    //     console.log("new task saved:" + JSON.stringify(response.data));
-    //   })
-    //   .catch((error) => {
-    //     console.log("error in saving new task: " + error);
-    //   });
+    empId.user_id = newEmployee.user_id;
+    console.log("empId: " + empId.user_id);
+    await axios
+      .post("http://localhost:8000/api/v1/users", newEmployee)
+      .then((response) => {
+        console.log("new employee saved:" + JSON.stringify(response.data));
+      })
+      .catch((error) => {
+        console.log("error in saving new task: " + error.message);
+      });
     document.getElementById("dialogueBox").style.display = "flex";
   };
   const getName = (event) => {
@@ -59,12 +62,24 @@ export default function CreateEmployee() {
     console.log("address: " + JSON.stringify(userFields));
   };
   const getContact = (event) => {
-    userFields.contact = event.target.value;
+    userFields.contact_number = event.target.value;
     console.log("contact: " + JSON.stringify(userFields));
   };
+  const getShift = (event) => {
+    userFields.shift = event.target.value;
+    console.log("shift: " + JSON.stringify(userFields));
+  };
   const getJobTitle = (event) => {
-    userFields.jobTitle = event.target.value;
+    userFields.job_title = event.target.value;
     console.log("jobTitle: " + JSON.stringify(userFields));
+  };
+  const getJobType = (event) => {
+    userFields.type = event.target.value;
+    console.log("jobType: " + JSON.stringify(userFields));
+  };
+  const getRestaurantName = (event) => {
+    userFields.restaurantName = event.target.value;
+    console.log("restaurantName: " + JSON.stringify(userFields));
   };
   return (
     <>
@@ -72,7 +87,7 @@ export default function CreateEmployee() {
         <div className="employee-page-upper-section">
           <Link to="/employee"><button>Employee List</button></Link>
           <Link to="/create-employee"><button id='new-employee-btn'>New Employee</button></Link>
-          <Link to="/edit-employee"><button>Edit Employee</button></Link>
+          {/* <Link to="/edit-employee"><button>Edit Employee</button></Link> */}
         </div>
         <div className="employee-page-lower-section">
           <div className="employee-page-lower-section-image-part">
@@ -131,6 +146,20 @@ export default function CreateEmployee() {
                 />
               </div>
               <div className="input-section">
+                <p>Job Type</p>
+                <select
+                  name="type"
+                  id="type"
+                  className="input-box"
+                  onChange={getJobType}
+                >
+                  <option value="Plate Designer">Plate Designer</option>
+                  <option value="Server">Server</option>
+                  <option value="Shift Lead">Shift Lead</option>
+                  <option value="Cheff">Cheff</option>
+                </select>
+              </div>
+              <div className="input-section">
                 <p>Job Title</p>
                 <select
                   name="job_title"
@@ -150,6 +179,7 @@ export default function CreateEmployee() {
                   placeholder="Restaurant Pro"
                   className="input-box"
                   defaultValue="East is East"
+                  onChange={getRestaurantName}
                 />
               </div>
               <div className="input-section">
@@ -173,7 +203,7 @@ export default function CreateEmployee() {
                 <p>Contact Number</p>
                 <input
                   type="text"
-                  placeholder="ABC"
+                  placeholder="+1"
                   className="input-box"
                   onChange={getContact}
                 />
@@ -184,6 +214,7 @@ export default function CreateEmployee() {
                   type="text"
                   placeholder="17:00-19:00"
                   className="input-box"
+                  onChange={getShift}
                 />
               </div>
             </div>
@@ -201,8 +232,8 @@ export default function CreateEmployee() {
     </div>
     <div className="save-change" id='dialogueBox'>
         <div className="save-change-dialogue">
-          <p>{`Employee Created`}</p>
-          <b>{`Id: ${empId.id}`}</b>
+          <p>{`Employee Created Successfully`}</p>
+          {/* <b>{`Id: ${empId.user_id}`}</b> */}
           <button onClick={closeDialogue}>Ok</button>
         </div>
     </div>
