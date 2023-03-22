@@ -126,5 +126,5 @@
 }
 
 .sidebar_list .sidebar_list_bot li:last-child {
-    padding-bottom:var(--Sidebar-Logo-Top-Gap);
+    margin-bottom:var(--Sidebar-Logo-Top-Gap);
 }
