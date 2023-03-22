@@ -47,6 +47,11 @@ const usersSchema = new Schema({
         default: ""
 
     },
+    restaurantName:{
+        type:String,
+        minLength:1,
+        required: false
+    },
     contact_number: {
         type:Number,
 
@@ -62,7 +67,6 @@ const usersSchema = new Schema({
     type: {
         type:String,
         required: true,
-        enum: ["Manager", "Employee", "Admin"]
     },
     shift: {
         type:String,
