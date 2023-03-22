@@ -1,11 +1,4 @@
 /* CSS STYLING FOR ALL TASK PAGE*/
-.all-task-page{
-    position: absolute;
-    top: 0%;
-    right: 0%;
-    width: 85%;
-    padding: 2rem 2rem;
-}
 .all-task-page-upper-section{
     display: flex;
     justify-content: space-between;
@@ -38,8 +31,4 @@
 }
 .all-task-page-lower-section table{
     width: 100%;
-}
-tr:hover{
-    background-color: #e6e5e583;
-    cursor: pointer;
 }

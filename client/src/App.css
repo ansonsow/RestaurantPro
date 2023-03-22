@@ -89,6 +89,18 @@
     --Hover-Speeds-Faster:0.1s;
 }
 
+/*---- CONTAINERS THAT DON'T HAVE THE RIGHT SIDEBAR ---*/
+.task_page, .account_page,
+.all-task-page, .assign-task-page, .create-task-page, .daily-attendance-page,
+.statistics-page,
+.employee-list-page, .employee-page {
+    position: absolute;
+    top:0;left:0;
+    margin-top:var(--Navbar-Height);
+    margin-left:calc(var(--Sidebar-Width) + var(--Screen-Margins-X));
+    width:calc(100% - var(--Sidebar-Width) - var(--Screen-Margins-X) * 2);
+}
+
 /*---- HIGHLIGHT PAGE IN SIDEBAR ----*/
 /* highlight homepage link */
 .App > .components > .home_page ~ .menu li.sb_home_link a {
