@@ -86,6 +86,7 @@
 
     /*----- GLOBAL TRANSITION SPEED -----*/
     --Hover-Speeds:0.25s;
+    --Hover-Speeds-Faster:0.1s;
 }
 
 /*---- HIGHLIGHT PAGE IN SIDEBAR ----*/
@@ -194,6 +195,14 @@
 }
 
 /*---- RESPONSIVENESS / MEDIA QUERIES ----*/
+h1 {
+    font-size:36px;
+}
+
+h2 {
+    font-size:1.5rem;
+}
+
 @media(max-width: 1366px){
     :root {
         --Sidebar-Width: 235px;
@@ -203,12 +212,68 @@
 @media(max-width: 1000px){
     :root {
         --Sidebar-Width: 225px;
+        --Main-Board-Width: 60%;
+    }
+
+    .quick_actions {
+        padding:0!important;
+        --Quick-Actions-Spacing:25px!important;
+        --Quick-Actions-Icons-Size:3rem!important;
+    }
+
+    .quick_actions span {
+        overflow:hidden!important;
+        text-overflow:ellipsis!important;
+        white-space:nowrap!important;
+        width:100%!important;
     }
 }
 
 @media(max-width: 800px){
+    h1 {
+        font-size:34px;
+    }
+
+    h2 {
+        font-size:1.3rem;
+    }
+
     :root {
         --Sidebar-Width: 200px;
+    }
+
+    .menu {
+        display:none!important;
+    }
+
+    .home_page {
+        display:block!important;
+        margin-left:var(--Screen-Margins-X)!important;
+        width:calc(100% - (var(--Screen-Margins-X) * 2))!important
+    }
+
+    .quick_actions {
+        --Quick-Actions-Icons-Size:55px!important;
+        --Quick-Actions-Icons-Bottom-Gap:calc(var(--Quick-Actions-Icons-Size) * -0.5)!important;
+    }
+
+    .quick_actions span {
+        font-size:1rem;
+    }
+}
+
+@media(max-width: 600px){
+    :root {
+        --Sidebar-Width: 50vw;
+    }
+
+    .quick_actions {
+        --Quick-Actions-Icons-Size:48px!important;
+        --Quick-Actions-Icons-Bottom-Gap:10px!important;
+    }
+
+    .quick_actions span {
+        font-size:0.9rem;
     }
 }
 

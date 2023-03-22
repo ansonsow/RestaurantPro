@@ -1,6 +1,6 @@
 import React from 'react'
 import "./SideBar.css"
-import logo from "../../../icons/Logo_Primary.svg"
+import logo from "../../../icons/Logo_DarkBG.svg"
 import homeIcon from "../../../icons/home.svg"
 import taskIcon from "../../../icons/tasks.svg"
 import statsIcon from "../../../icons/Statistics.svg"
