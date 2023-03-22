@@ -22,7 +22,6 @@
 }
 
 .board_columns {
-    
 }
 
 .columns_names {
@@ -31,6 +30,7 @@
     display:grid;
     grid-template-columns:repeat(4, 1fr);
     grid-gap:0 var(--Table-Columns-Spacing);
+    padding:0 var(--Task-Row-Padding-X);
     place-items:center;
     font-family:"Brevia Medium";
 }
@@ -45,11 +45,6 @@
     background:var(--Background-2);
 }
 
-.task_page .board_list p {
- font-weight: bold;
- text-decoration: underline;
- margin: 15px;
-}
 
 .task_page .board_list .task {
     display:grid;
@@ -85,8 +80,6 @@
     padding:var(--Task-Name-Padding-Y) var(--Task-Name-Padding-X);
     background:rgba(var(--Background-RGB), calc(100% - var(--Task-Row-Transparency)));
     border-radius:var(--Corner-Rounding);
-    font-weight:normal!important;
-    text-decoration:none!important;
     color:var(--Text-Color);
 }
 

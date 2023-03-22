@@ -18,7 +18,7 @@ const LogOut = () => {
     }
 
     return(
-        <div className="logoutConfirmation">
+        <div className="logout_page">
             <h3>Are you sure you want to log out?</h3>
 
             <div className="logoutFlex">

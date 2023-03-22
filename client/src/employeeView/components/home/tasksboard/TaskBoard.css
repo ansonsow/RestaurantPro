@@ -35,15 +35,9 @@
 .home_page .board_list {
 }
 
-.home_page .board_list p {
- font-weight: bold;
- text-decoration: underline;
- margin: 15px;
-}
-
 .home_page .board_list .task {
     display:grid;
-    grid-template-columns:auto 25%;
+    grid-template-columns:auto 35%;
     grid-gap:0 var(--Table-Columns-Spacing);
 }
 
@@ -75,8 +69,6 @@
     padding:var(--Task-Name-Padding-Y) var(--Task-Name-Padding-X);
     background:rgba(var(--Background-RGB), calc(100% - var(--Task-Row-Transparency)));
     border-radius:var(--Corner-Rounding);
-    font-weight:normal!important;
-    text-decoration:none!important;
     color:var(--Text-Color);
 }
 
@@ -103,7 +95,7 @@
 }
 
 .home_page .check_task {
-    padding:var(--Task-Action-Btn-Padding-Y);
+    padding:var(--Task-Action-Btn-Padding-Y) var(--Task-Action-Btn-Padding-X);
 }
 
 /*--------------------*/

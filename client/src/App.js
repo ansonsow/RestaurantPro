@@ -37,7 +37,7 @@ function App() {
     console.log("In getDataByUserID");
     console.log("userId in localStorage:" + userId);
     await axios
-      .get(`${serverUrl}users/${userId}`)
+      .get(`http://localhost:8000/api/v1/users/${userId}`)
       .then((response) => {
         // user.push(response.data);
         setUserDetails(response.data);
@@ -54,7 +54,7 @@ function App() {
     console.log("In getUserTasksIds");
     console.log("userId in localStorage: " + userId);
     await axios
-      .get(`${serverUrl}usersTasks/user/${userId}`)
+      .get(`http://localhost:8000/api/v1/usersTasks/user/${userId}`)
       .then((response) => {
         let ids = response.data.map((item) => item.task_id);
         console.log("tasks ids of user " + JSON.stringify(ids));
@@ -177,9 +177,6 @@ function App() {
     
 
     <div className="App">
-      <div className="nav_bar">
-        <Navbar />
-      </div>
       
       {console.log(
         "localStorage return : " + localStorage.getItem("showScreen")
@@ -188,7 +185,7 @@ function App() {
       {console.log("user to send : " + JSON.stringify(userDetails))}
 
       {localStorage.getItem("showScreen") === null ? (
-        <div>
+        <div className="login_form">
           <label>User Id</label>
           <input type="text" value={userId} onChange={getUserId} />
 
