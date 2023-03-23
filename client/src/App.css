@@ -32,6 +32,13 @@
 
 /*------ CSS VARIABLES ------*/
 :root {
+    /*----- LOADING ICON ----*/
+    --Loading-Dots-Size:14px;
+	--Loading-Dots-Color:var(--Primary-Medium);
+	--Loading-Dots-Spacing:6px;
+	--Loading-Dots-Animation-Duration:2s;
+	--Loading-Dots-Animation-Delay:0.1s;
+
     /*----- TOP NAVBAR -----*/
     --Navbar-Height:100px;
     --Searchbar-Width:100%;
@@ -87,6 +94,15 @@
     /*----- GLOBAL TRANSITION SPEED -----*/
     --Hover-Speeds:0.25s;
     --Hover-Speeds-Faster:0.1s;
+}
+
+/*---- LOADING ICON FURTHER SPECS ---*/
+.all-task-page .loading-icon {
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    width:100%;
+    justify-content:center;
 }
 
 /*---- CONTAINERS THAT DON'T HAVE THE RIGHT SIDEBAR ---*/
