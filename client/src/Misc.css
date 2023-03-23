@@ -1,0 +1,259 @@
+/*---- LOADING ICON ----*/
+.loading-icon {
+	display:flex;
+	align-items:center;
+	grid-gap:0 var(--Loading-Dots-Spacing);
+}
+
+.loading-dot {
+	flex-shrink:0;
+	width:var(--Loading-Dots-Size);
+	height:var(--Loading-Dots-Size);
+	background:var(--Loading-Dots-Color);
+	border-radius:100%;
+	opacity:0;
+}
+
+.loading-dot:first-child {
+	animation:LoadingAni var(--Loading-Dots-Animation-Duration) ease-in-out infinite normal running;
+}
+
+.loading-dot:nth-child(2) {
+	animation:LoadingAni var(--Loading-Dots-Animation-Duration) ease-in-out var(--Loading-Dots-Animation-Delay) infinite alternate running;
+}
+
+.loading-dot:nth-child(3) {
+	animation:LoadingAni var(--Loading-Dots-Animation-Duration) ease-in-out calc(var(--Loading-Dots-Animation-Delay) * 2) infinite alternate running;
+}
+
+@keyframes LoadingAni {
+	0% {
+		opacity:0
+	}
+	
+	20% {
+		opacity:1
+	}
+	
+	80% {
+		opacity:1
+	}
+}
+
+/*---- LOADING ICON FURTHER SPECS ---*/
+.all-task-page .loading-icon {
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    width:100%;
+    justify-content:center;
+}
+
+/*---- CONTAINERS THAT DON'T HAVE THE RIGHT SIDEBAR ---*/
+.task_page, .account_page, .stats_page, .notifs_page, .help_page,
+.all-task-page, .assign-task-page, .create-task-page, .daily-attendance-page,
+.statistics-page,
+.employee-list-page, .employee-page {
+    position: absolute;
+    top:0;left:0;
+    margin-top:var(--Navbar-Height);
+    margin-left:calc(var(--Sidebar-Width) + var(--Screen-Margins-X));
+    width:calc(100% - var(--Sidebar-Width) - var(--Screen-Margins-X) * 2);
+}
+
+/*---- HIGHLIGHT PAGE IN SIDEBAR ----*/
+/* highlight homepage link */
+.App > .components > .home_page ~ .menu li.sb_home_link a,
+.App > .home_page ~ .menu li.sb_home_link a {
+    background:var(--Primary-Medium)
+}
+
+/* highlight task page link */
+.App > .components > .task_page ~ .menu li.sb_tasks_link a,
+.App > .all-task-page ~ .menu li.sb_tasks_link a,
+.App > .assign-task-page ~ .menu li.sb_tasks_link a,
+.App > .create-task-page ~ .menu li.sb_tasks_link a,
+.App > .daily-attendance-page ~ .menu li.sb_tasks_link a {
+    background:var(--Primary-Medium)
+}
+
+/* highlight stats page link */
+.App > .components > .statistics-page ~ .menu li.sb_stats_link a,
+.App > .statistics-page ~ .menu li.sb_stats_link a {
+    background:var(--Primary-Medium)
+}
+
+/* highlight notifs page link */
+.App > .components > .notifs_page ~ .menu li.sb_notifs_link a {
+    background:var(--Primary-Medium)
+}
+
+/* highlight employee page link */
+.App > .employee-list-page ~ .menu li.sb_employee_link a,
+.App > .employee-page ~ .menu li.sb_employee_link a {
+    background:var(--Primary-Medium)
+}
+
+/* highlight account page link */
+.App > .components > .account_page ~ .menu .sb_account_link {
+    background:var(--Primary-Medium)
+}
+
+/* highlight logout page link */
+.App > .components > .logout_page ~ .menu .sb_logout_link,
+.App > .logout_page ~ .menu .sb_logout_link {
+    background:var(--Primary-Medium)
+}
+
+/* highlight help page link */
+.App > .components > .help_page ~ .menu .sb_help_link,
+.App > .help_page ~ .menu .sb_help_link {
+    background:var(--Primary-Medium)
+}
+
+/*---- LOGIN PAGE CSS ----*/
+:root {
+    --Login-Screen-Margins:35px;
+    --Login-Logo-Left-Nudge:35px;
+    --Login-Logo-Width:50%;
+    --Login-Form-Width:75%;
+    --Login-Screen-Center-Gap:60px;
+}
+
+.login_page {
+    position:absolute;
+    top:0;left:0;
+    width:100%;
+    height:100%;
+    display:grid;
+    grid-template-columns:50% 50%;
+    grid-gap:0 var(--Login-Screen-Center-Gap);
+    padding:var(--Login-Screen-Margins);
+}
+
+.login_top_part {
+    margin-left:var(--Login-Logo-Left-Nudge);
+    width:var(--Login-Logo-Width);
+}
+
+.login_top_part svg {
+    display:block;
+    width:100%;
+    height:auto;
+}
+
+.login_half_left {
+    position:relative;
+}
+
+.login_tb {
+    position:absolute;
+    top:0;left:0;
+    display:table;
+    width:100%;
+    height:100%;
+}
+
+.login_tr {
+    display:table-cell;
+    vertical-align:middle;
+}
+
+.login_form {
+    margin:auto;
+    margin-top:calc((var(--Login-Logo-Width) * 0.282) * 0.8);
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    width:var(--Login-Form-Width);
+}
+
+.login_form label,
+.login_form input {
+    display:block;
+    text-transform:capitalize;
+}
+
+.login_form label {
+    font-family:"Brevia Medium";
+    margin-bottom:0.6em;
+}
+
+.login_form input {
+    outline:none;
+    font-family:inherit;
+    font-size:inherit;
+    color:var(--Text-Color);
+    background:rgba(var(--Background-2-RGB), 0.5);
+    padding:12px;
+    border:1px solid var(--Background-2);
+    border-radius:var(--Corner-Rounding);
+}
+
+.login_form input + label {
+    margin-top:1.5em;
+}
+
+.login_form .logIn {
+    margin-top:22px;    
+}
+
+.login_form .logIn button {
+    display:inline-block;
+    margin:0;
+    padding:12px 22px;
+    border-radius:var(--Corner-Rounding);
+    background:var(--Primary);
+    font-family:"Century Gothic Bold";
+    font-size:var(--Body-Font-Size);
+    letter-spacing:0.3px;
+    color:var(--Background);
+    border:none;
+    cursor:pointer;
+}
+
+.login_form .logIn button:hover {
+    background:var(--Primary-Medium);
+}
+
+.login_image_holder {
+    position:relative;
+    width:calc(100% - var(--Login-Screen-Center-Gap));
+    height:100%;
+    z-index:0;
+}
+
+.login_image_holder:before {
+    content:"";
+    position:absolute;
+    top:0;left:0;
+    width:100%;
+    height:100%;
+    background:black;
+    opacity:0;
+    z-index:2;
+}
+
+.login_half_right img {
+    position:absolute;
+    display:block;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:50% 50%;
+    border-radius:var(--Corner-Rounding)
+}
+
+/*------------------------------------*/
+
+.App{
+ /* display: flex; */
+ /* flex-direction: row; */
+}
+
+
+.components{
+ display: flex;
+ flex-direction: row;
+ /* border: 2px solid black; */
+}
