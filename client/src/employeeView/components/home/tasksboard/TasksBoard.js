@@ -34,7 +34,7 @@ function TasksBoard(props) {
         }
       });
     }
-  }, []);
+  }, [props]);
 
   // get details of the selected task
   if (itemId !== null) {
@@ -60,12 +60,10 @@ function TasksBoard(props) {
         .then((response) => {
           console.log("task closed" + JSON.stringify(response.data));
 
-          setTasks((pre)=>{
-           return pre.filter((task)=>task._id!=item.id)
+          setTasks((pre) => {
+            return pre.filter((task) => task._id != item.id);
           });
-              console.log(
-                "tasks no done: " + JSON.stringify(tasks)
-              );
+          console.log("tasks no done: " + JSON.stringify(tasks));
           if (taskChecked.length === count) {
             console.log(
               "Allclose task updated (taskChecked.length ): " +
@@ -90,6 +88,7 @@ function TasksBoard(props) {
       <div className="board_head">
         <h2>My Uncompleted Tasks</h2>
       </div>
+      {props.loadingTask ? "Loading..." : ""}
       {showBoard ? (
         <div className="task_board">
           <div className="board_list">

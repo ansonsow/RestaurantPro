@@ -20,6 +20,7 @@ export default function AssignTask() {
   const [allTasks, setAllTask] = useState([]);
   const [allEmployee, setAllEmployee] = useState([]);
   const changeEventState = useRef({});
+  const [loadingTask, setLoadingTasks] = useState(false);
 
   // Call Apis
   useEffect(() => {
@@ -30,6 +31,7 @@ export default function AssignTask() {
   // get all the task
   const getAllTask = async () => {
     let allTask = [];
+    setLoadingTasks(true);
     await axios
       .get("http://localhost:8000/api/v1/tasks")
       .then((response) => {
@@ -38,6 +40,7 @@ export default function AssignTask() {
           console.log("task status: " + task.task_status);
           // if (task.task_status === false) allTask.push(task);
           if (task.task_assigned === false) allTask.push(task);
+          setLoadingTasks(false);
         });
         setAllTask(allTask);
       })
@@ -80,7 +83,7 @@ export default function AssignTask() {
   let updateUserTask = (uid, tid) => {
     let data = { task_id: tid, user_id: uid, status: true };
     axios
-      .post(`${process.env.REACT_APP_SERVER}usersTasks`, data)
+      .post(`http://localhost:8000/api/v1/usersTasks`, data)
       .then((response) => {
         console.log("user task saved: " + JSON.stringify(response.data));
       })
@@ -109,8 +112,7 @@ export default function AssignTask() {
   const taskSelected = (event) => {
     const { id, checked } = event.target;
     if (checked) {
-      setUnAssignedTask((pre) => [pre, ...id]);
-      console.log("us assigned..." + unAssignedTask);
+      setUnAssignedTask((pre) => [...pre, id]);
     } else {
       setUnAssignedTask((pre) => {
         return [...pre.filter((task_id) => task_id !== id)];
@@ -119,11 +121,13 @@ export default function AssignTask() {
   };
   const getSelectedTasks = () => {
     setunAssignedTaskObjects([]);
+    console.log("un assigned..." + unAssignedTask);
     allTasks.forEach((task) => {
       if (unAssignedTask.find((id) => task.task_id == id)) {
         setunAssignedTaskObjects((pre) => [...pre, task]);
       }
     });
+    console.log("unAssignedTaskObjects: " + unAssignedTaskObjects);
   };
 
   // employee selected
@@ -131,8 +135,10 @@ export default function AssignTask() {
   const employeeSelected = (event) => {
     changeEventState.current = event.target.checked;
     const { id, checked } = event.target;
+    console.log("employee id" + id);
     if (checked) {
-      event.stopPropagation();
+      console.log("employee checked");
+      // event.stopPropagation();
       setemployee([id]);
     }
   };
@@ -215,13 +221,21 @@ export default function AssignTask() {
               <th>Urgency</th>
             </thead>
             <tbody>
-              {console.log("again run")}
-              {allTasks.map((task) => (
+              {console.log("all task run")}
+              {loadingTask
+                ? "Loading..."
+                : allTasks.map((task) => (
+                    <UnAssignedTasksList
+                      unassignedTask={task}
+                      click={taskSelected}
+                    />
+                  ))}
+              {/* {allTasks.map((task) => (
                 <UnAssignedTasksList
                   unassignedTask={task}
                   click={taskSelected}
                 />
-              ))}
+              ))} */}
             </tbody>
           </table>
         </div>
@@ -233,12 +247,23 @@ export default function AssignTask() {
               <th>Title</th>
             </thead>
             <tbody>
-              {allEmployee.map((employee) => (
+              {console.log("loadingTask" + loadingTask)}
+              {loadingTask ? (
+                <h3>Loading...</h3>
+              ) : (
+                allEmployee.map((employee) => (
+                  <EmployeeList
+                    unassignedTask={employee}
+                    click={employeeSelected}
+                  />
+                ))
+              )}
+              {/* {allEmployee.map((employee) => (
                 <EmployeeList
                   unassignedTask={employee}
                   click={employeeSelected}
                 />
-              ))}
+              ))} */}
             </tbody>
           </table>
         </div>
@@ -248,6 +273,7 @@ export default function AssignTask() {
               <p className="underline-p">{`${employeeObject.name} Uncompleted Tasks`}</p>
               <table className="uncompleted-task-table">
                 <thead>
+                  {console.log("task assign run")}
                   <th>Task Name</th>
                   <th>Due Date</th>
                   <th>Urgency</th>
