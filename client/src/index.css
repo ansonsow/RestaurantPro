@@ -66,3 +66,44 @@ b {
   font-weight:normal;
   font-family:"Century Gothic Bold";
 }
+
+.loading-icon {
+	display:flex;
+	align-items:center;
+	grid-gap:0 var(--Loading-Dots-Spacing);
+}
+
+.loading-dot {
+	flex-shrink:0;
+	width:var(--Loading-Dots-Size);
+	height:var(--Loading-Dots-Size);
+	background:var(--Loading-Dots-Color);
+	border-radius:100%;
+	opacity:0;
+}
+
+.loading-dot:first-child {
+	animation:LoadingAni var(--Loading-Dots-Animation-Duration) ease-in-out infinite normal running;
+}
+
+.loading-dot:nth-child(2) {
+	animation:LoadingAni var(--Loading-Dots-Animation-Duration) ease-in-out var(--Loading-Dots-Animation-Delay) infinite alternate running;
+}
+
+.loading-dot:nth-child(3) {
+	animation:LoadingAni var(--Loading-Dots-Animation-Duration) ease-in-out calc(var(--Loading-Dots-Animation-Delay) * 2) infinite alternate running;
+}
+
+@keyframes LoadingAni {
+	0% {
+		opacity:0
+	}
+	
+	20% {
+		opacity:1
+	}
+	
+	80% {
+		opacity:1
+	}
+}
