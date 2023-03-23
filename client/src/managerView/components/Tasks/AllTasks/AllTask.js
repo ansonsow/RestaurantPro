@@ -8,6 +8,8 @@ export default function AllTask() {
   const [allUsers, setAllUsers] = useState([]);
   const [allUsersTasks, setAllUsersTasks] = useState([]);
   const [allTaskData, setAllTaskData] = useState([]);
+  const [loadingEmployeeTasks, setLoadingEmployeeTasks] = useState(false);
+  const [loadingAllTask, setLoadingAllTask] = useState(null);
   const handle = () => {
     console.log("start");
   };
@@ -19,10 +21,13 @@ export default function AllTask() {
   useEffect(() => {
     console.log("In All Task");
     getAllTasks();
+  }, []);
+
+  useEffect(() => {
     getAllUsers();
     getUsersTasks();
     showAllTasks();
-  }, [allTasks, allUsers, allUsersTasks]);
+  }, [loadingAllTask]);
 
   useEffect(() => {
     // showAllTasks();
@@ -31,7 +36,7 @@ export default function AllTask() {
   // get all user
   const getAllUsers = async () => {
     await axios
-      .get(process.env.REACT_APP_SERVER+ "users")
+      .get(process.env.REACT_APP_SERVER + "users")
       .then((response) => {
         console.log("all users:" + JSON.stringify(response.data));
         setAllUsers(response.data);
@@ -43,11 +48,13 @@ export default function AllTask() {
 
   //get all tasks
   const getAllTasks = async () => {
+    setLoadingAllTask(true);
     await axios
       .get("http://localhost:8000/api/v1/tasks")
       .then((response) => {
         console.log("all task:" + JSON.stringify(response.data));
         setAllTask(response.data);
+        setLoadingAllTask(false);
       })
       .catch((error) => {
         console.log("error in fetching all task: " + error);
@@ -56,6 +63,7 @@ export default function AllTask() {
 
   let showAllTasks = () => {
     let newUser = [];
+    console.log("allUsersTasks" + JSON.stringify(allUsersTasks));
 
     allUsersTasks.forEach((usertask) => {
       let user = allUsers.find((user) => user.user_id === usertask.user_id);
@@ -76,11 +84,13 @@ export default function AllTask() {
 
   // get today users' tasks
   const getUsersTasks = async () => {
+    setLoadingEmployeeTasks(true);
     await axios
-      .get("http://localhost:8000/api/v1/usersTasksToday")
+      .get("http://localhost:8000/api/v1/usersTasks")
       .then((response) => {
         console.log("all user task:" + JSON.stringify(response.data));
         setAllUsersTasks(response.data);
+        setLoadingEmployeeTasks(false);
       })
       .catch((error) => {
         console.log("error in fetching all task: " + error);
@@ -89,24 +99,29 @@ export default function AllTask() {
 
   let currentUrl = window.location.href;
   useEffect(() => {
-    if(currentUrl.includes("/task") ){
-      document.getElementById("all-task-btn").style.backgroundColor = "#FFC619"
+    if (currentUrl.includes("/task")) {
+      document.getElementById("all-task-btn").style.backgroundColor = "#FFC619";
     }
-  }); 
+  });
   return (
     <div className="all-task-page">
       <div className="all-task-page-upper-section">
         <div className="all-task-page-upper-section-button-section">
-		  <Link to="/task" className="link-a"><button id="all-task-btn">All Task</button></Link>
-									 
-				 
-          <Link to="/assign-task" className='link-a'><button>Assign Task</button></Link>
-										
-				 
-          <Link to="/create-task" className='link-a'><button>Create Task</button></Link>
-														 
-				 
-          <Link to="/daily-attendance" className='link-a'><button>Daily Attendance</button></Link>
+          <Link to="/tasks" className="link-a">
+            <button id="all-task-btn">All Task</button>
+          </Link>
+
+          <Link to="/assign-task" className="link-a">
+            <button>Assign Task</button>
+          </Link>
+
+          <Link to="/create-task" className="link-a">
+            <button>Create Task</button>
+          </Link>
+
+          <Link to="/daily-attendance" className="link-a">
+            <button>Daily Attendance</button>
+          </Link>
         </div>
         <div className="all-task-page-upper-section-search-section">
           <input type="text" className="search-box" placeholder="Search Here" />
@@ -124,9 +139,9 @@ export default function AllTask() {
             </tr>
           </thead>
           <tbody>
-            {allTaskData.map((task) => (
-              <TaskRow task={task} />
-            ))}
+            {loadingEmployeeTasks
+              ? "Loading..."
+              : allTaskData.map((task) => <TaskRow task={task} />)}
           </tbody>
         </table>
       </div>

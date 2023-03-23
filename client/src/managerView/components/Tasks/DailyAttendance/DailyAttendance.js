@@ -46,7 +46,7 @@ export default function DailyAttendance() {
     <div className="daily-attendance-page">
       <div className="daily-attendance-page-upper-section">
         <div className="daily-attendance-page-upper-section-button-section">
-          <Link to="/task" className="link-a">
+          <Link to="/tasks" className="link-a">
             <button>All Task</button>
           </Link>
           <Link to="/assign-task" className="link-a">

@@ -121,7 +121,7 @@ export default function CreateTask() {
       {getAllUserName()}
       <div className="create-task-page-upper-section">
         <div className="create-task-page-upper-section-button-section">
-          <Link to="/task" className="link-a">
+          <Link to="/tasks" className="link-a">
             <button>All Task</button>
           </Link>
           <Link to="/assign-task" className="link-a">
