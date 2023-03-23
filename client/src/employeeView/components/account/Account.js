@@ -65,6 +65,7 @@ function Account(props) {
     for(let i = 0 ; i<inputs.length-1;i++){
       console.log(inputs[i].id);
       let j = inputs[i].id;
+
       console.log(oldDetails[j]);
       if(oldDetails[j]){
         inputs[i].value = oldDetails[j];
