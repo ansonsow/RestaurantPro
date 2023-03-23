@@ -89,15 +89,21 @@ export default function AllTask() {
 
   let currentUrl = window.location.href;
   useEffect(() => {
-    if(currentUrl.includes("/task") ){
+    if(currentUrl.includes("/tasks") ){
       document.getElementById("all-task-btn").style.backgroundColor = "#FFC619"
     }
   }); 
   return (
     <div className="all-task-page">
+      <div class="loading-icon">
+        <div class="loading-dot"></div>
+        <div class="loading-dot"></div>
+        <div class="loading-dot"></div>
+      </div>
+
       <div className="all-task-page-upper-section">
         <div className="all-task-page-upper-section-button-section">
-		  <Link to="/task" className="link-a"><button id="all-task-btn">All Task</button></Link>
+          <Link to="/tasks" className="link-a"><button id="all-task-btn">All Task</button></Link>
 									 
 				 
           <Link to="/assign-task" className='link-a'><button>Assign Task</button></Link>

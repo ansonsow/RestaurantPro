@@ -111,7 +111,8 @@ export default function EmployeeList() {
                         src={deleteIcon}
                         onClick={displayDiscardDialogue}
                         alt="" />
-                      <Link to={`/edit-employee/${user.user_id}`} className="link-a">
+                      <Link to="/edit-employee" className='link-a'>
+                      {/* <Link to={`/edit-employee/${user.user_id}`} className="link-a"> */}
                         <img src={editIcon} alt="" />
                       </Link>
                     </td>

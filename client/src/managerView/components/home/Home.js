@@ -2,8 +2,7 @@ import React from "react";
 import "./Home.css";
 import PersonalDetails from "./personalDetails/PersonalDetails";
 
-import QuickActions from "./quickActions/QuickActions";
-
+import QuickActions from "./QuickActions_/QuickActions_";
 
 
 export default function Home() {

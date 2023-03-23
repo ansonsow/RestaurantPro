@@ -187,7 +187,7 @@ export default function AssignTask() {
     <div className="assign-task-page">
       <div className="assign-task-page-upper-section">
         <div className="assign-task-page-upper-section-button-section">
-          <Link to="/task" className="link-a">
+          <Link to="/tasks" className="link-a">
             <button>All Task</button>
           </Link>
 

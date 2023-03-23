@@ -121,7 +121,7 @@ export default function CreateTask() {
       {getAllUserName()}
       <div className="create-task-page-upper-section">
         <div className="create-task-page-upper-section-button-section">
-          <Link to="/task" className="link-a">
+          <Link to="/tasks" className="link-a">
             <button>All Task</button>
           </Link>
           <Link to="/assign-task" className="link-a">
@@ -200,14 +200,14 @@ export default function CreateTask() {
       </div>
       <div className="create-task-button-section">
         <button>Discard</button>
-        <Link to="/task">
+        <Link to="/tasks">
           <button onClick={saveTasks}>Save Changes</button>
         </Link>
       </div>
       {/* <div className="save-change" id="dialogueBox">
         <div className="save-change-dialogue">
           <p>New Task Created</p>
-          <Link to="/task">
+          <Link to="/tasks">
             <button onClick={closeDialogue}>Okey</button>
           </Link>
         </div>
