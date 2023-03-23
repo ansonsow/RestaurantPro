@@ -1,5 +1,5 @@
 
-import "./QuickActions.css"
+import "./quick_actions.css"
 
 import { Link } from "react-router-dom";
 
@@ -10,7 +10,7 @@ import attendanceIcon from "../../../../icons/calendar_time.svg"
 import assignTaskIcon from "../../../../icons/user_tick.svg"
 import employeeListIcon from "../../../../icons/employees.svg"
 
-const QuickActions = () => {
+const quick_actions = () => {
     let sliderIconSVG;
     let createTaskIconSVG;
     let allTasksIconSVG;
@@ -112,4 +112,4 @@ const QuickActions = () => {
     )//end return()
 }//end func
 
-export default QuickActions;
+export default quick_actions;

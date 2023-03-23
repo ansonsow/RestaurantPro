@@ -1,12 +1,12 @@
 import React from "react";
 import "./Home.css";
 import PersonalDetails from "./personalDetails/PersonalDetails";
-import QuickActions from "./quickactions/QuickActions";
+import quick_actions from "./quick_actions/quick_actions";
 
 export default function Home() {
   return (
     <div className="home_page manager_view">
-      <QuickActions/>
+      <quick_actions/>
       <PersonalDetails/>
     </div>
   );
