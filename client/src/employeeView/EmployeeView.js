@@ -10,14 +10,14 @@ import Task from "../employeeView/components/task/Task";
 import Statistics from "../employeeView/components/statistics/Statistics";
 import Notifs from "../employeeView/components/notifs/Notifs";
 import LogOut from "../employeeView/components/logout/LogOut";
-import StatisticsPage from "../employeeView/components/statistics/Statistics"
+import StatisticsPage from "../employeeView/components/statistics/Statistics";
 import Help from "../employeeView/components/help/Help";
 import Blank from "../employeeView/components/blank/Blank";
 
 function EmployeeView(props) {
   const currentUrl = window.location.href;
 
-  const lastSlashIndex = currentUrl.lastIndexOf('/');
+  const lastSlashIndex = currentUrl.lastIndexOf("/");
 
   const baseUrl = currentUrl.substr(0, lastSlashIndex + 1);
   // window.location.assign(baseUrl)
@@ -38,6 +38,7 @@ function EmployeeView(props) {
                 setUnDoneTask={props.setUnDoneTask}
                 getUserTasksIds={props.getUserTasksIds}
                 unDoneTask={props.unDoneTask}
+                loadingTask={props.loadingTask}
               />
             }
           />
@@ -49,6 +50,7 @@ function EmployeeView(props) {
                 tasks={props.tasks}
                 getUserTasksIds={props.getUserTasksIds}
                 setUnDoneTask={props.setUnDoneTask}
+                loadingTask={props.loadingTask}
               />
             }
           />
@@ -64,11 +66,7 @@ function EmployeeView(props) {
             element={<Account account={props.account} />}
           />
           <Route exact path="/log-out" element={<LogOut />} />
-          <Route
-            exact
-            path="/blank"
-            element={<Blank />}
-          />
+          <Route exact path="/blank" element={<Blank />} />
           <Route exact path="/help" element={<Help />} />
         </Routes>
 

@@ -1,3 +1,7 @@
+:root {
+   --Employee-Homepage-User-Icon-Size:50px;
+}
+
 .user_brief_info {
 
 }
@@ -20,13 +24,33 @@
    color:var(--Primary);
    margin-bottom:calc(var(--Rightside-Boxes-Heading-Underline-Gap) * 1.5);
    padding-bottom:var(--Rightside-Boxes-Heading-Underline-Gap);
-   border-bottom:1px solid var(--Gray-Darker);
+   border-bottom:1px solid rgba(var(--Primary-RGB),0.35);
 }
 
 .user {
    display: flex;
    flex-direction: row;
-   gap: 10px;
+   gap: 0 15px;
+}
+
+.user_icon {
+   flex-shrink:0;
+}
+
+.user_icon_svg {
+   width:var(--Employee-Homepage-User-Icon-Size);
+   height:var(--Employee-Homepage-User-Icon-Size);
+}
+
+.user_icon_svg svg {
+   display:block;
+   width:100%;
+   height:100%;
+}
+
+.user_icon_svg svg [fill],
+.user_icon_svg svg [style*="fill"]{
+   fill:rgba(var(--Text-Color-RGB),0.9);
 }
 
 .user_box p {

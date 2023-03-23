@@ -5,7 +5,7 @@ import ManagerView from "./managerView/ManagerView";
 import Navbar from "./employeeView/components/navbar/Navbar";
 import EmployeeView from "./employeeView/EmployeeView";
 import AssignTask from "./managerView/components/Tasks/AssignTasks/AssignTask";
-import rpLogoHorizontal from "./icons/Logo_Primary_horizontal.svg"
+import rpLogoHorizontal from "./icons/Logo_Primary_horizontal.svg";
 import axios from "axios";
 function App() {
   const [userId, setUserId] = useState("");
@@ -15,9 +15,12 @@ function App() {
   const [psw, setPsw] = useState("");
   const [userType, setUserType] = useState("");
   const [unDoneTask, setUnDoneTask] = useState(false);
+  const [loadingTask, setLoadingTask] = useState(false);
   const tasks = [];
+
   // const serverUrl = "http://52.39.41.70:8000/api/v1/";
   // let navigate = useNavigate(); 
+
 
   // console.log(process.env.REACT_APP_SERVER+"users");
   // console.log(process.env.REACT_APP_SERVER+"users");
@@ -54,6 +57,7 @@ function App() {
     console.log("******************");
     console.log("In getUserTasksIds");
     console.log("userId in localStorage: " + userId);
+    setLoadingTask(true);
     await axios
       // .get(`http://localhost:8000/api/v1/usersTasks/user/${userId}`)
       .get(`${process.env.REACT_APP_SERVER}usersTasks/user/${userId}`)
@@ -66,6 +70,7 @@ function App() {
           getUserTasks(id);
         });
         setUserTasks(tasks);
+        setLoadingTask(false);
       })
       .catch((error) => {
         console.log("error in fetching the task ids: " + error);
@@ -145,7 +150,7 @@ function App() {
         }, 1000);
 
         checkUserId(e);
-       })
+      })
       .catch((error) => {
         console.log(error);
       });
@@ -163,31 +168,30 @@ function App() {
     // localStorage.setItem("userType", userType);
   }, [showView, unDoneTask]);
 
-
-
   let rpLogoHorizontalSVG;
 
-  async function grabSVG(url){
-      return fetch(url)
-      .then(response => response.text())
-      .then(result => {
-          return result;
+  async function grabSVG(url) {
+    return fetch(url)
+      .then((response) => response.text())
+      .then((result) => {
+        return result;
       });
   }
 
-  grabSVG(rpLogoHorizontal).then(eyqxf => {
-      rpLogoHorizontalSVG = eyqxf;
-      document.querySelectorAll(".restaurantPro_logo_landscape").forEach(thdkv => {
-          thdkv.innerHTML = rpLogoHorizontalSVG
-      })        
-  })
+  grabSVG(rpLogoHorizontal).then((eyqxf) => {
+    rpLogoHorizontalSVG = eyqxf;
+    document
+      .querySelectorAll(".restaurantPro_logo_landscape")
+      .forEach((thdkv) => {
+        thdkv.innerHTML = rpLogoHorizontalSVG;
+      });
+  });
 
-  const stopPropagation= (e) => {
+  const stopPropagation = (e) => {
     e.preventDefault();
-  }
+  };
 
-  return (    
-
+  return (
     <div className="App">
       {console.log(
         "localStorage return : " + localStorage.getItem("showScreen")
@@ -206,25 +210,44 @@ function App() {
               <div className="login_tr">
                 <form className="login_form" onClick={stopPropagation}>
                   <label>User Id</label>
-                  <input type="text" placeholder="User ID" value={userId} onChange={getUserId} />
+                  <input
+                    type="text"
+                    placeholder="User ID"
+                    value={userId}
+                    onChange={getUserId}
+                  />
 
                   <label>password</label>
-                  <input type="password" placeholder="Password" value={psw} onChange={getPassword} />
+                  <input
+                    type="password"
+                    placeholder="Password"
+                    value={psw}
+                    onChange={getPassword}
+                  />
                   {/* <div className="submit" onClick={checkUserId}>
                     <h4>Submit</h4>
                   </div> */}
 
                   <div className="logIn">
-                    <button type="submit" onClick={loginUser}>Login</button>
+                    <button type="submit" onClick={loginUser}>
+                      Login
+                    </button>
                   </div>
-                </form>{/* end login form */}
-              </div>{/* end login table-row */}
-            </div>{/* end login table */}
-          </div>{/* end login left 50vw */}
-          
+                </form>
+                {/* end login form */}
+              </div>
+              {/* end login table-row */}
+            </div>
+            {/* end login table */}
+          </div>
+          {/* end login left 50vw */}
+
           <div className="login_half_right">
             <div className="login_image_holder">
-              <img src="https://cdn.glitch.global/f202da4e-f9f2-4703-9a01-471c490e991b/83a20ce0-5f7b-4a96-b52d-53f8544feda0.image.png" alt=""/>
+              <img
+                src="https://cdn.glitch.global/f202da4e-f9f2-4703-9a01-471c490e991b/83a20ce0-5f7b-4a96-b52d-53f8544feda0.image.png"
+                alt=""
+              />
             </div>
           </div>
         </div>
@@ -239,12 +262,12 @@ function App() {
           userId={userId}
           getUserTasksIds={getUserTasksIds}
           unDoneTask={unDoneTask}
+          loadingTask={loadingTask}
         />
       ) : localStorage.userType == "Manager" ? (
         // manager view
         // <div>Manager view</div>
         <ManagerView />
-        
       ) : (
         // <>haha</>
 

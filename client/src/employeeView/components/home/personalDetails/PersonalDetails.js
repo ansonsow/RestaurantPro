@@ -2,6 +2,18 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { User } from "react-feather";
 import "./PersonalDetails.css";
+import userCircleIcon from "../../../../icons/user_circle.svg";
+
+let userCircleIconSVG;
+
+async function grabSVG(url){
+  return fetch(url)
+  .then(response => response.text())
+  .then(result => {
+    return result;
+  });
+}
+
 // process.env.REACT_APP_SERVER
 export default function PersonalDetails(props) {
   const [userName, setUserName] = useState("");
@@ -131,13 +143,21 @@ export default function PersonalDetails(props) {
     getAttendance();
   }, []);
 
+  grabSVG(userCircleIcon).then(eyqxf => {
+    userCircleIconSVG = eyqxf;
+    document.querySelectorAll(".user_icon_svg").forEach(thdkv => {
+      thdkv.innerHTML = userCircleIconSVG
+    })
+  })
+
   return (
     <div className="user_brief_info">
       <div className="account_info user_box">
         <h4>Account Info</h4>
         <div className="user">
           <div className="user_icon">
-            <User />
+            {/* <User /> */}
+            <div className="user_icon_svg"></div>
           </div>
           <div className="user_details">
             <p>{userName}</p>

@@ -8,3 +8,15 @@
     grid-template-columns:var(--Main-Board-Width) auto;
     grid-gap:0 var(--Center-Gap);
 }
+
+.App > .components > .home_page > .board:first-child .board_head:first-child {
+    position:absolute;
+    bottom:100%;
+    height:var(--Navbar-Height);
+    display:flex;
+    align-items:center;
+}
+
+.App > .components > .home_page > .board:first-child .board_head:first-child h2 {
+    margin-bottom:0;
+}
