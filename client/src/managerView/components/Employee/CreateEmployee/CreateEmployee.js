@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../EditEmployee/EditEmployee.css";
 import axios from "axios";
@@ -81,6 +81,13 @@ export default function CreateEmployee() {
     userFields.restaurantName = event.target.value;
     console.log("restaurantName: " + JSON.stringify(userFields));
   };
+
+  let currentUrl = window.location.href;
+    useEffect(() => {
+        if(currentUrl.includes("/create-employee") ){
+          document.getElementById("new-employee-btn").style.backgroundColor = "#FFC619"
+        }
+      });
   return (
     <>
       <div className="employee-page">
