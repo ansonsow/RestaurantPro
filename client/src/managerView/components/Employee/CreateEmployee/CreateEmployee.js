@@ -6,7 +6,7 @@ export default function CreateEmployee() {
   const userFields = useRef([]);
   const empId = useRef("");
   const closeDialogue = () => {
-    //window.location.reload();
+    window.location.reload();
     document.getElementById("dialogueBox").style.display = "none";
   };
 
