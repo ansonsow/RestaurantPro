@@ -118,7 +118,7 @@
 }
 
 /* highlight stats page link */
-.App > .components > .stats_page ~ .menu li.sb_stats_link a,
+.App > .components > .statistics-page ~ .menu li.sb_stats_link a,
 .App > .statistics-page ~ .menu li.sb_stats_link a {
     background:var(--Primary-Medium)
 }
