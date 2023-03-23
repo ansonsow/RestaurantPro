@@ -90,7 +90,7 @@
 }
 
 /*---- CONTAINERS THAT DON'T HAVE THE RIGHT SIDEBAR ---*/
-.task_page, .account_page,
+.task_page, .account_page, .stats_page, .notifs_page, .help_page,
 .all-task-page, .assign-task-page, .create-task-page, .daily-attendance-page,
 .statistics-page,
 .employee-list-page, .employee-page {
@@ -118,7 +118,7 @@
 }
 
 /* highlight stats page link */
-.App > .components > .task_page ~ .menu li.sb_tasks_link a,
+.App > .components > .stats_page ~ .menu li.sb_stats_link a,
 .App > .statistics-page ~ .menu li.sb_stats_link a {
     background:var(--Primary-Medium)
 }
@@ -140,23 +140,72 @@
 }
 
 /* highlight logout page link */
-.App > .components > .logout_page ~ .menu .sb_logout_link {
+.App > .components > .logout_page ~ .menu .sb_logout_link,
+.App > .logout_page ~ .menu .sb_logout_link {
+    background:var(--Primary-Medium)
+}
+
+/* highlight help page link */
+.App > .components > .help_page ~ .menu .sb_help_link,
+.App > .help_page ~ .menu .sb_help_link {
     background:var(--Primary-Medium)
 }
 
 /*---- LOGIN PAGE CSS ----*/
-.login_form {
-    --qbxny: calc(var(--Navbar-Height) / 3);
+:root {
+    --Login-Screen-Margins:35px;
+    --Login-Logo-Left-Nudge:35px;
+    --Login-Logo-Width:50%;
+    --Login-Form-Width:75%;
+    --Login-Screen-Center-Gap:60px;
+}
+
+.login_page {
     position:absolute;
     top:0;left:0;
-    margin-top:var(--qbxny);
-    height:calc(100vh - var(--qbxny));
-    left:50%;
-    transform:translateX(-50%);
+    width:100%;
+    height:100%;
+    display:grid;
+    grid-template-columns:50% 50%;
+    grid-gap:0 var(--Login-Screen-Center-Gap);
+    padding:var(--Login-Screen-Margins);
+}
+
+.login_top_part {
+    margin-left:var(--Login-Logo-Left-Nudge);
+    width:var(--Login-Logo-Width);
+}
+
+.login_top_part svg {
+    display:block;
+    width:100%;
+    height:auto;
+}
+
+.login_half_left {
+    position:relative;
+}
+
+.login_tb {
+    position:absolute;
+    top:0;left:0;
+    display:table;
+    width:100%;
+    height:100%;
+}
+
+.login_tr {
+    display:table-cell;
+    vertical-align:middle;
+}
+
+.login_form {
+    margin:auto;
+    margin-top:calc((var(--Login-Logo-Width) * 0.282) * 0.8);
     display:flex;
     flex-direction:column;
     justify-content:center;
-    width:500px;
+    width:var(--Login-Form-Width);
 }
 
 .login_form label,
@@ -185,37 +234,54 @@
     margin-top:1.5em;
 }
 
-.login_form .submit,
 .login_form .logIn {
     margin-top:22px;    
 }
 
-.login_form .submit h4,
-.login_form .logIn h4 {
+.login_form .logIn button {
     display:inline-block;
     margin:0;
-    padding:10px 16px;
+    padding:12px 22px;
     border-radius:var(--Corner-Rounding);
     background:var(--Primary);
     font-family:"Century Gothic Bold";
+    font-size:var(--Body-Font-Size);
     letter-spacing:0.3px;
     color:var(--Background);
+    border:none;
     cursor:pointer;
 }
 
-.login_form .logIn {
-    position:relative;
-}
-
-.login_form .logIn h4 {
-    position:absolute;
-    bottom:0;right:0;
-    margin-bottom:22px;
-}
-
-.login_form .submit h4:hover,
-.login_form .logIn h4:hover {
+.login_form .logIn button:hover {
     background:var(--Primary-Medium);
+}
+
+.login_image_holder {
+    position:relative;
+    width:calc(100% - var(--Login-Screen-Center-Gap));
+    height:100%;
+    z-index:0;
+}
+
+.login_image_holder:before {
+    content:"";
+    position:absolute;
+    top:0;left:0;
+    width:100%;
+    height:100%;
+    background:black;
+    opacity:0;
+    z-index:2;
+}
+
+.login_half_right img {
+    position:absolute;
+    display:block;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:50% 50%;
+    border-radius:var(--Corner-Rounding)
 }
 
 /*---- RESPONSIVENESS / MEDIA QUERIES ----*/
