@@ -13,9 +13,9 @@ export default function PersonalDetails(props) {
 
   const getData = async () => {
     // console.log(`http://localhost:8000/api/v1/users/${Number(localStorage.userId)}`);
-    console.log("wat happenend?");
-    console.log(localStorage.userId);
-    console.log(process.env.REACT_APP_SERVER);
+    // console.log("wat happenend?");
+    // console.log(localStorage.userId);
+    // console.log(process.env.REACT_APP_SERVER);
     const url = `${process.env.REACT_APP_SERVER}users/${localStorage.userId}`;
     console.log(url);
     await axios
