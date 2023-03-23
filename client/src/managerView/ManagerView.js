@@ -1,7 +1,7 @@
 
 import './ManagerView.css';
 
-import Sidebar from './components/sidebar/SideBar';
+import Sidebar from './components/Sidebar/SideBar';
 
 import{
   BrowserRouter as Router,
@@ -19,8 +19,10 @@ import DailyAttendance from './components/Tasks/DailyAttendance/DailyAttendance'
 import AssignTask from './components/Tasks/AssignTasks/AssignTask';
 import StatisticsPage from './components/StatisticsPage/Statistics/Statistics';
 import Home from './components/home/Home';
-import LogOut from './components/logout/LogOut'
-import Blank from './components/blank/Blank'
+import LogOut from './components/logout/LogOut';
+import Blank from './components/blank/Blank';
+import Account from './components/account/Account';
+import ChangePassword from './components/account/ChangePassword';
 
 // import LogOut from "../employeeView/components/logout/LogOut";
 // import Blank from "../employeeView/components/blank/Blank";
@@ -43,6 +45,8 @@ function ManagerView() {
           <Route path="/home" element={<Home />} />
           <Route path="/log-out" element={<LogOut />} />
           <Route path="/blank" element={<Blank />} />
+          <Route path="/account" element={<Account/>} />
+          <Route path="/change-password" element={<ChangePassword/>} />
         </Routes>
 
         <Sidebar />

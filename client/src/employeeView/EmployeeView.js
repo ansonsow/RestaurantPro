@@ -59,6 +59,7 @@ function EmployeeView(props) {
             path="/statistics"
             element={<StatisticsPage tasks={props.tasks} />}
           />
+          <Route exact path="/notifications" element={<Notifs />} />
           <Route
             exact
             path="/account"

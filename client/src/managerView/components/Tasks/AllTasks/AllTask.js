@@ -99,12 +99,18 @@ export default function AllTask() {
 
   let currentUrl = window.location.href;
   useEffect(() => {
-    if (currentUrl.includes("/task")) {
-      document.getElementById("all-task-btn").style.backgroundColor = "#FFC619";
+    if(currentUrl.includes("/tasks") ){
+      document.getElementById("all-task-btn").style.backgroundColor = "#FFC619"
     }
   });
   return (
     <div className="all-task-page">
+      <div class="loading-icon">
+        <div class="loading-dot"></div>
+        <div class="loading-dot"></div>
+        <div class="loading-dot"></div>
+      </div>
+
       <div className="all-task-page-upper-section">
         <div className="all-task-page-upper-section-button-section">
           <Link to="/tasks" className="link-a">
@@ -122,6 +128,7 @@ export default function AllTask() {
           <Link to="/daily-attendance" className="link-a">
             <button>Daily Attendance</button>
           </Link>
+
         </div>
         <div className="all-task-page-upper-section-search-section">
           <input type="text" className="search-box" placeholder="Search Here" />

@@ -1,4 +1,8 @@
 /* CSS STYLING FOR ALL TASK PAGE*/
+.all-task-page {
+    height:calc(100% - var(--Navbar-Height))
+}
+
 .all-task-page-upper-section{
     display: flex;
     justify-content: space-between;

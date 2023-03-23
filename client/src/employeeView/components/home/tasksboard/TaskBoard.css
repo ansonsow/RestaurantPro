@@ -13,8 +13,8 @@
     --Task-Details-CTA-Top-Gap:25px;
 }
 
-.board{
-
+.board {
+    position:relative;
 }
 
 .home_page .task_board {
