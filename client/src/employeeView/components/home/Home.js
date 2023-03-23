@@ -12,7 +12,12 @@ export default function Home(props) {
   return (
     <div className="home_page">
       {/* <Menu /> */}
-      <Tasksboard tasks={props.tasks}/>
+      <Tasksboard
+        tasks={props.tasks}
+        setUnDoneTask={props.setUnDoneTask}
+        getUserTasksIds={props.getUserTasksIds}
+        unDoneTask={props.unDoneTask}
+      />
       <PersonalDetails />
     </div>
   );
