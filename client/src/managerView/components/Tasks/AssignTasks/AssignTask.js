@@ -109,10 +109,11 @@ export default function AssignTask() {
   const taskSelected = (event) => {
     const { id, checked } = event.target;
     if (checked) {
-      setUnAssignedTask((pre) => [...pre, id]);
+      setUnAssignedTask((pre) => [pre, ...id]);
+      console.log("us assigned..." + unAssignedTask);
     } else {
       setUnAssignedTask((pre) => {
-        return [...pre.filter((task_id) => task_id != id)];
+        return [...pre.filter((task_id) => task_id !== id)];
       });
     }
   };
