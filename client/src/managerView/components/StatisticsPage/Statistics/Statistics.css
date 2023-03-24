@@ -70,3 +70,7 @@
 .employee-performance-table thead th{
     font-size: 14px;
 }
+
+[class*="statistics-page-middle-section"] input {
+    pointer-events:none;
+}
