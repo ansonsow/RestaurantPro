@@ -90,8 +90,15 @@ function TasksBoard(props) {
       <div className="board_head">
         <h2>My Uncompleted Tasks</h2>
       </div>
-      {props.loadingTask ? "Loading..." : ""}
+      {props.loadingTask && (
+        <div class="loading-icon">
+          <div class="loading-dot"></div>
+          <div class="loading-dot"></div>
+          <div class="loading-dot"></div>
+        </div>
+      )}
       {showBoard ? (
+        <>
         <div className="task_board">
           <div className="board_list">
             {tasks.map((item) => (
@@ -114,8 +121,9 @@ function TasksBoard(props) {
               />
             )}
           </div>
-          <button onClick={changeTaskStatus}>Task Finished</button>
         </div>
+        {tasks.length>0?(<button onClick={changeTaskStatus}>Task Finished</button>):(<h3>No Task</h3>)}
+        </>
       ) : (
         <TaskDetails item={task} setShowBoard={setShowBoard} />
       )}

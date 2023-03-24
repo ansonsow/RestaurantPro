@@ -111,11 +111,11 @@ export default function AllTask() {
   });
   return (
     <div className="all-task-page">
-      <div class="loading-icon">
+      {/* <div class="loading-icon">
         <div class="loading-dot"></div>
         <div class="loading-dot"></div>
         <div class="loading-dot"></div>
-      </div>
+      </div> */}
 
       <div className="all-task-page-upper-section">
         <div className="all-task-page-upper-section-button-section">
@@ -134,7 +134,6 @@ export default function AllTask() {
           <Link to="/daily-attendance" className="link-a">
             <button>Daily Attendance</button>
           </Link>
-
         </div>
         <div className="all-task-page-upper-section-search-section">
           <input type="text" className="search-box" placeholder="Search Here" />
@@ -153,7 +152,13 @@ export default function AllTask() {
           </thead>
           <tbody>
             {loadingEmployeeTasks
-              ? "Loading..."
+              ? (
+                <div class="loading-icon">
+        <div class="loading-dot"></div>
+        <div class="loading-dot"></div>
+        <div class="loading-dot"></div>
+      </div> 
+              )
               : allTaskData.map((task) => <TaskRow task={task} />)}
           </tbody>
         </table>
