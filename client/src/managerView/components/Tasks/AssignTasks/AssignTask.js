@@ -21,6 +21,7 @@ export default function AssignTask() {
   const [allEmployee, setAllEmployee] = useState([]);
   const changeEventState = useRef({});
   const [loadingTask, setLoadingTasks] = useState(false);
+  const [loadingEmployee, setLoadingEmployee] = useState(false);
 
   // Call Apis
   useEffect(() => {
@@ -54,11 +55,12 @@ export default function AssignTask() {
 
   // get all present employee
   const getClockInEmployees = async () => {
+    setLoadingEmployee(true);
+    console.log("get clock in");
     await axios
       // .get("http://localhost:8000/api/v1/attendance/true")
       .get(`${process.env.REACT_APP_SERVER}attendance/true`)
 
-      // ${process.env.REACT_APP_SERVER}
       .then((response) => {
         console.log("all present employees:" + JSON.stringify(response.data));
         let userIds = response.data.map((user) => user.user_id);
@@ -66,6 +68,7 @@ export default function AssignTask() {
         userIds.forEach((id) => {
           getUserDetails(id);
         });
+        setLoadingEmployee(false);
       })
       .catch((error) => {
         console.log("error in fetching all task: " + error);
@@ -269,7 +272,7 @@ export default function AssignTask() {
             </thead>
             <tbody>
               {console.log("loadingTask" + loadingTask)}
-              {loadingTask ? (
+              {loadingEmployee ? (
                 <div class="loading-icon">
                   <div class="loading-dot"></div>
                   <div class="loading-dot"></div>
