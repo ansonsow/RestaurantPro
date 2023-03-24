@@ -11,6 +11,15 @@ function TaskList(props) {
     props.setShowBoard(false);
     props.setItemId(props.item.task_id);
   };
+
+  let singleClickDisable = () => {
+    if(document.querySelector(".home_page .board_list input[type='checkbox']:checked") !== null){
+      document.querySelector(".home_page .board_list").classList.add("task_click_btn_disable")
+    } else {
+      document.querySelector(".home_page .board_list").classList.remove("task_click_btn_disable")
+    }
+  }
+
   let taskDone = (event) => {
     event.stopPropagation();
     // changeTaskStatus(false);
@@ -48,12 +57,17 @@ function TaskList(props) {
   return (
     <>
       <div key={props.item.task_id} className="task">
-        <input
-          type="checkbox"
-          onClick={taskSelected}
-          id={JSON.stringify(props.item)}
-        ></input>
-        <p onClick={showTaskDetails}>{props.item.task_name}</p>
+        <div className="task_checkbox_wrap" onClick={singleClickDisable}>
+          <input
+            type="checkbox"
+            onClick={taskSelected}
+            id={JSON.stringify(props.item)}
+          ></input>
+        </div>
+        
+        <p>
+          <span onClick={showTaskDetails}>{props.item.task_name}</span>
+        </p>
         <p className="check_task">Click to Complete</p>
       </div>
       {message && (
