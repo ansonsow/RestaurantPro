@@ -33,7 +33,10 @@ export default function AssignTask() {
     let allTask = [];
     setLoadingTasks(true);
     await axios
-      .get("http://localhost:8000/api/v1/tasks")
+      // .get("http://localhost:8000/api/v1/tasks")
+      .get(`${process.env.REACT_APP_SERVER}tasks`)
+
+      // ${process.env.REACT_APP_SERVER}
       .then((response) => {
         console.log("all task:" + JSON.stringify(response.data));
         response.data.forEach((task) => {
@@ -52,7 +55,10 @@ export default function AssignTask() {
   // get all present employee
   const getClockInEmployees = async () => {
     await axios
-      .get("http://localhost:8000/api/v1/attendance/true")
+      // .get("http://localhost:8000/api/v1/attendance/true")
+      .get(`${process.env.REACT_APP_SERVER}attendance/true`)
+
+      // ${process.env.REACT_APP_SERVER}
       .then((response) => {
         console.log("all present employees:" + JSON.stringify(response.data));
         let userIds = response.data.map((user) => user.user_id);
@@ -68,7 +74,10 @@ export default function AssignTask() {
 
   let getUserDetails = (id) => {
     axios
-      .get(`http://localhost:8000/api/v1/users/${id}`)
+      // .get(`http://localhost:8000/api/v1/users/${id}`)
+      .get(`${process.env.REACT_APP_SERVER}users/${id}`)
+
+      // ${process.env.REACT_APP_SERVER}
       .then((response) => {
         console.log(
           "all present employees details:" + JSON.stringify(response.data)
@@ -83,7 +92,10 @@ export default function AssignTask() {
   let updateUserTask = (uid, tid) => {
     let data = { task_id: tid, user_id: uid, status: true };
     axios
-      .post(`http://localhost:8000/api/v1/usersTasks`, data)
+      // .post(`http://localhost:8000/api/v1/usersTasks`, data)
+      .post(`${process.env.REACT_APP_SERVER}usersTasks`, data)
+
+      // ${process.env.REACT_APP_SERVER}
       .then((response) => {
         console.log("user task saved: " + JSON.stringify(response.data));
       })
@@ -93,7 +105,10 @@ export default function AssignTask() {
   let updateTaskStatus = (id) => {
     let data = { task_status: true, task_assigned: true };
     axios
-      .put(`http://localhost:8000/api/v1/task/${id}`, data)
+      // .put(`http://localhost:8000/api/v1/task/${id}`, data)
+      .put(`${process.env.REACT_APP_SERVER}task/${id}`, data)
+
+      // ${process.env.REACT_APP_SERVER}
       .then((response) => {
         console.log("task status updated: " + JSON.stringify(response.data));
       })
