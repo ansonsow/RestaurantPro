@@ -316,7 +316,7 @@ function Account(props) {
           - ":" is a separator that indicates that the button will go to a different url
           - "/account" is the url that the button should go to
          */}
-        <button className="save_btn" onClick={(e) => {htPopup("Changes changed successfully.", "okay:/account")(e);  }}>Save Changes</button>
+        <button className="save_btn" onClick={(e) => {htPopup("Changes changed successfully.", "okay:/account")(e); saveChanges()  }}>Save Changes</button>
         
       </div>
     </div>
