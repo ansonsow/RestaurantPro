@@ -3,10 +3,21 @@ let task = require("../models/tasks")
 
 
 const isToday = (someDate) => {
+
     const today = new Date()
-    return someDate.getDate() == today.getDate() &&
-      someDate.getMonth() == today.getMonth() &&
-      someDate.getFullYear() == today.getFullYear()
+    const strToday = today.toLocaleDateString("en-US", {timeZone: "America/Los_Angeles"})
+    // console.log("strtoday "+strToday);
+    console.log(typeof(someDate));
+    if(typeof(someDate)=="string"){
+        return someDate == strToday;
+    }else{
+        return someDate.getDate() == today.getDate() &&
+               someDate.getMonth() == today.getMonth() &&
+               someDate.getFullYear() == today.getFullYear()
+    }
+
+    
+
 }
 
 const convertTZ = (date, tzString) => {
@@ -56,18 +67,21 @@ const getUserTaskToday = async (req,res)=>{
 
     if(typeof(uid)=="undefined"&&typeof(tid)=="undefined"){
         const userTask = await UserTask.find()
-     
-        for(let i = 0 ;i<userTask.length;i++){
-            // console.log(isToday(convertTZ(userTask[i].date, "America/Vancouver")))
-            if(!userTask[i].date){
-                console.log("date is not")
-                break;
-            }
-                            console.log("date is ");
 
-            const convertDate = convertTZ(userTask[i].date, "America/Vancouver")
+        console.log(userTask);
+
+        for(let i = 0 ;i<userTask.length;i++){
+            console.log(userTask[i]);
+            // console.log(isToday(convertTZ(userTask[i].date, "America/Vancouver")))
+
+            // if(!userTask[i].date){
+            //     break;
+            // }
+            // const convertDate = convertTZ(userTask[i].date, "America/Vancouver")
+            const convertDate = userTask[i].date.toLocaleDateString("en-US", {timeZone: "America/Los_Angeles"})
+
             // console.log(userTask[i])
-            // console.log(convertDate)
+            console.log(convertDate)
             if(isToday(convertDate)){
                 console.log("date push")
                 data.push(userTask[i])
@@ -204,7 +218,7 @@ const checkBool = async (tid, t)=>{
     return finishAll
 }
 
-// update the user task for today's document if there is a matching 
+
 const updateUserTask = async (req,res) =>{
     const tid = req.params.tid;
     const uid = req.params.uid;

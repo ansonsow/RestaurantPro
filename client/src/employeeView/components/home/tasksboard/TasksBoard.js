@@ -52,7 +52,9 @@ function TasksBoard(props) {
       console.log("change task status item.id: " + item.id);
       console.log("count: " + count);
       axios
-        .put(`http://localhost:8000/api/v1/task/${item.id}`, task)
+        // .put(`http://localhost:8000/api/v1/task/${item.id}`, task)
+        .put(`${process.env.REACT_APP_SERVER}task/${item.id}`, task)
+
         // /usersTasks/:uid/:tid)
         // .put(
         //   `${process.env.REACT_APP_SERVER}userstasks/${localStorage.userId}/${props.item.task_id}`

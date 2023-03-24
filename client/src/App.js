@@ -17,8 +17,10 @@ function App() {
   const [unDoneTask, setUnDoneTask] = useState(false);
   const [loadingTask, setLoadingTask] = useState(false);
   const tasks = [];
-  const serverUrl = "http://52.39.41.70:8000/api/v1/";
-  // let navigate = useNavigate();
+
+  // const serverUrl = "http://52.39.41.70:8000/api/v1/";
+  // let navigate = useNavigate(); 
+
 
   // console.log(process.env.REACT_APP_SERVER+"users");
   // console.log(process.env.REACT_APP_SERVER+"users");
@@ -38,9 +40,10 @@ function App() {
     console.log("In getDataByUserID");
     console.log("userId in localStorage:" + userId);
     await axios
-      .get(`http://localhost:8000/api/v1/users/${userId}`)
+      .get(`${process.env.REACT_APP_SERVER}users/${userId}`)
       .then((response) => {
         // user.push(response.data);
+
         setUserDetails(response.data);
       })
       .catch((error) => {
@@ -56,7 +59,9 @@ function App() {
     console.log("userId in localStorage: " + userId);
     setLoadingTask(true);
     await axios
-      .get(`http://localhost:8000/api/v1/usersTasks/user/${userId}`)
+      // .get(`http://localhost:8000/api/v1/usersTasks/user/${userId}`)
+      .get(`${process.env.REACT_APP_SERVER}usersTasks/user/${userId}`)
+
       .then((response) => {
         let ids = response.data.map((item) => item.task_id);
         console.log("tasks ids of user " + JSON.stringify(ids));
@@ -76,7 +81,9 @@ function App() {
     console.log("In getUserTasks");
 
     await axios
-      .get(`http://localhost:8000/api/v1/tasks/${id}`)
+      // .get(`http://localhost:8000/api/v1/tasks/${id}`)
+      .get(`${process.env.REACT_APP_SERVER}tasks/${id}`)
+
       .then((response) => {
         tasks.push(response.data[0]);
         setUserTasks([...tasks]);
@@ -130,7 +137,7 @@ function App() {
     };
 
     await axios
-      .post(serverUrl + "user/login", login)
+      .post(process.env.REACT_APP_SERVER + "user/login", login)
       .then((result) => {
         console.log(result.data.data.type);
         setUserType(result.data.data.type);

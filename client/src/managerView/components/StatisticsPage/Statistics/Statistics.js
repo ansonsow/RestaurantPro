@@ -25,7 +25,10 @@ export default function StatisticsPage() {
     let closeTask = [];
 
     await axios
-      .get("http://localhost:8000/api/v1/tasks")
+      // .get("http://localhost:8000/api/v1/tasks")
+      .get(`${process.env.REACT_APP_SERVER}tasks`)
+
+      // ${process.env.REACT_APP_SERVER}
       .then((response) => {
         console.log("all task:" + JSON.stringify(response.data));
         settotalTasks(response.data.length);
