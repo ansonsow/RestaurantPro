@@ -28,7 +28,10 @@ export default function CreateEmployee() {
     empId.user_id = newEmployee.user_id;
     console.log("empId: " + empId.user_id);
     await axios
-      .post("http://localhost:8000/api/v1/users", newEmployee)
+      // .post("http://localhost:8000/api/v1/users", newEmployee)
+      .post(`${process.env.REACT_APP_SERVER}users`, newEmployee)
+
+      // ${process.env.REACT_APP_SERVER}
       .then((response) => {
         console.log("new employee saved:" + JSON.stringify(response.data));
       })

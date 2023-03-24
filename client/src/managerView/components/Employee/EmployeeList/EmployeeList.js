@@ -26,7 +26,10 @@ export default function EmployeeList() {
   //get all tasks
   const getAllUsers = async () => {
     try {
-    const response = await axios.get("http://localhost:8000/api/v1/users");
+    // const response = await axios.get(`http://localhost:8000/api/v1/users`);
+    const response = await axios.get(`${process.env.REACT_APP_SERVER}users`);
+
+    // ${process.env.REACT_APP_SERVER}
     console.log("all users:" + JSON.stringify(response.data));
     setAllUsers(response.data);
     } catch (error) {
