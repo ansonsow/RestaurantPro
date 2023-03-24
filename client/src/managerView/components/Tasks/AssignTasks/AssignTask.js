@@ -222,14 +222,20 @@ export default function AssignTask() {
             </thead>
             <tbody>
               {console.log("all task run")}
-              {loadingTask
-                ? "Loading..."
-                : allTasks.map((task) => (
-                    <UnAssignedTasksList
-                      unassignedTask={task}
-                      click={taskSelected}
-                    />
-                  ))}
+              {loadingTask ? (
+                <div class="loading-icon">
+                  <div class="loading-dot"></div>
+                  <div class="loading-dot"></div>
+                  <div class="loading-dot"></div>
+                </div>
+              ) : (
+                allTasks.map((task) => (
+                  <UnAssignedTasksList
+                    unassignedTask={task}
+                    click={taskSelected}
+                  />
+                ))
+              )}
               {/* {allTasks.map((task) => (
                 <UnAssignedTasksList
                   unassignedTask={task}
@@ -249,7 +255,11 @@ export default function AssignTask() {
             <tbody>
               {console.log("loadingTask" + loadingTask)}
               {loadingTask ? (
-                <h3>Loading...</h3>
+                <div class="loading-icon">
+                  <div class="loading-dot"></div>
+                  <div class="loading-dot"></div>
+                  <div class="loading-dot"></div>
+                </div>
               ) : (
                 allEmployee.map((employee) => (
                   <EmployeeList
