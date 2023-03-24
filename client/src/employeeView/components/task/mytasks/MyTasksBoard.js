@@ -23,6 +23,10 @@ function MyTasksBoard(props) {
       </div> */}
 {console.log("message status: "+message)}
       <div className="my_task_board">
+        <div className="tab-buttons-container">
+          <button className="tab-buttons active">Tasks</button>
+        </div>
+        
         <div className="board_columns">
           <div className="columns_names">
             <p>Task Name</p>

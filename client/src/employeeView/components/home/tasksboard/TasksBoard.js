@@ -100,6 +100,7 @@ function TasksBoard(props) {
       {showBoard ? (
         <>
         <div className="task_board">
+          {tasks.length>0?(<></>):(<h3>You have no open tasks.</h3>)}
           <div className="board_list">
             {tasks.map((item) => (
               <TaskList
@@ -122,7 +123,7 @@ function TasksBoard(props) {
             )}
           </div>
         </div>
-        {tasks.length>0?(<button onClick={changeTaskStatus}>Task Finished</button>):(<h3>No Task</h3>)}
+        {tasks.length>0?(<button onClick={changeTaskStatus}>Click to Complete All</button>):(<></>)}
         </>
       ) : (
         <TaskDetails item={task} setShowBoard={setShowBoard} />
