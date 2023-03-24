@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 import "./Account.css";
 import axios from "axios";
@@ -82,8 +82,84 @@ function Account(props) {
     })
   }
 
+  /*------- HT POPUP BOX -------*/
+  const htPopup = (msg, whichButtons) => (e) => {
+      // document.getElementById("deleteaccountdialogueBox").style.display = "flex"
+      let popupSpeed = getComputedStyle(document.documentElement).getPropertyValue("--Popup-Msg-Box-Fade-Speed");
+      popupSpeed = Number(popupSpeed.replace(/[^\d.]*/g,""));
+
+      let ht_popup = document.querySelector(".ht_popup");
+      let popupSentence = ht_popup.querySelector("h3");
+
+      let okayBtn = ht_popup.querySelector(".btn_okay");
+      let yesBtn = ht_popup.querySelector(".btn_yes");
+      let noBtn = ht_popup.querySelector(".btn_no");
+      let cancelBtn = ht_popup.querySelector(".btn_cancel");
+      
+      popupSentence.innerHTML = msg.trim();
+      ht_popup.style.display = "grid";
+
+      whichButtons = whichButtons.toLowerCase();
+
+      if(whichButtons.indexOf("okay") > -1){
+        okayBtn.style.display = "flex";
+
+        if(whichButtons.indexOf("okay:/") > -1){
+          let chopt = whichButtons.substring(whichButtons.indexOf("okay:/"));
+          let split = chopt.split(" ")[0];
+          let splitURL = split.replace("okay:","");
+          okayBtn.setAttribute("onclick",`location.href='${splitURL}'`)
+        }
+      }
+
+      if(whichButtons.indexOf("yes") > -1){
+        yesBtn.style.display = "flex";
+      }
+
+      if(whichButtons.indexOf("no") > -1){
+        noBtn.style.display = "flex";
+      }
+
+      if(whichButtons.indexOf("cancel") > -1){
+        cancelBtn.style.display = "flex";
+      }
+
+      setTimeout(() => {
+        ht_popup.classList.add("fade-in");
+      },0)
+
+      // on dismiss, reset everything
+      ht_popup.querySelectorAll("button").forEach(clgkv => {
+        clgkv.addEventListener("click", () => {
+          ht_popup.classList.remove("fade-in");
+
+          setTimeout(() => {
+            ht_popup.style.display = "none";
+            clgkv.style.display = "none";
+            clgkv.parentNode.querySelectorAll("button").forEach(pqvxx => {
+              pqvxx.style.display = "none";
+              pqvxx.removeAttribute("onclick");
+            })
+          },popupSpeed)
+        })
+      })
+  }// end ht popup box
 
   return (
+    <>
+    {/*------- HT POPUP BOX -------*/}
+    <div className="ht_popup">
+      <div className="ht_popup_box">
+        <h3> </h3>
+        <div className="ht_popup_buttons">
+          <button className="btn_okay">Okay</button>
+          <button className="btn_yes">Yes</button>
+          <button className="btn_no">No</button>
+          <button className="btn_cancel">Cancel</button>
+        </div>
+      </div>
+    </div>{/* end popup box */}
+
     <div className="account_page">
       <form className="task_details">
         {console.log("props in account: " + JSON.stringify(props.account))}
@@ -96,8 +172,15 @@ function Account(props) {
             <div className="acc_side_box">
               <h3>Actions</h3>
               <ul>
-                <li>Change Password</li>
-                <li>Delete Account</li>
+                {/*---- CHANGE PASSWORD ----*/}
+                <li>
+                  <Link to="/change-password">Change Password</Link>
+                </li>
+
+                {/*---- DELETE ACCOUNT ----*/}
+                <li onClick={
+                  (e) => htPopup("Do you want to<br>delete this account?", "yes no")(e)
+                }>Delete Account</li>
               </ul>
             </div>
           </div>
@@ -221,18 +304,22 @@ function Account(props) {
               </div>
         </div>{/* end form column 3 */}
         
-
-        
-
-        
       </form>
 
       <div className="call_to_actions">
-        <button className="discard_btn hollow" onClick={handleDiscard}>Discard</button>
+        <button className="discard_btn hollow" onClick={(e) => {htPopup("Changes discarded.", "okay")(e); handleDiscard()}}>Discard</button>
 
-        <button className="save_btn" onClick={saveChanges}>Save Changes</button>
+        {/* 
+          okay:/account
+          - this means that "okay" button will show
+          - ":" is a separator that indicates that the button will go to a different url
+          - "/account" is the url that the button should go to
+         */}
+        <button className="save_btn" onClick={(e) => {htPopup("Changes changed successfully.", "okay:/account")(e);  }}>Save Changes</button>
+        
       </div>
     </div>
+    </>
   );
 }
 
