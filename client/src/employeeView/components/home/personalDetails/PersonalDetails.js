@@ -38,8 +38,8 @@ export default function PersonalDetails(props) {
 
         const localDate = new Date(result.data.lastLogin);
         // console.log(String(localDate));
-
-        setLastLogin(String(localDate));
+        const trimedTime = localDate.toString().substring(0, 21)
+        setLastLogin(trimedTime);
       })
       .catch((error) => {
         console.log(error);
@@ -70,15 +70,19 @@ export default function PersonalDetails(props) {
         const localClockOut = new Date(result.data[0].clock_out);
         // console.log("waaaaaaaaaaaa"+result);
         // stringify(result)
+        console.log("wtf"+result.data[0].clock_in);
 
         if (isToday(localClockIn)) {
           setIsAttend(true);
         }
 
         console.log(isAttend);
+        const trimedClockIn = localClockIn.toString().substring(0, 21)
+        const trimedClockOut = localClockOut.toString().substring(0, 21)
 
-        setLastClockIn(String(localClockIn));
-        setLastClockOut(String(localClockOut));
+
+        setLastClockIn(trimedClockIn);
+        setLastClockOut(trimedClockOut);
       })
       .catch((error) => {
         console.log(error);
@@ -93,8 +97,16 @@ export default function PersonalDetails(props) {
       .then((result) => {
         console.log(result);
 
-        const localClockIn = new Date(result.data.clock_in);
-        setLastClockIn(String(localClockIn));
+        const localClockIn = new Date(result.data[0].clock_in);
+        // console.log(localClockIn);
+        // console.log(new Date());
+        localClockIn.setHours(localClockIn.getHours() + 7);
+        const trimedTime = localClockIn.toString().substring(0, 21)
+
+        // console.log(localClockIn);
+        // setLastClockIn(String(localClockIn));
+        setLastClockIn(trimedTime);
+
         setIsAttend(true);
       })
       .catch((error) => {
@@ -102,9 +114,19 @@ export default function PersonalDetails(props) {
       });
 
     await axios
-      .pup(
+      .put(
         process.env.REACT_APP_SERVER +
           "attendance/updateStatus/" +
+          localStorage.userId
+      )
+      .then((result) => {
+        console.log(result);
+      });
+    
+    await axios
+      .put(
+        process.env.REACT_APP_SERVER +
+          "attendance/updateclockin/" +
           localStorage.userId
       )
       .then((result) => {
@@ -119,8 +141,8 @@ export default function PersonalDetails(props) {
         console.log(result);
 
         const localClockOut = new Date(result.data.clock_out);
-
-        setLastClockOut(String(localClockOut));
+        const trimedTime = localClockOut.toString().substring(0, 21)
+        setLastClockOut(trimedTime);
         setIsAttend(false);
       })
       .catch((error) => {
