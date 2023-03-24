@@ -79,3 +79,7 @@
 .statistics-page-lower-section{
     margin: auto;
 }
+
+[class*="statistics-page-middle-section"] input {
+    pointer-events:none;
+}

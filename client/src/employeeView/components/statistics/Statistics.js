@@ -63,8 +63,7 @@ export default function StatisticsPage(props) {
       <div className="statistics-page-middle-section">
         <div className="statistics-page-middle-section-elements">
           <div className="statistics-page-middle-section-elements-upper-part">
-            <p>Daily Task</p>
-            <p>:</p>
+            <p>Daily Task:</p>
           </div>
           <div className="circular-progress-bar-section">
             <CircularBar
@@ -85,7 +84,7 @@ export default function StatisticsPage(props) {
               delay={500}
               duration={500}
               max={100}
-              type={"Close Tasks"}
+              type={"Closed Tasks"}
             />
           </div>
         </div>

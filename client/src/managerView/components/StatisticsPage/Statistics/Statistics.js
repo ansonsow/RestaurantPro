@@ -83,7 +83,7 @@ export default function StatisticsPage() {
               delay={500}
               duration={500}
               max={100}
-              type={"Close Tasks"}
+              type={"Closed Tasks"}
             />
             <CircularBar
               size={100}
@@ -93,7 +93,7 @@ export default function StatisticsPage() {
               delay={500}
               duration={500}
               max={100}
-              type={"UnAssign Tasks"}
+              type={"Unassigned Tasks"}
             />
           </div>
         </div>
