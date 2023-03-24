@@ -1,7 +1,7 @@
 
 import './ManagerView.css';
 
-import Sidebar from './components/sidebar/SideBar';
+import Sidebar from './components/Sidebar/SideBar';
 
 import{
   BrowserRouter as Router,
@@ -34,6 +34,7 @@ function ManagerView() {
     
       <Router basename={process.env.PUBLIC_URL}>
         <Routes>
+        <Route path="/" element={<Home />} />
           <Route path="/employee" element={<EmployeeList />} />
           <Route path="/tasks" element={<AllTask />} />
           <Route path="/create-employee" element={<CreateEmployee />} />

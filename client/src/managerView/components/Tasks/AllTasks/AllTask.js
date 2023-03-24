@@ -167,6 +167,12 @@ console.log(allUsersTasks);
   return (
     <div className="all-task-page">
 
+      {/* <div class="loading-icon">
+        <div class="loading-dot"></div>
+        <div class="loading-dot"></div>
+        <div class="loading-dot"></div>
+      </div> */}
+
 
       <div className="all-task-page-upper-section">
         <div className="all-task-page-upper-section-button-section">
@@ -185,7 +191,6 @@ console.log(allUsersTasks);
           <Link to="/daily-attendance" className="link-a">
             <button>Daily Attendance</button>
           </Link>
-
         </div>
         <div className="all-task-page-upper-section-search-section">
           <input type="text" className="search-box" placeholder="Search Here" />
@@ -203,6 +208,7 @@ console.log(allUsersTasks);
             </tr>
           </thead>
           <tbody>
+
             {load
               ? 
               allTaskData.map((task) => <TaskRow task={task} />)
@@ -213,6 +219,7 @@ console.log(allUsersTasks);
                 <div className="loading-dot"></div>
               </div>
               }
+
           </tbody>
         </table>
       </div>

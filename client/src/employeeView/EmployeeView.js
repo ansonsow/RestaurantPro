@@ -28,7 +28,19 @@ function EmployeeView(props) {
     <div className="components">
       <Router>
         <Routes>
-          <Route exact path="/" element={<Home tasks={props.tasks} />} />
+          <Route
+            exact
+            path="/"
+            element={
+              <Home
+                tasks={props.tasks}
+                setUnDoneTask={props.setUnDoneTask}
+                getUserTasksIds={props.getUserTasksIds}
+                unDoneTask={props.unDoneTask}
+                loadingTask={props.loadingTask}
+              />
+            }
+          />
           <Route
             exact
             path="/home"
