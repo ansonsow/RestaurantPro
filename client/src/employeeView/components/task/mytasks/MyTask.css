@@ -1,12 +1,12 @@
 :root {
-    --Task-Row-Padding-Y:15px;
-    --Task-Row-Padding-X:20px;
+    --Task-Row-Padding-Y:20px;
+    --Task-Row-Padding-X:22px;
     --Task-Row-Transparency:50%;
     --Task-Name-Padding-Y:0.5em;
     --Task-Name-Padding-X:1em;
     --Task-Action-Btn-Padding-Y:0.5em;
     --Task-Action-Btn-Padding-X:1em;
-    --Task-Row-Spacing:15px;
+    --Task-Row-Spacing:22px;
 }
 
 .my_task_board {
@@ -38,6 +38,11 @@
 .columns_names p {
     margin:0;
     padding:var(--Table-Headers-Padding-Y) var(--Table-Headers-Padding-X);
+}
+
+.columns_names p:first-child {
+    justify-self:left;
+    padding-left:calc(var(--Table-Headers-Padding-X) * 2)
 }
 
 .task_page .board_list {
