@@ -325,6 +325,32 @@
 
 /*------------------------------------*/
 
+.tab-buttons-container {
+    display:flex;
+    align-items:center;
+}
+
+button.tab-buttons {
+    font-family:"Century Gothic Bold";
+    font-size:inherit;
+    width:var(--Tab-Buttons-Width);
+    padding:var(--Tab-Buttons-Padding-Y) var(--Tab-Buttons-Padding-X);
+    border-radius:calc(var(--Corner-Rounding) * 0.69);
+    border:none;
+    background:var(--Primary);
+    color:var(--Background);
+    box-sizing:border-box;
+}
+
+button.tab-buttons.active {
+    background:var(--Secondary-Medium);
+}
+
+button.tab-buttons,
+button.tab-buttons.active {
+    transition:background var(--Hover-Speeds-Faster) ease-in-out;
+}
+
 .App{
  /* display: flex; */
  /* flex-direction: row; */

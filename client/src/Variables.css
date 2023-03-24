@@ -7,6 +7,11 @@
 	--Loading-Dots-Animation-Duration:2s;
 	--Loading-Dots-Animation-Delay:0.1s;
 
+    /*----- MEGA CONTAINER WIDTH -----*/
+    --Mega-Container-Width:calc(100% - var(--Sidebar-Width) - (var(--Screen-Margins-X) * 2));
+    --Main-Board-Width-Alt:calc(var(--Mega-Container-Width) * 0.65);
+    /* this is basically the same as --Main-Board-Width but calculated differently */
+
     /*----- TOP NAVBAR -----*/
     --Navbar-Height:100px;
     --Searchbar-Width:100%;
@@ -55,6 +60,11 @@
     /*----- CLOCK IN/OUT BUTTON -----*/
     --ClockIn-Button-Padding-Y:0.5em;
     --ClockIn-Button-Padding-X:1em;
+
+    /*----- TAB BUTTONS (NEAR TOP) -----*/
+    --Tab-Buttons-Width:10vw;
+    --Tab-Buttons-Padding-Y:0.4em;
+    --Tab-Buttons-Padding-X:1em;
 
     /*----- CTA BUTTONS -----*/
     --CTA-Buttons-Top-Gap:25px;
