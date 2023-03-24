@@ -39,8 +39,12 @@
     --Popup-Msg-Box-Width:40vw;
     --Popup-Msg-Box-Padding-Y:50px;
     --Popup-Msg-Box-Padding-X:35px;
+    --Popup-Msg-Button-Top-Gap:20px;
+    --Popup-Msg-Button-Width:110px;
     --Popup-Msg-Button-Padding-Y:0.5em;
     --Popup-Msg-Button-Padding-X:1em;
+    --Popup-Msg-Buttons-Spacing:20px;
+    --Popup-Msg-Box-Fade-Speed:250ms;
 
     /*----- BOXES ON RIGHTSIDE -----*/
     --Rightside-Boxes-Spacing:20px;
