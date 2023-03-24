@@ -11,7 +11,7 @@ const LogOut = () => {
         // window.location.reload();
 
         navigate('/blank');
-        navigate('/home');
+        navigate('/');
         window.location.reload();
 
 

@@ -9,7 +9,7 @@ const LogOut = () => {
         localStorage.clear();
         console.log('wa');
 
-        navigate('/home');
+        navigate('/');
         window.location.reload();
 
     }
