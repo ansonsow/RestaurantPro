@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import UnAssignedTasksList from "./UnAssignedTasksList";
 import EmployeeList from "./EmployeeList";
 import EmployeeAssignedTask from "./EmployeeAssignedTask";
+import { Popup, PopupFunction } from "../../../../employeeView/components/popup/Popup";
 import axios from "axios";
 export default function AssignTask() {
   let currentUrl = window.location.href;
@@ -103,10 +104,22 @@ export default function AssignTask() {
         console.log("user task saved: " + JSON.stringify(response.data));
       })
       .catch((error) => console.log("error in saving user task: " + error));
+    
+    // axios.put(`${process.env.REACT_APP_SERVER}tasks/updateAssigned/${tid}`.then((result)=>{
+    //   console.log(result);
+    // }).catch((err)=>{
+    //   console.log(err);
+    // }))
   };
 
   let updateTaskStatus = (id) => {
-    let data = { task_status: true, task_assigned: true };
+    // due_date
+
+    let dueDate = new Date();
+    // default to 3 hours after now
+    dueDate.setHours(dueDate.getHours()+3);
+
+    let data = { task_status: true, task_assigned: true, due_date: dueDate };
     axios
       // .put(`http://localhost:8000/api/v1/task/${id}`, data)
       .put(`${process.env.REACT_APP_SERVER}task/${id}`, data)
@@ -116,6 +129,12 @@ export default function AssignTask() {
         console.log("task status updated: " + JSON.stringify(response.data));
       })
       .catch((error) => console.log("error in saving user task: " + error));
+
+    axios.put(`${process.env.REACT_APP_SERVER}tasks/updateAssigned/${id}`.then((result)=>{
+      console.log(result);
+    }).catch((err)=>{
+      console.log(err);
+    }))
   };
 
   // show data according fetch data
@@ -205,10 +224,12 @@ export default function AssignTask() {
       }
     });
     setAllTask(newData);
+    
   };
 
   return (
     <div className="assign-task-page">
+      <Popup/>
       <div className="assign-task-page-upper-section">
         <div className="assign-task-page-upper-section-button-section">
           <Link to="/tasks" className="link-a">
@@ -312,7 +333,9 @@ export default function AssignTask() {
                   ))}
                 </tbody>
               </table>
-              <button onClick={showUnselectedData}>Next</button>
+              {/* <button onClick={showUnselectedData}>Next</button> */}
+              {/* onClick={(e) => {PopupFunction("Changes changed successfully.", "okay:/account")(e); saveChanges()  }} */}
+              <button onClick={(e) => {PopupFunction("Successfully assigned", "okay:/tasks")(e); showUnselectedData()}}>Next</button>
             </div>
           )}
       </div>
