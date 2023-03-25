@@ -351,6 +351,10 @@ button.tab-buttons.active {
     transition:background var(--Hover-Speeds-Faster) ease-in-out;
 }
 
+button.tab-buttons:not(.active):hover {
+    background:var(--Primary-Medium);
+}
+
 .App{
  /* display: flex; */
  /* flex-direction: row; */

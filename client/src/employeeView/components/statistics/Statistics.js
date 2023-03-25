@@ -52,18 +52,24 @@ export default function StatisticsPage(props) {
   return (
     <div className="statistics-page">
       <div className="statistics-page-upper-section">
-        <div className="statistics-page-upper-section-button-section">
-          <Link to="/statistics" className="link-a">
+          {/* <Link to="/statistics" className="link-a">
             <button>Statistics</button>
-          </Link>
-        </div>
+          </Link> */}
+          <div className="tab-buttons-container">
+            <button className="tab-buttons active">Statistics</button>
+          </div>
         {/* <input type="text" className="search-box" placeholder="search here" /> */}
       </div>
 
       <div className="statistics-page-middle-section">
         <div className="statistics-page-middle-section-elements">
           <div className="statistics-page-middle-section-elements-upper-part">
-            <p>Daily Task:</p>
+            <h3>Your Daily Tasks</h3>
+            <div className="stats-kebab">
+              <div className="sk-bob"></div>
+              <div className="sk-bob"></div>
+              <div className="sk-bob"></div>
+            </div>
           </div>
           <div className="circular-progress-bar-section">
             <CircularBar
@@ -114,11 +120,11 @@ export default function StatisticsPage(props) {
         <table className="employee-performance-table">
           <thead>
             <th>Name Surname</th>
-            <th>Total Done Tasks(Weekly)</th>
-            <th>Avg. Time To Complete Tasks(weekly)</th>
-            <th>Avg Task for a day(weekly)</th>
+            <th>Total Done Tasks (Weekly)</th>
+            <th>Avg. Time To Complete Tasks (Weekly)</th>
+            <th>Avg Task for a day (Weekly)</th>
             <th>Job Title</th>
-            <th>Avg Working Hours(daily)</th>
+            <th>Avg Working Hours (Daily)</th>
           </thead>
           <tbody>
             <tr>
