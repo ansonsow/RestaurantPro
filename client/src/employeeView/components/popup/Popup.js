@@ -41,7 +41,7 @@ const PopupFunction = (msg, whichButtons) => (e) => {
 
     setTimeout(() => {
         ht_popup.classList.add("fade-in");
-    },0)
+    },10)
 
     // on dismiss, reset everything
     ht_popup.querySelectorAll("button").forEach(clgkv => {
