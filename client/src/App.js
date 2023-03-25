@@ -6,7 +6,9 @@ import Navbar from "./employeeView/components/navbar/Navbar";
 import EmployeeView from "./employeeView/EmployeeView";
 import AssignTask from "./managerView/components/Tasks/AssignTasks/AssignTask";
 import rpLogoHorizontal from "./icons/Logo_Primary_horizontal.svg";
+import loginSplash from "./icons/login_splash.svg"
 import axios from "axios";
+
 function App() {
   const [userId, setUserId] = useState("");
   const [userDetails, setUserDetails] = useState({});
@@ -169,6 +171,7 @@ function App() {
   }, [showView, unDoneTask]);
 
   let rpLogoHorizontalSVG;
+  let loginSplashSVG;
 
   async function grabSVG(url) {
     return fetch(url)
@@ -184,6 +187,15 @@ function App() {
       .querySelectorAll(".restaurantPro_logo_landscape")
       .forEach((thdkv) => {
         thdkv.innerHTML = rpLogoHorizontalSVG;
+      });
+  });
+
+  grabSVG(loginSplash).then((eyqxf) => {
+    loginSplashSVG = eyqxf;
+    document
+      .querySelectorAll(".login_splash_svg")
+      .forEach((thdkv) => {
+        thdkv.innerHTML = loginSplashSVG;
       });
   });
 
@@ -244,10 +256,11 @@ function App() {
 
           <div className="login_half_right">
             <div className="login_image_holder">
-              <img
+              {/* <img
                 src="https://cdn.glitch.global/f202da4e-f9f2-4703-9a01-471c490e991b/83a20ce0-5f7b-4a96-b52d-53f8544feda0.image.png"
                 alt=""
-              />
+              /> */}
+              <div className="login_splash_svg"></div>
             </div>
           </div>
         </div>

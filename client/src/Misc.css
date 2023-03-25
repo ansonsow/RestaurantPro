@@ -220,6 +220,7 @@
     position:relative;
     width:calc(100% - var(--Login-Screen-Center-Gap));
     height:100%;
+    overflow:hidden;
     z-index:0;
 }
 
@@ -242,6 +243,22 @@
     object-fit:cover;
     object-position:50% 50%;
     border-radius:var(--Corner-Rounding)
+}
+
+.login_splash_svg {
+    --Login-SVG-Bonus-Padding:10%;
+    margin-top:calc(var(--Login-SVG-Bonus-Padding) / -2);
+    margin-left:calc(var(--Login-SVG-Bonus-Padding) / -2);
+    width:calc(100% + var(--Login-SVG-Bonus-Padding));
+    height:calc(100% + var(--Login-SVG-Bonus-Padding));
+    display:grid;
+    place-items:center;
+}
+
+.login_splash_svg svg {
+    display:block;
+    width:100%;
+    height:auto;
 }
 
 /*---- POPUP BOX CSS ----*/
