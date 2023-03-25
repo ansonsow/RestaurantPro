@@ -75,7 +75,7 @@ const QuickActions = () => {
           </Link>
 
           {/*---- "SEE ALL TASKS" ----*/}
-          <Link to="/task">
+          <Link to="/tasks">
             <div class="svg_holder">
               <div class="all_tasks_svg"></div>
             </div>
