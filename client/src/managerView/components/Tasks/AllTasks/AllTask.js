@@ -135,7 +135,7 @@ console.log(allUsersTasks);
       setAllTaskData(newUser);
       setTimeout(() => {
         setLoad(true)
-      }, 1500);
+      }, 1200);
     });
     // console.log("allTaskData ref:" + JSON.stringify(allTaskData));
   };
