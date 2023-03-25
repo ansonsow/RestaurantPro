@@ -6,6 +6,8 @@ import axios from "axios";
 
 import { Popup, PopupFunction } from "../popup/Popup";
 
+import employeeIMG from "../../../images/example_employee.png"
+
 
 function Account(props) {
   const [userDetails, setUserDetails] = useState({});
@@ -102,7 +104,9 @@ function Account(props) {
         {/* form column 1 */}
         <div className="form_column photo_col">
           <div className="photo_col_inner">
-            <div className="photo_section"></div>
+            <div className="photo_section">
+              <img src={employeeIMG} alt=""/>
+            </div>
             <div className="acc_side_box">
               <h3>Actions</h3>
               <ul>
