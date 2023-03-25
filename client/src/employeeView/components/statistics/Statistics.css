@@ -18,10 +18,18 @@
 }
 
 .statistics-page-upper-section {
+    position:relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom:calc(var(--Screen-Margins-X));
+}
+
+.statistics-page .tab-buttons-container {
+    position:absolute;
+    bottom:100%;
+    height:calc(var(--Navbar-Height) - (var(--Screen-Margins-Y) * 0.2) - 5px);
+    display:flex;
+    align-items:center;
 }
 
 .stats-kebab {
