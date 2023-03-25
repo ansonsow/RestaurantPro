@@ -16,7 +16,9 @@
 .my_task_board .tab-buttons-container {
     position:absolute;
     bottom:100%;
-    margin-bottom:calc(var(--Screen-Margins-Y) * 0.8);
+    height:calc(var(--Navbar-Height) - (var(--Screen-Margins-Y) * 0.2) - 5px);
+    display:flex;
+    align-items:center;
 }
 
 .board_columns {
