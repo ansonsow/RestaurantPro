@@ -43,9 +43,9 @@
 /*---- LOADING ICON FURTHER SPECS ---*/
 .all-task-page .loading-icon {
     position:absolute;
-    top:50%;
-    transform:translateY(-50%);
+    top:0;left:0;
     width:100%;
+    height:60vh;
     justify-content:center;
 }
 
