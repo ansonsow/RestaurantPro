@@ -1,5 +1,5 @@
 
-import "./QuickActions.css"
+import "./QuickActions_.css"
 
 import { Link } from "react-router-dom";
 
@@ -75,7 +75,7 @@ const QuickActions = () => {
           </Link>
 
           {/*---- "SEE ALL TASKS" ----*/}
-          <Link to="/task">
+          <Link to="/tasks">
             <div class="svg_holder">
               <div class="all_tasks_svg"></div>
             </div>

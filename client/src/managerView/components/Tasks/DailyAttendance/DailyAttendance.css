@@ -14,12 +14,12 @@
     padding: 0.3rem 0.7rem;
     border-radius: 4px;
     border: none;
-    background-color: #003D9E;
+    background-color: var(--Primary);
     color: white;
     cursor: pointer;
 }
 .daily-attendance-page-upper-section-button-section button:hover{
-    background-color: #FFC619;
+    background-color: var(--Secondary-Lighter);
 }
 .daily-attendance-page-lower-section{
     display: flex;
@@ -30,9 +30,12 @@
 .daily-attendance-page-lower-section table{
     width: 100%;
 }
-tbody{
-    background-color: #cfcfcf69;
+
+tbody {
+    position:relative;
+    background-color: var(--Background-2);
 }
+
 .daily-attendance-table{
     border: none;
     width: 90%;

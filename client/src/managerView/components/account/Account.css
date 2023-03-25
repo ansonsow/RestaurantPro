@@ -1,0 +1,185 @@
+/* CSS STYLING FOR ACCOUNT PAGE*/
+.account-page{
+    position: absolute;
+    top: 0%;
+    right: 0%;
+    width: 85%;
+    padding: 2rem 2rem;
+  }
+  .account-page-upper-section{
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+  .link-link{
+    text-decoration: none;
+    color: black;
+  }
+  .account-page-upper-section button{
+    padding: 0.3rem 1rem;
+    border: none;
+    background-color: #003D9E;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .account-page-upper-section button:hover{
+    background-color: #FFC619;
+  }
+  .account-page-lower-section{
+    padding: 3rem 2rem;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-top: 2rem;
+    border-radius: 6px;
+    background-color: rgba(153, 212, 254, 0.644);
+  }
+  .account-page-lower-section-image-part{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    position: relative;
+   }
+   .action-box{
+    padding: 1rem 3rem;
+    background-color: white;
+    border-radius: 8px;
+    line-height: 2rem;
+   }
+   .action-box h3{
+    text-decoration: underline;
+   }
+   .action-box p{
+    font-size: 14px;
+    cursor: pointer;
+   }
+  .image-box{
+    width: 150px;
+    height: 150px;
+    border-radius: 6px;
+    border: 2px solid #003D9E;
+  }
+  .account-page-lower-section-detail-part h2{
+    color: #003D9E;
+  }
+  .account-detail-form{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 1rem;
+    column-gap: 2rem;
+    margin-top: 2rem;
+  }
+  .input-box{
+    padding: 0.5rem 0.5rem;
+    width: 300px;
+    border: 1px solid #003D9E;
+    border-radius: 4px;
+  }
+  .text-area-section{
+    margin-top: 1rem;
+  }
+  .text-area-section textarea{
+    width: 100%;
+    height: 90px;
+    border: 1px solid #003D9E;
+    border-radius: 4px;
+  }
+  .button-section{
+    margin: 2rem 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+  }
+  .button-section button{
+    width: 200px;
+    padding: 0.3rem 0;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .delete-btn{
+    border: 2px solid #FFC619;
+    color: #FFC619;
+    background-color: transparent;
+  }
+  .discard-btn{
+    border: 2px solid #003D9E;
+    color: #003D9E;
+    background-color: transparent;
+  }
+  .save-btn{
+    border: 2px solid #003D9E;
+    color: white;
+    background-color: #003D9E;
+  }
+  .save-change , .discard-change , .delete-account{
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0%;
+    left: 0%;
+    background-color: transparent;
+    z-index: 10000;
+    display: none;
+    justify-content: center;
+    align-items: center;
+  }
+  .save-change-dialogue , .discard-change-dialogue , .delete-account-dialogue{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 3rem 4rem;
+    background-color: white;
+    border-radius: 8px;
+    gap: 2rem;
+    box-shadow: 0px 0px 5px black;
+  }
+  .save-change-dialogue button{
+    padding: 0.4rem 2rem;
+    background-color: #F77911;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 6px;
+  }
+  .create-new-employe-btn{
+    background-color: #FFC619;
+    color: white;
+  }
+  .discard-dialogue-button-section , .delete-dialogue-button-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+  }
+  .discard-dialogue-button-section button , .delete-dialogue-button-section button{
+    padding: 0.4rem 1.5rem;
+    cursor: pointer;
+    border: none;
+    border-radius: 6px;
+  }
+  .discard-dialogue-button-section button:nth-child(1) , .delete-dialogue-button-section button:nth-child(1){
+    background-color: red;
+    color: white;
+  }
+  .discard-btn{
+    cursor: pointer;
+  }
+  
+  input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input:focus{
+  outline: none;
+}
+input:focus:invalid{
+  border: 2px solid red;
+}

@@ -16,7 +16,10 @@ export default function DailyAttendance() {
 
   const getClockInEmployees = async () => {
     await axios
-      .get("http://localhost:8000/api/v1/attendance/true")
+      // .get("http://localhost:8000/api/v1/attendance/true")
+      .get(`${process.env.REACT_APP_SERVER}attendance/true`)
+
+      // ${process.env.REACT_APP_SERVER}
       .then((response) => {
         console.log("all present employees:" + JSON.stringify(response.data));
         let userIds = response.data.map((user) => user.user_id);
@@ -31,7 +34,10 @@ export default function DailyAttendance() {
 
   let getUserDetails = (id) => {
     axios
-      .get(`http://localhost:8000/api/v1/users/${id}`)
+      // .get(`http://localhost:8000/api/v1/users/${id}`)
+      .get(`${process.env.REACT_APP_SERVER}users/${id}`)
+
+      // ${process.env.REACT_APP_SERVER}
       .then((response) => {
         console.log(
           "all present employees details:" + JSON.stringify(response.data)
@@ -46,7 +52,7 @@ export default function DailyAttendance() {
     <div className="daily-attendance-page">
       <div className="daily-attendance-page-upper-section">
         <div className="daily-attendance-page-upper-section-button-section">
-          <Link to="/task" className="link-a">
+          <Link to="/tasks" className="link-a">
             <button>All Task</button>
           </Link>
           <Link to="/assign-task" className="link-a">

@@ -1,9 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 import "./Account.css";
 import axios from "axios";
-import { CloudLightning } from "react-feather";
+
+import { Popup, PopupFunction } from "../popup/Popup";
+
+import employeeIMG from "../../../images/example_employee.png"
+
+
 function Account(props) {
   const [userDetails, setUserDetails] = useState({});
   const [oldDetails, setOldDetails] = useState({});
@@ -65,6 +70,7 @@ function Account(props) {
     for(let i = 0 ; i<inputs.length-1;i++){
       console.log(inputs[i].id);
       let j = inputs[i].id;
+
       console.log(oldDetails[j]);
       if(oldDetails[j]){
         inputs[i].value = oldDetails[j];
@@ -82,8 +88,14 @@ function Account(props) {
     })
   }
 
+  /*------- HT POPUP BOX -------*/
+  // end ht popup box
 
   return (
+    <>
+
+    <Popup/>
+
     <div className="account_page">
       <form className="task_details">
         {console.log("props in account: " + JSON.stringify(props.account))}
@@ -92,12 +104,21 @@ function Account(props) {
         {/* form column 1 */}
         <div className="form_column photo_col">
           <div className="photo_col_inner">
-            <div className="photo_section"></div>
+            <div className="photo_section">
+              <img src={employeeIMG} alt=""/>
+            </div>
             <div className="acc_side_box">
               <h3>Actions</h3>
               <ul>
-                <li>Change Password</li>
-                <li>Delete Account</li>
+                {/*---- CHANGE PASSWORD ----*/}
+                <li>
+                  <Link to="/change-password">Change Password</Link>
+                </li>
+
+                {/*---- DELETE ACCOUNT ----*/}
+                <li onClick={
+                  (e) => PopupFunction("Do you want to<br>delete this account?", "yes no")(e)
+                }>Delete Account</li>
               </ul>
             </div>
           </div>
@@ -221,18 +242,22 @@ function Account(props) {
               </div>
         </div>{/* end form column 3 */}
         
-
-        
-
-        
       </form>
 
       <div className="call_to_actions">
-        <button className="discard_btn hollow" onClick={handleDiscard}>Discard</button>
+        <button className="discard_btn hollow" onClick={(e) => {PopupFunction("Changes discarded.", "okay")(e); handleDiscard()}}>Discard</button>
 
-        <button className="save_btn" onClick={saveChanges}>Save Changes</button>
+        {/* 
+          okay:/account
+          - this means that "okay" button will show
+          - ":" is a separator that indicates that the button will go to a different url
+          - "/account" is the url that the button should go to
+         */}
+        <button className="save_btn" onClick={(e) => {PopupFunction("Changes changed successfully.", "okay:/account")(e); saveChanges()  }}>Save Changes</button>
+        
       </div>
     </div>
+    </>
   );
 }
 

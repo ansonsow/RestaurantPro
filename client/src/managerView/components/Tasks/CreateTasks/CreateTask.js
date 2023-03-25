@@ -23,7 +23,10 @@ export default function CreateTask() {
   // get all users
   const getAllUsers = async () => {
     await axios
-      .get("http://localhost:8000/api/v1/users")
+      // .get("http://localhost:8000/api/v1/users")
+      .get(`${process.env.REACT_APP_SERVER}users`)
+
+      // ${process.env.REACT_APP_SERVER}
       .then((response) => {
         console.log("all user:" + JSON.stringify(response.data));
         setUsers(response.data);
@@ -55,7 +58,9 @@ export default function CreateTask() {
       saveUserTask(newTask);
     }
     await axios
-      .post("http://localhost:8000/api/v1/tasks", newTask)
+      // .post("http://localhost:8000/api/v1/tasks", newTask)
+      .post(`${process.env.REACT_APP_SERVER}tasks`, newTask)
+
       .then((response) => {
         console.log("new task saved:" + JSON.stringify(response.data));
       })
@@ -73,7 +78,10 @@ export default function CreateTask() {
     };
     console.log("user task:" + JSON.stringify(userTask));
     axios
-      .post("http://localhost:8000/api/v1/usersTasks", userTask)
+      // .post(`http://localhost:8000/api/v1/usersTasks`, userTask)
+      .post(`${process.env.REACT_APP_SERVER}usersTasks`, userTask)
+
+      // ${process.env.REACT_APP_SERVER}
       .then((response) => {
         console.log("new user task saved:" + JSON.stringify(response.data));
       })
@@ -121,7 +129,7 @@ export default function CreateTask() {
       {getAllUserName()}
       <div className="create-task-page-upper-section">
         <div className="create-task-page-upper-section-button-section">
-          <Link to="/task" className="link-a">
+          <Link to="/tasks" className="link-a">
             <button>All Task</button>
           </Link>
           <Link to="/assign-task" className="link-a">
@@ -200,14 +208,14 @@ export default function CreateTask() {
       </div>
       <div className="create-task-button-section">
         <button>Discard</button>
-        <Link to="/task">
+        <Link to="/tasks">
           <button onClick={saveTasks}>Save Changes</button>
         </Link>
       </div>
       {/* <div className="save-change" id="dialogueBox">
         <div className="save-change-dialogue">
           <p>New Task Created</p>
-          <Link to="/task">
+          <Link to="/tasks">
             <button onClick={closeDialogue}>Okey</button>
           </Link>
         </div>

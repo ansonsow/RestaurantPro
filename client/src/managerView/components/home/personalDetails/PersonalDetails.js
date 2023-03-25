@@ -5,6 +5,8 @@ import exclamationIcon from "../../../../icons/exclamation.svg"
 import chevronLeft from "../../../../icons/left.svg"
 import chevronRight from "../../../../icons/right.svg"
 
+import managerIMG from "../../../../images/example_manager.jpeg"
+
 const PersonalDetails = () => {
     let tickIconSVG;
     let exclamationIconSVG;
@@ -54,7 +56,8 @@ const PersonalDetails = () => {
                 <h4>Account Info</h4>
 
                 <div className="acc_info_cont">
-                    <img src="https://cdn.glitch.global/f202da4e-f9f2-4703-9a01-471c490e991b/3H5PoxU_e1.jpeg" alt=""/>
+                    {/* <img src="https://cdn.glitch.global/f202da4e-f9f2-4703-9a01-471c490e991b/3H5PoxU_e1.jpeg" alt=""/> */}
+                    <img src={managerIMG} alt=""/>
                     <div className="acc_info_text">
                         <p className="text_row">
                             <span id="managerName">Jacob M.</span>

@@ -1,0 +1,44 @@
+:root {
+  /*----- COLORS -----*/
+  --Primary: #003D9E;
+  --Primary-RGB: 0,61,158;
+
+  --Primary-Medium: #077DCE;
+  --Primary-Medium-RGB: 7,125,206;
+
+  --Primary-Lighter: #88CCF2;
+  --Primary-Lighter-RGB: 136,204,242;
+
+  --Primary-Lightest: #D3E8EF;
+  --Primary-Lightest-RGB: 211,232,239;
+
+  --Background: #ffffff;
+  --Background-RGB: 255, 255, 255;
+
+  --Background-2: #E2E8F5;
+  --Background-2-RGB: 226,232,245;
+
+  --Gray-Darker: #9b9b9b;
+  --Gray-Darker-RGB: 155,155,155;
+
+  --Gray: #c6c6c6;
+  --Gray-RGB: 198,198,198;
+
+  --Gray-Lighter: #E1E3E7;
+  --Gray-Lighter-RGB: 225,227,231;
+
+  --Blue-Gray-Light: #ccd2e3;
+  --Blue-Gray-Light-RGB: 204,210,227;
+
+  --Secondary: #F77911;
+  --Secondary-Medium: #FDA300;
+
+  --Secondary-Lighter: #FFC619;
+  --Secondary-Lighter-RGB: 255,198,25;
+
+  --Text-Color: #000000;
+  --Text-Color-RGB: 0,0,0;
+
+  --Text-Color-Lighter: #4a4a4a;
+  --Text-Color-Lighter-RGB: 74,74,74;
+}

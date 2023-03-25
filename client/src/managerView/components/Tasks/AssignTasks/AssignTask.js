@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import UnAssignedTasksList from "./UnAssignedTasksList";
 import EmployeeList from "./EmployeeList";
 import EmployeeAssignedTask from "./EmployeeAssignedTask";
+import { Popup, PopupFunction } from "../../../../employeeView/components/popup/Popup";
 import axios from "axios";
 export default function AssignTask() {
   let currentUrl = window.location.href;
@@ -20,6 +21,8 @@ export default function AssignTask() {
   const [allTasks, setAllTask] = useState([]);
   const [allEmployee, setAllEmployee] = useState([]);
   const changeEventState = useRef({});
+  const [loadingTask, setLoadingTasks] = useState(false);
+  const [loadingEmployee, setLoadingEmployee] = useState(false);
 
   // Call Apis
   useEffect(() => {
@@ -30,14 +33,19 @@ export default function AssignTask() {
   // get all the task
   const getAllTask = async () => {
     let allTask = [];
+    setLoadingTasks(true);
     await axios
-      .get("http://localhost:8000/api/v1/tasks")
+      // .get("http://localhost:8000/api/v1/tasks")
+      .get(`${process.env.REACT_APP_SERVER}tasks`)
+
+      // ${process.env.REACT_APP_SERVER}
       .then((response) => {
         console.log("all task:" + JSON.stringify(response.data));
         response.data.forEach((task) => {
           console.log("task status: " + task.task_status);
           // if (task.task_status === false) allTask.push(task);
           if (task.task_assigned === false) allTask.push(task);
+          setLoadingTasks(false);
         });
         setAllTask(allTask);
       })
@@ -48,8 +56,12 @@ export default function AssignTask() {
 
   // get all present employee
   const getClockInEmployees = async () => {
+    setLoadingEmployee(true);
+    console.log("get clock in");
     await axios
-      .get("http://localhost:8000/api/v1/attendance/true")
+      // .get("http://localhost:8000/api/v1/attendance/true")
+      .get(`${process.env.REACT_APP_SERVER}attendance/true`)
+
       .then((response) => {
         console.log("all present employees:" + JSON.stringify(response.data));
         let userIds = response.data.map((user) => user.user_id);
@@ -57,6 +69,7 @@ export default function AssignTask() {
         userIds.forEach((id) => {
           getUserDetails(id);
         });
+        setLoadingEmployee(false);
       })
       .catch((error) => {
         console.log("error in fetching all task: " + error);
@@ -65,7 +78,10 @@ export default function AssignTask() {
 
   let getUserDetails = (id) => {
     axios
-      .get(`http://localhost:8000/api/v1/users/${id}`)
+      // .get(`http://localhost:8000/api/v1/users/${id}`)
+      .get(`${process.env.REACT_APP_SERVER}users/${id}`)
+
+      // ${process.env.REACT_APP_SERVER}
       .then((response) => {
         console.log(
           "all present employees details:" + JSON.stringify(response.data)
@@ -80,21 +96,45 @@ export default function AssignTask() {
   let updateUserTask = (uid, tid) => {
     let data = { task_id: tid, user_id: uid, status: true };
     axios
+      // .post(`http://localhost:8000/api/v1/usersTasks`, data)
       .post(`${process.env.REACT_APP_SERVER}usersTasks`, data)
+
+      // ${process.env.REACT_APP_SERVER}
       .then((response) => {
         console.log("user task saved: " + JSON.stringify(response.data));
       })
       .catch((error) => console.log("error in saving user task: " + error));
+    
+    // axios.put(`${process.env.REACT_APP_SERVER}tasks/updateAssigned/${tid}`.then((result)=>{
+    //   console.log(result);
+    // }).catch((err)=>{
+    //   console.log(err);
+    // }))
   };
 
   let updateTaskStatus = (id) => {
-    let data = { task_status: true, task_assigned: true };
+    // due_date
+
+    let dueDate = new Date();
+    // default to 3 hours after now
+    dueDate.setHours(dueDate.getHours()+3);
+
+    let data = { task_status: true, task_assigned: true, due_date: dueDate };
     axios
-      .put(`http://localhost:8000/api/v1/task/${id}`, data)
+      // .put(`http://localhost:8000/api/v1/task/${id}`, data)
+      .put(`${process.env.REACT_APP_SERVER}task/${id}`, data)
+
+      // ${process.env.REACT_APP_SERVER}
       .then((response) => {
         console.log("task status updated: " + JSON.stringify(response.data));
       })
       .catch((error) => console.log("error in saving user task: " + error));
+
+    axios.put(`${process.env.REACT_APP_SERVER}tasks/updateAssigned/${id}`.then((result)=>{
+      console.log(result);
+    }).catch((err)=>{
+      console.log(err);
+    }))
   };
 
   // show data according fetch data
@@ -112,17 +152,19 @@ export default function AssignTask() {
       setUnAssignedTask((pre) => [...pre, id]);
     } else {
       setUnAssignedTask((pre) => {
-        return [...pre.filter((task_id) => task_id != id)];
+        return [...pre.filter((task_id) => task_id !== id)];
       });
     }
   };
   const getSelectedTasks = () => {
     setunAssignedTaskObjects([]);
+    console.log("un assigned..." + unAssignedTask);
     allTasks.forEach((task) => {
       if (unAssignedTask.find((id) => task.task_id == id)) {
         setunAssignedTaskObjects((pre) => [...pre, task]);
       }
     });
+    console.log("unAssignedTaskObjects: " + unAssignedTaskObjects);
   };
 
   // employee selected
@@ -130,8 +172,10 @@ export default function AssignTask() {
   const employeeSelected = (event) => {
     changeEventState.current = event.target.checked;
     const { id, checked } = event.target;
+    console.log("employee id" + id);
     if (checked) {
-      event.stopPropagation();
+      console.log("employee checked");
+      // event.stopPropagation();
       setemployee([id]);
     }
   };
@@ -180,13 +224,15 @@ export default function AssignTask() {
       }
     });
     setAllTask(newData);
+    
   };
 
   return (
     <div className="assign-task-page">
+      <Popup/>
       <div className="assign-task-page-upper-section">
         <div className="assign-task-page-upper-section-button-section">
-          <Link to="/task" className="link-a">
+          <Link to="/tasks" className="link-a">
             <button>All Task</button>
           </Link>
 
@@ -214,13 +260,27 @@ export default function AssignTask() {
               <th>Urgency</th>
             </thead>
             <tbody>
-              {console.log("again run")}
-              {allTasks.map((task) => (
+              {console.log("all task run")}
+              {loadingTask ? (
+                <div class="loading-icon">
+                  <div class="loading-dot"></div>
+                  <div class="loading-dot"></div>
+                  <div class="loading-dot"></div>
+                </div>
+              ) : (
+                allTasks.map((task) => (
+                  <UnAssignedTasksList
+                    unassignedTask={task}
+                    click={taskSelected}
+                  />
+                ))
+              )}
+              {/* {allTasks.map((task) => (
                 <UnAssignedTasksList
                   unassignedTask={task}
                   click={taskSelected}
                 />
-              ))}
+              ))} */}
             </tbody>
           </table>
         </div>
@@ -232,12 +292,27 @@ export default function AssignTask() {
               <th>Title</th>
             </thead>
             <tbody>
-              {allEmployee.map((employee) => (
+              {console.log("loadingTask" + loadingTask)}
+              {loadingEmployee ? (
+                <div class="loading-icon">
+                  <div class="loading-dot"></div>
+                  <div class="loading-dot"></div>
+                  <div class="loading-dot"></div>
+                </div>
+              ) : (
+                allEmployee.map((employee) => (
+                  <EmployeeList
+                    unassignedTask={employee}
+                    click={employeeSelected}
+                  />
+                ))
+              )}
+              {/* {allEmployee.map((employee) => (
                 <EmployeeList
                   unassignedTask={employee}
                   click={employeeSelected}
                 />
-              ))}
+              ))} */}
             </tbody>
           </table>
         </div>
@@ -247,6 +322,7 @@ export default function AssignTask() {
               <p className="underline-p">{`${employeeObject.name} Uncompleted Tasks`}</p>
               <table className="uncompleted-task-table">
                 <thead>
+                  {console.log("task assign run")}
                   <th>Task Name</th>
                   <th>Due Date</th>
                   <th>Urgency</th>
@@ -257,7 +333,9 @@ export default function AssignTask() {
                   ))}
                 </tbody>
               </table>
-              <button onClick={showUnselectedData}>Next</button>
+              {/* <button onClick={showUnselectedData}>Next</button> */}
+              {/* onClick={(e) => {PopupFunction("Changes changed successfully.", "okay:/account")(e); saveChanges()  }} */}
+              <button onClick={(e) => {PopupFunction("Successfully assigned", "okay:/tasks")(e); showUnselectedData()}}>Next</button>
             </div>
           )}
       </div>

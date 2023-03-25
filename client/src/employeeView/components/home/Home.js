@@ -1,18 +1,23 @@
-import React from 'react'
+import React from "react";
 import Tasksboard from "./tasksboard/TasksBoard";
 import PersonalDetails from "./personalDetails/PersonalDetails";
-import './Home.css'
+import "./Home.css";
 export default function Home(props) {
   for (const key in props) {
-      // const element = object[key];
-      console.log("check "+key+" "+props[key]);
-
+    // const element = object[key];
+    console.log("check " + key + " " + props[key]);
   }
 
   return (
     <div className="home_page">
       {/* <Menu /> */}
-      <Tasksboard tasks={props.tasks}/>
+      <Tasksboard
+        tasks={props.tasks}
+        setUnDoneTask={props.setUnDoneTask}
+        getUserTasksIds={props.getUserTasksIds}
+        unDoneTask={props.unDoneTask}
+        loadingTask={props.loadingTask}
+      />
       <PersonalDetails />
     </div>
   );

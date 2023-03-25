@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../EditEmployee/EditEmployee.css";
 import axios from "axios";
@@ -28,7 +28,10 @@ export default function CreateEmployee() {
     empId.user_id = newEmployee.user_id;
     console.log("empId: " + empId.user_id);
     await axios
-      .post("http://localhost:8000/api/v1/users", newEmployee)
+      // .post("http://localhost:8000/api/v1/users", newEmployee)
+      .post(`${process.env.REACT_APP_SERVER}users`, newEmployee)
+
+      // ${process.env.REACT_APP_SERVER}
       .then((response) => {
         console.log("new employee saved:" + JSON.stringify(response.data));
       })
@@ -81,6 +84,13 @@ export default function CreateEmployee() {
     userFields.restaurantName = event.target.value;
     console.log("restaurantName: " + JSON.stringify(userFields));
   };
+
+  let currentUrl = window.location.href;
+    useEffect(() => {
+        if(currentUrl.includes("/create-employee") ){
+          document.getElementById("new-employee-btn").style.backgroundColor = "#FFC619"
+        }
+      });
   return (
     <>
       <div className="employee-page">

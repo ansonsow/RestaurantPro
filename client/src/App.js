@@ -5,8 +5,10 @@ import ManagerView from "./managerView/ManagerView";
 import Navbar from "./employeeView/components/navbar/Navbar";
 import EmployeeView from "./employeeView/EmployeeView";
 import AssignTask from "./managerView/components/Tasks/AssignTasks/AssignTask";
-import rpLogoHorizontal from "./icons/Logo_Primary_horizontal.svg"
+import rpLogoHorizontal from "./icons/Logo_Primary_horizontal.svg";
+import loginSplash from "./icons/login_splash.svg"
 import axios from "axios";
+
 function App() {
   const [userId, setUserId] = useState("");
   const [userDetails, setUserDetails] = useState({});
@@ -14,9 +16,11 @@ function App() {
   const [showView, setShowView] = useState(false);
   const [psw, setPsw] = useState("");
   const [userType, setUserType] = useState("");
+  const [unDoneTask, setUnDoneTask] = useState(false);
+  const [loadingTask, setLoadingTask] = useState(false);
   const tasks = [];
-  const serverUrl = "http://52.39.41.70:8000/api/v1/"
 
+  // const serverUrl = "http://52.39.41.70:8000/api/v1/";
   // let navigate = useNavigate(); 
 
 
@@ -38,9 +42,10 @@ function App() {
     console.log("In getDataByUserID");
     console.log("userId in localStorage:" + userId);
     await axios
-      .get(`http://localhost:8000/api/v1/users/${userId}`)
+      .get(`${process.env.REACT_APP_SERVER}users/${userId}`)
       .then((response) => {
         // user.push(response.data);
+
         setUserDetails(response.data);
       })
       .catch((error) => {
@@ -54,8 +59,11 @@ function App() {
     console.log("******************");
     console.log("In getUserTasksIds");
     console.log("userId in localStorage: " + userId);
+    setLoadingTask(true);
     await axios
-      .get(`http://localhost:8000/api/v1/usersTasks/user/${userId}`)
+      // .get(`http://localhost:8000/api/v1/usersTasks/user/${userId}`)
+      .get(`${process.env.REACT_APP_SERVER}usersTasks/user/${userId}`)
+
       .then((response) => {
         let ids = response.data.map((item) => item.task_id);
         console.log("tasks ids of user " + JSON.stringify(ids));
@@ -64,6 +72,7 @@ function App() {
           getUserTasks(id);
         });
         setUserTasks(tasks);
+        setLoadingTask(false);
       })
       .catch((error) => {
         console.log("error in fetching the task ids: " + error);
@@ -74,7 +83,9 @@ function App() {
     console.log("In getUserTasks");
 
     await axios
-      .get(`${serverUrl}tasks/${id}`)
+      // .get(`http://localhost:8000/api/v1/tasks/${id}`)
+      .get(`${process.env.REACT_APP_SERVER}tasks/${id}`)
+
       .then((response) => {
         tasks.push(response.data[0]);
         setUserTasks([...tasks]);
@@ -97,7 +108,6 @@ function App() {
     console.log("userId in click: " + userId);
     localStorage.setItem("userId", userId);
 
-
     // setTimeout(()=>{
     //   // localStorage.setItem("userType", userType);
     //   console.log(localStorage.userType);
@@ -110,8 +120,6 @@ function App() {
       // console.log(userType)
       localStorage.setItem("showScreen", "true");
       setShowView(true);
-
-
     }, 1000);
   };
 
@@ -131,7 +139,7 @@ function App() {
     };
 
     await axios
-      .post(serverUrl+ "user/login", login)
+      .post(process.env.REACT_APP_SERVER + "user/login", login)
       .then((result) => {
         console.log(result.data.data.type);
         setUserType(result.data.data.type);
@@ -139,64 +147,64 @@ function App() {
         console.log(userType);
 
         // console.log("wtf"+userType);
-        setTimeout(()=>{
+        setTimeout(() => {
           localStorage.setItem("userType", result.data.data.type);
-        },1000)
+        }, 1000);
 
-
-        
-        checkUserId(e)
-        
+        checkUserId(e);
       })
       .catch((error) => {
         console.log(error);
       });
-
-
-      
   };
   // =============================== login =============================
 
-
-
-  const handelPanicBtn= () => {
+  const handelPanicBtn = () => {
     localStorage.clear();
     window.location.reload();
-  }
+  };
 
   useEffect(() => {
     getDataByUserID(localStorage.getItem("userId"));
     getUserTasksIds(localStorage.getItem("userId"));
     // localStorage.setItem("userType", userType);
-  }, [showView]);
-
-
+  }, [showView, unDoneTask]);
 
   let rpLogoHorizontalSVG;
+  let loginSplashSVG;
 
-  async function grabSVG(url){
-      return fetch(url)
-      .then(response => response.text())
-      .then(result => {
-          return result;
+  async function grabSVG(url) {
+    return fetch(url)
+      .then((response) => response.text())
+      .then((result) => {
+        return result;
       });
   }
 
-  grabSVG(rpLogoHorizontal).then(eyqxf => {
-      rpLogoHorizontalSVG = eyqxf;
-      document.querySelectorAll(".restaurantPro_logo_landscape").forEach(thdkv => {
-          thdkv.innerHTML = rpLogoHorizontalSVG
-      })        
-  })
+  grabSVG(rpLogoHorizontal).then((eyqxf) => {
+    rpLogoHorizontalSVG = eyqxf;
+    document
+      .querySelectorAll(".restaurantPro_logo_landscape")
+      .forEach((thdkv) => {
+        thdkv.innerHTML = rpLogoHorizontalSVG;
+      });
+  });
 
-  const stopPropagation= (e) => {
+  grabSVG(loginSplash).then((eyqxf) => {
+    loginSplashSVG = eyqxf;
+    document
+      .querySelectorAll(".login_splash_svg")
+      .forEach((thdkv) => {
+        thdkv.innerHTML = loginSplashSVG;
+      });
+  });
+
+  const stopPropagation = (e) => {
     e.preventDefault();
-  }
+  };
 
-  return (    
-
+  return (
     <div className="App">
-      
       {console.log(
         "localStorage return : " + localStorage.getItem("showScreen")
       )}
@@ -214,50 +222,72 @@ function App() {
               <div className="login_tr">
                 <form className="login_form" onClick={stopPropagation}>
                   <label>User Id</label>
-                  <input type="text" placeholder="User ID" value={userId} onChange={getUserId} />
+                  <input
+                    type="text"
+                    placeholder="User ID"
+                    value={userId}
+                    onChange={getUserId}
+                  />
 
                   <label>password</label>
-                  <input type="password" placeholder="Password" value={psw} onChange={getPassword} />
+                  <input
+                    type="password"
+                    placeholder="Password"
+                    value={psw}
+                    onChange={getPassword}
+                  />
                   {/* <div className="submit" onClick={checkUserId}>
                     <h4>Submit</h4>
                   </div> */}
 
                   <div className="logIn">
-                    <button type="submit" onClick={loginUser}>Login</button>
+                    <button type="submit" onClick={loginUser}>
+                      Login
+                    </button>
                   </div>
-                </form>{/* end login form */}
-              </div>{/* end login table-row */}
-            </div>{/* end login table */}
-          </div>{/* end login left 50vw */}
-          
+                </form>
+                {/* end login form */}
+              </div>
+              {/* end login table-row */}
+            </div>
+            {/* end login table */}
+          </div>
+          {/* end login left 50vw */}
+
           <div className="login_half_right">
             <div className="login_image_holder">
-              <img src="https://cdn.glitch.global/f202da4e-f9f2-4703-9a01-471c490e991b/83a20ce0-5f7b-4a96-b52d-53f8544feda0.image.png" alt=""/>
+              {/* <img
+                src="https://cdn.glitch.global/f202da4e-f9f2-4703-9a01-471c490e991b/83a20ce0-5f7b-4a96-b52d-53f8544feda0.image.png"
+                alt=""
+              /> */}
+              <div className="login_splash_svg"></div>
             </div>
           </div>
-        </div>//end .login_page
-        
-        
+        </div>
+      ) : // <EmployeeView tasks={userTasks} account={userDetails} />
+      // <ManagerView />
+      localStorage.userType == "Employee" ? (
+        // render employee
+        <EmployeeView
+          tasks={userTasks}
+          setUnDoneTask={setUnDoneTask}
+          account={userDetails}
+          userId={userId}
+          getUserTasksIds={getUserTasksIds}
+          unDoneTask={unDoneTask}
+          loadingTask={loadingTask}
+        />
+      ) : localStorage.userType == "Manager" ? (
+        // manager view
+        // <div>Manager view</div>
+        <ManagerView />
       ) : (
-        // <EmployeeView tasks={userTasks} account={userDetails} />
-        // <ManagerView />
-        localStorage.userType == "Employee" ? (
-          // render employee
-          <EmployeeView tasks={userTasks} account={userDetails} userId = {userId}/>
-        ): localStorage.userType == "Manager" ? (
-          // manager view
-          // <div>Manager view</div>
-          <ManagerView /> 
-          // <>haha</>
+        // <>haha</>
 
-        ): (
-          <>
-            <div>sorry try again</div>
-            <button onClick={handelPanicBtn}>send me back</button>
-          </>
-
-          
-        )
+        <>
+          <div>sorry try again</div>
+          <button onClick={handelPanicBtn}>send me back</button>
+        </>
       )}
     </div>
   );
@@ -269,10 +299,9 @@ function App() {
   //       <div>========================================= login prototype ==================================</div>
   //       <label>User Id</label>
   //       <input type="text" value={userId} onChange={getUserId} />
-        
+
   //       <label>password</label>
   //       <input type="password" value={psw} onChange = {getPassword}/>
-
 
   //       <div className="logIn">
   //         <h4 onClick={loginUser}>Login</h4>

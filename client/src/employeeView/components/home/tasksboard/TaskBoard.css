@@ -2,6 +2,10 @@
     --Task-Row-Padding-Y:15px;
     --Task-Row-Padding-X:15px;
     --Task-Row-Transparency:50%;
+
+    --Task-Checkbox-Size:24px;
+    --Task-Checkbox-Corner-Rounding:8px;
+
     --Task-Name-Padding-Y:0.5em;
     --Task-Name-Padding-X:1em;
     --Task-Action-Btn-Padding-Y:0.5em;
@@ -11,10 +15,12 @@
     --Task-Details-Form-Gaps:15px;
     --Task-Details-Form-Inner-Gaps:8px;
     --Task-Details-CTA-Top-Gap:25px;
+
+    --tickmark:url("data:image/svg+xml;charset=utf8,<?xml version='1.0' standalone='no'?><!DOCTYPE svg PUBLIC '-//W3C//DTD SVG 1.1//EN' 'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'><svg t='1677191245559' class='icon' viewBox='0 0 1024 1024' version='1.1' xmlns='http://www.w3.org/2000/svg' p-id='6627' xmlns:xlink='http://www.w3.org/1999/xlink' width='200' height='200'><path d='M428.8 697.248c-3.84-2.496-58.88-57.216-165.12-164.128a32 32 0 0 1 45.12-45.12l137.28 137.28 265.6-265.6a32 32 0 0 1 45.12 45.12l-287.744 287.776c-5.824 6.08-12.32 11.296-21.056 11.424-8.736 0.128-13.44-3.008-19.2-6.752z' fill='black' p-id='6628'></path></svg>");
 }
 
-.board{
-
+.board {
+    position:relative;
 }
 
 .home_page .task_board {
@@ -35,20 +41,80 @@
 .home_page .board_list {
 }
 
+/* task row */
 .home_page .board_list .task {
     display:grid;
-    grid-template-columns:auto 35%;
+    grid-template-columns:var(--Task-Checkbox-Size) auto min-content;
     grid-gap:0 var(--Table-Columns-Spacing);
+    padding:var(--Task-Row-Padding-Y) var(--Task-Row-Padding-X);
+    border-radius:var(--Corner-Rounding);
+    background:rgba(var(--Background-RGB),0.5);
 }
 
-.home_page .board_list .task {
-    margin:0!important;
-    padding:0!important;
-    background:transparent;
-    margin:0!important;
-    border:none!important;
-    border-radius:var(--Corner-Rounding);
-    cursor:pointer;
+/* task row checkbox */
+.home_page .board_list .task .task_checkbox_wrap {
+    display:grid;
+    place-items:center;
+    cursor:default;
+}
+
+.home_page .board_list .task input[type="checkbox"]{
+    position:relative;
+    width:var(--Task-Checkbox-Size);
+    height:var(--Task-Checkbox-Size);
+    z-index:0;
+}
+/* pseudo tick mark container */
+.home_page .board_list .task input[type="checkbox"]:before {
+    content:"";
+    position:absolute;
+    top:0;margin-top:-2px;
+    left:0;margin-left:-2px;
+    width:calc(100% + (2px * 2));
+    height:calc(100% + (2px * 2));
+    background:var(--Background);
+    border:1px solid rgba(var(--Gray-RGB),0.7);
+    border-radius:var(--Task-Checkbox-Corner-Rounding);
+    box-sizing:border-box;
+}
+
+/* pseudo tick mark */
+.home_page .board_list .task input[type="checkbox"]:after {
+    content:"";
+    position:absolute;
+    --Negate-TickMark-Area:30%;
+    --Negate-TickMark-Area-Alt:0.3;
+    top:0;margin-top:calc(0px - var(--Task-Checkbox-Size) * (var(--Negate-TickMark-Area-Alt) / 2));
+    left:0;margin-left:calc(0px - var(--Task-Checkbox-Size) * (var(--Negate-TickMark-Area-Alt) / 2));
+    width:calc(100% + var(--Negate-TickMark-Area));
+    height:calc(100% + var(--Negate-TickMark-Area));
+    -webkit-mask-image:var(--tickmark);
+    mask-image:var(--tickmark);
+    -webkit-mask-repeat:no-repeat;
+    mask-repeat:no-repeat;
+    -webkit-mask-size:contain;
+    mask-size:contain;
+    -webkit-mask-position:center;
+    mask-position:center;
+    background:var(--Secondary);
+    box-sizing:border-box;
+    opacity:0;
+}
+
+.home_page .board_list .task input[type="checkbox"]:checked:after {
+    opacity:1;
+}
+
+.home_page .board_list .task input[type="checkbox"]:after,
+.home_page .board_list .task input[type="checkbox"]:checked:after {
+    transition:opacity var(--Hover-Speeds-Faster) ease-in-out
+}
+
+/* "disable" task row buttons by making it semi-transparent */
+/* this will only proc when user begins to multi-select using the checkbox(s) */
+.task_click_btn_disable .check_task,
+.task_click_btn_disable .open_task {
+    background:var(--Primary-Lightest)!important;
 }
 
 /* make each task row stretch to the height of the highest element in that row */
@@ -65,11 +131,16 @@
     align-items:center;
     margin:0!important;
     width:100%;
-    border:2px solid var(--Gray);
-    padding:var(--Task-Name-Padding-Y) var(--Task-Name-Padding-X);
-    background:rgba(var(--Background-RGB), calc(100% - var(--Task-Row-Transparency)));
-    border-radius:var(--Corner-Rounding);
     color:var(--Text-Color);
+}
+
+/* task row, task name */
+.home_page .task > p > span {
+    padding:var(--Task-Name-Padding-Y) var(--Task-Name-Padding-X);
+    border:2px solid rgba(var(--Gray-RGB),0.8);
+    border-radius:var(--Corner-Rounding);
+    background:rgba(var(--Background-RGB),0.69);
+    cursor:pointer;
 }
 
 .home_page .open_task,
@@ -78,9 +149,12 @@
     display:flex;
     align-items:center;
     justify-content:center;
-    background:var(--Primary-Medium)!important;
-    border-radius:var(--Corner-Rounding)!important;
+    background:var(--Primary-Medium);
+    border-radius:var(--Corner-Rounding);
     color:var(--Background)!important;
+    cursor:pointer;
+    transition:background var(--Hover-Speeds-Faster) ease-in-out;
+    white-space:nowrap;
 }
 
 .home_page .open_task {    
@@ -96,6 +170,31 @@
 
 .home_page .check_task {
     padding:var(--Task-Action-Btn-Padding-Y) var(--Task-Action-Btn-Padding-X);
+}
+
+/* "click to complete all" button */
+.complete-all-btn-container {
+    display:flex;
+    justify-content:right;
+    margin-top:calc(var(--Task-Row-Padding-Y) + var(--Task-Row-Spacing));
+    margin-right:var(--TaskBoard-Padding);
+}
+
+button.complete-all-btn {
+    margin:0;
+    padding:var(--CTA-Buttons-Padding-Y) var(--CTA-Buttons-Padding-X);
+    border-radius:var(--Corner-Rounding);
+    border:none;
+    font-family:"Century Gothic Bold";
+    font-size:calc(var(--Body-Font-Size) - 1px);
+    background:var(--Primary-Medium);
+    color:var(--Background);
+    cursor:pointer;
+    transition:background var(--Hover-Speeds) ease-in-out;
+}
+
+button.complete-all-btn:hover {
+    background:var(--Secondary-Medium);
 }
 
 /*--------------------*/
