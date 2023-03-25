@@ -103,10 +103,22 @@ export default function AssignTask() {
         console.log("user task saved: " + JSON.stringify(response.data));
       })
       .catch((error) => console.log("error in saving user task: " + error));
+    
+    // axios.put(`${process.env.REACT_APP_SERVER}tasks/updateAssigned/${tid}`.then((result)=>{
+    //   console.log(result);
+    // }).catch((err)=>{
+    //   console.log(err);
+    // }))
   };
 
   let updateTaskStatus = (id) => {
-    let data = { task_status: true, task_assigned: true };
+    // due_date
+
+    let dueDate = new Date();
+    // default to 3 hours after now
+    dueDate.setHours(dueDate.getHours()+3);
+
+    let data = { task_status: true, task_assigned: true, due_date: dueDate };
     axios
       // .put(`http://localhost:8000/api/v1/task/${id}`, data)
       .put(`${process.env.REACT_APP_SERVER}task/${id}`, data)
@@ -116,6 +128,12 @@ export default function AssignTask() {
         console.log("task status updated: " + JSON.stringify(response.data));
       })
       .catch((error) => console.log("error in saving user task: " + error));
+
+    axios.put(`${process.env.REACT_APP_SERVER}tasks/updateAssigned/${id}`.then((result)=>{
+      console.log(result);
+    }).catch((err)=>{
+      console.log(err);
+    }))
   };
 
   // show data according fetch data
