@@ -1,7 +1,9 @@
 import React from "react";
 import "./SideBar.css";
 
+import hamburger from "../../../icons/hamburger.svg"
 import logo from "../../../icons/Logo_DarkBG.svg"
+import logoLandscape from "../../../icons/Logo_DarkBG_horizontal.svg"
 import homeIcon from "../../../icons/home.svg"
 import taskIcon from "../../../icons/tasks.svg"
 import statsIcon from "../../../icons/Statistics.svg"
@@ -17,6 +19,7 @@ function SideBar() {
     //e.preventDefault();
   };
 
+  let hamburgerSVG;
   let homeIconSVG;
   let tasksIconSVG;
   let statsIconSVG;
@@ -32,6 +35,11 @@ function SideBar() {
         return result;
       });
   }
+
+  grabSVG(hamburger).then(eyqxf => {
+      hamburgerSVG = eyqxf;
+      document.querySelector(".hamburger_svg").innerHTML = hamburgerSVG
+  })
 
   grabSVG(homeIcon).then(eyqxf => {
       homeIconSVG = eyqxf;
@@ -68,11 +76,37 @@ function SideBar() {
       document.querySelector(".help_icon_svg").innerHTML = helpIconSVG
   })
 
+  // LISTEN FOR URL PATHNAME CHANGES and update menu title accordingly
+  let curURL = window.location.href;
+  let curPath = curURL.substring(curURL.lastIndexOf("/") + 1).replaceAll("-"," ");
+
+  document.body.addEventListener("click",() => {
+      // requestAnimationFrame() can be substituted with setTimeout()
+      requestAnimationFrame(() => {
+        if(curURL !== window.location.href){
+          // alert(window.location.href)
+          curURL = window.location.href;
+          curPath = curURL.substring(curURL.lastIndexOf("/") + 1).replaceAll("-"," ");
+          document.querySelector(".url-sb-path").textContent = curPath;
+        }
+      });
+  }, true);
+
   return (
     <div className="menu">
       <div className="sb_tr logo_tr">
+        
         <div className="logo-holder">
-          <img src={logo} alt="Restaurant Pro" className="logo-img"/>
+          <img src={logo} alt="Restaurant Pro" className="logo-img portrait"/>
+          <img src={logoLandscape} alt="Restaurant Pro" className="logo-img landscape"/>
+        </div>
+
+        <div className="handy">
+          <div className="hamburger_holder">
+            <div className="hamburger_svg"></div>
+          </div>
+
+          <h3 className="url-sb-path">{curPath}</h3>
         </div>
       </div>
       
