@@ -2,15 +2,76 @@
 
 @media(max-width: 1366px){
     :root {
-        --Sidebar-Width: 235px;
+        --Sidebar-Width: 225px;
     }
 }
 
+/*---- mobile sidebar begins ----*/
 @media(max-width: 1000px){
     :root {
-        --Sidebar-Width: 225px;
-        --Main-Board-Width: 60%;
+        --Sidebar-Width:100%;
+        --Sidebar-Menu-Width:25vw!important;
+        --Sidebar-Nav-Item-Padding-Y:var(--Mobile-Sidebar-Nav-Item-Padding-Y)!important;
+        --Sidebar-Nav-Item-Padding-X:var(--Mobile-Sidebar-Nav-Item-Padding-X)!important;
+        --Main-Board-Width:60%;
     }
+    
+    .menu {
+        background:transparent!important;
+    }
+
+    .menu .logo-holder {
+        justify-content:left;
+        --Sidebar-Logo-Top-Gap:var(--Mobile-Sidebar-Padding-Y)!important;
+        padding:0 var(--Mobile-Sidebar-Padding-X);
+    }
+
+    .menu .handy {
+        display:flex!important;
+        align-items:center;
+        justify-content:left;
+        padding:0 var(--Mobile-Sidebar-Padding-X);
+        padding-top:var(--Mobile-Sidebar-Hamburger-Top-Gap);
+        padding-bottom:calc(var(--Mobile-Sidebar-Padding-Y) - (var(--Mobile-Sidebar-Hamburger-Size) * 0.2));
+        width:fit-content;
+        cursor:pointer;
+    }
+
+    .hamburger_holder {
+        display:block!important;
+    }
+
+    .menu .logo-img {
+        width:var(--Mobile-Sidebar-Logo-Width)
+    }
+
+    .menu .logo-img.portrait {
+        display:none!important;
+    }
+
+    .menu .logo-img.landscape {
+        display:block!important
+    }
+
+    .logo_tr {
+        background:var(--Primary)
+    }
+
+    .sidebar_list {
+        margin-top:0!important;
+        height:100%!important;
+    }
+
+    .home_page {
+        display:block!important;
+        margin-left:var(--Screen-Margins-X)!important;
+        width:calc(100% - (var(--Screen-Margins-X) * 2))!important
+    }
+
+    .acc_box {
+        display:none!important;
+    }
+    /*-----------------------*/
 
     .quick_actions {
         padding:0!important;
@@ -36,19 +97,10 @@
     }
 
     :root {
-        --Sidebar-Width: 200px;
+        --Sidebar-Menu-Width:33vw!important;
     }
 
-    .menu {
-        display:none!important;
-    }
-
-    .home_page {
-        display:block!important;
-        margin-left:var(--Screen-Margins-X)!important;
-        width:calc(100% - (var(--Screen-Margins-X) * 2))!important
-    }
-
+    
     .quick_actions {
         --Quick-Actions-Icons-Size:55px!important;
         --Quick-Actions-Icons-Bottom-Gap:calc(var(--Quick-Actions-Icons-Size) * -0.5)!important;
@@ -58,14 +110,13 @@
         font-size:1rem;
     }
 
-    .acc_box {
-        display:none!important;
-    }
+    
 }
 
 @media(max-width: 600px){
     :root {
-        --Sidebar-Width: 50vw;
+        --Mobile-Sidebar-Logo-Width:40vw;
+        --Sidebar-Menu-Width:50vw!important;
     }
 
     .quick_actions {

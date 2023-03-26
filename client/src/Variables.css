@@ -18,7 +18,7 @@
     --Searchbar-Height:40px;
 
     /*----- LEFT SIDEBAR -----*/
-    --Sidebar-Width:10vw; /* this will be changed as screen resizes */
+    --Sidebar-Width:17vw; /* this will be changed as screen resizes */
 
     /*----- GAPS FROM SIDES OF THE SCREEN -----*/
     --Screen-Margins-X:30px;
@@ -76,5 +76,15 @@
     /*----- GLOBAL TRANSITION SPEED -----*/
     --Hover-Speeds:0.25s;
     --Hover-Speeds-Faster:0.1s;
+
+    /*---- MOBILE STUFF ----*/
+    --Mobile-Sidebar-Padding-X:20px;
+    --Mobile-Sidebar-Padding-Y:20px;
+    --Mobile-Sidebar-Logo-Width:30vw;
+    --Mobile-Sidebar-Hamburger-Top-Gap:12px;
+    --Mobile-Sidebar-Hamburger-Size:2.5rem;
+    
+    --Mobile-Sidebar-Nav-Item-Padding-Y:1em;
+    --Mobile-Sidebar-Nav-Item-Padding-X:calc(var(--Mobile-Sidebar-Padding-X) + 6px);
 }
 
