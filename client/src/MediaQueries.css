@@ -311,6 +311,20 @@
         white-space:nowrap!important;
         width:100%!important;
     }
+
+    /*-----------------------*/
+
+    .ht_popup {
+        margin-left:0!important;
+        width:100%!important;
+        --Popup-Msg-Box-Width:var(--Mobile-Popup-Msg-Box-Width)!important
+    }
+
+    /*-----------------------*/
+
+    .tab-buttons-container {
+        display:none!important;
+    }
 }
 
 @media(max-width: 800px){
