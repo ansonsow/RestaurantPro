@@ -91,15 +91,16 @@ function TasksBoard(props) {
         <h2>My Uncompleted Tasks</h2>
       </div>
       {props.loadingTask && (
-        <div class="loading-icon">
-          <div class="loading-dot"></div>
-          <div class="loading-dot"></div>
-          <div class="loading-dot"></div>
+        <div className="loading-icon">
+          <div className="loading-dot"></div>
+          <div className="loading-dot"></div>
+          <div className="loading-dot"></div>
         </div>
       )}
       {showBoard ? (
         <>
         <div className="task_board">
+          {tasks.length>0?(<></>):(<h3>You have no open tasks.</h3>)}
           <div className="board_list">
             {tasks.map((item) => (
               <TaskList
@@ -122,7 +123,7 @@ function TasksBoard(props) {
             )}
           </div>
         </div>
-        {tasks.length>0?(<button onClick={changeTaskStatus}>Task Finished</button>):(<h3>No Task</h3>)}
+        {tasks.length>0?(<div className="complete-all-btn-container"><button className="complete-all-btn" onClick={changeTaskStatus}>Click to Complete All</button></div>):(<></>)}
         </>
       ) : (
         <TaskDetails item={task} setShowBoard={setShowBoard} />

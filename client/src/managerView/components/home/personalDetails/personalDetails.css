@@ -29,7 +29,7 @@
     box-shadow:0 4px 4px 0 rgba(var(--Primary-RGB),0.25);
 }
 
-.user_box img[src*="3H5PoxU"]{
+.user_box img[src*="example_manager"]{
     filter:brightness(120%) saturate(105%) contrast(96%);
 }
 

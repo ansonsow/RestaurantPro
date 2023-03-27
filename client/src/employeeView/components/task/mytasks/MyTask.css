@@ -1,20 +1,29 @@
 :root {
-    --Task-Row-Padding-Y:15px;
-    --Task-Row-Padding-X:15px;
+    --Task-Row-Padding-Y:20px;
+    --Task-Row-Padding-X:22px;
     --Task-Row-Transparency:50%;
     --Task-Name-Padding-Y:0.5em;
     --Task-Name-Padding-X:1em;
     --Task-Action-Btn-Padding-Y:0.5em;
     --Task-Action-Btn-Padding-X:1em;
-    --Task-Row-Spacing:15px;
+    --Task-Row-Spacing:22px;
 }
 
 .my_task_board {
-    border-radius:var(--Corner-Rounding);
-    overflow:hidden;
+    position:relative;
+}
+
+.my_task_board .tab-buttons-container {
+    position:absolute;
+    bottom:100%;
+    height:calc(var(--Navbar-Height) - (var(--Screen-Margins-Y) * 0.2) - 5px);
+    display:flex;
+    align-items:center;
 }
 
 .board_columns {
+    border-radius:var(--Corner-Rounding);
+    overflow:hidden;
 }
 
 .columns_names {
@@ -33,7 +42,13 @@
     padding:var(--Table-Headers-Padding-Y) var(--Table-Headers-Padding-X);
 }
 
+.columns_names p:first-child {
+    justify-self:left;
+    padding-left:calc(var(--Table-Headers-Padding-X) * 2)
+}
+
 .task_page .board_list {
+    /* padding:var(--Task-Row-Padding-Y) 0; */
     padding:var(--Task-Row-Padding-Y) var(--Task-Row-Padding-X);
     background:var(--Background-2);
 }
@@ -43,6 +58,7 @@
     display:grid;
     grid-template-columns:repeat(4, 1fr);
     grid-gap:0 var(--Table-Columns-Spacing);
+    align-items:center;
 }
 
 .task_page .board_list .task {
@@ -52,7 +68,6 @@
     margin:0!important;
     border:none!important;
     border-radius:var(--Corner-Rounding);
-    cursor:pointer;
 }
 
 /* make each task row stretch to the height of the highest element in that row */
@@ -67,13 +82,15 @@
 .task_page .task > p {
     display:flex;
     align-items:center;
+    justify-content:center;
     margin:0!important;
     width:100%;
-    border:2px solid var(--Gray);
-    padding:var(--Task-Name-Padding-Y) var(--Task-Name-Padding-X);
-    background:rgba(var(--Background-RGB), calc(100% - var(--Task-Row-Transparency)));
-    border-radius:var(--Corner-Rounding);
     color:var(--Text-Color);
+}
+
+.task_page .task > p:first-of-type {
+    padding-left:var(--Task-Row-Padding-X);
+    justify-content:inherit;
 }
 
 .task_page .open_task,
@@ -82,9 +99,16 @@
     display:flex;
     align-items:center;
     justify-content:center;
-    background:var(--Primary-Medium)!important;
-    border-radius:var(--Corner-Rounding)!important;
-    color:var(--Background)!important;
+    background:var(--Primary-Medium);
+    border-radius:var(--Corner-Rounding);
+    color:var(--Background);
+    transition:background var(--Hover-Speeds-Faster) ease-in-out;
+    cursor:pointer;
+}
+
+.task_page .open_task:hover,
+.task_page .check_task:hover {
+    background:var(--Primary)
 }
 
 .task_page .open_task {    

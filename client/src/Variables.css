@@ -7,13 +7,18 @@
 	--Loading-Dots-Animation-Duration:2s;
 	--Loading-Dots-Animation-Delay:0.1s;
 
+    /*----- MEGA CONTAINER WIDTH -----*/
+    --Mega-Container-Width:calc(100% - var(--Sidebar-Width) - (var(--Screen-Margins-X) * 2));
+    --Main-Board-Width-Alt:calc(var(--Mega-Container-Width) * 0.65);
+    /* this is basically the same as --Main-Board-Width but calculated differently */
+
     /*----- TOP NAVBAR -----*/
     --Navbar-Height:100px;
     --Searchbar-Width:100%;
     --Searchbar-Height:40px;
 
     /*----- LEFT SIDEBAR -----*/
-    --Sidebar-Width:10vw; /* this will be changed as screen resizes */
+    --Sidebar-Width:17vw; /* this will be changed as screen resizes */
 
     /*----- GAPS FROM SIDES OF THE SCREEN -----*/
     --Screen-Margins-X:30px;
@@ -25,7 +30,7 @@
     
     /*----- TABLES -----*/
     --Table-Headers-Padding-X:1.3em;
-    --Table-Headers-Padding-Y:1em;
+    --Table-Headers-Padding-Y:calc(1em + 1px);
     --Table-Columns-Spacing:15px;
 
     /*----- AISLE GAP BETWEEN MAIN CONTENT'S LEFT & RIGHT -----*/
@@ -56,6 +61,11 @@
     --ClockIn-Button-Padding-Y:0.5em;
     --ClockIn-Button-Padding-X:1em;
 
+    /*----- TAB BUTTONS (NEAR TOP) -----*/
+    --Tab-Buttons-Width:10vw;
+    --Tab-Buttons-Padding-Y:0.4em;
+    --Tab-Buttons-Padding-X:1em;
+
     /*----- CTA BUTTONS -----*/
     --CTA-Buttons-Top-Gap:25px;
     --CTA-Buttons-Width:225px;
@@ -66,5 +76,17 @@
     /*----- GLOBAL TRANSITION SPEED -----*/
     --Hover-Speeds:0.25s;
     --Hover-Speeds-Faster:0.1s;
+
+    /*---- MOBILE STUFF ----*/
+    --Mobile-Sidebar-Padding-X:20px;
+    --Mobile-Sidebar-Padding-Y:20px;
+    --Mobile-Sidebar-Logo-Width:30vw;
+    --Mobile-Sidebar-Hamburger-Top-Gap:12px;
+    --Mobile-Sidebar-Hamburger-Size:2.5rem;
+
+    --Mobile-Sidebar-Nav-Item-Padding-Y:1em;
+    --Mobile-Sidebar-Nav-Item-Padding-X:calc(var(--Mobile-Sidebar-Padding-X) + 6px);
+
+    --Mobile-Sidebar-Toggle-Speed:300ms; /* ms only */
 }
 

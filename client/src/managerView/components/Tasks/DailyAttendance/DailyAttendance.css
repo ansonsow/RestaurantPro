@@ -19,7 +19,7 @@
     cursor: pointer;
 }
 .daily-attendance-page-upper-section-button-section button:hover{
-    background-color: var(--Secondary);
+    background-color: var(--Secondary-Lighter);
 }
 .daily-attendance-page-lower-section{
     display: flex;
