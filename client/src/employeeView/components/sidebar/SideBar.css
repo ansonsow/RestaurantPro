@@ -14,7 +14,6 @@
     width:var(--Sidebar-Width);
     height:100vh;
     background:var(--Primary);
-    z-index:5;
     /* display: flex;
     flex-direction: column;
     width: 10%;
@@ -22,6 +21,7 @@
     justify-content: space-between; */
     font-family:"century gothic regular";
     display:table;
+    z-index:10;
 }
 
 .sb_tr {
