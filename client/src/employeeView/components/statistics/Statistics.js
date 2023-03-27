@@ -116,24 +116,24 @@ export default function StatisticsPage(props) {
         </div> */}
       </div>
       <div className="statistics-page-lower-section">
-        <h2>Employee Performance</h2>
+        <h2>Your Performance:</h2>
         <table className="employee-performance-table">
           <thead>
-            <th>Name Surname</th>
-            <th>Total Done Tasks (Weekly)</th>
-            <th>Avg. Time To Complete Tasks (Weekly)</th>
-            <th>Avg Task for a day (Weekly)</th>
-            <th>Job Title</th>
-            <th>Avg Working Hours (Daily)</th>
+            <th col-name="name">Name Surname</th>
+            <th col-name="tasks done">Total Done Tasks (Weekly)</th>
+            <th col-name="time taken">Avg. Time To Complete Tasks (Weekly)</th>
+            <th col-name="tasks per day">Avg Task for a day (Weekly)</th>
+            <th col-name="job title">Job Title</th>
+            <th col-name="working hours">Avg Working Hours (Daily)</th>
           </thead>
           <tbody>
             <tr>
-              <td>Nikita</td>
-              <td>56</td>
-              <td>45 min</td>
-              <td>8</td>
-              <td>Server</td>
-              <td>8 hr 40 min</td>
+              <td col-name="name">Nikita</td>
+              <td col-name="tasks done">56</td>
+              <td col-name="time taken">45 min</td>
+              <td col-name="tasks per day">8</td>
+              <td col-name="job title">Server</td>
+              <td col-name="working hours">8 hr 40 min</td>
             </tr>
 
            
