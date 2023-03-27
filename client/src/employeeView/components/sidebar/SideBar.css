@@ -142,6 +142,12 @@
     justify-content:normal;
 }
 
+/* disable 'notifs' and 'help' links in case we accidentally open it */
+.sidebar_list a.row[href*="notif"],
+.sidebar_list a.row[href*="help"]{
+    pointer-events:none
+}
+
 .sidebar_list .row .svg_holder {
     position:relative;
     width:var(--Sidebar-Nav-Item-Icon-Size);

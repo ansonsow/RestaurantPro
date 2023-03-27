@@ -32,12 +32,13 @@
 
     .home_page {
         /* margin-top:calc(var(--Mobile-TopBar-Height) + var(--Navbar-Height))!important; */
-        margin-top:calc(var(--Screen-Margins-Y) + var(--Mobile-TopBar-Height))!important;
+        /* margin-top:calc(var(--Screen-Margins-Y) + var(--Mobile-TopBar-Height))!important; */
     }
 
-    .account_page, .stats_page, .notifs_page, .help_page, .all-task-page, .assign-task-page, .create-task-page, .daily-attendance-page, .statistics-page, .employee-list-page, .employee-page {
-        margin-left:var(--Screen-Margins-X);
-        width:calc(100% - var(--Screen-Margins-X) * 2);
+    .home_page, .account_page, .stats_page, .notifs_page, .help_page, .all-task-page, .assign-task-page, .create-task-page, .daily-attendance-page, .statistics-page, .employee-list-page, .employee-page {
+        margin-top:calc(var(--Screen-Margins-Y) + var(--Mobile-TopBar-Height))!important;
+        margin-left:var(--Screen-Margins-X)!important;
+        width:calc(100% - var(--Screen-Margins-X) * 2)!important;
     }
 
     /*-------------------*/
@@ -99,8 +100,6 @@
 
     .home_page {
         display:block!important;
-        margin-left:var(--Screen-Margins-X)!important;
-        width:calc(100% - (var(--Screen-Margins-X) * 2))!important;
 
         --Task-Row-Padding-Y:1em!important;
         --Task-Row-Padding-X:1.5em!important;
@@ -203,7 +202,22 @@
         padding-left:var(--Table-Headers-Padding-X)!important
     }
 
-    /* tasks: table body columns - make CTA button not as wide */
+    /* stats page: bottom table (EMPLOYEE) */
+    .App > .components .employee-performance-table thead,
+    .App > .components .employee-performance-table tr {
+        display:grid;
+        grid-template-columns:repeat(4, 1fr);
+    }
+    
+    .App > .components .employee-performance-table th[col-name="name"],
+    .App > .components .employee-performance-table th[col-name="job title"]{
+        display:none;
+    }
+
+    .App > .components .employee-performance-table td[col-name="name"],
+    .App > .components .employee-performance-table td[col-name="job title"]{
+        display:none;
+    }
 
     
 
@@ -246,6 +260,11 @@
     :root {
         --Mobile-Sidebar-Logo-Width:40vw;
         --Sidebar-Menu-Width:50vw!important;
+    }
+
+    .circular-progress-bar-section {
+        transform-origin:center;
+        transform:scale(0.85,0.85)
     }
 
     .quick_actions {
