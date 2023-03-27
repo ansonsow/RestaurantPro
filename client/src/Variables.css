@@ -88,5 +88,7 @@
     --Mobile-Sidebar-Nav-Item-Padding-X:calc(var(--Mobile-Sidebar-Padding-X) + 6px);
 
     --Mobile-Sidebar-Toggle-Speed:300ms; /* ms only */
+
+    --Mobile-Popup-Msg-Box-Width:70%;
 }
 

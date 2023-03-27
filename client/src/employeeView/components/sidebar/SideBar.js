@@ -85,7 +85,7 @@ function SideBar() {
 
   // MOBILE: LISTEN FOR URL PATHNAME CHANGES and update menu title accordingly
   let curURL = window.location.href;
-  let curPath = curURL.substring(curURL.lastIndexOf("/") + 1).replaceAll("-"," ");
+  let curPath = curURL.substring(curURL.lastIndexOf("/") + 1).replaceAll("-"," ").replaceAll("?","");
 
   document.body.addEventListener("click",() => {
       // requestAnimationFrame() can be substituted with setTimeout()
@@ -93,7 +93,7 @@ function SideBar() {
         if(curURL !== window.location.href){
           // alert(window.location.href)
           curURL = window.location.href;
-          curPath = curURL.substring(curURL.lastIndexOf("/") + 1).replaceAll("-"," ");
+          curPath = curURL.substring(curURL.lastIndexOf("/") + 1).replaceAll("-"," ").replaceAll("?","");
           document.querySelector(".url-sb-path").textContent = curPath;
         }
       });
