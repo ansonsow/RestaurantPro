@@ -94,7 +94,8 @@
 }
 
 .sidebar_list.closed {
-    margin-left:calc(0px - var(--Sidebar-Menu-Width));    
+    margin-left:calc(0px - var(--Sidebar-Menu-Width));
+    display:none;
 }
 
 .sidebar_list {

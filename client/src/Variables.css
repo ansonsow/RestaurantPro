@@ -30,7 +30,7 @@
     
     /*----- TABLES -----*/
     --Table-Headers-Padding-X:1.3em;
-    --Table-Headers-Padding-Y:1em;
+    --Table-Headers-Padding-Y:calc(1em + 1px);
     --Table-Columns-Spacing:15px;
 
     /*----- AISLE GAP BETWEEN MAIN CONTENT'S LEFT & RIGHT -----*/
