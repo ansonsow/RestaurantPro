@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect }  from "react";
 import "./SideBar.css";
 
 import hamburger from "../../../icons/hamburger.svg"
+import xMark from "../../../icons/close.svg"
 import logo from "../../../icons/Logo_DarkBG.svg"
 import logoLandscape from "../../../icons/Logo_DarkBG_horizontal.svg"
 import homeIcon from "../../../icons/home.svg"
@@ -20,6 +21,7 @@ function SideBar() {
   };
 
   let hamburgerSVG;
+  let xMarkSVG;
   let homeIconSVG;
   let tasksIconSVG;
   let statsIconSVG;
@@ -39,6 +41,11 @@ function SideBar() {
   grabSVG(hamburger).then(eyqxf => {
       hamburgerSVG = eyqxf;
       document.querySelector(".hamburger_svg").innerHTML = hamburgerSVG
+  })
+
+  grabSVG(xMark).then(eyqxf => {
+      xMarkSVG = eyqxf;
+      document.querySelector(".xmark_svg").innerHTML = xMarkSVG
   })
 
   grabSVG(homeIcon).then(eyqxf => {
@@ -76,7 +83,7 @@ function SideBar() {
       document.querySelector(".help_icon_svg").innerHTML = helpIconSVG
   })
 
-  // LISTEN FOR URL PATHNAME CHANGES and update menu title accordingly
+  // MOBILE: LISTEN FOR URL PATHNAME CHANGES and update menu title accordingly
   let curURL = window.location.href;
   let curPath = curURL.substring(curURL.lastIndexOf("/") + 1).replaceAll("-"," ");
 
@@ -92,8 +99,71 @@ function SideBar() {
       });
   }, true);
 
+  // TOGGLE SIDEBAR (SHOW/HIDE)
+  let toggleSpeed = getComputedStyle(document.documentElement).getPropertyValue("--Mobile-Sidebar-Toggle-Speed").replace(/[^\d.]*/g,"");
+
+  const toggleSidebar = () => {    
+    let menu = document.querySelector(".menu");
+    let sidebar_list = document.querySelector(".menu .sidebar_list");
+    let hamburgerIcon = menu.querySelector(".hamburger_svg");
+    let xMarkIcon = menu.querySelector(".xmark_svg");
+
+    // closed -> open
+    if(menu.matches(".menu-closed")){
+      sidebar_list.style.display = "flex";
+
+      setTimeout(() => {
+        hamburgerIcon.style.display = "none";
+        xMarkIcon.style.display = "flex";
+      },69)
+      
+      setTimeout(() => {
+        sidebar_list.classList.remove("closed")
+      },1)
+      
+      setTimeout(() => {
+        menu.classList.remove("menu-closed");
+      },toggleSpeed)
+    }
+    
+    // open -> closed
+    else {
+      sidebar_list.classList.add("closed");
+
+      setTimeout(() => {
+        hamburgerIcon.style.display = "flex";
+        xMarkIcon.style.display = "none";
+      },69)      
+
+      setTimeout(() => {
+        sidebar_list.style.display = "none";
+        menu.classList.add("menu-closed");
+      },toggleSpeed)
+    }
+  }
+
+  function sidebarTopHeight(delay){
+    setTimeout(() => {
+      let tbh = document.querySelector(".menu .logo_tr").offsetHeight;
+      document.querySelector(":root").style.setProperty("--Mobile-TopBar-Height",`${tbh}px`);
+    },delay)
+  }
+
+  useEffect(() => {
+    sidebarTopHeight(100)
+  }, []);
+
+  window.addEventListener("resize", () => {
+    sidebarTopHeight(0);
+    let sblist = document.querySelector(".menu.menu-closed .sidebar_list");
+    sblist.style.transition = "none";
+    setTimeout(() => {
+      sblist.style.transition = ""
+    },toggleSpeed)
+  })
+
   return (
-    <div className="menu">
+    <div className="menu menu-closed">
       <div className="sb_tr logo_tr">
         
         <div className="logo-holder">
@@ -101,9 +171,10 @@ function SideBar() {
           <img src={logoLandscape} alt="Restaurant Pro" className="logo-img landscape"/>
         </div>
 
-        <div className="handy">
+        <div className="handy" onClick={toggleSidebar}>
           <div className="hamburger_holder">
             <div className="hamburger_svg"></div>
+            <div className="xmark_svg"></div>
           </div>
 
           <h3 className="url-sb-path">{curPath}</h3>
@@ -111,7 +182,7 @@ function SideBar() {
       </div>
       
       <div className="sb_tr">
-        <div className="sidebar_list">
+        <div className="sidebar_list closed">
           <ul className="sidebar_list_top">
             {/*----- HOME LINK -----*/}
             <li className="sb_home_link">

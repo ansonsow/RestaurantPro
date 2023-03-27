@@ -6,6 +6,17 @@
     }
 }
 
+@media(min-width: 1001px){
+    /* always show sidebar on wide screens, regardless of whether it's closed on mobile view or not */
+    .sidebar_list.closed {
+        display:flex!important
+    }
+
+    .menu.menu-closed .sidebar_list {
+        transition:none!important;
+    }
+}
+
 /*---- mobile sidebar begins ----*/
 @media(max-width: 1000px){
     :root {
@@ -14,6 +25,10 @@
         --Sidebar-Nav-Item-Padding-Y:var(--Mobile-Sidebar-Nav-Item-Padding-Y)!important;
         --Sidebar-Nav-Item-Padding-X:var(--Mobile-Sidebar-Nav-Item-Padding-X)!important;
         --Main-Board-Width:60%;
+    }
+
+    .home_page {
+        margin-top:calc(var(--Mobile-TopBar-Height) + var(--Navbar-Height))!important;
     }
     
     .menu {
@@ -97,7 +112,7 @@
     }
 
     :root {
-        --Sidebar-Menu-Width:33vw!important;
+        --Sidebar-Menu-Width:35vw!important;
     }
 
     

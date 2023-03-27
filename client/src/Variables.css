@@ -83,8 +83,10 @@
     --Mobile-Sidebar-Logo-Width:30vw;
     --Mobile-Sidebar-Hamburger-Top-Gap:12px;
     --Mobile-Sidebar-Hamburger-Size:2.5rem;
-    
+
     --Mobile-Sidebar-Nav-Item-Padding-Y:1em;
     --Mobile-Sidebar-Nav-Item-Padding-X:calc(var(--Mobile-Sidebar-Padding-X) + 6px);
+
+    --Mobile-Sidebar-Toggle-Speed:300ms; /* ms only */
 }
 
