@@ -83,6 +83,8 @@ function SideBar() {
       document.querySelector(".help_icon_svg").innerHTML = helpIconSVG
   })
 
+  let toggleSpeed = getComputedStyle(document.documentElement).getPropertyValue("--Mobile-Sidebar-Toggle-Speed").replace(/[^\d.]*/g,"");
+
   // MOBILE: LISTEN FOR URL PATHNAME CHANGES and update menu title accordingly
   let curURL = window.location.href;
   let curPath = curURL.substring(curURL.lastIndexOf("/") + 1).replaceAll("-"," ").replaceAll("?","");
@@ -95,12 +97,14 @@ function SideBar() {
           curURL = window.location.href;
           curPath = curURL.substring(curURL.lastIndexOf("/") + 1).replaceAll("-"," ").replaceAll("?","");
           document.querySelector(".url-sb-path").textContent = curPath;
+          setTimeout(() => {
+            toggleSidebar()
+          },toggleSpeed*0.69)
         }
       });
   }, true);
 
   // TOGGLE SIDEBAR (SHOW/HIDE)
-  let toggleSpeed = getComputedStyle(document.documentElement).getPropertyValue("--Mobile-Sidebar-Toggle-Speed").replace(/[^\d.]*/g,"");
 
   const toggleSidebar = () => {    
     let menu = document.querySelector(".menu");
