@@ -51,7 +51,7 @@ function Account(props) {
     // }
     axios.put(`${process.env.REACT_APP_SERVER}users/${localStorage.userId}`, userDetails).then(response=>{
       console.log(response);
-      window.location.reload();
+      // window.location.reload();
     }).catch(error=>{
       console.log(error);
     })
@@ -253,7 +253,8 @@ function Account(props) {
           - ":" is a separator that indicates that the button will go to a different url
           - "/account" is the url that the button should go to
          */}
-        <button className="save_btn" onClick={(e) => {PopupFunction("Changes changed successfully.", "okay:/account")(e); saveChanges()  }}>Save Changes</button>
+        <button className="save_btn" onClick={(e) => {PopupFunction("Changes changed successfully.", "okay")(e); saveChanges()  }}>Save Changes</button>
+        {/* <button className="save_btn" onClick={(e) => { saveChanges()  }}>Save Changes</button> */}
         
       </div>
     </div>

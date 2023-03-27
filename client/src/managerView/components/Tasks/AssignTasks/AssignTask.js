@@ -335,7 +335,7 @@ export default function AssignTask() {
               </table>
               {/* <button onClick={showUnselectedData}>Next</button> */}
               {/* onClick={(e) => {PopupFunction("Changes changed successfully.", "okay:/account")(e); saveChanges()  }} */}
-              <button onClick={(e) => {PopupFunction("Successfully assigned", "okay:/tasks")(e); showUnselectedData()}}>Next</button>
+              <button onClick={(e) => {PopupFunction("Successfully assigned", "okay")(e); showUnselectedData()}}>Next</button>
             </div>
           )}
       </div>
