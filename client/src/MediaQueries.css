@@ -89,6 +89,10 @@
         margin-top:0!important;
         height:calc(100vh - var(--Mobile-TopBar-Height))!important;
     }
+
+    .sidebar_list .sidebar_list_bot li:last-child {
+        margin-bottom:var(--Sidebar-Nav-Item-Padding-Y)!important
+    }
     
     /*-----------------------*/
 
@@ -202,13 +206,15 @@
         padding-left:var(--Table-Headers-Padding-X)!important
     }
 
+    /*-----------------------*/
+
     /* stats page: bottom table (EMPLOYEE) */
     .App > .components .employee-performance-table thead,
     .App > .components .employee-performance-table tr {
         display:grid;
         grid-template-columns:repeat(4, 1fr);
     }
-    
+
     .App > .components .employee-performance-table th[col-name="name"],
     .App > .components .employee-performance-table th[col-name="job title"]{
         display:none;
@@ -219,6 +225,76 @@
         display:none;
     }
 
+    /* account page */
+    .account_page {
+        --Account-Image-Column-Width:180px!important;
+    }
+    
+    .account_page form {
+        display:block!important;
+        grid-template-columns:auto!important;
+        grid-gap:0!important;
+    }
+
+    .account_page .photo_col {
+        margin-bottom:20px;
+    }
+
+    .account_page .photo_col_inner {
+        margin-top:0!important;
+        display:grid;
+        grid-template-columns:var(--Account-Image-Column-Width) auto;
+        grid-gap:15px;
+        align-items:stretch;
+        width:auto!important;
+    }
+
+    .account_page .photo_section + .acc_side_box {
+        margin-top:0!important;
+    }
+
+    .account_page .photo_section + .acc_side_box:not(.mobile_acc_menu){
+        display:none!important
+    }
+
+    .account_page .mobile_acc_menu {
+        display:block!important;
+        padding:0!important;
+        background:transparent!important;
+        height:100%;
+    }
+
+    .account_page .mobile_acc_menu .tab-buttons-container {
+        display:grid!important;
+        grid-template-columns:repeat(2, 1fr);
+        align-items:stretch;
+        grid-gap:10px;
+        height:100%;
+        --Tab-Buttons-Width:100%!important;
+    }
+    
+    .account_page .mobile_acc_menu button.tab-buttons {
+        background:var(--Primary-Medium)!important;
+        white-space:nowrap;
+        text-overflow:ellipsis;
+        overflow:hidden;
+        font-size:calc(var(--Body-Font-Size) - 1px);
+        cursor:pointer;
+    }
+
+    .account_page .mobile_acc_menu button.tab-buttons.active {
+        background:var(--Secondary-Medium)!important
+    }
+
+    .account_page .call_to_actions {
+        grid-template-columns:repeat(2, 1fr)!important;
+    }
+
+    .account_page .call_to_actions button {
+        width:100%;
+    }
+
+    /*-----------------------*/
     
 
     /*-----------------------*/
@@ -243,6 +319,11 @@
         --Sidebar-Menu-Width:35vw!important;
     }
 
+    /* account page */
+    .account_page {
+        --Account-Image-Column-Width:140px!important;
+    }
+
     
     .quick_actions {
         --Quick-Actions-Icons-Size:55px!important;
@@ -265,6 +346,11 @@
     .circular-progress-bar-section {
         transform-origin:center;
         transform:scale(0.85,0.85)
+    }
+
+    /* account page */
+    .account_page {
+        --Account-Image-Column-Width:100px!important;
     }
 
     .quick_actions {
