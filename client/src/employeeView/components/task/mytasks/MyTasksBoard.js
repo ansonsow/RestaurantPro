@@ -29,10 +29,10 @@ function MyTasksBoard(props) {
         
         <div className="board_columns">
           <div className="columns_names">
-            <p>Task Name</p>
-            <p>Status</p>
-            <p>Urgency Level</p>
-            <p>Action</p>
+            <p col-name="task name">Task Name</p>
+            <p col-name="status">Status</p>
+            <p col-name="urgency">Urgency Level</p>
+            <p col-name="action">Action</p>
           </div>
           <div className="board_list">
             {tasks.map((item) => (
