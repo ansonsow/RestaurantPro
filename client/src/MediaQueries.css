@@ -288,6 +288,8 @@
 
     .account_page .call_to_actions {
         grid-template-columns:repeat(2, 1fr)!important;
+        margin-left:0!important;
+        margin-right:0!important;
     }
 
     .account_page .call_to_actions button {
