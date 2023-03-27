@@ -97,6 +97,10 @@ function Account(props) {
     <Popup/>
 
     <div className="account_page">
+      <div className="tab-buttons-container">
+        <button className="tab-buttons active">Account</button>
+      </div>
+
       <form className="task_details">
         {console.log("props in account: " + JSON.stringify(props.account))}
         {console.log("userDetails: " + JSON.stringify(userDetails))}
@@ -120,6 +124,15 @@ function Account(props) {
                   (e) => PopupFunction("Do you want to<br>delete this account?", "yes no")(e)
                 }>Delete Account</li>
               </ul>
+            </div>
+
+            <div className="acc_side_box mobile_acc_menu">
+              <div className="tab-buttons-container">
+                <button className="tab-buttons active">Account</button>
+                <button className="tab-buttons">Change Password</button>
+                <button className="tab-buttons">Delete Account</button>
+                <button className="tab-buttons">Change Photo</button>
+              </div>
             </div>
           </div>
         </div>{/* end form column 1 */}

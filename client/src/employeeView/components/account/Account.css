@@ -16,6 +16,14 @@
     --Account-Form-Label-Bottom-Gap:4px;
 }
 
+.account_page > .tab-buttons-container:first-of-type {
+    position: absolute;
+    bottom: 100%;
+    height: calc(var(--Navbar-Height) - (var(--Screen-Margins-Y) * 0.2) - 5px);
+    display: flex;
+    align-items: center;
+}
+
 .account_page .form {
   margin: auto;
   display: block;
@@ -68,6 +76,10 @@
 
 .photo_section + .acc_side_box {
     margin-top:var(--Account-Side-Actions-Box-Top-Gap);
+}
+
+.mobile_acc_menu {
+    display:none;
 }
 
 .acc_side_box {
