@@ -168,6 +168,11 @@
     width:var(--Login-Form-Width);
 }
 
+.login_form h2 {
+    color:var(--Primary);
+    margin-bottom:2rem;
+}
+
 .login_form label,
 .login_form input {
     display:block;
@@ -204,12 +209,15 @@
     padding:12px 22px;
     border-radius:var(--Corner-Rounding);
     background:var(--Primary);
-    font-family:"Century Gothic Bold";
-    font-size:var(--Body-Font-Size);
+    font-family:inherit;
+    /* font-family:"Century Gothic Bold"; */
+    font-size:var(--H3-Size);
     letter-spacing:0.3px;
     color:var(--Background);
     border:none;
     cursor:pointer;
+    transition:background var(--Hover-Speeds) ease-in-out;
+    width:var(--CTA-Buttons-Width)
 }
 
 .login_form .logIn button:hover {

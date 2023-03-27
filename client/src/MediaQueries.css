@@ -325,12 +325,49 @@
     .tab-buttons-container {
         display:none!important;
     }
+
+    /*-----------------------*/
+
+    .login_page {
+        grid-template-columns:auto!important;
+        align-items:stretch;
+        --Login-Screen-Margins:40px!important;
+    }
+
+    .login_top_part {
+        margin-top:calc(0px - var(--Login-Screen-Margins))!important;
+        margin-left:calc(0px - var(--Login-Screen-Margins))!important;
+        padding:var(--Mobile-Login-Screen-TopBar-Padding-Y) var(--Mobile-Login-Screen-TopBar-Padding-X)!important;
+        width:calc(100% + (var(--Login-Screen-Margins) * 2));
+        background:var(--Primary);
+    }
+
+    .restaurantPro_logo_landscape {
+        width:var(--Mobile-Login-Screen-Logo-Width)!important
+    }
+
+    .login_form {
+        margin-top:15vw;
+        --Login-Form-Width:69%;
+        --CTA-Buttons-Width:30%;
+    }
+
+    .login_form .logIn {
+        margin-top:30px;
+    }
+
+    .login_half_right {
+        display:none!important
+    }
 }
 
 @media(max-width: 800px){
 
     :root {
         --Sidebar-Menu-Width:35vw!important;
+
+        
+        --Mobile-Login-Screen-Logo-Width:40%;
     }
 
     /* account page */
@@ -347,7 +384,6 @@
     .quick_actions span {
         font-size:1rem;
     }
-
     
 }
 
@@ -374,5 +410,9 @@
 
     .quick_actions span {
         font-size:0.9rem;
+    }
+
+    .login_form {
+        --Login-Form-Width:100%;
     }
 }
