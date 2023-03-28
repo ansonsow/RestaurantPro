@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import UnAssignedTasksList from "./UnAssignedTasksList";
 import EmployeeList from "./EmployeeList";
 import EmployeeAssignedTask from "./EmployeeAssignedTask";
-import { Popup, PopupFunction } from "../../../../employeeView/components/popup/Popup";
+import Popup from "../../popup/Popup";
 import axios from "axios";
 export default function AssignTask() {
   let currentUrl = window.location.href;
@@ -23,6 +23,7 @@ export default function AssignTask() {
   const changeEventState = useRef({});
   const [loadingTask, setLoadingTasks] = useState(false);
   const [loadingEmployee, setLoadingEmployee] = useState(false);
+  const [popup, showPopup] = useState(false);
 
   // Call Apis
   useEffect(() => {
@@ -104,7 +105,7 @@ export default function AssignTask() {
         console.log("user task saved: " + JSON.stringify(response.data));
       })
       .catch((error) => console.log("error in saving user task: " + error));
-    
+
     // axios.put(`${process.env.REACT_APP_SERVER}tasks/updateAssigned/${tid}`.then((result)=>{
     //   console.log(result);
     // }).catch((err)=>{
@@ -117,7 +118,7 @@ export default function AssignTask() {
 
     let dueDate = new Date();
     // default to 3 hours after now
-    dueDate.setHours(dueDate.getHours()+3);
+    dueDate.setHours(dueDate.getHours() + 3);
 
     let data = { task_status: true, task_assigned: true, due_date: dueDate };
     axios
@@ -130,11 +131,14 @@ export default function AssignTask() {
       })
       .catch((error) => console.log("error in saving user task: " + error));
 
-    axios.put(`${process.env.REACT_APP_SERVER}tasks/updateAssigned/${id}`.then((result)=>{
-      console.log(result);
-    }).catch((err)=>{
-      console.log(err);
-    }))
+    axios
+      .put(`${process.env.REACT_APP_SERVER}tasks/updateAssigned/${id}`)
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   // show data according fetch data
@@ -224,12 +228,11 @@ export default function AssignTask() {
       }
     });
     setAllTask(newData);
-    
+    showPopup(true);
   };
 
   return (
     <div className="assign-task-page">
-      <Popup/>
       <div className="assign-task-page-upper-section">
         <div className="assign-task-page-upper-section-button-section">
           <Link to="/tasks" className="link-a">
@@ -275,12 +278,6 @@ export default function AssignTask() {
                   />
                 ))
               )}
-              {/* {allTasks.map((task) => (
-                <UnAssignedTasksList
-                  unassignedTask={task}
-                  click={taskSelected}
-                />
-              ))} */}
             </tbody>
           </table>
         </div>
@@ -307,12 +304,6 @@ export default function AssignTask() {
                   />
                 ))
               )}
-              {/* {allEmployee.map((employee) => (
-                <EmployeeList
-                  unassignedTask={employee}
-                  click={employeeSelected}
-                />
-              ))} */}
             </tbody>
           </table>
         </div>
@@ -335,9 +326,23 @@ export default function AssignTask() {
               </table>
               {/* <button onClick={showUnselectedData}>Next</button> */}
               {/* onClick={(e) => {PopupFunction("Changes changed successfully.", "okay:/account")(e); saveChanges()  }} */}
-              <button onClick={(e) => {PopupFunction("Successfully assigned", "okay:/tasks")(e); showUnselectedData()}}>Next</button>
+              <button
+                onClick={(e) => {
+                  showUnselectedData();
+                }}
+              >
+                Next
+              </button>
             </div>
           )}
+          {console.log(popup)}
+        {popup && (
+          <Popup
+            msg={"Successfully assigned"}
+            whichButtons={"okay:/tasks"}
+            showPopup={showPopup}
+          />
+        )}
       </div>
     </div>
   );

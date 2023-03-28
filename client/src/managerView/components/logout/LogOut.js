@@ -1,48 +1,53 @@
-import "./LogOut.css"
+import "./LogOut.css";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
-import { Popup, PopupFunction } from "../popup/Popup";
+import Popup from "../popup/Popup";
 
 const LogOut = () => {
-    let navigate = useNavigate();
-    
-    useEffect(() => {
-        if(document.querySelector(".ht_popup ~ .nav_bar") !== null){
-            document.querySelector(".ht_popup ~ .nav_bar").style.display = "none"
-        }
-        
-        PopupFunction("Are you sure you want to log out?", "yes no")();
+  let navigate = useNavigate();
 
-        document.querySelector(".ht_popup .btn_yes").addEventListener("click", () => {
-            handleClick()
-        })
-
-        document.querySelector(".ht_popup .btn_no").addEventListener("click", () => {
-            if(document.querySelector(".ht_popup ~ .nav_bar") !== null){
-                document.querySelector(".ht_popup ~ .nav_bar").style.display = ""
-            }
-            navigate('/home')
-        })
-    }, []);
-
-    const handleClick = (e) => {
-
-        localStorage.clear();
-        // console.log('wa');
-        // window.location.reload();
-
-        navigate('/blank');
-        navigate('/');
-        window.location.reload();
-
+  useEffect(() => {
+    if (document.querySelector(".ht_popup ~ .nav_bar") !== null) {
+      document.querySelector(".ht_popup ~ .nav_bar").style.display = "none";
     }
 
-    return(
-        <>
-        <Popup/>
+    // PopupFunction("Are you sure you want to log out?", "yes no")();
 
-        {/* <div className="logout_page">
+    document
+      .querySelector(".ht_popup .btn_yes")
+      .addEventListener("click", () => {
+        handleClick();
+      });
+
+    document
+      .querySelector(".ht_popup .btn_no")
+      .addEventListener("click", () => {
+        if (document.querySelector(".ht_popup ~ .nav_bar") !== null) {
+          document.querySelector(".ht_popup ~ .nav_bar").style.display = "";
+        }
+        navigate("/home");
+      });
+  }, []);
+
+  const handleClick = (e) => {
+    localStorage.clear();
+    // console.log('wa');
+    // window.location.reload();
+
+    navigate("/blank");
+    navigate("/");
+    window.location.reload();
+  };
+
+  return (
+    <>
+      <Popup
+        msg={"Are you sure you want to log out?"}
+        whichButtons={"yes no"}
+      />
+
+      {/* <div className="logout_page">
             <h3>Are you sure you want to log out?</h3>
 
             <div className="logoutFlex">
@@ -50,8 +55,8 @@ const LogOut = () => {
                 <button onClick={()=>{navigate('/home')}}>No</button>
             </div>
         </div> */}
-        </>
-    )
-}
+    </>
+  );
+};
 
 export default LogOut;
