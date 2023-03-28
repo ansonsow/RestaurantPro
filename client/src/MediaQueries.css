@@ -32,12 +32,13 @@
 
     .home_page {
         /* margin-top:calc(var(--Mobile-TopBar-Height) + var(--Navbar-Height))!important; */
-        margin-top:calc(var(--Screen-Margins-Y) + var(--Mobile-TopBar-Height))!important;
+        /* margin-top:calc(var(--Screen-Margins-Y) + var(--Mobile-TopBar-Height))!important; */
     }
 
-    .account_page, .stats_page, .notifs_page, .help_page, .all-task-page, .assign-task-page, .create-task-page, .daily-attendance-page, .statistics-page, .employee-list-page, .employee-page {
-        margin-left:var(--Screen-Margins-X);
-        width:calc(100% - var(--Screen-Margins-X) * 2);
+    .home_page, .account_page, .stats_page, .notifs_page, .help_page, .all-task-page, .assign-task-page, .create-task-page, .daily-attendance-page, .statistics-page, .employee-list-page, .employee-page {
+        margin-top:calc(var(--Screen-Margins-Y) + var(--Mobile-TopBar-Height))!important;
+        margin-left:var(--Screen-Margins-X)!important;
+        width:calc(100% - var(--Screen-Margins-X) * 2)!important;
     }
 
     /*-------------------*/
@@ -88,6 +89,10 @@
         margin-top:0!important;
         height:calc(100vh - var(--Mobile-TopBar-Height))!important;
     }
+
+    .sidebar_list .sidebar_list_bot li:last-child {
+        margin-bottom:var(--Sidebar-Nav-Item-Padding-Y)!important
+    }
     
     /*-----------------------*/
 
@@ -99,8 +104,6 @@
 
     .home_page {
         display:block!important;
-        margin-left:var(--Screen-Margins-X)!important;
-        width:calc(100% - (var(--Screen-Margins-X) * 2))!important;
 
         --Task-Row-Padding-Y:1em!important;
         --Task-Row-Padding-X:1.5em!important;
@@ -203,8 +206,97 @@
         padding-left:var(--Table-Headers-Padding-X)!important
     }
 
-    /* tasks: table body columns - make CTA button not as wide */
+    /*-----------------------*/
 
+    /* stats page: bottom table (EMPLOYEE) */
+    .App > .components .employee-performance-table thead,
+    .App > .components .employee-performance-table tr {
+        display:grid;
+        grid-template-columns:repeat(4, 1fr);
+    }
+
+    .App > .components .employee-performance-table th[col-name="name"],
+    .App > .components .employee-performance-table th[col-name="job title"]{
+        display:none;
+    }
+
+    .App > .components .employee-performance-table td[col-name="name"],
+    .App > .components .employee-performance-table td[col-name="job title"]{
+        display:none;
+    }
+
+    /* account page */
+    .account_page {
+        --Account-Image-Column-Width:180px!important;
+    }
+    
+    .account_page form {
+        display:block!important;
+        grid-template-columns:auto!important;
+        grid-gap:0!important;
+    }
+
+    .account_page .photo_col {
+        margin-bottom:20px;
+    }
+
+    .account_page .photo_col_inner {
+        margin-top:0!important;
+        display:grid;
+        grid-template-columns:var(--Account-Image-Column-Width) auto;
+        grid-gap:15px;
+        align-items:stretch;
+        width:auto!important;
+    }
+
+    .account_page .photo_section + .acc_side_box {
+        margin-top:0!important;
+    }
+
+    .account_page .photo_section + .acc_side_box:not(.mobile_acc_menu){
+        display:none!important
+    }
+
+    .account_page .mobile_acc_menu {
+        display:block!important;
+        padding:0!important;
+        background:transparent!important;
+        height:100%;
+    }
+
+    .account_page .mobile_acc_menu .tab-buttons-container {
+        display:grid!important;
+        grid-template-columns:repeat(2, 1fr);
+        align-items:stretch;
+        grid-gap:10px;
+        height:100%;
+        --Tab-Buttons-Width:100%!important;
+    }
+    
+    .account_page .mobile_acc_menu button.tab-buttons {
+        background:var(--Primary-Medium)!important;
+        white-space:nowrap;
+        text-overflow:ellipsis;
+        overflow:hidden;
+        font-size:calc(var(--Body-Font-Size) - 1px);
+        cursor:pointer;
+    }
+
+    .account_page .mobile_acc_menu button.tab-buttons.active {
+        background:var(--Secondary-Medium)!important
+    }
+
+    .account_page .call_to_actions {
+        grid-template-columns:repeat(2, 1fr)!important;
+        margin-left:0!important;
+        margin-right:0!important;
+    }
+
+    .account_page .call_to_actions button {
+        width:100%;
+    }
+
+    /*-----------------------*/
     
 
     /*-----------------------*/
@@ -221,12 +313,64 @@
         white-space:nowrap!important;
         width:100%!important;
     }
+
+    /*-----------------------*/
+
+    .ht_popup {
+        margin-left:0!important;
+        width:100%!important;
+        --Popup-Msg-Box-Width:var(--Mobile-Popup-Msg-Box-Width)!important
+    }
+
+    /*-----------------------*/
+
+    .tab-buttons-container {
+        display:none!important;
+    }
+
+    /*-----------------------*/
+
+    .login_page {
+        grid-template-columns:auto!important;
+        align-items:stretch;
+        --Login-Screen-Margins:40px!important;
+    }
+
+    .login_top_part {
+        margin-top:calc(0px - var(--Login-Screen-Margins))!important;
+        margin-left:calc(0px - var(--Login-Screen-Margins))!important;
+        padding:var(--Mobile-Login-Screen-TopBar-Padding-Y) var(--Mobile-Login-Screen-TopBar-Padding-X)!important;
+        width:calc(100% + (var(--Login-Screen-Margins) * 2));
+        background:var(--Primary);
+    }
+
+    .restaurantPro_logo_landscape {
+        width:var(--Mobile-Login-Screen-Logo-Width)!important
+    }
+
+    .login_form {
+        margin-top:15vw;
+        --Login-Form-Width:69%;
+        --CTA-Buttons-Width:30%;
+    }
+
+    .login_half_right {
+        display:none!important
+    }
 }
 
 @media(max-width: 800px){
 
     :root {
         --Sidebar-Menu-Width:35vw!important;
+
+        
+        --Mobile-Login-Screen-Logo-Width:40%;
+    }
+
+    /* account page */
+    .account_page {
+        --Account-Image-Column-Width:140px!important;
     }
 
     
@@ -238,7 +382,6 @@
     .quick_actions span {
         font-size:1rem;
     }
-
     
 }
 
@@ -248,6 +391,16 @@
         --Sidebar-Menu-Width:50vw!important;
     }
 
+    .circular-progress-bar-section {
+        transform-origin:center;
+        transform:scale(0.85,0.85)
+    }
+
+    /* account page */
+    .account_page {
+        --Account-Image-Column-Width:100px!important;
+    }
+
     .quick_actions {
         --Quick-Actions-Icons-Size:48px!important;
         --Quick-Actions-Icons-Bottom-Gap:10px!important;
@@ -255,5 +408,9 @@
 
     .quick_actions span {
         font-size:0.9rem;
+    }
+
+    .login_form {
+        --Login-Form-Width:100%;
     }
 }

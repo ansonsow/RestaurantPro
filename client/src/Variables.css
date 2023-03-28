@@ -68,7 +68,7 @@
 
     /*----- CTA BUTTONS -----*/
     --CTA-Buttons-Top-Gap:25px;
-    --CTA-Buttons-Width:225px;
+    --CTA-Buttons-Width:50%;
     --CTA-Buttons-Padding-X:1em;
     --CTA-Buttons-Padding-Y:0.69em;
     --CTA-Buttons-Spacing:25px;
@@ -88,5 +88,11 @@
     --Mobile-Sidebar-Nav-Item-Padding-X:calc(var(--Mobile-Sidebar-Padding-X) + 6px);
 
     --Mobile-Sidebar-Toggle-Speed:300ms; /* ms only */
+
+    --Mobile-Popup-Msg-Box-Width:70%;
+
+    --Mobile-Login-Screen-TopBar-Padding-Y:30px;
+    --Mobile-Login-Screen-TopBar-Padding-X:35px;
+    --Mobile-Login-Screen-Logo-Width:25%;
 }
 
