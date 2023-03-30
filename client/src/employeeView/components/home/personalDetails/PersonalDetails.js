@@ -52,10 +52,11 @@ export default function PersonalDetails(props) {
 
   const isToday = (someDate) => {
     const today = new Date();
+    // console.log(today);
+    const trimedToday = today.toString().substring(0,10);
+
     return (
-      someDate.getDate() == today.getDate() &&
-      someDate.getMonth() == today.getMonth() &&
-      someDate.getFullYear() == today.getFullYear()
+      trimedToday == someDate.substring(0,10)
     );
   };
 
@@ -70,13 +71,16 @@ export default function PersonalDetails(props) {
         const localClockOut = new Date(result.data[0].clock_out);
         // console.log("waaaaaaaaaaaa"+result);
         // stringify(result)
-        console.log("wtf"+result.data[0].clock_in);
 
-        if (isToday(localClockIn)) {
-          setIsAttend(true);
-        }
+
+        // if (isToday(localClockIn)) {
+        //   setIsAttend(true);
+        // }
+        setIsAttend(result.data[0].clock_status);
+        console.log(result.data[0].clock_status);
 
         console.log(isAttend);
+        // console.log("wat");
         const trimedClockIn = localClockIn.toString().substring(0, 21)
         const trimedClockOut = localClockOut.toString().substring(0, 21)
 
@@ -90,7 +94,9 @@ export default function PersonalDetails(props) {
   };
 
   const makeAttendance = async () => {
-    await axios
+    // console.log(isAttend);
+    if(!isToday(lastClockIn)){
+      await axios
       .post(process.env.REACT_APP_SERVER + "attendance", {
         user_id: localStorage.userId,
       })
@@ -98,20 +104,17 @@ export default function PersonalDetails(props) {
         console.log(result);
 
         const localClockIn = new Date(result.data[0].clock_in);
-        // console.log(localClockIn);
-        // console.log(new Date());
         localClockIn.setHours(localClockIn.getHours() + 7);
         const trimedTime = localClockIn.toString().substring(0, 21)
 
-        // console.log(localClockIn);
-        // setLastClockIn(String(localClockIn));
         setLastClockIn(trimedTime);
 
-        setIsAttend(true);
       })
       .catch((error) => {
         console.log(error);
       });
+    }
+
 
     await axios
       .put(
@@ -121,6 +124,8 @@ export default function PersonalDetails(props) {
       )
       .then((result) => {
         console.log(result);
+        setIsAttend(true);
+
       });
     
     await axios
@@ -131,6 +136,7 @@ export default function PersonalDetails(props) {
       )
       .then((result) => {
         console.log(result);
+        setIsAttend(true)
       });
   };
 
@@ -163,6 +169,7 @@ export default function PersonalDetails(props) {
   useEffect(() => {
     getData();
     getAttendance();
+    // console.log(isAttend);
   }, []);
 
   grabSVG(userCircleIcon).then(eyqxf => {
@@ -215,6 +222,7 @@ export default function PersonalDetails(props) {
           <p>
             <b>Last clock-out:</b> {lastClockOut}
           </p>
+          {/* <button onClick={()=>{console.log(isAttend);}}>check</button> */}
         </div>
       </div>
     </div>
