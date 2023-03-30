@@ -44,6 +44,7 @@
 .all-task-page .loading-icon {
     position:absolute;
     top:0;left:0;
+    margin-top:calc(var(--Navbar-Height) - (var(--Screen-Margins-Y) * 0.2) - 5px);
     width:100%;
     height:60vh;
     justify-content:center;
@@ -376,6 +377,7 @@
 .tab-buttons-container {
     display:flex;
     align-items:center;
+    grid-gap:var(--Tab-Buttons-Spacing);
 }
 
 button.tab-buttons {
@@ -385,7 +387,7 @@ button.tab-buttons {
     padding:var(--Tab-Buttons-Padding-Y) var(--Tab-Buttons-Padding-X);
     border-radius:calc(var(--Corner-Rounding) * 0.69);
     border:none;
-    background:var(--Primary);
+    background:var(--Primary-Medium);
     color:var(--Background);
     box-sizing:border-box;
 }
@@ -394,13 +396,18 @@ button.tab-buttons.active {
     background:var(--Secondary-Medium);
 }
 
+.tab-buttons-container > a,
+button.tab-buttons:not(.active) {
+    cursor:pointer;
+}
+
 button.tab-buttons,
 button.tab-buttons.active {
     transition:background var(--Hover-Speeds-Faster) ease-in-out;
 }
 
 button.tab-buttons:not(.active):hover {
-    background:var(--Primary-Medium);
+    background:var(--Primary);
 }
 
 .App{
