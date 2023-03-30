@@ -55,7 +55,6 @@ export default function CreateTask() {
       newTask.task_status = true;
       newTask.task_assigned = true;
 
-      saveUserTask(newTask);
     }
     await axios
       // .post("http://localhost:8000/api/v1/tasks", newTask)
@@ -63,6 +62,8 @@ export default function CreateTask() {
 
       .then((response) => {
         console.log("new task saved:" + JSON.stringify(response.data));
+        saveUserTask(newTask);
+
       })
       .catch((error) => {
         console.log("error in saving new task: " + error);
