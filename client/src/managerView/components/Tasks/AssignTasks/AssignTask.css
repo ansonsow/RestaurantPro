@@ -1,4 +1,19 @@
 /* CSS STYLING FOR ASSIGN TASK PAGE*/
+@media(min-width:1001px){
+    .assign-task-page .tab-buttons {
+        width:auto!important;
+        min-width:var(--Tab-Buttons-Width)!important;
+    }
+}
+
+.assign-task-page .tab-buttons-container {
+    position: absolute;
+    bottom: 100%;
+    height: calc(var(--Navbar-Height) - (var(--Screen-Margins-Y) * 0.2) - 5px);
+    display: flex;
+    align-items: center;
+}
+
 .assign-task-page-upper-section{
     display: flex;
     justify-content: space-between;
@@ -30,8 +45,7 @@
     margin-top: 2rem;
 }
 .underline-p{
-    color: #003D9E;
-    text-decoration: underline;
+    color:var(--Primary)
 }
 .uncompleted-task-table{
    border-collapse: collapse;
@@ -55,10 +69,18 @@
 }
 .fled-td{
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
     align-items: center;
     gap: 1rem;
 }
 table tr td{
     font-size: 14px;
+}
+
+.assign-task-page tr td:first-child {
+    padding-left:0.5em!important
+}
+
+.assign-task-page tr td:last-child {
+    padding-right:0.5em!important
 }

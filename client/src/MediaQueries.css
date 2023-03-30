@@ -225,6 +225,7 @@
 
     .all-task-page .tab-buttons {
         width:100%!important;
+        height:100%!important;
     }
 
     /* managerView: all tasks page - stick to sides of screen */
