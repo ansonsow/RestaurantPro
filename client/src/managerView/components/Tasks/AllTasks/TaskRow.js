@@ -2,13 +2,13 @@ import React from "react";
 
 function TaskRow(props) {
   return (
-    <tr>
-      <td>{props.task.task.task_name}</td>
-      <td>{props.task.task?.task_status === true ? "Open" : "Close"}</td> 
-      <td>{props.task.task?.due_date}</td>
-      <td>{props.task.task?.priority === 1 ? "High" : "Low"}</td>
-      <td>{props.task.user?.name}</td> 
-    </tr>
+    <div className="task">
+      <p col-name="task name">{props.task.task.task_name}</p>
+      <p col-name="status">{props.task.task?.task_status === true ? "Open" : "Close"}</p> 
+      <p col-name="due date">{props.task.task?.due_date}</p>
+      <p col-name="urgency">{props.task.task?.priority === 1 ? "High" : "Low"}</p>
+      <p col-name="assigned to">{props.task.user?.name}</p> 
+    </div>
   );
 }
 

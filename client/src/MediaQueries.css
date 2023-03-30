@@ -206,6 +206,69 @@
         padding-left:var(--Table-Headers-Padding-X)!important
     }
 
+    /* managerView: all tasks page - tab buttons top */
+    .all-task-page .tab-buttons-container {
+        display:grid!important;
+        grid-template-columns:repeat(2, 1fr);
+        position:relative!important;
+        bottom:initial!important;
+        padding:20px;
+        background:var(--Background-2);
+        box-sizing:content-box;
+        --Tab-Buttons-Spacing:10px!important;
+    }
+
+    .all-task-page .tab-buttons-container a,
+    .all-task-page .tab-buttons-container > .tab-buttons {
+        height:100%!important;
+    }
+
+    .all-task-page .tab-buttons {
+        width:100%!important;
+    }
+
+    /* managerView: all tasks page - stick to sides of screen */
+    .all-task-page {
+        height:auto!important;
+        margin-top:var(--Mobile-TopBar-Height)!important;
+        margin-left:0!important;
+        width:100%!important;
+        --Task-Row-Spacing:40px!important;
+    }
+
+    /* managerView: all tasks page - only 2 columns */
+    .all-task-page .columns_names,
+    .all-task-page .my_task_board .task {
+        grid-template-columns:repeat(4, 1fr)!important;
+    }
+
+    /* managerView: all tasks page - remove "due date" col */
+    .all-task-page .my_task_board [col-name="due date"]{
+        display:none!important
+    }
+
+    /* managerView: all tasks page: table headers - 1st one - remove extra padding */
+    .all-task-page .columns_names p:first-child {
+        justify-self:center!important;
+        padding-left:var(--Table-Headers-Padding-X)!important
+    }
+
+    /* managerView: all tasks page: table headers */
+    .all-task-page .columns_names {
+        text-align:center;
+        border-radius:0!important;
+    }
+
+    /* managerView: all tasks page: body: first col: remove left spacing */
+    .all-task-page .task > p:first-of-type {
+        padding-left:0!important;
+    }
+
+    /* managerView: all tasks page: body: remove gray border */
+    .all-task-page .board_list {
+        border:none!important;
+    }
+
     /*-----------------------*/
 
     /* stats page: bottom table (EMPLOYEE) */

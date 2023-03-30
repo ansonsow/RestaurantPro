@@ -158,57 +158,40 @@ console.log(allUsersTasks);
       });
   };
 
-  let currentUrl = window.location.href;
-  useEffect(() => {
-    if(currentUrl.includes("/tasks") ){
-      document.getElementById("all-task-btn").style.backgroundColor = "#FFC619"
-    }
-  });
+  // let currentUrl = window.location.href;
+  // useEffect(() => {
+  //   if(currentUrl.includes("/tasks") ){
+  //     document.getElementById("all-task-btn").style.backgroundColor = "#FFC619"
+  //   }
+  // });
   return (
     <div className="all-task-page">
+      <div className="my_task_board">
+        <div className="tab-buttons-container">
+          <button className="tab-buttons active">All Tasks</button>
 
-      {/* <div class="loading-icon">
-        <div class="loading-dot"></div>
-        <div class="loading-dot"></div>
-        <div class="loading-dot"></div>
-      </div> */}
-
-
-      <div className="all-task-page-upper-section">
-        <div className="all-task-page-upper-section-button-section">
-          <Link to="/tasks" className="link-a">
-            <button id="all-task-btn">All Task</button>
+          <Link to="/assign-task">
+            <button className="tab-buttons">Assign Task</button>
           </Link>
 
-          <Link to="/assign-task" className="link-a">
-            <button>Assign Task</button>
+          <Link to="/create-task">
+            <button className="tab-buttons">Create Task</button>
           </Link>
 
-          <Link to="/create-task" className="link-a">
-            <button>Create Task</button>
-          </Link>
-
-          <Link to="/daily-attendance" className="link-a">
-            <button>Daily Attendance</button>
+          <Link to="/daily-attendance">
+            <button className="tab-buttons">Daily Attendance</button>
           </Link>
         </div>
-        <div className="all-task-page-upper-section-search-section">
-          <input type="text" className="search-box" placeholder="Search Here" />
-        </div>
-      </div>
-      <div className="all-task-page-lower-section">
-        <table>
-          <thead>
-            <tr>
-              <th>Task Name</th>
-              <th>Status</th>
-              <th>Due Date</th>
-              <th>Urgency Level</th>
-              <th>Assign To</th>
-            </tr>
-          </thead>
-          <tbody>
-
+        
+        <div className="board_columns">
+          <div className="columns_names">
+            <p col-name="task name">Task Name</p>
+            <p col-name="status">Status</p>
+            <p col-name="due date">Due Date</p>
+            <p col-name="urgency">Urgency</p>
+            <p col-name="assigned to">Assigned To</p>
+          </div>
+          <div className="board_list">
             {load
               ? 
               allTaskData.map((task) => <TaskRow task={task} />)
@@ -219,10 +202,10 @@ console.log(allUsersTasks);
                 <div className="loading-dot"></div>
               </div>
               }
-
-          </tbody>
-        </table>
+          </div>
+        </div>
       </div>
-    </div>
+    </div>// * end .all-tasks-page
+    
   );
 }

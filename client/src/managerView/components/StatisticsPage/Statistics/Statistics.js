@@ -154,7 +154,7 @@ export default function StatisticsPage() {
               <td>6 hr 40 min</td>
             </tr>
             <tr>
-              <td>Sachin Jha</td>
+              <td>Crystal Lee</td>
               <td>56</td>
               <td>45 min</td>
               <td>8</td>
@@ -162,7 +162,7 @@ export default function StatisticsPage() {
               <td>8 hr 40 min</td>
             </tr>
             <tr>
-              <td>Sachin Jha</td>
+              <td>Alex Kunder</td>
               <td>56</td>
               <td>45 min</td>
               <td>8</td>
@@ -170,7 +170,7 @@ export default function StatisticsPage() {
               <td>8 hr 40 min</td>
             </tr>
             <tr>
-              <td>Sachin Jha</td>
+              <td>Ahmed Sal</td>
               <td>56</td>
               <td>45 min</td>
               <td>8</td>
