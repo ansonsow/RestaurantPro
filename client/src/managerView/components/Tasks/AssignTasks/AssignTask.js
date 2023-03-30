@@ -7,13 +7,13 @@ import EmployeeAssignedTask from "./EmployeeAssignedTask";
 import Popup from "../../popup/Popup";
 import axios from "axios";
 export default function AssignTask() {
-  let currentUrl = window.location.href;
-  useEffect(() => {
-    if (currentUrl.includes("/assign-task")) {
-      document.getElementById("assign-task-btn").style.backgroundColor =
-        "#FFC619";
-    }
-  });
+  // let currentUrl = window.location.href;
+  // useEffect(() => {
+  //   if (currentUrl.includes("/assign-task")) {
+  //     document.getElementById("assign-task-btn").style.backgroundColor =
+  //       "#FFC619";
+  //   }
+  // });
   const [unAssignedTask, setUnAssignedTask] = useState([]);
   const [unAssignedTaskObjects, setunAssignedTaskObjects] = useState([]);
   const [employee, setemployee] = useState([]);
@@ -233,29 +233,25 @@ export default function AssignTask() {
 
   return (
     <div className="assign-task-page">
-      <div className="assign-task-page-upper-section">
-        <div className="assign-task-page-upper-section-button-section">
-          <Link to="/tasks" className="link-a">
-            <button>All Task</button>
-          </Link>
+      <div className="tab-buttons-container">
+        <Link to="/tasks">
+          <button className="tab-buttons">All Tasks</button>
+        </Link>
+        
+        <button className="tab-buttons active">Assign Task</button>
 
-          <Link to="/assign-task" className="link-a">
-            <button id="assign-task-btn">Assign Task</button>
-          </Link>
+        <Link to="/create-task">
+          <button className="tab-buttons">Create Task</button>
+        </Link>
 
-          <Link to="/create-task" className="link-a">
-            <button>Create Task</button>
-          </Link>
-
-          <Link to="/daily-attendance" className="link-a">
-            <button>Daily Attendance</button>
-          </Link>
-        </div>
+        <Link to="/daily-attendance">
+          <button className="tab-buttons">Daily Attendance</button>
+        </Link>
       </div>
 
       <div className="assign-task-page-lower-section">
         <div className="assign-task-page-grid-column" id="column1">
-          <p className="underline-p">Unassigned Task</p>
+          <h3 className="underline-p">Unassigned Tasks</h3>
           <table className="unassigned-task-table">
             <thead>
               <th>Task Name</th>
@@ -282,7 +278,7 @@ export default function AssignTask() {
           </table>
         </div>
         <div className="assign-task-page-grid-column" id="column2">
-          <p className="underline-p">Employee</p>
+          <h3 className="underline-p">Assign to an Employee:</h3>
           <table className="employee-table">
             <thead>
               <th>Name</th>
