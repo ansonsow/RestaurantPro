@@ -410,6 +410,35 @@ button.tab-buttons:not(.active):hover {
     background:var(--Primary);
 }
 
+/*--------------------------*/
+
+@media(min-width:1001px){
+    .all-task-page .tab-buttons,
+    .assign-task-page .tab-buttons,
+    .create-task-page .tab-buttons,
+    .daily-attendance-page .tab-buttons
+    {
+        width:auto!important;
+        min-width:var(--Tab-Buttons-Width)!important;
+    }
+
+    .all-task-page .tab-buttons-container,
+    .assign-task-page .tab-buttons-container,
+    .create-task-page .tab-buttons-container,
+    .daily-attendance-page .tab-buttons-container
+    {
+        position: absolute;
+        bottom: 100%;
+        height: calc(var(--Navbar-Height) - (var(--Screen-Margins-Y) * 0.2) - 5px);
+        display: flex;
+        align-items: center;
+    }
+}
+
+
+
+/*--------------------------*/
+
 .App{
  /* display: flex; */
  /* flex-direction: row; */
