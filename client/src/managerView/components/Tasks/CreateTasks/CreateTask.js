@@ -129,7 +129,9 @@ export default function CreateTask() {
     <div className="create-task-page">
       {getAllUserName()}
       <div className="tab-buttons-container">
-        <button className="tab-buttons">All Tasks</button>
+        <Link to="/tasks">
+          <button className="tab-buttons">All Tasks</button>
+        </Link>
 
         <Link to="/assign-task">
           <button className="tab-buttons">Assign Task</button>

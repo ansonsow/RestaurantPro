@@ -261,10 +261,10 @@ export default function AssignTask() {
             <tbody>
               {console.log("all task run")}
               {loadingTask ? (
-                <div class="loading-icon">
-                  <div class="loading-dot"></div>
-                  <div class="loading-dot"></div>
-                  <div class="loading-dot"></div>
+                <div className="loading-icon">
+                  <div className="loading-dot"></div>
+                  <div className="loading-dot"></div>
+                  <div className="loading-dot"></div>
                 </div>
               ) : (
                 allTasks.map((task) => (
@@ -287,10 +287,10 @@ export default function AssignTask() {
             <tbody>
               {console.log("loadingTask" + loadingTask)}
               {loadingEmployee ? (
-                <div class="loading-icon">
-                  <div class="loading-dot"></div>
-                  <div class="loading-dot"></div>
-                  <div class="loading-dot"></div>
+                <div className="loading-icon">
+                  <div className="loading-dot"></div>
+                  <div className="loading-dot"></div>
+                  <div className="loading-dot"></div>
                 </div>
               ) : (
                 allEmployee.map((employee) => (
