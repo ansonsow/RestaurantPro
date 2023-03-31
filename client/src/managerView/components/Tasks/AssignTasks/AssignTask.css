@@ -1,18 +1,4 @@
 /* CSS STYLING FOR ASSIGN TASK PAGE*/
-@media(min-width:1001px){
-    .assign-task-page .tab-buttons {
-        width:auto!important;
-        min-width:var(--Tab-Buttons-Width)!important;
-    }
-}
-
-.assign-task-page .tab-buttons-container {
-    position: absolute;
-    bottom: 100%;
-    height: calc(var(--Navbar-Height) - (var(--Screen-Margins-Y) * 0.2) - 5px);
-    display: flex;
-    align-items: center;
-}
 
 .assign-task-page-upper-section{
     display: flex;

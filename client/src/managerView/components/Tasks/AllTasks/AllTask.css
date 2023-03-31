@@ -52,11 +52,6 @@
 
 /* managerView - all tasks page - 5 cols */
 @media(min-width:1001px){
-    .all-task-page .tab-buttons {
-        width:auto!important;
-        min-width:var(--Tab-Buttons-Width)!important;
-    }
-
     .all-task-page .columns_names,
     .all-task-page .board_list .task {
         grid-template-columns:repeat(5, 1fr)!important;

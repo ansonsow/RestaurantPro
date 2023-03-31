@@ -128,22 +128,22 @@ export default function CreateTask() {
   return (
     <div className="create-task-page">
       {getAllUserName()}
-      <div className="create-task-page-upper-section">
-        <div className="create-task-page-upper-section-button-section">
-          <Link to="/tasks" className="link-a">
-            <button>All Task</button>
-          </Link>
-          <Link to="/assign-task" className="link-a">
-            <button>Assign Task</button>
-          </Link>
-          <Link to="/create-task" className="link-a">
-            <button>Create Task</button>
-          </Link>
-          <Link to="/daily-attendance" className="link-a">
-            <button>Daily Attendance</button>
-          </Link>
-        </div>
+      <div className="tab-buttons-container">
+        <button className="tab-buttons">All Tasks</button>
+
+        <Link to="/assign-task">
+          <button className="tab-buttons">Assign Task</button>
+        </Link>
+
+        <Link to="/create-task">
+          <button className="tab-buttons active">Create Task</button>
+        </Link>
+
+        <Link to="/daily-attendance">
+          <button className="tab-buttons">Daily Attendance</button>
+        </Link>
       </div>
+
       <div className="create-task-page-lower-section">
         <h2>Fill the form to create new task</h2>
         <div className="create-task-page-input-section">
