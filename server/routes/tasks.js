@@ -14,5 +14,6 @@ router.put("/task/", taskCtrl.getTasks);
 
 router.put("/tasks/:tid", taskCtrl.updateTask);
 router.put("/task/:tid", taskCtrl.updateTaskStatus);
+router.put("/tasks/updateAssigned/:tid", taskCtrl.updateAssignedTask);
 
 module.exports = router;

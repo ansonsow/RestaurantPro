@@ -23,8 +23,8 @@ const attendanceSchema = new Schema({
         default: isoTime
     },
     clock_status:{
-    type:Boolean,
-    default:false
+        type: Boolean,
+        default: false
     }
 });
 

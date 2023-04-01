@@ -3,21 +3,10 @@ let task = require("../models/tasks")
 
 
 const isToday = (someDate) => {
-
     const today = new Date()
-    const strToday = today.toLocaleDateString("en-US", {timeZone: "America/Los_Angeles"})
-    // console.log("strtoday "+strToday);
-    console.log(typeof(someDate));
-    if(typeof(someDate)=="string"){
-        return someDate == strToday;
-    }else{
-        return someDate.getDate() == today.getDate() &&
-               someDate.getMonth() == today.getMonth() &&
-               someDate.getFullYear() == today.getFullYear()
-    }
-
-    
-
+    return someDate.getDate() == today.getDate() &&
+      someDate.getMonth() == today.getMonth() &&
+      someDate.getFullYear() == today.getFullYear()
 }
 
 const convertTZ = (date, tzString) => {
@@ -68,22 +57,15 @@ const getUserTaskToday = async (req,res)=>{
     if(typeof(uid)=="undefined"&&typeof(tid)=="undefined"){
         const userTask = await UserTask.find()
 
-        console.log(userTask);
-
         for(let i = 0 ;i<userTask.length;i++){
-            console.log(userTask[i]);
             // console.log(isToday(convertTZ(userTask[i].date, "America/Vancouver")))
-
-            // if(!userTask[i].date){
-            //     break;
-            // }
-            // const convertDate = convertTZ(userTask[i].date, "America/Vancouver")
-            const convertDate = userTask[i].date.toLocaleDateString("en-US", {timeZone: "America/Los_Angeles"})
-
+            if(!userTask[i].date){
+                break;
+            }
+            const convertDate = convertTZ(userTask[i].date, "America/Vancouver")
             // console.log(userTask[i])
-            console.log(convertDate)
+            // console.log(convertDate)
             if(isToday(convertDate)){
-                console.log("date push")
                 data.push(userTask[i])
             }
         }
@@ -159,7 +141,7 @@ const saveUserTask = async (req,res) =>{
         newUserTask.save().then(
             result=>{
                 res.status(201)
-                   .json(result);
+                   .json(newUserTask);
             }
         ).catch(error=>{
             res.status(500)
@@ -171,7 +153,7 @@ const saveUserTask = async (req,res) =>{
 }
 
 const updateTask = async (tid, bool) => {
-    const newtask = await task.findOne({task_id:tid});
+    const newtask = await task.findOne({_id:tid});
     console.log(bool);
     newtask.task_status = bool;
     newtask.save().then(result=>{
@@ -185,7 +167,7 @@ const updateTask = async (tid, bool) => {
 
 const checkBool = async (tid, t)=>{
     let finishAll = true;
-    // console.log("waaa"+t+t._id);
+    console.log("waaa"+t+t._id);
     const ut = await UserTask.find({task_id:tid})
 
 
@@ -197,7 +179,7 @@ const checkBool = async (tid, t)=>{
         // }
 
         if(isToday(ut[i].date)){
-            // console.log("wooo"+ut[i]+ ut[i]._id);
+            console.log("wooo"+ut[i]+ ut[i]._id);
 
             if(ut[i].user_id==t.user_id&&ut[i].task_id==t.task_id){
                 ut[i].status = !ut[i].status
@@ -218,7 +200,7 @@ const checkBool = async (tid, t)=>{
     return finishAll
 }
 
-
+// update the user task for today's document if there is a matching 
 const updateUserTask = async (req,res) =>{
     const tid = req.params.tid;
     const uid = req.params.uid;
@@ -254,4 +236,13 @@ const updateUserTask = async (req,res) =>{
     }    
 }
 
-module.exports= {getUserTask, saveUserTask,updateUserTask,getUserTaskToday}
+const deleteAllUserTask = async (req,res)=>{
+  
+  UserTask.deleteMany({}).then(
+    res.status(201).json({"message":"Successfully deleted everything"}
+  )).catch(err=>{
+    res.status(404).json(err)
+  })
+}
+
+module.exports= {getUserTask, saveUserTask,updateUserTask,getUserTaskToday,deleteAllUserTask}
