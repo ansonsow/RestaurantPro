@@ -103,23 +103,19 @@ export default function DailyAttendance() {
         </Link>
       </div>
 
-      <div className="daily-attendance-page-lower-section">
-        <table className="daily-attendance-table">
-          <thead>
-            <tr>
-              <th>Name Surname</th>
-              <th>Action</th>
-              <th>Date</th>
-              <th>Time</th>
-              <th>Job Title</th>
-            </tr>
-          </thead>
-          <tbody>
-            {allEmployee.map((empDetails,index) => (
-              <EmployeeRow emp={empDetails} key={index} time={allEmployeeTime[index]}/>
-            ))}
-          </tbody>
-        </table>
+      <div className="daily_attendance_table">
+        <div className="thead">
+          <div col-name="employee name">Name Surname</div>
+          <div col-name="action">Action</div>
+          <div col-name="date">Date</div>
+          <div col-name="time">Time</div>
+          <div col-name="employee title">Job Title</div>
+        </div>
+        <div className="tbody">
+          {allEmployee.map((empDetails,index) => (
+            <EmployeeRow emp={empDetails} key={index} time={allEmployeeTime[index]}/>
+          ))}
+        </div>
       </div>
     </div>
   );

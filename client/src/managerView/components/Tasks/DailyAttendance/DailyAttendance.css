@@ -1,46 +1,69 @@
-/* CSS STYLING FOR ALL TASK PAGE*/
-.daily-attendance-page-upper-section{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-.daily-attendance-page-upper-section-button-section{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-}
-.daily-attendance-page-upper-section-button-section button{
-    padding: 0.3rem 0.7rem;
-    border-radius: 4px;
-    border: none;
-    background-color: var(--Primary);
-    color: white;
-    cursor: pointer;
-}
-.daily-attendance-page-upper-section-button-section button:hover{
-    background-color: var(--Secondary-Lighter);
-}
-.daily-attendance-page-lower-section{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 2rem;
-}
-.daily-attendance-page-lower-section table{
-    width: 100%;
+:root {
+    --Attendance-List-Header-Padding-Y:1em;
+    --Attendance-List-Header-Padding-X:1em;
+
+    --Attendance-List-Cols-Spacing:12px;
+
+    --Attendance-List-Row-Padding-Y:0.8em;
+    --Attendance-List-Row-Padding-X:0.5em;
+    
+    --Attendance-List-Actions-SVG-Size:calc(var(--Body-Font-Size) * 1.5);
 }
 
-tbody {
-    position:relative;
-    background-color: var(--Background-2);
+/*----------------------*/
+
+.daily_attendance_table .thead {
+    background:var(--Primary);
+    padding:var(--Attendance-List-Header-Padding-Y) var(--Attendance-List-Header-Padding-X);
+    border-radius:var(--Corner-Rounding) var(--Corner-Rounding) 0 0;
+    font-family:"Brevia Medium";
+    color:var(--Background);
 }
 
-.daily-attendance-table{
-    border: none;
-    width: 90%;
-    border-collapse: collapse;
+.daily_attendance_table .thead,
+.daily_attendance_table .tr {
+    display:grid;
+    grid-template-columns:repeat(5, 1fr);
+    grid-gap:var(--Attendance-List-Cols-Spacing);
+    place-items:center;
 }
-tbody tr{
-    height: 20px;
+
+/*----------------------*/
+
+.daily_attendance_table .tbody {
+    padding:var(--Attendance-List-Row-Padding-Y) var(--Attendance-List-Header-Padding-X);
+    background:var(--Background-2);
+    border-radius:0 0 var(--Corner-Rounding) var(--Corner-Rounding);
+}
+
+.daily_attendance_table .tr {
+    padding:var(--Attendance-List-Row-Padding-Y) 0;
+}
+
+.daily_attendance_table .tr:first-child {
+    padding-top:calc(var(--Attendance-List-Row-Padding-Y) / 2);
+}
+
+.daily_attendance_table .tr:last-child {
+    padding-bottom:calc(var(--Attendance-List-Row-Padding-Y) / 2);
+}
+
+.daily_attendance_table .tr + .tr {
+    border-top:1px solid var(--Blue-Gray-Light);
+}
+
+/*----------------------*/
+
+.daily_attendance_table .td[col-name="employee name"] {
+    font-family:"Brevia Medium"
+}
+
+.daily_attendance_table .td[col-name="power role"]:empty:before {
+    content:"Employee";
+    cursor:text;
+}
+
+.daily_attendance_table .td[col-name="restaurant"]:empty:before {
+    content:"East is East";
+    cursor:text;
 }

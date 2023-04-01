@@ -85,20 +85,25 @@ export default function CreateEmployee() {
     console.log("restaurantName: " + JSON.stringify(userFields));
   };
 
-  let currentUrl = window.location.href;
-    useEffect(() => {
-        if(currentUrl.includes("/create-employee") ){
-          document.getElementById("new-employee-btn").style.backgroundColor = "#FFC619"
-        }
-      });
+  // let currentUrl = window.location.href;
+  //   useEffect(() => {
+  //       if(currentUrl.includes("/create-employee") ){
+  //         document.getElementById("new-employee-btn").style.backgroundColor = "#FFC619"
+  //       }
+  //     });
   return (
     <>
       <div className="employee-page">
-        <div className="employee-page-upper-section">
-          <Link to="/employee"><button>Employee List</button></Link>
-          <Link to="/create-employee"><button id='new-employee-btn'>New Employee</button></Link>
-          {/* <Link to="/edit-employee"><button>Edit Employee</button></Link> */}
+        <div className="tab-buttons-container">
+          <Link to="/employee">
+            <button className="tab-buttons">Employee List</button>
+          </Link>
+
+          <button className="tab-buttons active">New Employee</button>
+
+          <button className="tab-buttons disabled">Edit Employee</button>
         </div>
+        
         <div className="employee-page-lower-section">
           <div className="employee-page-lower-section-image-part">
                 <div className="image-box"></div>

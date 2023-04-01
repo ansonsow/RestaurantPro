@@ -33,21 +33,28 @@ export default function EditEmployee() {
     const closeDeleteDialogue = () => {
         document.getElementById("deletedialogueBox").style.display = "none"
     }
-    let currentUrl = window.location.href;
-    useEffect(() => {
-        if(currentUrl.includes("/edit-employee") ){
-          document.getElementById("edit-employee-btn").style.backgroundColor = "#FFC619"
-        }
-      });
+    // let currentUrl = window.location.href;
+    // useEffect(() => {
+    //     if(currentUrl.includes("/edit-employee") ){
+    //       document.getElementById("edit-employee-btn").style.backgroundColor = "#FFC619"
+    //     }
+    //   });
   return (
     <>
 
     <div className='employee-page'>
-        <div className="employee-page-upper-section">
-            <Link to="/employee"><button>Employee List</button></Link>
-            {/* <Link to="/create-employee"><button>New Employee</button></Link> */}
-            <Link to="/edit-employee"><button id='edit-employee-btn'>Edit Employee</button></Link>
+        <div className="tab-buttons-container">
+          <Link to="/employee">
+            <button className="tab-buttons">Employee List</button>
+          </Link>
+
+          <Link to="/create-employee">
+            <button className="tab-buttons">New Employee</button>
+          </Link>
+
+          <button className="tab-buttons active">Edit Employee</button>
         </div>
+
         <div className="employee-page-lower-section">
             <div className="employee-page-lower-section-image-part">
                 <div className="image-box"></div>
