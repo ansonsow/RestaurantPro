@@ -47,11 +47,6 @@ const usersSchema = new Schema({
         default: ""
 
     },
-    restaurantName:{
-        type:String,
-        minLength:1,
-        required: false
-    },
     contact_number: {
         type:Number,
 
@@ -67,6 +62,7 @@ const usersSchema = new Schema({
     type: {
         type:String,
         required: true,
+        enum: ["Manager", "Employee", "Admin"]
     },
     shift: {
         type:String,
@@ -81,12 +77,6 @@ const usersSchema = new Schema({
 
     },
     lastLogin: {
-        type:Date,
-        // required: true,
-        default: new Date(Date.now())
-    },
-
-    thisLogin: {
         type:Date,
         // required: true,
         default: new Date(Date.now())

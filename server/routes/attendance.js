@@ -1,6 +1,7 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
 const auth = require("../middleware/auth");
+
 
 const attendanceCtrl = require("../controllers/attendanceController");
 
@@ -21,9 +22,11 @@ router.get("/attendance/time/clock_out", attendanceCtrl.getClockOut);
 // router.post("/attendance", auth.verifyToken, attendanceCtrl.saveAttendance);
 router.post("/attendance", attendanceCtrl.saveAttendance);
 
-router.get("/lastattendance/:uid", attendanceCtrl.getLastAttendance);
 
-router.put("/attendance/:uid", attendanceCtrl.updateClockOut);
+router.get("/lastattendance/:uid", attendanceCtrl.getLastAttendance)
+
+router.put("/attendance/:uid", attendanceCtrl.updateClockOut)
+router.put("/attendance/updateclockin/:uid", attendanceCtrl.updateClockIn)
 
 router.get("/attendance/:clock_status", attendanceCtrl.getUserByClockStatus);
 router.put("/attendance/updateStatus/:uid", attendanceCtrl.updateStatus);

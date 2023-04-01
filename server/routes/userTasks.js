@@ -15,5 +15,7 @@ router.put("/usersTasks/:uid/:tid", userTaskCtrl.updateUserTask);
 router.get("/usersTasksToday", userTaskCtrl.getUserTaskToday);
 router.get("/usersTasksToday/user/:uid", userTaskCtrl.getUserTaskToday);
 router.get("/usersTasksToday/task/:tid", userTaskCtrl.getUserTaskToday);
+// deleteAllUserTask
+router.delete("/usersTasksDeleteAll", userTaskCtrl.deleteAllUserTask)
 
 module.exports = router;
