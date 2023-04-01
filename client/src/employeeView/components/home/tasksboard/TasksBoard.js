@@ -21,9 +21,9 @@ function TasksBoard(props) {
 
   useEffect(() => {
     setTasks([]);
-    console.log("task status in effect: " + JSON.stringify(props.tasks));
-    console.log("tasks : " + JSON.stringify(tasks));
-    console.log("taskChecked : " + taskChecked);
+    // console.log("task status in effect: " + JSON.stringify(props.tasks));
+    // console.log("tasks : " + JSON.stringify(tasks));
+    // console.log("taskChecked : " + taskChecked);
 
     if (props.tasks) {
       console.log("if has tasks");
@@ -102,9 +102,10 @@ function TasksBoard(props) {
         <div className="task_board">
           {tasks.length>0?(<></>):(<h3>You have no open tasks.</h3>)}
           <div className="board_list">
-            {tasks.map((item) => (
+            {tasks.map((item,index) => (
               <TaskList
                 item={item}
+                key={index}
                 openTask={props.setBoardStatus}
                 setShowBoard={setShowBoard}
                 showBoard={showBoard}

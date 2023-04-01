@@ -21,7 +21,7 @@ function MyTasksBoard(props) {
           </Link>
         </div>
       </div> */}
-{console.log("message status: "+message)}
+{/* {console.log("message status: "+message)} */}
       <div className="my_task_board">
         <div className="tab-buttons-container">
           <button className="tab-buttons active">Tasks</button>
@@ -35,8 +35,9 @@ function MyTasksBoard(props) {
             <p col-name="action">Action</p>
           </div>
           <div className="board_list">
-            {tasks.map((item) => (
+            {tasks.map((item,index) => (
               <MyTaskList
+                key={index}
                 item={item}
                 getUserTasksIds={props.getUserTasksIds}
                 setUnDoneTask={props.setUnDoneTask}
