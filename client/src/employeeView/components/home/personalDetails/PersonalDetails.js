@@ -17,6 +17,8 @@ async function grabSVG(url){
 // process.env.REACT_APP_SERVER
 export default function PersonalDetails(props) {
   const [userName, setUserName] = useState("");
+  const [newId, setNewId] = useState("");
+
   const [title, setTitle] = useState("");
   const [lastLogin, setLastLogin] = useState("");
   const [isAttend, setIsAttend] = useState(false);
@@ -32,9 +34,9 @@ export default function PersonalDetails(props) {
         setUserName(result.data.name);
         setTitle(result.data.job_title);
 
-        const localDate = new Date(result.data.lastLogin);
-        const trimedTime = localDate.toString().substring(0, 21)
-        setLastLogin(trimedTime);
+        // const localDate = new Date(result.data.lastLogin);
+        // const trimedTime = localDate.toString().substring(0, 21)
+        // setLastLogin(trimedTime);
       })
       .catch((error) => {
         console.log(error);
@@ -52,17 +54,15 @@ export default function PersonalDetails(props) {
   };
 
   const getAttendance = async () => {
-    console.log('WHATTTTTTT');
+    // console.log('WHATTTTTTT');
     await axios
       .get(
         `${process.env.REACT_APP_SERVER}attendance/user/${localStorage.userId}`
       )
       .then((result) => {
-        console.log('THEEEEEE');
-        console.log(result);
+
         const length = result.data.length - 1;
         const lastEntry = result.data[length];
-        console.log(lastEntry);
 
         const localClockIn = new Date(lastEntry.clock_in);
         const localClockOut = new Date(lastEntry.clock_out);
@@ -73,6 +73,7 @@ export default function PersonalDetails(props) {
         // check if the later entry is today 
         if(isToday(trimedClockIn)){
           setTodayIndex(length);
+          console.log(length);
           // setIsAttend(true);
           setIsAttend(result.data[length].clock_status)
         }else{
@@ -93,7 +94,7 @@ export default function PersonalDetails(props) {
   const makeAttendance = async () => {
     // console.log(isAttend);
 
-
+    console.log(todayIndex);
     if(todayIndex == -1){
       await axios
       .post(process.env.REACT_APP_SERVER + "attendance", {
@@ -102,16 +103,21 @@ export default function PersonalDetails(props) {
       .then((result) => {
         console.log(result);
 
-        const localClockIn = new Date(result.data[0].clock_in);
-        localClockIn.setHours(localClockIn.getHours() + 7);
+        const localClockIn = new Date(result.data.clock_in);
+        localClockIn.setHours(localClockIn.getHours());
         const trimedTime = localClockIn.toString().substring(0, 21)
+        // console.log(result.getIndexes());
 
         setLastClockIn(trimedTime);
-
+        // setTodayIndex(result.getIndexes())
+        setNewId(result.data._id)
+        updateStatus();
       })
       .catch((error) => {
         console.log(error);
       });
+    }else{
+      updateStatus();
     }
 
 
@@ -120,6 +126,11 @@ export default function PersonalDetails(props) {
     // }
     console.log('wat');
 
+
+
+  };
+
+  const updateStatus = async()=>{
     await axios
       .put(
         process.env.REACT_APP_SERVER +
@@ -153,8 +164,7 @@ export default function PersonalDetails(props) {
       }).catch((error)=>{
         console.log(error);
       });
-
-  };
+  }
 
   const clockOut = async () => {
     
@@ -182,8 +192,16 @@ export default function PersonalDetails(props) {
       });
   };
 
-  const updateTime = () =>{
-
+  const updateIndex = async () =>{
+    await axios.get(`${process.env.REACT_APP_SERVER}attendance`).then(res=>{
+      res.data.map((r,i)=>{
+        if(r._id==newId){
+          setTodayIndex(i);
+        }
+      })
+    }).catch(err=>{
+      console.log(err);
+    })
   }
 
   useEffect(() => {
@@ -193,8 +211,8 @@ export default function PersonalDetails(props) {
   }, []);
 
   useEffect(()=>{
-
-  },[isAttend])
+    updateIndex();
+  },[newId])
 
   grabSVG(userCircleIcon).then(eyqxf => {
     userCircleIconSVG = eyqxf;

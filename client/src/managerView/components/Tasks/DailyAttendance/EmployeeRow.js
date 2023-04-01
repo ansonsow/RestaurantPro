@@ -5,8 +5,8 @@ function EmployeeRow(props) {
     <tr>
               <td>{props.emp.name}</td>
               <td>Clock In</td>
-              <td>23.02.2023</td>
-              <td>08:10AM</td>
+              <td>{props.time.substring(0,10)}</td>
+              <td>{props.time.substring(15,21)}</td>
               <td>{props.emp.job_title}</td>
             </tr>
   )
