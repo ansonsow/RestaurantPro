@@ -50,6 +50,10 @@
     justify-content:center;
 }
 
+.assign-task-page .loading-icon {
+    width:100%;
+}
+
 /*---- ALL PAGES ----*/
 .App > .components > .home_page,
 .App > .home_page,

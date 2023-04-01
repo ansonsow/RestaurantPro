@@ -207,7 +207,8 @@
     }
 
     /* managerView: all tasks page - tab buttons top */
-    .all-task-page .tab-buttons-container {
+    .all-task-page .tab-buttons-container,
+    .assign-task-page .tab-buttons-container {
         display:grid!important;
         grid-template-columns:repeat(2, 1fr);
         position:relative!important;
@@ -219,11 +220,14 @@
     }
 
     .all-task-page .tab-buttons-container a,
-    .all-task-page .tab-buttons-container > .tab-buttons {
+    .all-task-page .tab-buttons-container > .tab-buttons,
+    .assign-task-page .tab-buttons-container a,
+    .assign-task-page .tab-buttons-container > .tab-buttons {
         height:100%!important;
     }
 
-    .all-task-page .tab-buttons {
+    .all-task-page .tab-buttons,
+    .assign-task-page .tab-buttons {
         width:100%!important;
         height:100%!important;
     }
@@ -268,6 +272,41 @@
     /* managerView: all tasks page: body: remove gray border */
     .all-task-page .board_list {
         border:none!important;
+    }
+
+    /*-----------------*/
+
+    .assign_table {
+        height:auto!important;
+        grid-template-columns:auto!important;
+        grid-gap:var(--Assign-Table-Spacing)!important;
+        margin-bottom:var(--Screen-Margins-Y);
+    }
+
+    .assign-task-page .tab-buttons-container {
+        margin-left:calc(0px - var(--Screen-Margins-X));
+        margin-top:calc(0px - var(--Screen-Margins-Y));
+        width:calc(100% + 20px);
+        height:calc(var(--Navbar-Height) - (var(--Screen-Margins-Y) * 0.2) - 5px);
+        box-sizing:content-box;
+        margin-bottom:var(--Screen-Margins-Y)
+    }
+
+    .assign_table [col-name="due date"]{
+        display:none!important;
+    }
+
+    .assign_col_1 .thead, .assign_col_1 .tr,
+    .assign_col_3 .thead, .assign_col_3 .tr {
+        grid-template-columns:repeat(2, 1fr)!important;
+    }
+
+    .assign_col .tbody {
+        height:auto!important;
+    }
+
+    .assign_btn {
+        width:69%!important;
     }
 
     /*-----------------------*/

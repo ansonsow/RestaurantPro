@@ -5,7 +5,12 @@ import UnAssignedTasksList from "./UnAssignedTasksList";
 import EmployeeList from "./EmployeeList";
 import EmployeeAssignedTask from "./EmployeeAssignedTask";
 import Popup from "../../popup/Popup";
+
+import chevdown from "../../../../icons/down.svg"
+import filterIcon from "../../../../icons/filter.svg"
+
 import axios from "axios";
+
 export default function AssignTask() {
   // let currentUrl = window.location.href;
   // useEffect(() => {
@@ -14,6 +19,7 @@ export default function AssignTask() {
   //       "#FFC619";
   //   }
   // });
+  
   const [unAssignedTask, setUnAssignedTask] = useState([]);
   const [unAssignedTaskObjects, setunAssignedTaskObjects] = useState([]);
   const [employee, setemployee] = useState([]);
@@ -160,6 +166,42 @@ export default function AssignTask() {
       });
     }
   };
+
+  /*---- HIGHLIGHT CURRENT TASK ROW ----*/
+  setTimeout(() => {
+    document.querySelectorAll(".assign_col_1 .td:first-child").forEach(txcb => {
+      txcb.addEventListener("click", () => {
+        let tr = txcb.parentNode;
+        if(tr.matches(".tr")){
+          if(tr.matches(".tr_highlight")){
+            tr.classList.remove("tr_highlight")
+          } else {
+            tr.classList.add("tr_highlight")
+          }        
+        }
+      })
+    })
+  },1000)
+  
+
+  setTimeout(() => {
+    document.querySelectorAll(".assign_col_2 .td:first-child").forEach(txcb => {
+      txcb.addEventListener("click", () => {
+        let tr = txcb.parentNode;
+        if(tr.matches(".tr")){
+          if(!tr.matches(".tr_highlight")){
+            tr.parentNode.querySelectorAll(".tr").forEach(waa => {
+              waa.classList.remove("tr_highlight")
+            })
+            tr.classList.add("tr_highlight")
+          }
+        }
+      })
+    })
+  },1000);
+
+
+
   const getSelectedTasks = () => {
     setunAssignedTaskObjects([]);
     console.log("un assigned..." + unAssignedTask);
@@ -194,8 +236,9 @@ export default function AssignTask() {
 
   // show unselected data
 
-  let showUnselectedData = () => {
+  let showUnselectedData = (e) => {
     // save user's tasks
+    
     let uid = employeeObject.user_id;
     console.log("user id to update: " + uid);
 
@@ -231,6 +274,33 @@ export default function AssignTask() {
     showPopup(true);
   };
 
+  let chevdownSVG;
+  let filterIconSVG;
+
+  async function grabSVG(url){
+    return fetch(url)
+    .then(response => response.text())
+    .then(result => {
+      return result;
+    });
+  }
+
+  grabSVG(chevdown).then(eyqxf => {
+    chevdownSVG = eyqxf;
+    document.querySelectorAll(".chev_down_svg").forEach(thdkv => {
+      thdkv.innerHTML = chevdownSVG
+    })        
+  })
+
+  grabSVG(filterIcon).then(eyqxf => {
+    filterIconSVG = eyqxf;
+    document.querySelectorAll(".filter_svg").forEach(thdkv => {
+      thdkv.innerHTML = filterIconSVG
+    })        
+  })
+
+
+
   return (
     <div className="assign-task-page">
       <div className="tab-buttons-container">
@@ -249,87 +319,125 @@ export default function AssignTask() {
         </Link>
       </div>
 
-      <div className="assign-task-page-lower-section">
-        <div className="assign-task-page-grid-column" id="column1">
-          <h3 className="underline-p">Unassigned Tasks</h3>
-          <table className="unassigned-task-table">
-            <thead>
-              <th>Task Name</th>
-              <th>Due Date</th>
-              <th>Urgency</th>
-            </thead>
-            <tbody>
-              {console.log("all task run")}
-              {loadingTask ? (
-                <div className="loading-icon">
-                  <div className="loading-dot"></div>
-                  <div className="loading-dot"></div>
-                  <div className="loading-dot"></div>
-                </div>
-              ) : (
-                allTasks.map((task) => (
-                  <UnAssignedTasksList
-                    unassignedTask={task}
-                    click={taskSelected}
-                  />
-                ))
-              )}
-            </tbody>
-          </table>
-        </div>
-        <div className="assign-task-page-grid-column" id="column2">
-          <h3 className="underline-p">Assign to an Employee:</h3>
-          <table className="employee-table">
-            <thead>
-              <th>Name</th>
-              <th>Title</th>
-            </thead>
-            <tbody>
-              {console.log("loadingTask" + loadingTask)}
-              {loadingEmployee ? (
-                <div className="loading-icon">
-                  <div className="loading-dot"></div>
-                  <div className="loading-dot"></div>
-                  <div className="loading-dot"></div>
-                </div>
-              ) : (
-                allEmployee.map((employee) => (
-                  <EmployeeList
-                    unassignedTask={employee}
-                    click={employeeSelected}
-                  />
-                ))
-              )}
-            </tbody>
-          </table>
-        </div>
+      <div className="assign_table">
+        <div className="assign_col assign_col_1">
+          <div className="h3_holder">
+            <h3>Unassigned Tasks</h3>
+          </div>
+
+          <div className="thead">
+            <div col-name="task name">
+              <div>Task Name</div>
+            </div>
+
+            <div col-name="due date">
+              <div>Due Date</div>
+            </div>
+
+            <div col-name="urgency">
+              <div className="chev_down_svg"></div>
+              <div>Urgency</div>
+            </div>
+          </div>{/* end <thead> */}
+
+          <div className="tbody">
+            {console.log("all task run")}
+            {loadingTask ? (
+              <div className="loading-icon">
+                <div className="loading-dot"></div>
+                <div className="loading-dot"></div>
+                <div className="loading-dot"></div>
+              </div>
+            ) : (
+              allTasks.map((task) => (
+                <UnAssignedTasksList
+                  unassignedTask={task}
+                  click={taskSelected}
+                />
+              ))
+            )}
+          </div>{/* end <tbody> */}
+          
+          
+        </div>{/* end column 1 */}
+
+        {/*-----------------*/}
+
+        <div className="assign_col assign_col_2">
+          <div className="h3_holder">
+            <h3>Employee</h3>
+          </div>
+
+          <div className="thead">
+            <div col-name="employee name">
+              <div className="filter_svg"></div>
+              <div>Name</div>
+            </div>
+
+            <div col-name="employee role">
+              <div className="filter_svg"></div>
+              <div>Title</div>
+            </div>
+          </div>{/* end <thead> */}
+
+          <div className="tbody">
+            {console.log("loadingTask" + loadingTask)}
+            {loadingEmployee ? (
+              <div className="loading-icon">
+                <div className="loading-dot"></div>
+                <div className="loading-dot"></div>
+                <div className="loading-dot"></div>
+              </div>
+            ) : (
+              allEmployee.map((employee) => (
+                <EmployeeList
+                  unassignedTask={employee}
+                  click={employeeSelected}
+                />
+              ))
+            )}
+          </div>{/* end <tbody> */}
+        </div>{/* end column 2 */}
+
         {Object.keys(employeeObject).length > 0 &&
           Object.keys(unAssignedTaskObjects).length > 0 && (
-            <div className="assign-task-page-grid-column" id="column3">
-              <p className="underline-p">{`${employeeObject.name} Uncompleted Tasks`}</p>
-              <table className="uncompleted-task-table">
-                <thead>
-                  {console.log("task assign run")}
-                  <th>Task Name</th>
-                  <th>Due Date</th>
-                  <th>Urgency</th>
-                </thead>
-                <tbody>
-                  {unAssignedTaskObjects.map((task) => (
-                    <EmployeeAssignedTask task={task} />
-                  ))}
-                </tbody>
-              </table>
+            <div className="assign_col assign_col_3">
+              <div className="h3_holder">
+                <h3>{`${employeeObject.name}'s Uncompleted Tasks`}</h3>
+              </div>
+
+              <div className="thead">
+                {console.log("task assign run")}
+                <div col-name="task name">
+                  <div>Task Name</div>
+                </div>
+
+                <div col-name="due date">
+                  <div>Due Date</div>
+                </div>
+
+                <div col-name="urgency">
+                  <div className="chev_down_svg"></div>
+                  <div>Urgency</div>
+                </div>
+              </div>{/* end <thead> */}
+
+              <div className="tbody">
+                {unAssignedTaskObjects.map((task) => (
+                  <EmployeeAssignedTask task={task} />
+                ))}
+              </div>
+
               {/* <button onClick={showUnselectedData}>Next</button> */}
               {/* onClick={(e) => {PopupFunction("Changes changed successfully.", "okay:/account")(e); saveChanges()  }} */}
-              <button
+              <button type="button" className="assign_btn"
                 onClick={(e) => {
                   showUnselectedData();
                 }}
               >
                 Next
               </button>
-            </div>
+            </div>// end column 3
           )}
           {console.log(popup)}
         {popup && (
@@ -339,7 +447,8 @@ export default function AssignTask() {
             showPopup={showPopup}
           />
         )}
-      </div>
+      </div>{/* end table */}
+      {/*  */}
     </div>
   );
 }
