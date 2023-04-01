@@ -142,8 +142,9 @@
     justify-content:normal;
 }
 
-/* disable 'notifs' and 'help' links in case we accidentally open it */
+/* disable 'notifs', 'restaurants', 'help' links in case we accidentally open it */
 .sidebar_list a.row[href*="notif"],
+.sidebar_list a.row[href*="restaurants"],
 .sidebar_list a.row[href*="help"]{
     pointer-events:none
 }
