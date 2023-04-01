@@ -97,6 +97,7 @@
 .all-task-page .task > p:first-of-type{
     padding-left:var(--Task-Row-Padding-X);
     justify-content:inherit;
+    text-align:left;
 }
 
 .task_page .open_task,

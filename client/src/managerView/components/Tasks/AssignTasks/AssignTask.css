@@ -70,3 +70,288 @@ table tr td{
 .assign-task-page tr td:last-child {
     padding-right:0.5em!important
 }
+
+/*-------------------------*/
+
+:root {
+    --Assign-Table-Spacing:25px;
+
+    --Assign-Table-Header-Padding-Y:0.8em;
+    --Assign-Table-Header-Padding-X:1em;
+    --Assign-Table-Cols-Spacing:0.5em;
+
+    --Assign-Table-Body-Padding-Y:0.8em;
+    --Assign-Table-Body-Padding-X:0.8em;
+
+    --Assign-Tickbox-Size:1.5rem;
+    --Assign-Tickbox-Corner-Rounding:100%;
+
+    --Assign-Table-Row-Padding-Y:0.5em;
+    --Assign-Table-Row-Padding-X:0.5em;
+
+    --Assign-Table-Row-Spacing:5px;
+}
+
+.assign_table {
+    height:calc(100vh - var(--Navbar-Height) - 5px - (var(--Screen-Margins-Y) * 0.8));
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    grid-gap:0 var(--Assign-Table-Spacing)
+}
+
+.assign_col {
+}
+
+.assign_col .h3_holder {
+    display:flex;
+    align-items:center;
+    justify-content:left;
+    margin-bottom:1.25rem;
+}
+
+.assign_col h3 {
+    display:inline-block;
+    color:var(--Primary);
+    line-height:100%;
+    padding-bottom:0.2em;
+    border-bottom:1px solid rgba(var(--Primary-RGB),0.4);
+    transform:perspective(0);
+    padding-right:2px;
+}
+
+.assign_col .thead {
+    justify-items:center;
+    border-radius:var(--Corner-Rounding) var(--Corner-Rounding) 0 0;
+    background:var(--Primary);
+    padding:var(--Assign-Table-Header-Padding-Y) var(--Assign-Table-Header-Padding-X);
+    color:var(--Background);
+    font-family:"Brevia Medium";
+}
+
+.assign_col .thead [col-name]{
+    display:flex;
+    align-items:center;
+    max-width:100%;
+    overflow:hidden;
+}
+
+.assign_col .thead [class$="_svg"],
+.acc_svg {
+    position:relative;
+    width:var(--Body-Font-Size);
+    height:var(--Body-Font-Size);
+    flex-shrink:0;
+    margin-right:4px;
+}
+
+.assign_col .thead [class$="_svg"] svg,
+.acc_svg svg {
+    position:absolute;
+    top:50%;left:50%;
+    transform:translate(-50%,-50%);
+    display:block;
+    width:calc(var(--Body-Font-Size) * 2);
+    height:calc(var(--Body-Font-Size) * 2);
+}
+
+.assign_col .thead [class$="_svg"] svg [fill],
+.assign_col .thead [class$="_svg"] svg [style*="fill:"]{
+    fill:var(--Background);
+}
+
+.assign_col .thead [col-name] div:not([class]){
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+/* 🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟 */
+/* inner tables with 3 cols */
+
+.assign_col_1 .thead, .assign_col_1 .tr,
+.assign_col_3 .thead, .assign_col_3 .tr {
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    grid-gap:0 var(--Assign-Table-Cols-Spacing);
+    align-items:center;
+}
+
+.assign_col_1 .thead > [col-name]:first-child,
+.assign_col_1 .tr > [col-name]:first-child,
+.assign_col_3 .thead > [col-name]:first-child,
+.assign_col_3 .tr > [col-name]:first-child {
+    justify-self:left;
+}
+
+.assign_col_1 .thead > [col-name]:last-child,
+.assign_col_1 .tr > [col-name]:last-child,
+.assign_col_3 .thead > [col-name]:last-child,
+.assign_col_3 .tr > [col-name]:last-child {
+    justify-self:right;
+}
+
+/* 🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟 */
+
+.assign_col .tbody {
+    padding:var(--Assign-Table-Body-Padding-Y) var(--Assign-Table-Body-Padding-X);
+    border-radius:0 0 var(--Corner-Rounding) var(--Corner-Rounding);
+    border:1px solid var(--Blue-Gray-Light);
+    border-top:none;
+    height:calc(100% - var(--Navbar-Height));
+}
+
+.assign_col .tr {
+    --tr-extra-side-gaps:9px;
+    margin-left:calc(0px - var(--Assign-Table-Body-Padding-X) + var(--tr-extra-side-gaps));
+    width:calc(100% + (var(--Assign-Table-Body-Padding-X) * 2) - (var(--tr-extra-side-gaps) * 2));
+    padding:var(--Assign-Table-Row-Padding-Y) calc(var(--Assign-Table-Row-Padding-X) + var(--Assign-Table-Body-Padding-X) - var(--tr-extra-side-gaps));
+    border-radius:var(--Corner-Rounding);
+}
+
+.assign_col .tr + .tr {
+    margin-top:var(--Assign-Table-Row-Spacing)
+}
+
+.assign_col .tr_highlight {
+    background:rgba(var(--Primary-Medium-RGB),0.9);
+    color:var(--Background);
+    font-family:"Century Gothic Bold";
+}
+
+.assign_col .tr_highlight svg [fill],
+.assign_col .tr_highlight svg [style*="fill:"]{
+    fill:var(--Background-2)
+}
+
+.assign_col .tr, .assign_col .tr_highlight {
+    transition:background-color var(--Hover-Speeds) ease-in-out, color var(--Hover-Speeds) ease-in-out, font-family var(--Hover-Speeds) ease-in-out;
+}
+
+.assign_col .tr > .td:nth-child(1){
+    text-align:left;
+    max-width:100%;
+}
+
+.assign_col input{
+    position:relative;
+    visibility:hidden;
+}
+
+.assign_col input:after {
+    content:"";
+    position:absolute;
+    top:50%;left:0;
+    transform:translateY(-50%);
+    display:block;
+    width:var(--Assign-Tickbox-Size);
+    height:var(--Assign-Tickbox-Size);
+    border-radius:var(--Assign-Tickbox-Corner-Rounding);
+    background:rgba(var(--Background-2-RGB),0.7);
+    border:1px solid rgba(var(--Primary-RGB),0.5);
+    box-sizing:border-box;
+    visibility:visible;
+    cursor:pointer;
+    transition:border calc(var(--Hover-Speeds) * 0.69) ease-in-out;
+}
+
+.assign_col input:checked:after {
+    border:4px solid var(--Secondary-Medium);
+    background:var(--Background);
+}
+
+.assign_col:not(.assign_col_3) .td[col-name="task name"],
+.assign_col:not(.assign_col_3) .td[col-name="employee name"]{
+    display:grid;
+    grid-template-columns:var(--Assign-Tickbox-Size) auto;
+    grid-gap:8px;
+}
+
+.assign_col_1 .tr > .td:nth-child(1) span,
+.assign_col_3 .tr > .td:nth-child(1) span {
+    display:block;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+    overflow:hidden;
+}
+
+.assign_col_1 .tr > .td:nth-child(2),
+.assign_col_3 .tr > .td:nth-child(2){
+    text-align:center;
+    width:125%;
+    word-wrap:break-word;
+}
+
+.assign_col_1 .tr > .td:nth-child(3),
+.assign_col_3 .tr > .td:nth-child(3){
+    text-align:right;
+}
+
+/*---------------------------------*/
+
+/* 2nd col, has 2 cols */
+
+.assign_col_2 .thead, .assign_col_2 .tr {
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    grid-gap:0 var(--Assign-Table-Cols-Spacing);
+    align-items:center;
+}
+
+.assign_col_2 .thead [class$="_svg"]{
+    margin-right:10px!important;
+}
+
+.assign_col_2 .tr {
+    padding-top:calc(var(--Assign-Table-Row-Padding-Y) * 1.5);
+    padding-bottom:calc(var(--Assign-Table-Row-Padding-Y) * 1.5)
+}
+
+.assign_col_2 .td:last-child {
+    text-align:center;
+}
+
+.assign_col_2 .td[col-name="employee name"]{
+    grid-gap:9px!important;
+    grid-template-columns:var(--Assign-Tickbox-Size) var(--Body-Font-Size) auto!important;
+}
+
+.assign_col_2 .acc_svg {
+    margin-top:1px;
+}
+
+.assign_col_2 .acc_svg svg [fill],
+.assign_col_2 .acc_svg svg [style*="fill:"]{
+    background:var(--Text-Color)
+}
+
+.assign_col_2 .acc_svg + span {
+    margin-left:3px;
+}
+
+.assign_col_3 .tr > .td:nth-child(1){
+    overflow:hidden;
+}
+
+.assign_col_3 .tbody {
+    height:calc(100% - var(--Navbar-Height) - 25px - (var(--CTA-Buttons-Padding-Y) * 2) - (var(--Body-Font-Size) * 1.3));
+}
+
+.assign_btn {
+    display:block;
+    margin:auto;
+    margin-top:25px;
+    width:80%;
+    padding:var(--CTA-Buttons-Padding-Y) var(--CTA-Buttons-Padding-X);
+    background:var(--Primary);
+    border-radius:var(--Corner-Rounding);
+    color:var(--Background);
+    font-family:"Century Gothic Bold";
+    font-size:inherit;
+    border:none;
+    cursor:pointer;
+    transition:background var(--Hover-Speeds) ease-in-out;
+}
+
+.assign_btn:hover {
+    background:var(--Secondary-Medium);
+}
