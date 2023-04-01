@@ -1,55 +1,99 @@
-/* CSS STYLING FOR EMPLOYEE LIST PAGE */
-  .employee-list-page-upper-section{
-    margin-top: 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 50;
-  }
-  .employee-list-page-upper-section-button-part{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 2rem;
-    z-index: 50;
-  }
-  .employee-list-page-upper-section-button-part button{
-    padding: 0.4rem 1rem;
-    border-radius: 6px;
-    border: none;
-    background-color: #003D9E;
-    color: white;
-    cursor: pointer;
-     z-index: 40;
-  }
-  .search-box{
-    padding: 0.5rem 0.5rem;
-  }
-  .employee-list-page-lower-section{
-    margin-top: 2rem;
-  }
-  table{
-    border: 1px solid #003D9E;
-  }
-  th , td{
-    width: 170px;
-    height: 60px;
-    text-align: center;
-  }
-  td{
-    padding: 0.5rem 0;
-  }
-  thead{
-    background-color: #003D9E;
-    padding: 0.4rem;
-    color: white;
-  }
-  .last-column{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-  }
-  .last-column img{
-    width: 30px;
-  }
+:root {
+    --Employee-List-Header-Padding-Y:1em;
+    --Employee-List-Header-Padding-X:1em;
+
+    --Employee-List-Cols-Spacing:12px;
+
+    --Employee-List-Row-Padding-Y:0.8em;
+    --Employee-List-Row-Padding-X:0.5em;
+    
+    --Employee-List-Actions-SVG-Size:calc(var(--Body-Font-Size) * 1.5);
+}
+
+/*----------------------*/
+
+.employee_list_table .thead {
+    background:var(--Primary);
+    padding:var(--Employee-List-Header-Padding-Y) var(--Employee-List-Header-Padding-X);
+    border-radius:var(--Corner-Rounding) var(--Corner-Rounding) 0 0;
+    font-family:"Brevia Medium";
+    color:var(--Background);
+}
+
+.employee_list_table .thead,
+.employee_list_table .tr {
+    display:grid;
+    grid-template-columns:repeat(6, 1fr);
+    grid-gap:var(--Employee-List-Cols-Spacing);
+    place-items:center;
+}
+
+/*----------------------*/
+
+.employee_list_table .tbody {
+    padding:var(--Employee-List-Row-Padding-Y) var(--Employee-List-Header-Padding-X);
+    background:var(--Background-2);
+    border-radius:0 0 var(--Corner-Rounding) var(--Corner-Rounding);
+}
+
+.employee_list_table .tr {
+    padding:var(--Employee-List-Row-Padding-Y) 0;
+}
+
+.employee_list_table .tr:first-child {
+    padding-top:calc(var(--Employee-List-Row-Padding-Y) / 2);
+}
+
+.employee_list_table .tr:last-child {
+    padding-bottom:calc(var(--Employee-List-Row-Padding-Y) / 2);
+}
+
+.employee_list_table .tr [col-name="actions"]{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+}
+
+.employee_list_table .tr + .tr {
+    border-top:1px solid var(--Blue-Gray-Light);
+}
+
+/*----------------------*/
+
+.employee_list_table .td[col-name="employee name"] {
+    font-family:"Brevia Medium"
+}
+
+.employee_list_table .td[col-name="power role"]:empty:before {
+    content:"Employee";
+    cursor:text;
+}
+
+.employee_list_table .td[col-name="restaurant"]:empty:before {
+    content:"East is East";
+    cursor:text;
+}
+
+/*----------------------*/
+
+.employee_list_table .actions_svg {
+    position:relative;
+    width:var(--Employee-List-Actions-SVG-Size);
+    height:var(--Employee-List-Actions-SVG-Size);
+    cursor:pointer;
+}
+
+.employee_list_table .actions_svg svg {
+    position:absolute;
+    top:50%;left:50%;
+    transform:translate(-50%, -50%);
+    display:block;
+    width:120%;
+    height:120%;
+}
+
+.employee_list_table .actions_svg svg [fill],
+.employee_list_table .actions_svg svg [style*="fill:"]{
+    fill:var(--Text-Color);
+}

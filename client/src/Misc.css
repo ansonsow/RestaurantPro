@@ -400,8 +400,12 @@ button.tab-buttons.active {
     background:var(--Secondary-Medium);
 }
 
+button.tab-buttons.disabled {
+    cursor:not-allowed;
+}
+
 .tab-buttons-container > a,
-button.tab-buttons:not(.active) {
+button.tab-buttons:not(.active, .disabled) {
     cursor:pointer;
 }
 
@@ -410,7 +414,7 @@ button.tab-buttons.active {
     transition:background var(--Hover-Speeds-Faster) ease-in-out;
 }
 
-button.tab-buttons:not(.active):hover {
+button.tab-buttons:not(.active, .disabled):hover {
     background:var(--Primary);
 }
 
@@ -429,13 +433,21 @@ button.tab-buttons:not(.active):hover {
     .all-task-page .tab-buttons-container,
     .assign-task-page .tab-buttons-container,
     .create-task-page .tab-buttons-container,
-    .daily-attendance-page .tab-buttons-container
+    .daily-attendance-page .tab-buttons-container,
+    .employee-list-page .tab-buttons-container,
+    .employee-page .tab-buttons-container
     {
         position: absolute;
         bottom: 100%;
         height: calc(var(--Navbar-Height) - (var(--Screen-Margins-Y) * 0.2) - 5px);
         display: flex;
         align-items: center;
+    }
+
+    .employee-list-page .tab-buttons-container .tab-buttons,
+    .employee-page .tab-buttons-container .tab-buttons {
+        white-space:nowrap;
+        width:auto;
     }
 }
 
