@@ -22,14 +22,10 @@ export default function PersonalDetails(props) {
   const [isAttend, setIsAttend] = useState(false);
   const [lastClockIn, setLastClockIn] = useState("");
   const [lastClockOut, setLastClockOut] = useState("");
+  const [todayIndex, setTodayIndex] = useState(-1);
+
 
   const getData = async () => {
-    // console.log(`http://localhost:8000/api/v1/users/${Number(localStorage.userId)}`);
-    // console.log("wat happenend?");
-    // console.log(localStorage.userId);
-    // console.log(process.env.REACT_APP_SERVER);
-    const url = `${process.env.REACT_APP_SERVER}users/${localStorage.userId}`;
-    console.log(url);
     await axios
       .get(`${process.env.REACT_APP_SERVER}users/${localStorage.userId}`)
       .then((result) => {
@@ -37,7 +33,6 @@ export default function PersonalDetails(props) {
         setTitle(result.data.job_title);
 
         const localDate = new Date(result.data.lastLogin);
-        // console.log(String(localDate));
         const trimedTime = localDate.toString().substring(0, 21)
         setLastLogin(trimedTime);
       })
@@ -46,13 +41,9 @@ export default function PersonalDetails(props) {
       });
   };
 
-  //   function stringify (x) {
-  //     console.log("waaaa"+Object.prototype.toString.call(x));
-  // }
 
   const isToday = (someDate) => {
     const today = new Date();
-    // console.log(today);
     const trimedToday = today.toString().substring(0,10);
 
     return (
@@ -61,32 +52,38 @@ export default function PersonalDetails(props) {
   };
 
   const getAttendance = async () => {
+    console.log('WHATTTTTTT');
     await axios
       .get(
         `${process.env.REACT_APP_SERVER}attendance/user/${localStorage.userId}`
       )
       .then((result) => {
+        console.log('THEEEEEE');
         console.log(result);
-        const localClockIn = new Date(result.data[0].clock_in);
-        const localClockOut = new Date(result.data[0].clock_out);
-        // console.log("waaaaaaaaaaaa"+result);
-        // stringify(result)
+        const length = result.data.length - 1;
+        const lastEntry = result.data[length];
+        console.log(lastEntry);
 
-
-        // if (isToday(localClockIn)) {
-        //   setIsAttend(true);
-        // }
-        setIsAttend(result.data[0].clock_status);
-        console.log(result.data[0].clock_status);
-
-        console.log(isAttend);
-        // console.log("wat");
+        const localClockIn = new Date(lastEntry.clock_in);
+        const localClockOut = new Date(lastEntry.clock_out);
+        
         const trimedClockIn = localClockIn.toString().substring(0, 21)
         const trimedClockOut = localClockOut.toString().substring(0, 21)
 
+        // check if the later entry is today 
+        if(isToday(trimedClockIn)){
+          setTodayIndex(length);
+          // setIsAttend(true);
+          setIsAttend(result.data[length].clock_status)
+        }else{
+          setTodayIndex(-1)
+          setIsAttend(false);
+        }
 
         setLastClockIn(trimedClockIn);
         setLastClockOut(trimedClockOut);
+
+      
       })
       .catch((error) => {
         console.log(error);
@@ -95,7 +92,9 @@ export default function PersonalDetails(props) {
 
   const makeAttendance = async () => {
     // console.log(isAttend);
-    if(!isToday(lastClockIn)){
+
+
+    if(todayIndex == -1){
       await axios
       .post(process.env.REACT_APP_SERVER + "attendance", {
         user_id: localStorage.userId,
@@ -116,6 +115,11 @@ export default function PersonalDetails(props) {
     }
 
 
+    //   // console.log('wat');
+
+    // }
+    console.log('wat');
+
     await axios
       .put(
         process.env.REACT_APP_SERVER +
@@ -123,12 +127,22 @@ export default function PersonalDetails(props) {
           localStorage.userId
       )
       .then((result) => {
-        console.log(result);
         setIsAttend(true);
+        console.log(result);
+        const localClockIn = new Date(result.data.clock_in);
+        localClockIn.setHours(localClockIn.getHours());
+        const trimedTime = localClockIn.toString().substring(0, 21)
+        console.log(trimedTime);
+        setLastClockIn(trimedTime);
 
+      }).catch(error=>{
+        console.log(error);
       });
+
+      console.log("huh?");
     
-    await axios
+
+      await axios
       .put(
         process.env.REACT_APP_SERVER +
           "attendance/updateclockin/" +
@@ -136,16 +150,18 @@ export default function PersonalDetails(props) {
       )
       .then((result) => {
         console.log(result);
-        setIsAttend(true)
+      }).catch((error)=>{
+        console.log(error);
       });
+
   };
 
   const clockOut = async () => {
+    
     await axios
       .put(`${process.env.REACT_APP_SERVER}attendance/${localStorage.userId}`)
       .then((result) => {
         console.log(result);
-
         const localClockOut = new Date(result.data.clock_out);
         const trimedTime = localClockOut.toString().substring(0, 21)
         setLastClockOut(trimedTime);
@@ -166,11 +182,19 @@ export default function PersonalDetails(props) {
       });
   };
 
+  const updateTime = () =>{
+
+  }
+
   useEffect(() => {
     getData();
     getAttendance();
-    // console.log(isAttend);
+
   }, []);
+
+  useEffect(()=>{
+
+  },[isAttend])
 
   grabSVG(userCircleIcon).then(eyqxf => {
     userCircleIconSVG = eyqxf;
@@ -178,6 +202,7 @@ export default function PersonalDetails(props) {
       thdkv.innerHTML = userCircleIconSVG
     })
   })
+  // console.log("huh");
 
   return (
     <div className="user_brief_info">

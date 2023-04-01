@@ -14,6 +14,15 @@ export default function DailyAttendance() {
     console.log("allEmployee" + JSON.stringify(allEmployee));
   }, []);
 
+  const isToday = (someDate) => {
+    const today = new Date();
+    const trimedToday = today.toString().substring(0,10);
+
+    return (
+      trimedToday == someDate.substring(0,10)
+    );
+  };
+
   const getClockInEmployees = async () => {
     await axios
       // .get("http://localhost:8000/api/v1/attendance/true")
@@ -23,6 +32,10 @@ export default function DailyAttendance() {
       .then((response) => {
         console.log("all present employees:" + JSON.stringify(response.data));
         let userIds = response.data.map((user) => user.user_id);
+        // let userIds;
+        // response.map((r,i)=>{
+        //   if(r.clock_in)
+        // })
         userIds.forEach((id) => {
           getUserDetails(id);
         });
