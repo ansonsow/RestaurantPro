@@ -37,6 +37,18 @@ export default function AssignTask() {
     getClockInEmployees();
   }, []);
 
+
+  const isToday = (someDate) => {
+    const today = new Date();
+    const trimedToday = today.toString().substring(0,10);
+    console.log(trimedToday == someDate.substring(0,10));
+
+    return (
+      trimedToday == someDate.substring(0,10)
+    );
+  };
+
+
   // get all the task
   const getAllTask = async () => {
     let allTask = [];
@@ -70,8 +82,27 @@ export default function AssignTask() {
       .get(`${process.env.REACT_APP_SERVER}attendance/true`)
 
       .then((response) => {
-        console.log("all present employees:" + JSON.stringify(response.data));
-        let userIds = response.data.map((user) => user.user_id);
+        // console.log("all present employees:" + JSON.stringify(response.data));
+        // let userIds = response.data.map((user) => user.user_id);
+        
+        let userIds=[];
+        response.data.map((r,i)=>{
+          console.log(r.clock_in);
+          if(r.clock_in){
+            const localClockIn = new Date(r.clock_in);
+            const trimedClockIn = localClockIn.toString().substring(0, 21)
+            // console.log('wat');
+            console.log(r);
+            // console.log(trimedClockIn);
+            // console.log(isToday(trimedClockIn));
+            if(isToday(trimedClockIn)){
+              userIds.push(r.user_id)
+              // console.log('wat');
+
+            }
+          }
+        })
+
         console.log(response);
         userIds.forEach((id) => {
           getUserDetails(id);
@@ -349,8 +380,9 @@ export default function AssignTask() {
                 <div className="loading-dot"></div>
               </div>
             ) : (
-              allTasks.map((task) => (
+              allTasks.map((task,i) => (
                 <UnAssignedTasksList
+                  key={i}
                   unassignedTask={task}
                   click={taskSelected}
                 />
@@ -389,8 +421,9 @@ export default function AssignTask() {
                 <div className="loading-dot"></div>
               </div>
             ) : (
-              allEmployee.map((employee) => (
+              allEmployee.map((employee,i) => (
                 <EmployeeList
+                  key={i}
                   unassignedTask={employee}
                   click={employeeSelected}
                 />
@@ -423,8 +456,8 @@ export default function AssignTask() {
               </div>{/* end <thead> */}
 
               <div className="tbody">
-                {unAssignedTaskObjects.map((task) => (
-                  <EmployeeAssignedTask task={task} />
+                {unAssignedTaskObjects.map((task,i) => (
+                  <EmployeeAssignedTask task={task} key={i}/>
                 ))}
               </div>
 

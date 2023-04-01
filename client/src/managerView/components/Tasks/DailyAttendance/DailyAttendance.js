@@ -6,6 +6,8 @@ import EmployeeRow from "./EmployeeRow";
 
 export default function DailyAttendance() {
   const [allEmployee, setAllEmployee] = useState([]);
+  const [allEmployeeTime, setAllEmployeeTime] = useState([]);
+
 
   // Call Apis
   useEffect(() => {
@@ -17,6 +19,7 @@ export default function DailyAttendance() {
   const isToday = (someDate) => {
     const today = new Date();
     const trimedToday = today.toString().substring(0,10);
+    console.log(trimedToday == someDate.substring(0,10));
 
     return (
       trimedToday == someDate.substring(0,10)
@@ -31,7 +34,26 @@ export default function DailyAttendance() {
       // ${process.env.REACT_APP_SERVER}
       .then((response) => {
         console.log("all present employees:" + JSON.stringify(response.data));
-        let userIds = response.data.map((user) => user.user_id);
+        let userIds=[];
+        response.data.map((r,i)=>{
+          console.log(r.clock_in);
+          if(r.clock_in){
+            const localClockIn = new Date(r.clock_in);
+            const trimedClockIn = localClockIn.toString().substring(0, 21)
+            // console.log('wat');
+            console.log(r);
+            // console.log(trimedClockIn);
+            // console.log(isToday(trimedClockIn));
+            if(isToday(trimedClockIn)){
+              userIds.push(r.user_id)
+              // console.log('wat');
+              setAllEmployeeTime((pre) => [...pre, trimedClockIn]);
+            }
+          }
+        })
+        // let userIds = response.data.map((user) => user.user_id);
+        // console.log('wat'+userIds);
+        // console.log(object);
         // let userIds;
         // response.map((r,i)=>{
         //   if(r.clock_in)
@@ -93,8 +115,8 @@ export default function DailyAttendance() {
             </tr>
           </thead>
           <tbody>
-            {allEmployee.map((empDetails) => (
-              <EmployeeRow emp={empDetails} />
+            {allEmployee.map((empDetails,index) => (
+              <EmployeeRow emp={empDetails} key={index} time={allEmployeeTime[index]}/>
             ))}
           </tbody>
         </table>
