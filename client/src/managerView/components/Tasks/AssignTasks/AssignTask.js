@@ -187,6 +187,7 @@ export default function AssignTask() {
 
   // task selected
 
+  // go here
   const taskSelected = (event) => {
     const { id, checked } = event.target;
     if (checked) {

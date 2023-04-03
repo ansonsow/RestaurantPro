@@ -52,6 +52,8 @@
 
 .assign-task-page .loading-icon {
     width:100%;
+    height:100%;
+    justify-content:center;
 }
 
 /*---- ALL PAGES ----*/
@@ -448,6 +450,12 @@ button.tab-buttons:not(.active, .disabled):hover {
     .employee-page .tab-buttons-container .tab-buttons {
         white-space:nowrap;
         width:auto;
+    }
+
+    /*----------------*/
+
+    .all-task-page .board_columns {
+        padding-bottom:var(--Screen-Margins-Y)
     }
 }
 
