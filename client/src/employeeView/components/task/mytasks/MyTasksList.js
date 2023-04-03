@@ -51,7 +51,7 @@ function MyTaskList(props) {
   return (
     <div key={props.item.task_id} className="task">
       <p col-name="task name">{props.item.task_name}</p>
-      <p col-name="status">{taskStatus === true ? "Open" : "Close"}</p>
+      <p col-name="status">{taskStatus === true ? "In process" : "Closed"}</p>
       <p col-name="urgency">{props.item.priority === 1 ? "High" : "Low"}</p>
 
       {taskStatus ? (

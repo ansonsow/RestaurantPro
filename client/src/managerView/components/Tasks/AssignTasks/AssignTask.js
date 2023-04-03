@@ -201,20 +201,33 @@ export default function AssignTask() {
 
   /*---- HIGHLIGHT CURRENT TASK ROW ----*/
   setTimeout(() => {
-    document.querySelectorAll(".assign_col_1 .td:first-child").forEach(txcb => {
+    document.querySelectorAll(".assign_col_1 .td:first-child input").forEach(txcb => {
       txcb.addEventListener("click", () => {
-        let tr = txcb.parentNode;
-        if(tr.matches(".tr")){
-          if(tr.matches(".tr_highlight")){
-            tr.classList.remove("tr_highlight")
-          } else {
-            tr.classList.add("tr_highlight")
-          }        
-        }
+        let tr = txcb.parentNode.parentNode;
+        // if(tr.matches(".tr")){
+
+          function uhh(){
+            if(tr.matches(".tr_highlight")){
+              tr.classList.remove("tr_highlight")
+            } else {
+              tr.classList.add("tr_highlight");
+              // tr.classList.add("tr_highlight");
+            } 
+          }
+
+          uhh()
+
+          setTimeout(() => {
+            if(txcb.checked && !tr.matches(".tr_highlight")){
+              // console.log("?????????")
+              tr.classList.add("tr_highlight");
+            }
+          },0)
+                 
+        // }
       })
     })
-  },1000)
-  
+  },0)
 
   setTimeout(() => {
     document.querySelectorAll(".assign_col_2 .td:first-child").forEach(txcb => {
