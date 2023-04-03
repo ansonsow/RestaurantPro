@@ -140,12 +140,13 @@
     .home_page .task > p > span {
         border-color:transparent!important;
         background-color:transparent!important;
+        padding:0!important;
     }
 
     /* home: task action buttons */
     .home_page .open_task, .home_page .check_task {
         height:min-content!important;
-        white-space:normal!important;
+        /* white-space:normal!important; */
         align-self:center;
     }
 
@@ -400,6 +401,21 @@
     }
 
     /*-----------------------*/
+
+
+    .create_task_main {
+        margin-top:1em!important;
+        --Create-Task-Form-Width:100%!important;
+    }
+
+    .create_task_main .set_grid {
+        grid-template-columns:auto!important;
+    }
+
+    .submit_task_buttons button {
+        --CTA-Buttons-Width:100%!important;
+    }
+
     
 
     /*-----------------------*/
