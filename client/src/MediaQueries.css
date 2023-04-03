@@ -476,6 +476,17 @@
         --Account-Image-Column-Width:140px!important;
     }
 
+    /* manager: stats page: reduce no. of columns */
+    .employee-performance-table th:nth-child(4),
+    .employee-performance-table th:nth-child(5){
+        display:none;
+    }
+
+    .employee-performance-table td:nth-child(4),
+    .employee-performance-table td:nth-child(5){
+        display:none;
+    }
+
     
     .quick_actions {
         --Quick-Actions-Icons-Size:55px!important;
@@ -497,6 +508,11 @@
     .circular-progress-bar-section {
         transform-origin:center;
         transform:scale(0.85,0.85)
+    }
+
+    .circular-progress-bar-section:has(div + div + div){
+        gap:0.420rem;
+        transform:scale(0.7,0.7)
     }
 
     /* account page */
