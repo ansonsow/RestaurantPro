@@ -34,9 +34,9 @@ export default function PersonalDetails(props) {
         setUserName(result.data.name);
         setTitle(result.data.job_title);
 
-        // const localDate = new Date(result.data.lastLogin);
-        // const trimedTime = localDate.toString().substring(0, 21)
-        // setLastLogin(trimedTime);
+        const localDate = new Date(result.data.lastLogin);
+        const trimedTime = localDate.toString().substring(0, 21)
+        setLastLogin(trimedTime);
       })
       .catch((error) => {
         console.log(error);
@@ -104,14 +104,14 @@ export default function PersonalDetails(props) {
         console.log(result);
 
         const localClockIn = new Date(result.data.clock_in);
-        localClockIn.setHours(localClockIn.getHours());
+        localClockIn.setHours(localClockIn.getMinutes()+3);
         const trimedTime = localClockIn.toString().substring(0, 21)
         // console.log(result.getIndexes());
 
         setLastClockIn(trimedTime);
         // setTodayIndex(result.getIndexes())
         setNewId(result.data._id)
-        updateStatus();
+        // updateStatus();
       })
       .catch((error) => {
         console.log(error);
