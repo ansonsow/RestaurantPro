@@ -100,6 +100,10 @@ table tr td{
 }
 
 .assign_col {
+    /* padding-bottom:var(--Screen-Margins-Y); */
+    max-height:100%;
+    overflow-y:auto;
+    overflow-x:hidden;
 }
 
 .assign_col .h3_holder {
@@ -198,6 +202,10 @@ table tr td{
     border:1px solid var(--Blue-Gray-Light);
     border-top:none;
     height:calc(100% - var(--Navbar-Height));
+
+    max-height:100%;
+    overflow-y:auto;
+    overflow-x:hidden;
 }
 
 .assign_col .tr {

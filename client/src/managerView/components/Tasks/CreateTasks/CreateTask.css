@@ -1,102 +1,195 @@
-.create-task-page-upper-section-button-section{
-    display: flex;
-    gap: 1rem;
+:root {
+    --Create-Task-Form-Width:70%;
+    --Create-Task-Row-Spacing:20px;
+    --Create-Task-Column-Spacing:45px;
+
+    --Create-Task-Fields-Padding-Y:0.5em;
+    --Create-Task-Fields-Padding-X:0.5em;
+    --Create-Task-Fields-Height:calc(var(--Body-Font-Size) * 1.69);
+    --Create-Task-Fields-Corner-Rounding:5px;
+
+    --Create-Task-Icons-Size:calc(var(--Body-Font-Size) * 1.4);
 }
-.create-task-page-upper-section-button-section button{
-    padding: 0.3rem 0.7rem;
-    border-radius: 4px;
-    border: none;
-    background-color: #003D9E;
-    color: white;
-    cursor: pointer;
+
+.create_task_main {
+    display:grid;
+    place-items:center;
+    margin-bottom:var(--Screen-Margins-Y);
+    margin-top:2rem;
 }
-.create-task-page-upper-section-button-section button:hover{
-    background-color: #FFC619;
+
+.create_task_main form {
+    width:var(--Create-Task-Form-Width);
 }
-.create-task-page-lower-section{
-    padding: 3rem 3rem;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    gap: 2rem;
+
+.create_task_main fieldset {
+    border:none;
 }
-.create-task-page-lower-section h2{
-    color: #003D9E;
-    text-align: left;
+
+.create_task_main legend {
+    margin-bottom:2rem;
 }
-.create-task-page-input-section{
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    width: 80%;
-    justify-content: center;
+
+.create_task_main h2 {
+    color:var(--Primary);
 }
-.create-task-page-input-section{
-    display: grid;
-    grid-template-columns: repeat(2,1fr);
+
+.create_task_main .set_grid {
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    grid-gap:var(--Create-Task-Row-Spacing) var(--Create-Task-Column-Spacing);
 }
-.lower-input-section textarea{
-    width: 80%;
-    height: 90px;
+
+.create_task_main .set {
+    height:fit-content;
 }
-.create-task-button-section{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 2rem;
-    margin-top: 2rem;
+
+.create_task_main label {
+    display:block;
+    cursor:inherit;
+    font-family:"Brevia Medium";
+    color:rgba(var(--Text-Color-RGB),0.8);
+    margin-bottom:0.5em;
 }
-.create-task-button-section button{
-    width: 200px;
-    padding: 0.4rem;
-    border-radius: 6px;
+
+.input_set_wrap {
+    position:relative;
+    z-index:2;
 }
-.create-task-button-section button:nth-child(1){
-    border: 2px solid #003D9E;
-    color: #003D9E;
-    background-color: transparent;
+
+.input_set_wrap input {
+    position:relative;
+    z-index:2;
 }
-.create-task-button-section button:nth-child(2){
-    border: 2px solid #003D9E;
-    color: white;
-    background-color: #003D9E;
+
+#createTaskDueDate {
+    text-transform:uppercase
 }
-	.save-change-dialogue , .discard-change-dialogue , .delete-change-dialogue{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 3rem 4rem;
-    background-color: white;
-    border-radius: 8px;
-    gap: 2rem;
-    box-shadow: 0px 0px 5px black;
-  }
-  .save-change-dialogue button{
-    padding: 0.4rem 2rem;
-    background-color: #F77911;
-    color: white;
-    border: none;
-    cursor: pointer;
-    border-radius: 6px;
-  }
-  .save-changes{
-    cursor: pointer;
-  }
-  .discard-dialogue-button-section{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-  }
-  .discard-dialogue-button-section button{
-    padding: 0.4rem 1.5rem;
-    cursor: pointer;
-    border: none;
-    border-radius: 6px;
-  }
-  .discard-dialogue-button-section button:nth-child(1){
-    background-color: red;
-    color: white;
-  }																	   
+
+/*--------------------*/
+
+.input_set_wrap .form_svg {
+    position:absolute;
+    top:50%;transform:translateY(-50%);
+    right:0;margin-right:var(--Create-Task-Fields-Padding-X);
+    width:var(--Create-Task-Icons-Size);
+    height:var(--Create-Task-Icons-Size);
+    z-index:-1;
+}
+
+.input_set_wrap .form_svg svg {
+    display:block;
+    width:100%;
+    height:100%;
+}
+
+.input_set_wrap .form_svg svg [fill],
+.input_set_wrap .form_svg svg [style*="fill:"]{
+    fill:var(--Primary);
+}
+
+.input_set_wrap .form_svg svg [stroke],
+.input_set_wrap .form_svg svg [style*="stroke:"]{
+    stroke:var(--Primary);
+}
+
+.input_set_wrap .cal_svg svg {
+    position:absolute;
+    top:50%;left:50%;
+    transform:translate(-50%,-50%);
+    width:90%;
+    height:90%;
+}
+
+.input_set_wrap .down_svg svg {
+    position:absolute;
+    top:50%;left:50%;
+    transform:translate(-50%,-50%);
+    width:150%;
+    height:150%;
+}
+
+/*--------------------*/
+
+.create_task_main .textarea {
+    margin-top:var(--Create-Task-Row-Spacing);
+}
+
+.create_task_main input,
+.create_task_main select,
+.create_task_main textarea {
+    display:block;
+    width:100%;
+    box-sizing:border-box;
+    font-family:inherit;
+    font-size:inherit;
+    color:inherit;
+    padding:var(--Create-Task-Fields-Padding-Y) var(--Create-Task-Fields-Padding-X)!important;
+    border-radius:var(--Create-Task-Fields-Corner-Rounding)!important;
+    border:2px solid var(--Primary)!important;
+    background:transparent!important;
+}
+
+.create_task_main input,
+.create_task_main select {
+    height:calc((var(--Create-Task-Fields-Padding-Y) * 2) + var(--Create-Task-Fields-Height))
+}
+
+.create_task_main input::-webkit-calendar-picker-indicator {
+    background:none;
+    cursor:pointer;
+}
+
+.create_task_main select {
+    appearance:none;
+}
+
+.create_task_main textarea {
+    resize:vertical;
+    min-height:calc(var(--Create-Task-Fields-Height) * 3)
+}
+
+.create_task_main input:focus,
+.create_task_main select:focus,
+.create_task_main textarea:focus {
+    outline:2px solid var(--Secondary);
+    outline-offset:-2px;
+    border-radius:var(--Create-Task-Fields-Corner-Rounding);
+}
+
+/*--------------------*/
+
+.submit_task_buttons {
+    margin-top:2rem;
+    display:flex;
+    align-items:stretch;
+    justify-content:center;
+    gap:var(--CTA-Buttons-Spacing)
+}
+
+.submit_task_buttons button {
+    --CTA-Buttons-Width:30%;
+    width:var(--CTA-Buttons-Width);
+    padding:var(--CTA-Buttons-Padding-Y) var(--CTA-Buttons-Padding-X);
+    border-radius:var(--Corner-Rounding);
+    font-family:inherit;
+    font-size:inherit;
+    cursor:pointer;
+    transition:box-shadow var(--Hover-Speeds-Faster) ease-in-out;
+}
+
+.submit_task_buttons button.solid {
+    border:1px solid var(--Primary);
+    background:var(--Primary);
+    color:var(--Background);
+}
+
+.submit_task_buttons button.hollow {
+    background:var(--Background);
+    border:1px solid var(--Primary);
+    color:var(--Primary)
+}
+
+.submit_task_buttons button:hover {
+    box-shadow:4px 4px 12px 0 rgba(var(--Primary-RGB),0.4)
+}
