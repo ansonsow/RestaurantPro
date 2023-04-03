@@ -46,17 +46,26 @@ function MyTasksBoard(props) {
                 setmessageText={setmessageText}
               />
             ))}
-            {message && (
+            {/* {message && (
               <Message
                 heading={heading}
                 message={messageText}
                 showMessage={showMessage}
                 getUserTasksIds={props.getUserTasksIds}
               />
-            )}
+            )} */}
           </div>
         </div>
       </div>
+
+      {message && (
+        <Message
+          heading={heading}
+          message={messageText}
+          showMessage={showMessage}
+          getUserTasksIds={props.getUserTasksIds}
+        />
+      )}
     </>
   );
 }

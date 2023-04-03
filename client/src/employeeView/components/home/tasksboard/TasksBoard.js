@@ -85,6 +85,7 @@ function TasksBoard(props) {
   };
 
   return (
+    <>
     <div className="board">
       {console.log("tasks in board: " + JSON.stringify(tasks))}
       <div className="board_head">
@@ -113,7 +114,7 @@ function TasksBoard(props) {
                 setTaskChecked={setTaskChecked}
               />
             ))}
-            {message && (
+            {/* {message && (
               <Message
                 heading={heading}
                 message={messageText}
@@ -121,7 +122,7 @@ function TasksBoard(props) {
                 showBoard={props.showBoard}
                 getUserTasksIds={props.getUserTasksIds}
               />
-            )}
+            )} */}
           </div>
         </div>
         {tasks.length>0?(<div className="complete-all-btn-container"><button className="complete-all-btn" onClick={changeTaskStatus}>Click to Complete All</button></div>):(<></>)}
@@ -130,6 +131,17 @@ function TasksBoard(props) {
         <TaskDetails item={task} setShowBoard={setShowBoard} />
       )}
     </div>
+
+    {message && (
+              <Message
+                heading={heading}
+                message={messageText}
+                showMessage={showMessage}
+                showBoard={props.showBoard}
+                getUserTasksIds={props.getUserTasksIds}
+              />
+            )}
+    </>
   );
 }
 export default TasksBoard;
