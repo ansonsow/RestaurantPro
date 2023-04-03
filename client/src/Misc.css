@@ -61,6 +61,12 @@
     justify-content:center;
 }
 
+.home_page .loading-icon {
+    padding:2rem 0;
+    width:100%;
+    justify-content:center;
+}
+
 /*---- ALL PAGES ----*/
 .App > .components > .home_page,
 .App > .home_page,
