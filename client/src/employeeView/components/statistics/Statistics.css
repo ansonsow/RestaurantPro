@@ -170,6 +170,8 @@
 .employee-performance-table thead {
     position:relative;
     box-shadow:0 4px 4px 0 rgba(var(--Text-Color-RGB),0.25);
+    background:var(--Primary);
+    color:var(--Background);
     z-index:3;
 }
 
@@ -192,6 +194,7 @@
 
 .employee-performance-table tbody tr {
     position:relative;
+    background:var(--Background-2);
     height:auto!important;
 }
 
@@ -217,6 +220,7 @@
     width:auto!important;
     height:auto!important;
     padding:var(--Stats-Page-Table-Row-Padding-Y) var(--Stats-Page-Table-Columns-Padding-X);
+    text-align:center;
 }
 
 .employee-performance-table tbody tr td:last-child {

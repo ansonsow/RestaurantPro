@@ -7,16 +7,22 @@ function EmployeeAssignedTask(props) {
   // console.log(props.task.due_date);
   let strDueDate = dueDate.toString();
 
-  let trimmed = strDueDate.substring(0,21)
+  let trimmed = strDueDate.substring(0,21).split(" ").slice(1).join(" ")
 
   return (
-    <tr>
-      <td>{props.task.task_name}</td>
+    <div className="tr">
+      <div className="td" col-name="task name">
+        <span>{props.task.task_name}</span>
+      </div>
       {/* <td>{props.task.due_date}</td> */}
-      <td>{trimmed}</td>
+      <div className="td" col-name="due date">
+        <span>{trimmed}</span>
+      </div>
 
-      <td>{props.task.priority === 1 ? "high" : "low"}</td>
-    </tr>
+      <div className="td" col-name="urgency">
+        <span>{props.task.priority === 1 ? "high" : "low"}</span>
+      </div>
+    </div>
   );
 }
 

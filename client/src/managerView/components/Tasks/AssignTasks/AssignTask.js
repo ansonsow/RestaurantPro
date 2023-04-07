@@ -4,16 +4,22 @@ import { Link } from "react-router-dom";
 import UnAssignedTasksList from "./UnAssignedTasksList";
 import EmployeeList from "./EmployeeList";
 import EmployeeAssignedTask from "./EmployeeAssignedTask";
-import { Popup, PopupFunction } from "../../../../employeeView/components/popup/Popup";
+import Popup from "../../popup/Popup";
+
+import chevdown from "../../../../icons/down.svg"
+import filterIcon from "../../../../icons/filter.svg"
+
 import axios from "axios";
+
 export default function AssignTask() {
-  let currentUrl = window.location.href;
-  useEffect(() => {
-    if (currentUrl.includes("/assign-task")) {
-      document.getElementById("assign-task-btn").style.backgroundColor =
-        "#FFC619";
-    }
-  });
+  // let currentUrl = window.location.href;
+  // useEffect(() => {
+  //   if (currentUrl.includes("/assign-task")) {
+  //     document.getElementById("assign-task-btn").style.backgroundColor =
+  //       "#FFC619";
+  //   }
+  // });
+  
   const [unAssignedTask, setUnAssignedTask] = useState([]);
   const [unAssignedTaskObjects, setunAssignedTaskObjects] = useState([]);
   const [employee, setemployee] = useState([]);
@@ -23,12 +29,25 @@ export default function AssignTask() {
   const changeEventState = useRef({});
   const [loadingTask, setLoadingTasks] = useState(false);
   const [loadingEmployee, setLoadingEmployee] = useState(false);
+  const [popup, showPopup] = useState(false);
 
   // Call Apis
   useEffect(() => {
     getAllTask();
     getClockInEmployees();
   }, []);
+
+
+  const isToday = (someDate) => {
+    const today = new Date();
+    const trimedToday = today.toString().substring(0,10);
+    console.log(trimedToday == someDate.substring(0,10));
+
+    return (
+      trimedToday == someDate.substring(0,10)
+    );
+  };
+
 
   // get all the task
   const getAllTask = async () => {
@@ -63,8 +82,27 @@ export default function AssignTask() {
       .get(`${process.env.REACT_APP_SERVER}attendance/true`)
 
       .then((response) => {
-        console.log("all present employees:" + JSON.stringify(response.data));
-        let userIds = response.data.map((user) => user.user_id);
+        // console.log("all present employees:" + JSON.stringify(response.data));
+        // let userIds = response.data.map((user) => user.user_id);
+        
+        let userIds=[];
+        response.data.map((r,i)=>{
+          console.log(r.clock_in);
+          if(r.clock_in){
+            const localClockIn = new Date(r.clock_in);
+            const trimedClockIn = localClockIn.toString().substring(0, 21)
+            // console.log('wat');
+            console.log(r);
+            // console.log(trimedClockIn);
+            // console.log(isToday(trimedClockIn));
+            if(isToday(trimedClockIn)){
+              userIds.push(r.user_id)
+              // console.log('wat');
+
+            }
+          }
+        })
+
         console.log(response);
         userIds.forEach((id) => {
           getUserDetails(id);
@@ -104,7 +142,7 @@ export default function AssignTask() {
         console.log("user task saved: " + JSON.stringify(response.data));
       })
       .catch((error) => console.log("error in saving user task: " + error));
-    
+
     // axios.put(`${process.env.REACT_APP_SERVER}tasks/updateAssigned/${tid}`.then((result)=>{
     //   console.log(result);
     // }).catch((err)=>{
@@ -117,7 +155,7 @@ export default function AssignTask() {
 
     let dueDate = new Date();
     // default to 3 hours after now
-    dueDate.setHours(dueDate.getHours()+3);
+    dueDate.setHours(dueDate.getHours() + 3);
 
     let data = { task_status: true, task_assigned: true, due_date: dueDate };
     axios
@@ -130,11 +168,14 @@ export default function AssignTask() {
       })
       .catch((error) => console.log("error in saving user task: " + error));
 
-    axios.put(`${process.env.REACT_APP_SERVER}tasks/updateAssigned/${id}`.then((result)=>{
-      console.log(result);
-    }).catch((err)=>{
-      console.log(err);
-    }))
+    axios
+      .put(`${process.env.REACT_APP_SERVER}tasks/updateAssigned/${id}`)
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   // show data according fetch data
@@ -146,6 +187,7 @@ export default function AssignTask() {
 
   // task selected
 
+  // go here
   const taskSelected = (event) => {
     const { id, checked } = event.target;
     if (checked) {
@@ -156,6 +198,55 @@ export default function AssignTask() {
       });
     }
   };
+
+  /*---- HIGHLIGHT CURRENT TASK ROW ----*/
+  setTimeout(() => {
+    document.querySelectorAll(".assign_col_1 .td:first-child input").forEach(txcb => {
+      txcb.addEventListener("click", () => {
+        let tr = txcb.parentNode.parentNode;
+        // if(tr.matches(".tr")){
+
+          function uhh(){
+            if(tr.matches(".tr_highlight")){
+              tr.classList.remove("tr_highlight")
+            } else {
+              tr.classList.add("tr_highlight");
+              // tr.classList.add("tr_highlight");
+            } 
+          }
+
+          uhh()
+
+          setTimeout(() => {
+            if(txcb.checked && !tr.matches(".tr_highlight")){
+              // console.log("?????????")
+              tr.classList.add("tr_highlight");
+            }
+          },0)
+                 
+        // }
+      })
+    })
+  },0)
+
+  setTimeout(() => {
+    document.querySelectorAll(".assign_col_2 .td:first-child").forEach(txcb => {
+      txcb.addEventListener("click", () => {
+        let tr = txcb.parentNode;
+        if(tr.matches(".tr")){
+          if(!tr.matches(".tr_highlight")){
+            tr.parentNode.querySelectorAll(".tr").forEach(waa => {
+              waa.classList.remove("tr_highlight")
+            })
+            tr.classList.add("tr_highlight")
+          }
+        }
+      })
+    })
+  },1000);
+
+
+
   const getSelectedTasks = () => {
     setunAssignedTaskObjects([]);
     console.log("un assigned..." + unAssignedTask);
@@ -190,8 +281,9 @@ export default function AssignTask() {
 
   // show unselected data
 
-  let showUnselectedData = () => {
+  let showUnselectedData = (e) => {
     // save user's tasks
+    
     let uid = employeeObject.user_id;
     console.log("user id to update: " + uid);
 
@@ -224,121 +316,186 @@ export default function AssignTask() {
       }
     });
     setAllTask(newData);
-    
+    showPopup(true);
   };
+
+  let chevdownSVG;
+  let filterIconSVG;
+
+  async function grabSVG(url){
+    return fetch(url)
+    .then(response => response.text())
+    .then(result => {
+      return result;
+    });
+  }
+
+  grabSVG(chevdown).then(eyqxf => {
+    chevdownSVG = eyqxf;
+    document.querySelectorAll(".chev_down_svg").forEach(thdkv => {
+      thdkv.innerHTML = chevdownSVG
+    })        
+  })
+
+  grabSVG(filterIcon).then(eyqxf => {
+    filterIconSVG = eyqxf;
+    document.querySelectorAll(".filter_svg").forEach(thdkv => {
+      thdkv.innerHTML = filterIconSVG
+    })        
+  })
+
+
 
   return (
     <div className="assign-task-page">
-      <Popup/>
-      <div className="assign-task-page-upper-section">
-        <div className="assign-task-page-upper-section-button-section">
-          <Link to="/tasks" className="link-a">
-            <button>All Task</button>
-          </Link>
+      <div className="tab-buttons-container">
+        <Link to="/tasks">
+          <button className="tab-buttons">All Tasks</button>
+        </Link>
+        
+        <button className="tab-buttons active">Assign Task</button>
 
-          <Link to="/assign-task" className="link-a">
-            <button id="assign-task-btn">Assign Task</button>
-          </Link>
+        <Link to="/create-task">
+          <button className="tab-buttons">Create Task</button>
+        </Link>
 
-          <Link to="/create-task" className="link-a">
-            <button>Create Task</button>
-          </Link>
-
-          <Link to="/daily-attendance" className="link-a">
-            <button>Daily Attendance</button>
-          </Link>
-        </div>
+        <Link to="/daily-attendance">
+          <button className="tab-buttons">Daily Attendance</button>
+        </Link>
       </div>
 
-      <div className="assign-task-page-lower-section">
-        <div className="assign-task-page-grid-column" id="column1">
-          <p className="underline-p">Unassigned Task</p>
-          <table className="unassigned-task-table">
-            <thead>
-              <th>Task Name</th>
-              <th>Due Date</th>
-              <th>Urgency</th>
-            </thead>
-            <tbody>
-              {console.log("all task run")}
-              {loadingTask ? (
-                <div class="loading-icon">
-                  <div class="loading-dot"></div>
-                  <div class="loading-dot"></div>
-                  <div class="loading-dot"></div>
-                </div>
-              ) : (
-                allTasks.map((task) => (
-                  <UnAssignedTasksList
-                    unassignedTask={task}
-                    click={taskSelected}
-                  />
-                ))
-              )}
-              {/* {allTasks.map((task) => (
+      <div className="assign_table">
+        <div className="assign_col assign_col_1">
+          <div className="h3_holder">
+            <h3>Unassigned Tasks</h3>
+          </div>
+
+          <div className="thead">
+            <div col-name="task name">
+              <div>Task Name</div>
+            </div>
+
+            <div col-name="due date">
+              <div>Due Date</div>
+            </div>
+
+            <div col-name="urgency">
+              <div className="chev_down_svg"></div>
+              <div>Urgency</div>
+            </div>
+          </div>{/* end <thead> */}
+
+          <div className="tbody">
+            {console.log("all task run")}
+            {loadingTask ? (
+              <div className="loading-icon">
+                <div className="loading-dot"></div>
+                <div className="loading-dot"></div>
+                <div className="loading-dot"></div>
+              </div>
+            ) : (
+              allTasks.map((task,i) => (
                 <UnAssignedTasksList
+                  key={i}
                   unassignedTask={task}
                   click={taskSelected}
                 />
-              ))} */}
-            </tbody>
-          </table>
-        </div>
-        <div className="assign-task-page-grid-column" id="column2">
-          <p className="underline-p">Employee</p>
-          <table className="employee-table">
-            <thead>
-              <th>Name</th>
-              <th>Title</th>
-            </thead>
-            <tbody>
-              {console.log("loadingTask" + loadingTask)}
-              {loadingEmployee ? (
-                <div class="loading-icon">
-                  <div class="loading-dot"></div>
-                  <div class="loading-dot"></div>
-                  <div class="loading-dot"></div>
-                </div>
-              ) : (
-                allEmployee.map((employee) => (
-                  <EmployeeList
-                    unassignedTask={employee}
-                    click={employeeSelected}
-                  />
-                ))
-              )}
-              {/* {allEmployee.map((employee) => (
+              ))
+            )}
+          </div>{/* end <tbody> */}
+          
+          
+        </div>{/* end column 1 */}
+
+        {/*-----------------*/}
+
+        <div className="assign_col assign_col_2">
+          <div className="h3_holder">
+            <h3>Employee</h3>
+          </div>
+
+          <div className="thead">
+            <div col-name="employee name">
+              <div className="filter_svg"></div>
+              <div>Name</div>
+            </div>
+
+            <div col-name="employee role">
+              <div className="filter_svg"></div>
+              <div>Title</div>
+            </div>
+          </div>{/* end <thead> */}
+
+          <div className="tbody">
+            {console.log("loadingTask" + loadingTask)}
+            {loadingEmployee ? (
+              <div className="loading-icon">
+                <div className="loading-dot"></div>
+                <div className="loading-dot"></div>
+                <div className="loading-dot"></div>
+              </div>
+            ) : (
+              allEmployee.map((employee,i) => (
                 <EmployeeList
+                  key={i}
                   unassignedTask={employee}
                   click={employeeSelected}
                 />
-              ))} */}
-            </tbody>
-          </table>
-        </div>
+              ))
+            )}
+          </div>{/* end <tbody> */}
+        </div>{/* end column 2 */}
+
         {Object.keys(employeeObject).length > 0 &&
           Object.keys(unAssignedTaskObjects).length > 0 && (
-            <div className="assign-task-page-grid-column" id="column3">
-              <p className="underline-p">{`${employeeObject.name} Uncompleted Tasks`}</p>
-              <table className="uncompleted-task-table">
-                <thead>
-                  {console.log("task assign run")}
-                  <th>Task Name</th>
-                  <th>Due Date</th>
-                  <th>Urgency</th>
-                </thead>
-                <tbody>
-                  {unAssignedTaskObjects.map((task) => (
-                    <EmployeeAssignedTask task={task} />
-                  ))}
-                </tbody>
-              </table>
+            <div className="assign_col assign_col_3">
+              <div className="h3_holder">
+                <h3>{`${employeeObject.name}'s Uncompleted Tasks`}</h3>
+              </div>
+
+              <div className="thead">
+                {console.log("task assign run")}
+                <div col-name="task name">
+                  <div>Task Name</div>
+                </div>
+
+                <div col-name="due date">
+                  <div>Due Date</div>
+                </div>
+
+                <div col-name="urgency">
+                  <div className="chev_down_svg"></div>
+                  <div>Urgency</div>
+                </div>
+              </div>{/* end <thead> */}
+
+              <div className="tbody">
+                {unAssignedTaskObjects.map((task,i) => (
+                  <EmployeeAssignedTask task={task} key={i}/>
+                ))}
+              </div>
+
               {/* <button onClick={showUnselectedData}>Next</button> */}
               {/* onClick={(e) => {PopupFunction("Changes changed successfully.", "okay:/account")(e); saveChanges()  }} */}
-              <button onClick={(e) => {PopupFunction("Successfully assigned", "okay:/tasks")(e); showUnselectedData()}}>Next</button>
-            </div>
+              <button type="button" className="assign_btn"
+                onClick={(e) => {
+                  showUnselectedData();
+                }}
+              >
+                Next
+              </button>
+            </div>// end column 3
           )}
-      </div>
+          {console.log(popup)}
+        {popup && (
+          <Popup
+            msg={"Successfully assigned"}
+            whichButtons={"okay:/tasks"}
+            showPopup={showPopup}
+          />
+        )}
+      </div>{/* end table */}
+      {/*  */}
     </div>
   );
 }

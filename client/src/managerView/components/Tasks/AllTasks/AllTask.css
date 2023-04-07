@@ -36,3 +36,46 @@
 .all-task-page-lower-section table{
     width: 100%;
 }
+
+/*----------------------*/
+
+.all-task-page .board_columns {
+    border-radius:0!important;
+    overflow:initial!important;
+}
+
+.all-task-page .columns_names {
+    position:relative;
+    border-radius:var(--Corner-Rounding) var(--Corner-Rounding) 0 0;
+    box-shadow:0 4px 4px 0 rgba(var(--Text-Color-RGB),20%);
+}
+
+/* managerView - all tasks page - 5 cols */
+@media(min-width:1001px){
+    .all-task-page .columns_names,
+    .all-task-page .board_list .task {
+        grid-template-columns:repeat(5, 1fr)!important;
+    }
+}
+
+.all-task-page .board_list:not(:has(p)){
+    padding:0!important;
+}
+
+.all-task-page .board_list {
+    background:var(--Background)!important;
+    border:1px solid var(--Blue-Gray-Light);
+    border-top:0px;
+    border-radius:0 0 var(--Corner-Rounding) var(--Corner-Rounding);
+}
+
+.all-task-page .board_list .task {
+    text-align:center;
+    border-radius:0!important;
+}
+
+.all-task-page .board_list .task + .task {
+    margin-top:calc(var(--Task-Row-Spacing) / 2)!important;
+    padding-top:calc(var(--Task-Row-Spacing) / 2)!important;
+    border-top:1px solid var(--Blue-Gray-Light)!important
+}

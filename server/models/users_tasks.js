@@ -18,7 +18,7 @@ const userTasksSchema = new Schema({
     status: {
         type: Boolean,
         required: true,
-        default: false
+        default: true
     },
     date: {
         type: Date,

@@ -47,21 +47,24 @@
     padding-left:calc(var(--Table-Headers-Padding-X) * 2)
 }
 
-.task_page .board_list {
+.task_page .board_list,
+.all-task-page .board_list {
     /* padding:var(--Task-Row-Padding-Y) 0; */
     padding:var(--Task-Row-Padding-Y) var(--Task-Row-Padding-X);
     background:var(--Background-2);
 }
 
 
-.task_page .board_list .task {
+.task_page .board_list .task,
+.all-task-page .board_list .task {
     display:grid;
     grid-template-columns:repeat(4, 1fr);
     grid-gap:0 var(--Table-Columns-Spacing);
     align-items:center;
 }
 
-.task_page .board_list .task {
+.task_page .board_list .task,
+.all-task-page .board_list .task {
     margin:0!important;
     padding:0!important;
     background:transparent;
@@ -71,7 +74,8 @@
 }
 
 /* make each task row stretch to the height of the highest element in that row */
-.task_page .board_list .task > *:not(.message) {
+.task_page .board_list .task > *:not(.message),
+.all-task-page .board_list .task > *:not(.message){
     height:100%;
 }
 
@@ -79,7 +83,8 @@
     margin-top:var(--Task-Row-Spacing)!important;
 }
 
-.task_page .task > p {
+.task_page .task > p,
+.all-task-page .task > p{
     display:flex;
     align-items:center;
     justify-content:center;
@@ -88,9 +93,11 @@
     color:var(--Text-Color);
 }
 
-.task_page .task > p:first-of-type {
+.task_page .task > p:first-of-type,
+.all-task-page .task > p:first-of-type{
     padding-left:var(--Task-Row-Padding-X);
     justify-content:inherit;
+    text-align:left;
 }
 
 .task_page .open_task,
@@ -124,4 +131,8 @@
 
 .task_page .check_task {
     padding:var(--Task-Action-Btn-Padding-Y);
+}
+
+.board_list [col-name="task name"]{
+    text-transform:capitalize;
 }

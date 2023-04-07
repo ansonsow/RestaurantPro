@@ -264,14 +264,14 @@ button.complete-all-btn:hover {
     display:grid;
     align-items:center;
     justify-content:center;
-    grid-template-columns:repeat(2, var(--CTA-Buttons-Width));
+    grid-template-columns:repeat(2, 1fr); /* was (2, var(--CTA-Buttons-Width)) */
     grid-gap:var(--CTA-Buttons-Spacing);
     margin:var(--CTA-Buttons-Top-Gap) 0 var(--Screen-Margins-Y) 0;
 }
 
 .call_to_actions button {
     display:block;
-    width:var(--CTA-Buttons-Width);
+    /* width:var(--CTA-Buttons-Width); */
     padding:var(--CTA-Buttons-Padding-Y) var(--CTA-Buttons-Padding-X);
     border-radius:var(--Corner-Rounding);
     font-family:inherit;

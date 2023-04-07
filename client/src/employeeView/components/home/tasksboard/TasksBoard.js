@@ -21,9 +21,9 @@ function TasksBoard(props) {
 
   useEffect(() => {
     setTasks([]);
-    console.log("task status in effect: " + JSON.stringify(props.tasks));
-    console.log("tasks : " + JSON.stringify(tasks));
-    console.log("taskChecked : " + taskChecked);
+    // console.log("task status in effect: " + JSON.stringify(props.tasks));
+    // console.log("tasks : " + JSON.stringify(tasks));
+    // console.log("taskChecked : " + taskChecked);
 
     if (props.tasks) {
       console.log("if has tasks");
@@ -85,6 +85,7 @@ function TasksBoard(props) {
   };
 
   return (
+    <>
     <div className="board">
       {console.log("tasks in board: " + JSON.stringify(tasks))}
       <div className="board_head">
@@ -102,9 +103,10 @@ function TasksBoard(props) {
         <div className="task_board">
           {tasks.length>0?(<></>):(<h3>You have no open tasks.</h3>)}
           <div className="board_list">
-            {tasks.map((item) => (
+            {tasks.map((item,index) => (
               <TaskList
                 item={item}
+                key={index}
                 openTask={props.setBoardStatus}
                 setShowBoard={setShowBoard}
                 showBoard={showBoard}
@@ -112,7 +114,7 @@ function TasksBoard(props) {
                 setTaskChecked={setTaskChecked}
               />
             ))}
-            {message && (
+            {/* {message && (
               <Message
                 heading={heading}
                 message={messageText}
@@ -120,7 +122,7 @@ function TasksBoard(props) {
                 showBoard={props.showBoard}
                 getUserTasksIds={props.getUserTasksIds}
               />
-            )}
+            )} */}
           </div>
         </div>
         {tasks.length>0?(<div className="complete-all-btn-container"><button className="complete-all-btn" onClick={changeTaskStatus}>Click to Complete All</button></div>):(<></>)}
@@ -129,6 +131,17 @@ function TasksBoard(props) {
         <TaskDetails item={task} setShowBoard={setShowBoard} />
       )}
     </div>
+
+    {message && (
+              <Message
+                heading={heading}
+                message={messageText}
+                showMessage={showMessage}
+                showBoard={props.showBoard}
+                getUserTasksIds={props.getUserTasksIds}
+              />
+            )}
+    </>
   );
 }
 export default TasksBoard;

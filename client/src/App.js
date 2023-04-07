@@ -221,6 +221,7 @@ function App() {
             <div className="login_tb">
               <div className="login_tr">
                 <form className="login_form" onClick={stopPropagation}>
+                  <h2>Login</h2>
                   <label>User Id</label>
                   <input
                     type="text"

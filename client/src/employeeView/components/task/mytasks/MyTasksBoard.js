@@ -21,7 +21,7 @@ function MyTasksBoard(props) {
           </Link>
         </div>
       </div> */}
-{console.log("message status: "+message)}
+{/* {console.log("message status: "+message)} */}
       <div className="my_task_board">
         <div className="tab-buttons-container">
           <button className="tab-buttons active">Tasks</button>
@@ -29,14 +29,15 @@ function MyTasksBoard(props) {
         
         <div className="board_columns">
           <div className="columns_names">
-            <p>Task Name</p>
-            <p>Status</p>
-            <p>Urgency Level</p>
-            <p>Action</p>
+            <p col-name="task name">Task Name</p>
+            <p col-name="status">Status</p>
+            <p col-name="urgency">Urgency Level</p>
+            <p col-name="action">Action</p>
           </div>
           <div className="board_list">
-            {tasks.map((item) => (
+            {tasks.map((item,index) => (
               <MyTaskList
+                key={index}
                 item={item}
                 getUserTasksIds={props.getUserTasksIds}
                 setUnDoneTask={props.setUnDoneTask}
@@ -45,17 +46,26 @@ function MyTasksBoard(props) {
                 setmessageText={setmessageText}
               />
             ))}
-            {message && (
+            {/* {message && (
               <Message
                 heading={heading}
                 message={messageText}
                 showMessage={showMessage}
                 getUserTasksIds={props.getUserTasksIds}
               />
-            )}
+            )} */}
           </div>
         </div>
       </div>
+
+      {message && (
+        <Message
+          heading={heading}
+          message={messageText}
+          showMessage={showMessage}
+          getUserTasksIds={props.getUserTasksIds}
+        />
+      )}
     </>
   );
 }

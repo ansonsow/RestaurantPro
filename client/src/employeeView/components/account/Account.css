@@ -16,6 +16,14 @@
     --Account-Form-Label-Bottom-Gap:4px;
 }
 
+.account_page > .tab-buttons-container:first-of-type {
+    position: absolute;
+    bottom: 100%;
+    height: calc(var(--Navbar-Height) - (var(--Screen-Margins-Y) * 0.2) - 5px);
+    display: flex;
+    align-items: center;
+}
+
 .account_page .form {
   margin: auto;
   display: block;
@@ -31,7 +39,7 @@
 /* Account Details */
 .account_page form {
     display:grid;
-    grid-template-columns:calc(var(--Account-Image-Column-Width) + var(--Account-Image-Column-Extra-Gap-Right)) repeat(2, var(--Account-Form-Columns-Width));
+    grid-template-columns:calc(var(--Account-Image-Column-Width) + var(--Account-Image-Column-Extra-Gap-Right)) repeat(2, 1fr);
     grid-gap:0 var(--Account-Form-Columns-Gap);
     background:var(--Background-2);
     border-radius:var(--Corner-Rounding);
@@ -68,6 +76,10 @@
 
 .photo_section + .acc_side_box {
     margin-top:var(--Account-Side-Actions-Box-Top-Gap);
+}
+
+.mobile_acc_menu {
+    display:none;
 }
 
 .acc_side_box {
@@ -139,4 +151,20 @@
     box-sizing:border-box;
     border-radius:var(--Corner-Rounding);
     font-family:"Century Gothic Regular";
+}
+
+
+/*---- ACCOUNT PAGE: BUTTONS ----*/
+.account_page .call_to_actions {
+    margin-left:calc(var(--Account-Board-Padding) + var(--Account-Image-Column-Width) + var(--Account-Image-Column-Extra-Gap-Right) + var(--Account-Form-Columns-Gap));
+    margin-right:var(--Account-Board-Padding);
+    --CTA-Buttons-Spacing:var(--Account-Form-Columns-Gap);
+}
+
+.account_page .call_to_actions button {
+    width:80%;
+}
+
+.account_page .call_to_actions button:first-child {
+    margin-left:auto;
 }
