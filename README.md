@@ -1,4 +1,5 @@
-![Social media asset banner for Restaurant Pro](https://drive.google.com/uc?export=download&id=1Vm5QHH2gZu4aqe6I1fLtMpYB5ttYY6Wd)
+![Social media asset banner for Restaurant Pro](https://user-images.githubusercontent.com/25330392/232602914-67973ef7-90b8-45b7-aca0-4347d2977c11.png)
+
 
 ### 👋 About:
 
