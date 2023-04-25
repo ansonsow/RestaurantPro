@@ -26,7 +26,7 @@ Created as an academic project for the [WMDD program at Langara](https://langara
 - **Ozge** – Project Manager, UX Lead, UI/UX Designer [🔗](https://www.linkedin.com/in/ozgeca)
 - **Ricky** – UI Lead, UI Designer [🔗](https://www.linkedin.com/in/xinhuiwang)
 - **Evelyn** – UI/UX Designer [🔗](https://www.linkedin.com/in/evelyn-esponda)
-- **Mahima** – Full Stack Developer [🔗](https://www.linkedin.com/in/mahima-mukhi)
+- **Mahima** – Full Stack Developer [🔗](https://www.linkedin.com/in/mahima-mukhi-b70742138/)
 - **HT** – Front-End Developer [🔗](https://www.linkedin.com/in/ht-dev)
 - **Tushar** – Full Stack Developer [🔗](https://www.linkedin.com/in/tushar-wasnik)
 - **Anson** – Full Stack Developer [🔗](https://www.linkedin.com/in/anson-su)
