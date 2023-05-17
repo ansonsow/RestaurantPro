@@ -9,8 +9,8 @@ Created as an academic project for the [WMDD program at Langara](https://langara
 
 ### 🌐 Links:
 
-**Presentation deck:** [drive.google.com/file/d/1WvcpmmU1QdpfuHNHRZmeR_xxDYjy0JUg/view](https://drive.google.com/file/d/1WvcpmmU1QdpfuHNHRZmeR_xxDYjy0JUg/view?usp=share_link)  
-**Business proposal:** [drive.google.com/file/d/1JIBp1Pa1_ZI5OXiIeh_WXWdtCJGN3CqM/view](https://drive.google.com/file/d/1JIBp1Pa1_ZI5OXiIeh_WXWdtCJGN3CqM/view?usp=share_link)  
+**Presentation deck:** [app.box.com/s/o9ccfaxu7sbo7cq8g22hnxabgaaikg1u](https://app.box.com/s/o9ccfaxu7sbo7cq8g22hnxabgaaikg1u)  
+**Business proposal:** [app.box.com/s/27x58g7t4vy8ygqdfk7yk4aci3h60o06](https://app.box.com/s/27x58g7t4vy8ygqdfk7yk4aci3h60o06)  
 **Live demo:** [restaurant-pro.ca](https://restaurant-pro.ca)
 
 ---
